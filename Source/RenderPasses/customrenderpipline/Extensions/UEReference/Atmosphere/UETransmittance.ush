@@ -1,0 +1,45 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Unchanged source bodies; see UEAtmosphereSource.json.
+
+
+void RenderTransmittanceLutCS(uint3 ThreadId : SV_DispatchThreadID)
+{
+	float2 PixPos = float2(ThreadId.xy) + 0.5f;
+
+	// Compute camera position from LUT coords
+	float2 UV = (PixPos) * SkyAtmosphere.TransmittanceLutSizeAndInvSize.zw;
+	float ViewHeight;
+	float ViewZenithCosAngle;
+	UvToLutTransmittanceParams(ViewHeight, ViewZenithCosAngle, UV);
+
+	//  A few extra needed constants
+	float3 WorldPos = float3(0.0f, 0.0f, ViewHeight);
+	float3 WorldDir = float3(0.0f, sqrt(1.0f - ViewZenithCosAngle * ViewZenithCosAngle), ViewZenithCosAngle);
+
+	SamplingSetup Sampling = (SamplingSetup)0;
+	{
+		Sampling.VariableSampleCount = false;
+		Sampling.SampleCountIni = SkyAtmosphere.TransmittanceSampleCount;
+	}
+	const bool Ground = false;
+	const float DeviceZ = FarDepthValue;
+	const bool MieRayPhase = false;
+	const float3 NullLightDirection = float3(0.0f, 0.0f, 1.0f);
+	const float3 NullLightIlluminance = float3(0.0f, 0.0f, 0.0f);
+	const float AerialPespectiveViewDistanceScale = 1.0f;
+	SingleScatteringResult ss = IntegrateSingleScatteredLuminance(
+		float4(PixPos,0.0f,1.0f), WorldPos, WorldDir,
+		Ground, Sampling, DeviceZ, MieRayPhase,
+		NullLightDirection, NullLightDirection, NullLightIlluminance, NullLightIlluminance,
+		AerialPespectiveViewDistanceScale);
+
+	float3 transmittance = exp(-ss.OpticalDepth);
+
+	transmittance = EncodeTransmittance(transmittance);
+
+#if SHADING_PATH_MOBILE
+	TransmittanceLutUAV[int2(PixPos)] = float4(transmittance, 0.0f);
+#else
+	TransmittanceLutUAV[int2(PixPos)] = transmittance;
+#endif
+}

@@ -1,0 +1,2483 @@
+{
+  "status": "review_artifacts_and_raw_cache_identities_archived",
+  "reviews": [
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\55212f962a7131f3c8ebb096a017e5b5715df04d9579d0c0ebbdf16e89659025\\native-dataflow-review.json",
+      "bytes": 46234,
+      "sha256": "55212f962a7131f3c8ebb096a017e5b5715df04d9579d0c0ebbdf16e89659025",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70d72fc0cb914f3523d688b26a1a3e9c84aac32c52ef9e9de8b847ec7fcd8fdb\\native-dataflow-review.json",
+      "bytes": 22469,
+      "sha256": "70d72fc0cb914f3523d688b26a1a3e9c84aac32c52ef9e9de8b847ec7fcd8fdb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\455cd4bf2cf6663603cb1bf26d125c8f1aa7f2e30fac955c3a4f2e6d184b5347\\native-dataflow-review.json",
+      "bytes": 32098,
+      "sha256": "455cd4bf2cf6663603cb1bf26d125c8f1aa7f2e30fac955c3a4f2e6d184b5347",
+      "category": "current_evidence",
+      "original_source": null
+    }
+  ],
+  "artifacts": [
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\disassembly-result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\5697158c766dc47ca59aed153c063c0d6e0c3debc7e29ffa04c484b07c869080\\disassembly-result.json",
+      "bytes": 41233,
+      "sha256": "5697158c766dc47ca59aed153c063c0d6e0c3debc7e29ffa04c484b07c869080",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\launch.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dc3d31564ff8712fcd2b25907cfb81bb323ecb68302750542706bb5e488ede18\\launch.json",
+      "bytes": 615,
+      "sha256": "dc3d31564ff8712fcd2b25907cfb81bb323ecb68302750542706bb5e488ede18",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\dxil-prefix-tools\\review-cold-cache-dataflow.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a42abf86f14ea0f29389d01fe4607890b21b969757d928eb661bb31c3e849027\\review-cold-cache-dataflow.py",
+      "bytes": 15672,
+      "sha256": "a42abf86f14ea0f29389d01fe4607890b21b969757d928eb661bb31c3e849027",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-rounding-candidate\\run-x4av2qdv\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7586031291913339e9f8214a51018121f153e4a06e20b5488888ef73c37e84ae\\result.json",
+      "bytes": 121629,
+      "sha256": "7586031291913339e9f8214a51018121f153e4a06e20b5488888ef73c37e84ae",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-rounding-candidate\\run-x4av2qdv\\frozen\\lighting_diffuse_rounding_candidate.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87151f6b43fa42fd7676966701210371fff63d7a0750f65d6fa9d3d1c16c227c\\lighting_diffuse_rounding_candidate.py",
+      "bytes": 27795,
+      "sha256": "87151f6b43fa42fd7676966701210371fff63d7a0750f65d6fa9d3d1c16c227c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "bytes": 14328,
+      "sha256": "b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "bytes": 69984,
+      "sha256": "3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\209096d003df4e4fb14d6ae2e313651f3a3c6de9",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\57f5750929eacb47727c1e77b01afd4257181a44aebb9b529a34b934e62ed42f\\209096d003df4e4fb14d6ae2e313651f3a3c6de9",
+      "bytes": 14380,
+      "sha256": "57f5750929eacb47727c1e77b01afd4257181a44aebb9b529a34b934e62ed42f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\209096d003df4e4fb14d6ae2e313651f3a3c6de9.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ed36419acb07104e90f16aaea042ac7fb78c9eb20e84cc66d16b7b5c5ff6626a\\209096d003df4e4fb14d6ae2e313651f3a3c6de9.ll",
+      "bytes": 70266,
+      "sha256": "ed36419acb07104e90f16aaea042ac7fb78c9eb20e84cc66d16b7b5c5ff6626a",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\ee9db592f95cab8a117d267b44e3e56bf813cca5",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0c27d9a130eaac8edd6f5df853ff860f019aa1907cfbefddddb263cb7caba8e8\\ee9db592f95cab8a117d267b44e3e56bf813cca5",
+      "bytes": 14408,
+      "sha256": "0c27d9a130eaac8edd6f5df853ff860f019aa1907cfbefddddb263cb7caba8e8",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\ee9db592f95cab8a117d267b44e3e56bf813cca5.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a7432159fa20c49fe268651a3b94e04794034bea4c695480b88fc7074301007d\\ee9db592f95cab8a117d267b44e3e56bf813cca5.ll",
+      "bytes": 70440,
+      "sha256": "a7432159fa20c49fe268651a3b94e04794034bea4c695480b88fc7074301007d",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\dxil-prefix-tools\\dxil-prefix.exe",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\fc356683de8dc39d2fc1d336fbb79713533c5aa713ccaafa23672d735347318d\\dxil-prefix.exe",
+      "bytes": 118272,
+      "sha256": "fc356683de8dc39d2fc1d336fbb79713533c5aa713ccaafa23672d735347318d",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\dxcompiler.dll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\78b5e21a91707b4a567ef281a519c52a45b709561202f54c5ad79c5a315847ed\\dxcompiler.dll",
+      "bytes": 14316920,
+      "sha256": "78b5e21a91707b4a567ef281a519c52a45b709561202f54c5ad79c5a315847ed",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\dxil-prefix-tools\\disassemble-cold-cache-review.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\709c34ec7d62dd6ef3c5f93b2e9b8e2dcd44e25a0c39b2c45504eefa7d95b9b3\\disassemble-cold-cache-review.py",
+      "bytes": 3049,
+      "sha256": "709c34ec7d62dd6ef3c5f93b2e9b8e2dcd44e25a0c39b2c45504eefa7d95b9b3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\be0b58ce8508b700a51a1fd01a4bff5ecfc30d5ad7a2e9dba084b5788204b22f\\1a96b8a62db3b41a4bca744c509b5eb72ae720c7.log",
+      "bytes": 648,
+      "sha256": "be0b58ce8508b700a51a1fd01a4bff5ecfc30d5ad7a2e9dba084b5788204b22f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\164b02499cf6089e10dc817ad13a6aabafb2094bac9e5ee4d9527d080d483bc2\\1fddd0c2545b19849e80bca0c5f48d8fe1de9851.log",
+      "bytes": 648,
+      "sha256": "164b02499cf6089e10dc817ad13a6aabafb2094bac9e5ee4d9527d080d483bc2",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\209096d003df4e4fb14d6ae2e313651f3a3c6de9.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e14bc4b324f665b29da27dd8dee9081c6c3bcf017570f53fca78c72ef0e91055\\209096d003df4e4fb14d6ae2e313651f3a3c6de9.log",
+      "bytes": 654,
+      "sha256": "e14bc4b324f665b29da27dd8dee9081c6c3bcf017570f53fca78c72ef0e91055",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\21ae18151a59bad4cbd0e104d3ee940d17e048928d81d0c09543de0db184c7e7\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "bytes": 648,
+      "sha256": "21ae18151a59bad4cbd0e104d3ee940d17e048928d81d0c09543de0db184c7e7",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\26d89c132c1413748add70197e5ecb5e729a3aab",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\26d89c132c1413748add70197e5ecb5e729a3aab",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\26d89c132c1413748add70197e5ecb5e729a3aab.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\26d89c132c1413748add70197e5ecb5e729a3aab.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\26d89c132c1413748add70197e5ecb5e729a3aab.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\5385cfc9ad275c90bcf4cebafa1034e0e3830e871c67cc92d436cb4463b38f41\\26d89c132c1413748add70197e5ecb5e729a3aab.log",
+      "bytes": 654,
+      "sha256": "5385cfc9ad275c90bcf4cebafa1034e0e3830e871c67cc92d436cb4463b38f41",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\3140a36949173d7553c94a60848cd8997ae4b91d",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\3140a36949173d7553c94a60848cd8997ae4b91d",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\3140a36949173d7553c94a60848cd8997ae4b91d.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\3140a36949173d7553c94a60848cd8997ae4b91d.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\3140a36949173d7553c94a60848cd8997ae4b91d.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\35108e37585ba5adc7aaa6ea3620e02b6a539c140624cced4d9633d88d6811cd\\3140a36949173d7553c94a60848cd8997ae4b91d.log",
+      "bytes": 654,
+      "sha256": "35108e37585ba5adc7aaa6ea3620e02b6a539c140624cced4d9633d88d6811cd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\48954d0170fbe2f279cc6d6c57b804a207c063ee",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\48954d0170fbe2f279cc6d6c57b804a207c063ee",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\48954d0170fbe2f279cc6d6c57b804a207c063ee.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\48954d0170fbe2f279cc6d6c57b804a207c063ee.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\48954d0170fbe2f279cc6d6c57b804a207c063ee.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f9bdd99b31bbd853818f4900bbfaeb6c37f69a7a65f2b2f88e1f0eaaf46a7d9e\\48954d0170fbe2f279cc6d6c57b804a207c063ee.log",
+      "bytes": 648,
+      "sha256": "f9bdd99b31bbd853818f4900bbfaeb6c37f69a7a65f2b2f88e1f0eaaf46a7d9e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\4b8e1b58f435c5161ad8371c356129af665bc978",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\4b8e1b58f435c5161ad8371c356129af665bc978",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\4b8e1b58f435c5161ad8371c356129af665bc978.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\4b8e1b58f435c5161ad8371c356129af665bc978.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\4b8e1b58f435c5161ad8371c356129af665bc978.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\15266b713f3dc881bd6668f24f0bef98365f1dd15334fc5575b0d4e53bcbdc39\\4b8e1b58f435c5161ad8371c356129af665bc978.log",
+      "bytes": 647,
+      "sha256": "15266b713f3dc881bd6668f24f0bef98365f1dd15334fc5575b0d4e53bcbdc39",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "bytes": 5052,
+      "sha256": "56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "bytes": 10586,
+      "sha256": "7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f8017fafe2f3354018042d3bb813c10b73ffd4bb5fc3131757e72cba747adcd5\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "bytes": 648,
+      "sha256": "f8017fafe2f3354018042d3bb813c10b73ffd4bb5fc3131757e72cba747adcd5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "bytes": 4392,
+      "sha256": "8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "bytes": 8832,
+      "sha256": "646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\4aba35324e9f4d75a895af5fcbf2155f96e5fcbae76424502c9db2740410b7c0\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "bytes": 647,
+      "sha256": "4aba35324e9f4d75a895af5fcbf2155f96e5fcbae76424502c9db2740410b7c0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\5ece62359e080e57199b52a70ad570ae0fdf0d3b",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\5ece62359e080e57199b52a70ad570ae0fdf0d3b",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\5ece62359e080e57199b52a70ad570ae0fdf0d3b.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\5ece62359e080e57199b52a70ad570ae0fdf0d3b.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\5ece62359e080e57199b52a70ad570ae0fdf0d3b.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3d22f4f5689e44130753487d31e3ee654d31d1eb5553622cf917546021200371\\5ece62359e080e57199b52a70ad570ae0fdf0d3b.log",
+      "bytes": 654,
+      "sha256": "3d22f4f5689e44130753487d31e3ee654d31d1eb5553622cf917546021200371",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "bytes": 4200,
+      "sha256": "9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "bytes": 7763,
+      "sha256": "369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f24363ce778ac2e86d59aa9814d364e3b8f12e7b413f47c80d07bdc6baec344e\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "bytes": 647,
+      "sha256": "f24363ce778ac2e86d59aa9814d364e3b8f12e7b413f47c80d07bdc6baec344e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a7ef0dcfb42736459e9e0397f92764f096678cc3852ddc37e038dadd0156ff91\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "bytes": 654,
+      "sha256": "a7ef0dcfb42736459e9e0397f92764f096678cc3852ddc37e038dadd0156ff91",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f9e7815c00b0bdd5e27fa085c4677e87af2c693b6ae963a5a4552a9b6ce8871f\\68e7a7e78d8a9778a9f402860a4d5ede63b3e10a.log",
+      "bytes": 654,
+      "sha256": "f9e7815c00b0bdd5e27fa085c4677e87af2c693b6ae963a5a4552a9b6ce8871f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\72bba07c25ad38a9033a432290c8576b3634beff",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\72bba07c25ad38a9033a432290c8576b3634beff",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\72bba07c25ad38a9033a432290c8576b3634beff.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\72bba07c25ad38a9033a432290c8576b3634beff.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\72bba07c25ad38a9033a432290c8576b3634beff.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3044942c7c2b269b492c7c6bc842c0be3aa55d37f0085b0ed77f9be3ff691ac5\\72bba07c25ad38a9033a432290c8576b3634beff.log",
+      "bytes": 654,
+      "sha256": "3044942c7c2b269b492c7c6bc842c0be3aa55d37f0085b0ed77f9be3ff691ac5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "bytes": 2064,
+      "sha256": "275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "bytes": 1547,
+      "sha256": "7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d688f5179a875a833f1f3ab7a3bf037aead1255a66a62544e65c2007b73fb5a0\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "bytes": 647,
+      "sha256": "d688f5179a875a833f1f3ab7a3bf037aead1255a66a62544e65c2007b73fb5a0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c64719e1c91758e36667cfb38b327914d616fbd78249c0cbf8c4841472b20192\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "bytes": 648,
+      "sha256": "c64719e1c91758e36667cfb38b327914d616fbd78249c0cbf8c4841472b20192",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\377ebe7d1c8576e3a6e704d1583838dd1ada9fe0f0afe5d57fb2e85f2989d9c7\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "bytes": 654,
+      "sha256": "377ebe7d1c8576e3a6e704d1583838dd1ada9fe0f0afe5d57fb2e85f2989d9c7",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0db1b6e43ca1c7783da54c981e91cd0bd3e0d326301cb470c0a3c4caedf0fc56\\7a5d9d13b16f0526d5d7892ba4e045c51b8bae1a.log",
+      "bytes": 647,
+      "sha256": "0db1b6e43ca1c7783da54c981e91cd0bd3e0d326301cb470c0a3c4caedf0fc56",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\800c36a3dde66d594b4984fc9c34aff882f71a58",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\800c36a3dde66d594b4984fc9c34aff882f71a58",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\800c36a3dde66d594b4984fc9c34aff882f71a58.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\800c36a3dde66d594b4984fc9c34aff882f71a58.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\800c36a3dde66d594b4984fc9c34aff882f71a58.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\81c2d56805b751be77a76762af344c826f8e04bd56e33aacd9a7c72b81c87419\\800c36a3dde66d594b4984fc9c34aff882f71a58.log",
+      "bytes": 648,
+      "sha256": "81c2d56805b751be77a76762af344c826f8e04bd56e33aacd9a7c72b81c87419",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\85a481540ae7ce775252598f9056b3c11f84d966",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\85a481540ae7ce775252598f9056b3c11f84d966",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\85a481540ae7ce775252598f9056b3c11f84d966.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\85a481540ae7ce775252598f9056b3c11f84d966.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\85a481540ae7ce775252598f9056b3c11f84d966.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00494a41f534c6da031dbb69eb2ab4d14b9b46a46a41f8ce439e47c7a71a654b\\85a481540ae7ce775252598f9056b3c11f84d966.log",
+      "bytes": 648,
+      "sha256": "00494a41f534c6da031dbb69eb2ab4d14b9b46a46a41f8ce439e47c7a71a654b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\85e6be5248f728e0b88d1f0fe9295dee16d46d72",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\85e6be5248f728e0b88d1f0fe9295dee16d46d72",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\85e6be5248f728e0b88d1f0fe9295dee16d46d72.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\85e6be5248f728e0b88d1f0fe9295dee16d46d72.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\85e6be5248f728e0b88d1f0fe9295dee16d46d72.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\5b81c24bfaca75dbb4becc951ad3cb6be2b4e701942499cc187787ac660e0de0\\85e6be5248f728e0b88d1f0fe9295dee16d46d72.log",
+      "bytes": 654,
+      "sha256": "5b81c24bfaca75dbb4becc951ad3cb6be2b4e701942499cc187787ac660e0de0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\8c40ef04a2175d8befe8f46981d91e423cf4760c",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\8c40ef04a2175d8befe8f46981d91e423cf4760c",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\8c40ef04a2175d8befe8f46981d91e423cf4760c.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\8c40ef04a2175d8befe8f46981d91e423cf4760c.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\8c40ef04a2175d8befe8f46981d91e423cf4760c.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\55b8fc8d1ac2d603f71fd82dbbdc09c8cbf14bc11743e44a1e250d8dd47f83e2\\8c40ef04a2175d8befe8f46981d91e423cf4760c.log",
+      "bytes": 654,
+      "sha256": "55b8fc8d1ac2d603f71fd82dbbdc09c8cbf14bc11743e44a1e250d8dd47f83e2",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b2e9b47c041398210f1285e1dab7b17f360610755b71e60871ecdea9c5a03314\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "bytes": 654,
+      "sha256": "b2e9b47c041398210f1285e1dab7b17f360610755b71e60871ecdea9c5a03314",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b1814fe84aa957d2e9fa795e0d253860c65bb7884da0bee6e5aef99fe96493c\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "bytes": 654,
+      "sha256": "7b1814fe84aa957d2e9fa795e0d253860c65bb7884da0bee6e5aef99fe96493c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f67ee42a230f738b952e403eb43822e39d6cd158cf5a26e4746d31f207e2b2c5\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "bytes": 648,
+      "sha256": "f67ee42a230f738b952e403eb43822e39d6cd158cf5a26e4746d31f207e2b2c5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8e561ded6a894ac567a206c364dfe9668de26b24ae65924f04721f34230b4075\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "bytes": 648,
+      "sha256": "8e561ded6a894ac567a206c364dfe9668de26b24ae65924f04721f34230b4075",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\a2cc0b213901f088818bc9039d7172c7bce43807",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\a2cc0b213901f088818bc9039d7172c7bce43807",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a2cc0b213901f088818bc9039d7172c7bce43807.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\a2cc0b213901f088818bc9039d7172c7bce43807.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a2cc0b213901f088818bc9039d7172c7bce43807.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8232bb573dea69fb2bbeb724e20384a00ab8d2ae1a642f1e40eb43e34a678667\\a2cc0b213901f088818bc9039d7172c7bce43807.log",
+      "bytes": 648,
+      "sha256": "8232bb573dea69fb2bbeb724e20384a00ab8d2ae1a642f1e40eb43e34a678667",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\a90ace4c019a88ceea70ceed2145c4438917ed8e",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\a90ace4c019a88ceea70ceed2145c4438917ed8e",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a90ace4c019a88ceea70ceed2145c4438917ed8e.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\a90ace4c019a88ceea70ceed2145c4438917ed8e.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\a90ace4c019a88ceea70ceed2145c4438917ed8e.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\42ca31ecd9191c4e64d3d464782c4c45e088a1fe9aedc7f93e42e2fcad0cbb0e\\a90ace4c019a88ceea70ceed2145c4438917ed8e.log",
+      "bytes": 648,
+      "sha256": "42ca31ecd9191c4e64d3d464782c4c45e088a1fe9aedc7f93e42e2fcad0cbb0e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0c300829366c82692f5f181f4d7c289de2fba3f6ab7565d1b0c37fe65cdb6633\\bd3187f79eb47c5e80b296ff7553b3496dd9a82c.log",
+      "bytes": 654,
+      "sha256": "0c300829366c82692f5f181f4d7c289de2fba3f6ab7565d1b0c37fe65cdb6633",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\c1d13ec5a041232727a483a0b4e6f86063aae90d",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\c1d13ec5a041232727a483a0b4e6f86063aae90d",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c1d13ec5a041232727a483a0b4e6f86063aae90d.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\c1d13ec5a041232727a483a0b4e6f86063aae90d.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c1d13ec5a041232727a483a0b4e6f86063aae90d.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\02cdc228724fd5919953f70d863f69dbed7196cba096d78b1b5adb53c21065b7\\c1d13ec5a041232727a483a0b4e6f86063aae90d.log",
+      "bytes": 648,
+      "sha256": "02cdc228724fd5919953f70d863f69dbed7196cba096d78b1b5adb53c21065b7",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d59fb6536deb1ee1b0b8b82cbd16496b085435c49842109c50f5ce701e6e3707\\c310e72645f62c2d6bddcf4a5a60b97ce4052c16.log",
+      "bytes": 648,
+      "sha256": "d59fb6536deb1ee1b0b8b82cbd16496b085435c49842109c50f5ce701e6e3707",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\c7afab10014b83378fd67656c66767a69e26751a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505\\c7afab10014b83378fd67656c66767a69e26751a",
+      "bytes": 4356,
+      "sha256": "020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "bytes": 7084,
+      "sha256": "106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a67336ee0d46be3fae80bf31e529b42c5b1ad875da1862545b231060735ed3e1\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "bytes": 647,
+      "sha256": "a67336ee0d46be3fae80bf31e529b42c5b1ad875da1862545b231060735ed3e1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\86218ea645e4687795200ecd701cb8f81bf744207b46af782d8f9f03faf87b3e\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "bytes": 647,
+      "sha256": "86218ea645e4687795200ecd701cb8f81bf744207b46af782d8f9f03faf87b3e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\5338051288ddff8cd763e32830321c8f788c48c79fa440f597b4197ee88f4bc7\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "bytes": 648,
+      "sha256": "5338051288ddff8cd763e32830321c8f788c48c79fa440f597b4197ee88f4bc7",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "bytes": 4400,
+      "sha256": "3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "bytes": 9125,
+      "sha256": "51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\be8587b1f848db0399b725bcddc6bb12d7bbfb5b3dc4972204b0eb028ccfa223\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "bytes": 647,
+      "sha256": "be8587b1f848db0399b725bcddc6bb12d7bbfb5b3dc4972204b0eb028ccfa223",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ee9f1832586ee5545e76aa822e1c72fbfca6db41f6970262ffd30c0427d777a2\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "bytes": 654,
+      "sha256": "ee9f1832586ee5545e76aa822e1c72fbfca6db41f6970262ffd30c0427d777a2",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9e6d877daa75433947819ee842365a87ee5aaf537b16854f02789ffb623e7088\\eb4592f95b04ba4f5e1effae29d0f9b1ed0cd75f.log",
+      "bytes": 648,
+      "sha256": "9e6d877daa75433947819ee842365a87ee5aaf537b16854f02789ffb623e7088",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\ee9db592f95cab8a117d267b44e3e56bf813cca5.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e1abc93544430a7ceb9e65709b4443a2bb5a6a7e25cc4adee681382f9f5f4dea\\ee9db592f95cab8a117d267b44e3e56bf813cca5.log",
+      "bytes": 654,
+      "sha256": "e1abc93544430a7ceb9e65709b4443a2bb5a6a7e25cc4adee681382f9f5f4dea",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\f05697983f53192c38547185a1e773ebd656e105",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf\\f05697983f53192c38547185a1e773ebd656e105",
+      "bytes": 3964,
+      "sha256": "dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "bytes": 6264,
+      "sha256": "f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\ir\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\aef4521a4247b766420268fc4647eb0eb736509496980cbf4a5578a32f245664\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "bytes": 647,
+      "sha256": "aef4521a4247b766420268fc4647eb0eb736509496980cbf4a5578a32f245664",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\index",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6fbaa2c28e33bd9734dac2121be09ceb327cfff2570c06e153f5c1b5edda70cc\\index",
+      "bytes": 976,
+      "sha256": "6fbaa2c28e33bd9734dac2121be09ceb327cfff2570c06e153f5c1b5edda70cc",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\cache\\lock",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\\lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\55212f962a7131f3c8ebb096a017e5b5715df04d9579d0c0ebbdf16e89659025\\native-dataflow-review.json",
+      "bytes": 46234,
+      "sha256": "55212f962a7131f3c8ebb096a017e5b5715df04d9579d0c0ebbdf16e89659025",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\mogwai.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9febb1317e5fb76bb0d1b449e314a4cba8a9873c1af6264e2c71afd29cd5c346\\mogwai.log",
+      "bytes": 143186,
+      "sha256": "9febb1317e5fb76bb0d1b449e314a4cba8a9873c1af6264e2c71afd29cd5c346",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\native-dataflow-review.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6b72f907d00476ef7f393c1ae5576e3e5ec01096523eb9d6b1b6e4c58c16e258\\native-dataflow-review.md",
+      "bytes": 2602,
+      "sha256": "6b72f907d00476ef7f393c1ae5576e3e5ec01096523eb9d6b1b6e4c58c16e258",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-diffuse-candidate-cache\\run-6gpoohug\\process.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\10a7750f5eb638eab67082cd61c40e373ab63389f0d372fb53e3053fd671a097\\process.log",
+      "bytes": 142325,
+      "sha256": "10a7750f5eb638eab67082cd61c40e373ab63389f0d372fb53e3053fd671a097",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\disassembly-result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2140cd959af39f6c1ef9925c4b5d483b311bf0d7e6742c13a36531b2a2f1fd7a\\disassembly-result.json",
+      "bytes": 29862,
+      "sha256": "2140cd959af39f6c1ef9925c4b5d483b311bf0d7e6742c13a36531b2a2f1fd7a",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\launch.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2500d83f308e86e51db1f3048f893dd46708f478d13f156ab66cb420fe25e217\\launch.json",
+      "bytes": 594,
+      "sha256": "2500d83f308e86e51db1f3048f893dd46708f478d13f156ab66cb420fe25e217",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-evidence\\run-rt891g2s\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0ad00cfc8dd0b1f7491a02dca6846a2b3bf0f4f8da526c798838d9ae25a9761b\\result.json",
+      "bytes": 77918,
+      "sha256": "0ad00cfc8dd0b1f7491a02dca6846a2b3bf0f4f8da526c798838d9ae25a9761b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-evidence\\run-rt891g2s\\frozen\\lighting_bxdf_prefix_smoke.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dcba9c5e8aeb2e90f9079960bff192c743aa788bfda2b6da951d898cb2acf640\\lighting_bxdf_prefix_smoke.py",
+      "bytes": 24409,
+      "sha256": "dcba9c5e8aeb2e90f9079960bff192c743aa788bfda2b6da951d898cb2acf640",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\dxil-prefix-tools\\review-extra-prefix-caches.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ad7f26698251f05b579cea965b9c790759356c4b4ce4d3c7428c287fd59171eb\\review-extra-prefix-caches.py",
+      "bytes": 6546,
+      "sha256": "ad7f26698251f05b579cea965b9c790759356c4b4ce4d3c7428c287fd59171eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "bytes": 14328,
+      "sha256": "b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "bytes": 69984,
+      "sha256": "3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\09190cc5a609f23c846340baa26f093ad1c60698",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\15cb9f0569b39f671c560ba0eb5e31e27c7feb68a8ed45f3e3d075316e188810\\09190cc5a609f23c846340baa26f093ad1c60698",
+      "bytes": 14360,
+      "sha256": "15cb9f0569b39f671c560ba0eb5e31e27c7feb68a8ed45f3e3d075316e188810",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\09190cc5a609f23c846340baa26f093ad1c60698.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6118757e8b7c0e8140966c4e20f2cc67561c3c3eae588e38c0eb32ce72a44184\\09190cc5a609f23c846340baa26f093ad1c60698.ll",
+      "bytes": 70158,
+      "sha256": "6118757e8b7c0e8140966c4e20f2cc67561c3c3eae588e38c0eb32ce72a44184",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\09190cc5a609f23c846340baa26f093ad1c60698.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e468c3945ffe5fe2eee4033c85623263d6192b01c476a3935a2ab69148ec4ebe\\09190cc5a609f23c846340baa26f093ad1c60698.log",
+      "bytes": 648,
+      "sha256": "e468c3945ffe5fe2eee4033c85623263d6192b01c476a3935a2ab69148ec4ebe",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\0a54742589331bde570ad2f0f553b9786824bd31",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\0a54742589331bde570ad2f0f553b9786824bd31",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\0a54742589331bde570ad2f0f553b9786824bd31.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\0a54742589331bde570ad2f0f553b9786824bd31.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\0a54742589331bde570ad2f0f553b9786824bd31.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\5fbf82469e2143a7dade24619f68ca073765e84655f0f462d5fe24c0bbd96c1b\\0a54742589331bde570ad2f0f553b9786824bd31.log",
+      "bytes": 648,
+      "sha256": "5fbf82469e2143a7dade24619f68ca073765e84655f0f462d5fe24c0bbd96c1b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e1d3d4065e66b470b99476e8b754ff349321c2779dad43c95f04d331e6931c50\\1cbb26a5f4756594c98b9ea55ec1f34893ba6695.log",
+      "bytes": 642,
+      "sha256": "e1d3d4065e66b470b99476e8b754ff349321c2779dad43c95f04d331e6931c50",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b748e0cb7b38da1aca2f4ac4ee3e8d23f0f42907048b457d6f66f55cec8438e8\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "bytes": 642,
+      "sha256": "b748e0cb7b38da1aca2f4ac4ee3e8d23f0f42907048b457d6f66f55cec8438e8",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "bytes": 5052,
+      "sha256": "56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "bytes": 10586,
+      "sha256": "7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d21e9f7bfa2f2846c7f0f7a2333e5d893872d49565e524aca637a9a9555a453e\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "bytes": 642,
+      "sha256": "d21e9f7bfa2f2846c7f0f7a2333e5d893872d49565e524aca637a9a9555a453e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "bytes": 4392,
+      "sha256": "8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "bytes": 8832,
+      "sha256": "646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b840074ea7534d1090ad82e3f2d58ca2f20695c2fe9331608d9ef8c956221382\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "bytes": 641,
+      "sha256": "b840074ea7534d1090ad82e3f2d58ca2f20695c2fe9331608d9ef8c956221382",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "bytes": 4200,
+      "sha256": "9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "bytes": 7763,
+      "sha256": "369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d5ac7f123179188ee80eabe71d064d24e533483e795b4ab96f02d9131c87a7c2\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "bytes": 641,
+      "sha256": "d5ac7f123179188ee80eabe71d064d24e533483e795b4ab96f02d9131c87a7c2",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\4579a34d7ffdfb56baaf5171db28028fc462683b3c9b7613941407526d24a616\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "bytes": 648,
+      "sha256": "4579a34d7ffdfb56baaf5171db28028fc462683b3c9b7613941407526d24a616",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "bytes": 2064,
+      "sha256": "275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "bytes": 1547,
+      "sha256": "7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\19d62ded42ff25e73e96a021c59d8c90dd010c2b0129248f94bf02c36dfc0b89\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "bytes": 641,
+      "sha256": "19d62ded42ff25e73e96a021c59d8c90dd010c2b0129248f94bf02c36dfc0b89",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ce18ae3565a3e32151b3b61a929d11949f206b4f1bb50d940d0d68983dfa9348\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "bytes": 642,
+      "sha256": "ce18ae3565a3e32151b3b61a929d11949f206b4f1bb50d940d0d68983dfa9348",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c318ecc11ef3554f87d3f05302923d1ca31e1a5fd08861c1382c83d9dbbac40c\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "bytes": 648,
+      "sha256": "c318ecc11ef3554f87d3f05302923d1ca31e1a5fd08861c1382c83d9dbbac40c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0f5ced4d3ec6c6135be76fd2bd84f77be123ce0bc9cbe6b8bcbbe6163f80714a\\867a6e408a1ce9f1d1a8de18a9f75939b506d6e9.log",
+      "bytes": 642,
+      "sha256": "0f5ced4d3ec6c6135be76fd2bd84f77be123ce0bc9cbe6b8bcbbe6163f80714a",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\fc2820488720f53691f3cc9d5359ed69dad9e0521d49a8809a9dc46b20b664b1\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "bytes": 648,
+      "sha256": "fc2820488720f53691f3cc9d5359ed69dad9e0521d49a8809a9dc46b20b664b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6f71453729315aa963b44a2efd3bbaa3ae555dcf8e1705c69e0a78e9080422e5\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "bytes": 648,
+      "sha256": "6f71453729315aa963b44a2efd3bbaa3ae555dcf8e1705c69e0a78e9080422e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7d30ab793998176a8069224274ba16a69b34dfcbba5e099d8bea3686089dad0e\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "bytes": 642,
+      "sha256": "7d30ab793998176a8069224274ba16a69b34dfcbba5e099d8bea3686089dad0e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a7b0dc27d79591a13e3e40d3ca2f5bb37a6b50858a7b3dee94a8ec90f54dbd0d\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "bytes": 642,
+      "sha256": "a7b0dc27d79591a13e3e40d3ca2f5bb37a6b50858a7b3dee94a8ec90f54dbd0d",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9e989815b42dc42b664056804fe51b67e35fd47b8704874c67436cdad297d59d\\bf3660f0d8a106e29c6dfee2a536cf1fcb89ab3d.log",
+      "bytes": 642,
+      "sha256": "9e989815b42dc42b664056804fe51b67e35fd47b8704874c67436cdad297d59d",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\c7afab10014b83378fd67656c66767a69e26751a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505\\c7afab10014b83378fd67656c66767a69e26751a",
+      "bytes": 4356,
+      "sha256": "020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "bytes": 7084,
+      "sha256": "106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\48ef420eb4c0dd99e7a7a79a6eb1ddfaba4663bfa2369adfc55087f0497cb5ea\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "bytes": 641,
+      "sha256": "48ef420eb4c0dd99e7a7a79a6eb1ddfaba4663bfa2369adfc55087f0497cb5ea",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dc39b1dfc1fe4acc6a59667e83b2ef659d64a0870a4cd094739a6950b0cbab39\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "bytes": 641,
+      "sha256": "dc39b1dfc1fe4acc6a59667e83b2ef659d64a0870a4cd094739a6950b0cbab39",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\94a18d86ee4c1b593bc79f4c674a74d1c2b4350f52231a79a7391c75803a7df4\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "bytes": 642,
+      "sha256": "94a18d86ee4c1b593bc79f4c674a74d1c2b4350f52231a79a7391c75803a7df4",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "bytes": 4400,
+      "sha256": "3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "bytes": 9125,
+      "sha256": "51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\38066ca9fc7d841bdd39cc930cde03f0c5df7588bd47887632cb10fcde3f23b1\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "bytes": 641,
+      "sha256": "38066ca9fc7d841bdd39cc930cde03f0c5df7588bd47887632cb10fcde3f23b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\e625b842b2e3e43170c3b1384c3af04f9df44f30",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\e625b842b2e3e43170c3b1384c3af04f9df44f30",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e625b842b2e3e43170c3b1384c3af04f9df44f30.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\e625b842b2e3e43170c3b1384c3af04f9df44f30.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e625b842b2e3e43170c3b1384c3af04f9df44f30.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1097cd6e92e5bfbbae98f7fc16b52dd7a207ce6e4fbe65cef7da81222fe91b5d\\e625b842b2e3e43170c3b1384c3af04f9df44f30.log",
+      "bytes": 642,
+      "sha256": "1097cd6e92e5bfbbae98f7fc16b52dd7a207ce6e4fbe65cef7da81222fe91b5d",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a45c84d43e2fb8ad929bbac1ca41a215f59c25f25579133582675806de9dbe75\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "bytes": 648,
+      "sha256": "a45c84d43e2fb8ad929bbac1ca41a215f59c25f25579133582675806de9dbe75",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\eeb9c51612fc3d359f102e73074eb289943213d6",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\eeb9c51612fc3d359f102e73074eb289943213d6",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\eeb9c51612fc3d359f102e73074eb289943213d6.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\eeb9c51612fc3d359f102e73074eb289943213d6.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\eeb9c51612fc3d359f102e73074eb289943213d6.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d9821c0dab583f639447f2511f56111183521028e33e2c4a3ee5554299bb5fab\\eeb9c51612fc3d359f102e73074eb289943213d6.log",
+      "bytes": 648,
+      "sha256": "d9821c0dab583f639447f2511f56111183521028e33e2c4a3ee5554299bb5fab",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\f05697983f53192c38547185a1e773ebd656e105",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf\\f05697983f53192c38547185a1e773ebd656e105",
+      "bytes": 3964,
+      "sha256": "dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "bytes": 6264,
+      "sha256": "f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\97d97b5f259ff00d81958b0a2a9960d6ed3feb7f25ce0cdf1ee49b508df33555\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "bytes": 641,
+      "sha256": "97d97b5f259ff00d81958b0a2a9960d6ed3feb7f25ce0cdf1ee49b508df33555",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\f48ae6f6d91f74b43134743d9e91ff2041af8628",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\f48ae6f6d91f74b43134743d9e91ff2041af8628",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f48ae6f6d91f74b43134743d9e91ff2041af8628.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\f48ae6f6d91f74b43134743d9e91ff2041af8628.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f48ae6f6d91f74b43134743d9e91ff2041af8628.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\69e8852815e2eb321d92b45d7036471849e000a5ab8b3a40d8a9442abc56c95e\\f48ae6f6d91f74b43134743d9e91ff2041af8628.log",
+      "bytes": 642,
+      "sha256": "69e8852815e2eb321d92b45d7036471849e000a5ab8b3a40d8a9442abc56c95e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\f69ee4c2dee111e20adc0594eb199f2f08c5623d",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\f69ee4c2dee111e20adc0594eb199f2f08c5623d",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f69ee4c2dee111e20adc0594eb199f2f08c5623d.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\f69ee4c2dee111e20adc0594eb199f2f08c5623d.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f69ee4c2dee111e20adc0594eb199f2f08c5623d.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dda6244edba6cc4dd8a78ae217a920d46010604b41485290c287efe771f50458\\f69ee4c2dee111e20adc0594eb199f2f08c5623d.log",
+      "bytes": 641,
+      "sha256": "dda6244edba6cc4dd8a78ae217a920d46010604b41485290c287efe771f50458",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\f7631b8ec874059a6eac9a63aee01c693d922987",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\f7631b8ec874059a6eac9a63aee01c693d922987",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f7631b8ec874059a6eac9a63aee01c693d922987.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\f7631b8ec874059a6eac9a63aee01c693d922987.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\f7631b8ec874059a6eac9a63aee01c693d922987.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\63eb180865d64fb8b474692cdeb285e170a52b1ff5f6c982f398428cb43797a4\\f7631b8ec874059a6eac9a63aee01c693d922987.log",
+      "bytes": 648,
+      "sha256": "63eb180865d64fb8b474692cdeb285e170a52b1ff5f6c982f398428cb43797a4",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\ir\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\bf7095d888deb56270f7bc43864b8493b6b54137a7d75a783bebea036daab8e2\\fad15ea0f3b8d8f8d860d8c2b606083e50e29d02.log",
+      "bytes": 648,
+      "sha256": "bf7095d888deb56270f7bc43864b8493b6b54137a7d75a783bebea036daab8e2",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\index",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\bf8f58f2db53c95a5160db32092daf49abba8c9034466109a64f6cd49b3f6367\\index",
+      "bytes": 712,
+      "sha256": "bf8f58f2db53c95a5160db32092daf49abba8c9034466109a64f6cd49b3f6367",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\cache\\lock",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\\lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70d72fc0cb914f3523d688b26a1a3e9c84aac32c52ef9e9de8b847ec7fcd8fdb\\native-dataflow-review.json",
+      "bytes": 22469,
+      "sha256": "70d72fc0cb914f3523d688b26a1a3e9c84aac32c52ef9e9de8b847ec7fcd8fdb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\mogwai.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d36da804e6a7e22ae1847e8720b890393da62447ae2236dfaf1730e524e89bfa\\mogwai.log",
+      "bytes": 99688,
+      "sha256": "d36da804e6a7e22ae1847e8720b890393da62447ae2236dfaf1730e524e89bfa",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\native-dataflow-review.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f46f3779d5459042ab8d80b0ae9b11b25468867d42092fbcf2f7637f9d929302\\native-dataflow-review.md",
+      "bytes": 1318,
+      "sha256": "f46f3779d5459042ab8d80b0ae9b11b25468867d42092fbcf2f7637f9d929302",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-prefix-cache\\run-9usd30t8\\process.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6eeb7c063e88741c75a43ac3b9fb498e4bc3832a7a2553fff9d0b751bd81a71f\\process.log",
+      "bytes": 99055,
+      "sha256": "6eeb7c063e88741c75a43ac3b9fb498e4bc3832a7a2553fff9d0b751bd81a71f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\disassembly-result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\fb8452bb70c211e8e685a7ce0020d8c6e1b6e9b81bc4497d50a546ce16089069\\disassembly-result.json",
+      "bytes": 22166,
+      "sha256": "fb8452bb70c211e8e685a7ce0020d8c6e1b6e9b81bc4497d50a546ce16089069",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\launch.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9d71293ec34a771aa3ea62a099b7a31dc20c5b3366cb8df6b9a20ca2c1ca5eb\\launch.json",
+      "bytes": 594,
+      "sha256": "c9d71293ec34a771aa3ea62a099b7a31dc20c5b3366cb8df6b9a20ca2c1ca5eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-evidence\\run-onrzcc34\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0178bc7a4cc4ff0ce625bd16ca4c5621d48721881ce17d174df04b802cb31808\\result.json",
+      "bytes": 56564,
+      "sha256": "0178bc7a4cc4ff0ce625bd16ca4c5621d48721881ce17d174df04b802cb31808",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-evidence\\run-onrzcc34\\frozen\\lighting_area_prefix_smoke.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ae02bf036d33c865a00e76d64bd536f0c7c589ef3f456797d997594a71575feb\\lighting_area_prefix_smoke.py",
+      "bytes": 10710,
+      "sha256": "ae02bf036d33c865a00e76d64bd536f0c7c589ef3f456797d997594a71575feb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf",
+      "bytes": 14328,
+      "sha256": "b6acafe5bda52b467fc6053779d3a1447a5e57b12cc694f36c51bc0fa2fe23b0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.ll",
+      "bytes": 69984,
+      "sha256": "3a37db98735bb93b092ac4f164e735defd1776e1f0fc95f82f03c56dfad08180",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\0f99dc25886f0ee3145aad48c64df1de44eaf70e",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\4a4baf8a4470fecd3a174c849e6ff1642e9135bc7837c136b27a0b7d5c28b63b\\0f99dc25886f0ee3145aad48c64df1de44eaf70e",
+      "bytes": 14332,
+      "sha256": "4a4baf8a4470fecd3a174c849e6ff1642e9135bc7837c136b27a0b7d5c28b63b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\0f99dc25886f0ee3145aad48c64df1de44eaf70e.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\84b83ddddb803e24a647f2cbb4113f974ef3237dbbbe09acdbf6f4e588454c07\\0f99dc25886f0ee3145aad48c64df1de44eaf70e.ll",
+      "bytes": 69993,
+      "sha256": "84b83ddddb803e24a647f2cbb4113f974ef3237dbbbe09acdbf6f4e588454c07",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\0f55689d36e8bb9680690451695b454a6197083a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\0f55689d36e8bb9680690451695b454a6197083a",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\0f55689d36e8bb9680690451695b454a6197083a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\0f55689d36e8bb9680690451695b454a6197083a.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\0f55689d36e8bb9680690451695b454a6197083a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\4bf755abdcf9b93943ade53efa4ab051e3b4b843b1a813133648aaeb895535ba\\0f55689d36e8bb9680690451695b454a6197083a.log",
+      "bytes": 642,
+      "sha256": "4bf755abdcf9b93943ade53efa4ab051e3b4b843b1a813133648aaeb895535ba",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\0f99dc25886f0ee3145aad48c64df1de44eaf70e.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\79d89ca6436bd4a55163a6b69639fada7d725e1481ae8fad4b77cabb680303c9\\0f99dc25886f0ee3145aad48c64df1de44eaf70e.log",
+      "bytes": 648,
+      "sha256": "79d89ca6436bd4a55163a6b69639fada7d725e1481ae8fad4b77cabb680303c9",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3\\242d3f12728c50f9b07c31d804e67aac26770ce7",
+      "bytes": 7744,
+      "sha256": "7b8d5ed55a09b31288b52a1c880ff70637f85e1ac13ddb9ef0aec086d99dcea3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3\\242d3f12728c50f9b07c31d804e67aac26770ce7.ll",
+      "bytes": 30188,
+      "sha256": "419f2dbb38e7ab88efc4860b8015077320e35c24c780ecb3af93ec9c5b65f6a3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f4cda17da3be52520d0d8b6b2b6fce9fa58eaf4de2d1a8f29c5e98c6b7e5d829\\242d3f12728c50f9b07c31d804e67aac26770ce7.log",
+      "bytes": 642,
+      "sha256": "f4cda17da3be52520d0d8b6b2b6fce9fa58eaf4de2d1a8f29c5e98c6b7e5d829",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59\\4bcc5a8249316cbf2cfe00675ec875b412c577aa",
+      "bytes": 5052,
+      "sha256": "56811552d657d962c07e8fec69a3c9cdb0a7f14938ed73a731aa9a0a7cb16f59",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.ll",
+      "bytes": 10586,
+      "sha256": "7f52d6229a07fa64f911b7e0b5a022c29e3ae2198fdc1985d46cf2f977096877",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\836773faaa985b76220c0aeb6b8051561ec03a6099a52fa5bf1df00d14921b69\\4bcc5a8249316cbf2cfe00675ec875b412c577aa.log",
+      "bytes": 642,
+      "sha256": "836773faaa985b76220c0aeb6b8051561ec03a6099a52fa5bf1df00d14921b69",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\590bf58f5c9ee833fee74a2d2896a140a346b0bc",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\590bf58f5c9ee833fee74a2d2896a140a346b0bc",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\590bf58f5c9ee833fee74a2d2896a140a346b0bc.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\590bf58f5c9ee833fee74a2d2896a140a346b0bc.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\590bf58f5c9ee833fee74a2d2896a140a346b0bc.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\a397a4e839bf755e8350edcc3cfac99a19178135ca9b40deda6e22cb49a37850\\590bf58f5c9ee833fee74a2d2896a140a346b0bc.log",
+      "bytes": 642,
+      "sha256": "a397a4e839bf755e8350edcc3cfac99a19178135ca9b40deda6e22cb49a37850",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c\\5d97ee5049ee15d85424af332cf70107dc6d25fc",
+      "bytes": 4392,
+      "sha256": "8aeebb00c64a7ceb29d5b46c84f4071c7e40c536b21f06a42a2ad05c1178533c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3\\5d97ee5049ee15d85424af332cf70107dc6d25fc.ll",
+      "bytes": 8832,
+      "sha256": "646ec3589a897f6a54a50770650d639745d69237c78c8fb313a57a4d8c3788b3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\44ed377dea70dcd00e20eea2e6cd1e8744f3261b9ffac19e6af2b9a7bb714fd3\\5d97ee5049ee15d85424af332cf70107dc6d25fc.log",
+      "bytes": 641,
+      "sha256": "44ed377dea70dcd00e20eea2e6cd1e8744f3261b9ffac19e6af2b9a7bb714fd3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12\\65739c975d352e5cf2c42396301d1926bb31eddf",
+      "bytes": 4200,
+      "sha256": "9268cd720ab7639d73b859f9c996694dea6f2604d401c808f3654d98204f0f12",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e\\65739c975d352e5cf2c42396301d1926bb31eddf.ll",
+      "bytes": 7763,
+      "sha256": "369be691d182f28bdc6560df740518f22e00ec7e90fdbf6a829684b39921ad8e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6af7420dd78f52a759c17e29c37004c5d7bd1feab8e173f9a9c34d24a73b6bfe\\65739c975d352e5cf2c42396301d1926bb31eddf.log",
+      "bytes": 641,
+      "sha256": "6af7420dd78f52a759c17e29c37004c5d7bd1feab8e173f9a9c34d24a73b6bfe",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\660860f440c924aa646f07ad10efec0c8caac9e1",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\660860f440c924aa646f07ad10efec0c8caac9e1.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\35473ece4ec28b033dd779fef306e4d72c31a11cc66cae17517c68c4e176ded9\\660860f440c924aa646f07ad10efec0c8caac9e1.log",
+      "bytes": 648,
+      "sha256": "35473ece4ec28b033dd779fef306e4d72c31a11cc66cae17517c68c4e176ded9",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186\\72e7dc45391ed090bedf2d6f64012c9aa6954455",
+      "bytes": 2064,
+      "sha256": "275d179cf72282ffca18fa65bcbbee03faa98f0991b61270a7bc288ed8cc1186",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe\\72e7dc45391ed090bedf2d6f64012c9aa6954455.ll",
+      "bytes": 1547,
+      "sha256": "7f0f1a07e993ff53b4a39fbffdae570c6d8a84d1b29d7fd665bc1648e2b5e9fe",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7d975a86f300a982857a643882d9a11b458b7fc9caaf84563a4dfb2162b4acc4\\72e7dc45391ed090bedf2d6f64012c9aa6954455.log",
+      "bytes": 641,
+      "sha256": "7d975a86f300a982857a643882d9a11b458b7fc9caaf84563a4dfb2162b4acc4",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee\\74d7336254a8fbc778235a3dea016a9b3999563a",
+      "bytes": 8000,
+      "sha256": "62497d9b1bebf7b602fac79e7dacdd2dd7514b14a9363843390f46229c6b7cee",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f\\74d7336254a8fbc778235a3dea016a9b3999563a.ll",
+      "bytes": 21659,
+      "sha256": "8c75f538e1335a1ac164cc7443fb427b9d148ac6a246af15b045864d0b79b31f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\793008b72622ebe880667a3669be3af860081176b9450e6f9f061203194748c4\\74d7336254a8fbc778235a3dea016a9b3999563a.log",
+      "bytes": 642,
+      "sha256": "793008b72622ebe880667a3669be3af860081176b9450e6f9f061203194748c4",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1\\77b373a8842515317f965a1f7c41491d9f9304df",
+      "bytes": 17320,
+      "sha256": "87d33b981bc42c463d6df5f7367b30bc997a8b0b3d25ea3efb9c88b947a0a4b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64\\77b373a8842515317f965a1f7c41491d9f9304df.ll",
+      "bytes": 78392,
+      "sha256": "1050abc84b934a42fadac570698a9cc0dd2c4adf8cce6ca1258ebe5908e4ec64",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\0f191db9c144a87d4c5c80e733588a34c55d4beb75dedf92dc366fd516ba06e0\\77b373a8842515317f965a1f7c41491d9f9304df.log",
+      "bytes": 648,
+      "sha256": "0f191db9c144a87d4c5c80e733588a34c55d4beb75dedf92dc366fd516ba06e0",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1\\9001e7b11b842811d77b275a69c4d14011a69820",
+      "bytes": 17316,
+      "sha256": "d6b7086981ba8ba5ab804ecf52377cc3a58b829cecab38e45a510a4eecbf54b1",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd\\9001e7b11b842811d77b275a69c4d14011a69820.ll",
+      "bytes": 78378,
+      "sha256": "70a61d8fea445b193f5e2e511f8d0ea39ca92cb6f198b73ed1eb5e318681d4bd",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\30824777f9ae32626c4418eeea4721f0bbf2dc5a35cea9290f443bf37fca16c9\\9001e7b11b842811d77b275a69c4d14011a69820.log",
+      "bytes": 648,
+      "sha256": "30824777f9ae32626c4418eeea4721f0bbf2dc5a35cea9290f443bf37fca16c9",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\98b813a1e234db1709d82558ed3669c32a7a815ce44dc82747737fd5dbb9e5e5\\a06bf3cb34e72d16f1e9f9c030180b4a0be79ddf.log",
+      "bytes": 648,
+      "sha256": "98b813a1e234db1709d82558ed3669c32a7a815ce44dc82747737fd5dbb9e5e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730",
+      "bytes": 5024,
+      "sha256": "9284acf6173031bd4daf82b52c060582aecf51dbc83c3404c7f8848176a6dcb5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.ll",
+      "bytes": 10766,
+      "sha256": "016886f33f61c380d08da1c19ff3114e2aac03e67de06b68bca981e405a91039",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\875647892dbbb58baa1865912e3b2cbee8b8139c8bfccd75ad9ab86e0b5cf5a5\\a18b3ec93b1bcebad702992c3f91e6f89ab1b730.log",
+      "bytes": 642,
+      "sha256": "875647892dbbb58baa1865912e3b2cbee8b8139c8bfccd75ad9ab86e0b5cf5a5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5\\a24bcde48363a173677c285910e2bd3a1fcddd35",
+      "bytes": 7896,
+      "sha256": "60659f14442570dbf3799c59d8984d132eb2e2f5e539c6a1b8f2eec8ab20c9e5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66\\a24bcde48363a173677c285910e2bd3a1fcddd35.ll",
+      "bytes": 20914,
+      "sha256": "2ea71086b5313427b60880670d645352f5cd06c2a53fcd3e3b10c3595afada66",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\9d36b2e1d591c0ea445c3af94908381fb15c12ad19be4e385e9d4e091998a292\\a24bcde48363a173677c285910e2bd3a1fcddd35.log",
+      "bytes": 642,
+      "sha256": "9d36b2e1d591c0ea445c3af94908381fb15c12ad19be4e385e9d4e091998a292",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\c7afab10014b83378fd67656c66767a69e26751a",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505\\c7afab10014b83378fd67656c66767a69e26751a",
+      "bytes": 4356,
+      "sha256": "020f8a89dd33387dd8cbbd929ddcf21cb28e8a34c10bfd9d73f59a4ccd8ca505",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b\\c7afab10014b83378fd67656c66767a69e26751a.ll",
+      "bytes": 7084,
+      "sha256": "106c5cbc62bad3d068a76be3f006540abcb61b6be1475b3f8d05b220f88ce45b",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\8504d7ed6179bfb6a715f674a763a76f688fdcea2f41aa7e5e60239a3edc6ec4\\c7afab10014b83378fd67656c66767a69e26751a.log",
+      "bytes": 641,
+      "sha256": "8504d7ed6179bfb6a715f674a763a76f688fdcea2f41aa7e5e60239a3edc6ec4",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500\\cd79221b851c7685393bb2b65b3b6f7a4bb26952",
+      "bytes": 4132,
+      "sha256": "940a7d5035b090bbe5513ce481cd91d388921e0bc5d8c3bc487fc44052ab0500",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.ll",
+      "bytes": 4772,
+      "sha256": "c864648408e9fa3938b94f48846b11811238c6a2688e11879fc2da9c9cda2577",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\7aea038e76a533910b0bba9d9ddf8f8d3cdbd81228575446cfa4767e9e6d4c07\\cd79221b851c7685393bb2b65b3b6f7a4bb26952.log",
+      "bytes": 641,
+      "sha256": "7aea038e76a533910b0bba9d9ddf8f8d3cdbd81228575446cfa4767e9e6d4c07",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629\\d0e4fbb1c8d114a91e353c3f87953e98865ce186",
+      "bytes": 7872,
+      "sha256": "00a2833a1bfdddb856987b8e52a054ab757cab9b4652e5e9a4215b6bb09fb629",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.ll",
+      "bytes": 23463,
+      "sha256": "e8f67511db095c75a1d4e67f3361c2ef3ec33fbd11e0a3a10b38e987a6d93450",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\67d7fc5506156a79311f7084958a84937860e331130ec83e8c5b44f24f582002\\d0e4fbb1c8d114a91e353c3f87953e98865ce186.log",
+      "bytes": 642,
+      "sha256": "67d7fc5506156a79311f7084958a84937860e331130ec83e8c5b44f24f582002",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c\\e0bf9189445425d1f6d14f6489c14ec95d0da745",
+      "bytes": 4400,
+      "sha256": "3dc68b23edb991e02dad96e2ba3a99c03c946290599e02af2eeeaeb32097e63c",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631\\e0bf9189445425d1f6d14f6489c14ec95d0da745.ll",
+      "bytes": 9125,
+      "sha256": "51e3ba6cc3c7c987e715fa4dad5d9f256edebf3a0deea8787a2483338195d631",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e7ab2a4cb79acc7cbaf03850b518ef2e959b2ea03163965d1bac4f41a2b57f03\\e0bf9189445425d1f6d14f6489c14ec95d0da745.log",
+      "bytes": 641,
+      "sha256": "e7ab2a4cb79acc7cbaf03850b518ef2e959b2ea03163965d1bac4f41a2b57f03",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3\\e729aa47d10108e0d8fb135c6664db7c12657573",
+      "bytes": 10864,
+      "sha256": "c9ac74c45836e740bf95ab23c98d1c478f0e5f9965c5ced49035b0037a46e4e3",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb\\e729aa47d10108e0d8fb135c6664db7c12657573.ll",
+      "bytes": 38888,
+      "sha256": "cc40d4a9e67a4b38b976b912c2c05d3f9b046281a91b02f84973daf6f527f0eb",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\ef86568cdb3f27e14074b326f723bfd1ede95b6f14935de58aed417f04ec8191\\e729aa47d10108e0d8fb135c6664db7c12657573.log",
+      "bytes": 648,
+      "sha256": "ef86568cdb3f27e14074b326f723bfd1ede95b6f14935de58aed417f04ec8191",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\f05697983f53192c38547185a1e773ebd656e105",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf\\f05697983f53192c38547185a1e773ebd656e105",
+      "bytes": 3964,
+      "sha256": "dbd5dba9a8130dda8b83500cf4f4c666c6cc0f1ba6b7d5e366781cf8b707b0bf",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e\\f05697983f53192c38547185a1e773ebd656e105.ll",
+      "bytes": 6264,
+      "sha256": "f7a15e5010df588b31de15153ebc29a08d004025cd234e9ac9acd51ddbe6e98e",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\ir\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\018e79722a5bb583331640de521ae6a8918b5e6484a17c5558a1a32cc8665426\\f05697983f53192c38547185a1e773ebd656e105.log",
+      "bytes": 641,
+      "sha256": "018e79722a5bb583331640de521ae6a8918b5e6484a17c5558a1a32cc8665426",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\index",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\b2a85beda902b3c3c350ff1d27ae025056b91503d44f533ff3af4a010bd24491\\index",
+      "bytes": 520,
+      "sha256": "b2a85beda902b3c3c350ff1d27ae025056b91503d44f533ff3af4a010bd24491",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\cache\\lock",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\\lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\native-dataflow-review.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\455cd4bf2cf6663603cb1bf26d125c8f1aa7f2e30fac955c3a4f2e6d184b5347\\native-dataflow-review.json",
+      "bytes": 32098,
+      "sha256": "455cd4bf2cf6663603cb1bf26d125c8f1aa7f2e30fac955c3a4f2e6d184b5347",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\mogwai.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\6e6a8e90a22e82ab4dd06e6de6063de4fe8c1e8cc38ea3c4af6cba8daf4a4db5\\mogwai.log",
+      "bytes": 99689,
+      "sha256": "6e6a8e90a22e82ab4dd06e6de6063de4fe8c1e8cc38ea3c4af6cba8daf4a4db5",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\native-dataflow-review.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3853fb538396f7907082e7ddee1d89cf9cce3f7fb6a35505efad1ac09eb4047f\\native-dataflow-review.md",
+      "bytes": 1439,
+      "sha256": "3853fb538396f7907082e7ddee1d89cf9cce3f7fb6a35505efad1ac09eb4047f",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-area-prefix-cache\\run-8u0m9sb8\\process.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\3b4cd8da5743c34174443d7b948651a473499729018b52989db7f41dcc3e2e86\\process.log",
+      "bytes": 99002,
+      "sha256": "3b4cd8da5743c34174443d7b948651a473499729018b52989db7f41dcc3e2e86",
+      "category": "current_evidence",
+      "original_source": null
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\record-lighting-view-input-evidence.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-cold-cache-review-acceptance\\archive\\90dbcbd90f762c5b7e8aadbb40dfbd652a2f96810601b2452df4d56124f0c3e8\\record-lighting-view-input-evidence.py",
+      "bytes": 36561,
+      "sha256": "90dbcbd90f762c5b7e8aadbb40dfbd652a2f96810601b2452df4d56124f0c3e8",
+      "category": "current_evidence",
+      "original_source": null
+    }
+  ],
+  "capture_draw_binding_proven": false,
+  "driver_isa_proven": false,
+  "production_changed": false,
+  "scope": "Preserves three independent static DXIL reviews and cold-cache files; root revalidates recorded identities, not a new GPU execution or independent expression-graph algorithm. Cross-model GPU evidence is separate."
+}

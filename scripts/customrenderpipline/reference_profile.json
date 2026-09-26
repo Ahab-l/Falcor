@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "profile_id": "ue-local-5bit-1rdc-opaque",
+  "scope": "Observed opaque capture ABI; not a universal upstream UE ABI and not the generated paired scene",
+  "capture": {
+    "filename": "1.rdc",
+    "sha256": "822d41ea6ecb12633f42b18ed5ae1a3e7cea02653c9a72724f6e55e127d85fc9",
+    "bytes": 217008048,
+    "api": "D3D12",
+    "shader_model": "6.6",
+    "renderdoc_version": "1.45",
+    "frame_marker": 21880,
+    "api_frame_number": null,
+    "exact_source_binary_match": false
+  },
+  "view": {
+    "extent": [
+      1424,
+      1040
+    ],
+    "rect_min_max": [
+      0,
+      0,
+      1421,
+      1035
+    ],
+    "samples": 1,
+    "jitter": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "depth_convention": "infinite-reversed-z"
+  },
+  "attachments": [
+    {
+      "name": "SceneColor",
+      "slot": 0,
+      "resource_format": "R16G16B16A16_FLOAT",
+      "view_format": "R16G16B16A16_FLOAT",
+      "falcor_format": "RGBA16Float",
+      "storage_order": "RGBA",
+      "clear": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "valid_channels": "RGBA",
+      "rgb_transfer": "linear",
+      "alpha_transfer": "linear",
+      "semantic": "pre-exposed linear HDR"
+    },
+    {
+      "name": "GBufferA",
+      "slot": 1,
+      "resource_format": "R10G10B10A2_UNORM",
+      "view_format": "R10G10B10A2_UNORM",
+      "falcor_format": "RGB10A2Unorm",
+      "storage_order": "R10G10B10A2",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "valid_channels": "RGBA",
+      "rgb_transfer": "linear",
+      "alpha_transfer": "linear",
+      "semantic": "RGB=world normal*0.5+0.5; A=per-object data"
+    },
+    {
+      "name": "GBufferB",
+      "slot": 2,
+      "resource_format": "B8G8R8A8_TYPELESS",
+      "view_format": "B8G8R8A8_UNORM",
+      "falcor_format": "BGRA8Unorm",
+      "storage_order": "BGRA",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "valid_channels": "RGBA",
+      "rgb_transfer": "linear",
+      "alpha_transfer": "linear",
+      "semantic": "logical RGB=Metallic/Specular/Roughness; A=ShadingModelID|flags"
+    },
+    {
+      "name": "GBufferC",
+      "slot": 3,
+      "resource_format": "B8G8R8A8_TYPELESS",
+      "view_format": "B8G8R8A8_UNORM_SRGB",
+      "falcor_format": "BGRA8UnormSrgb",
+      "storage_order": "BGRA",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "valid_channels": "RGBA",
+      "rgb_transfer": "srgb",
+      "alpha_transfer": "linear",
+      "semantic": "RGB=linear BaseColor through hardware sRGB; A=GBufferAO, not always raw MaterialAO"
+    },
+    {
+      "name": "GBufferD",
+      "slot": 4,
+      "resource_format": "B8G8R8A8_TYPELESS",
+      "view_format": "B8G8R8A8_UNORM",
+      "falcor_format": "BGRA8Unorm",
+      "storage_order": "BGRA",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "valid_channels": "",
+      "rgb_transfer": "linear",
+      "alpha_transfer": "linear",
+      "semantic": "Bound but not emitted by either captured opaque PS; no valid CustomData claim"
+    }
+  ],
+  "depth_stencil": {
+    "resource_format": "R32G8X24_TYPELESS",
+    "view_format": "D32_FLOAT_S8X24_UINT",
+    "falcor_format": "D32FloatS8Uint",
+    "clear_depth": 0,
+    "clear_stencil": 0,
+    "basepass_depth_read_only_view": true,
+    "basepass_stencil_read_only_view": false
+  },
+  "shading_models": {
+    "id_mask": 31,
+    "flags_mask": 224,
+    "observed_surface_ids": [
+      1
+    ],
+    "default_lit_id": 1,
+    "observed_packed_alpha": 129,
+    "skip_velocity_mask_source_interpretation": 128,
+    "note": "5-bit decode verified in lighting DXIL. Flag naming is local-source interpretation. Background zero is not a surface-model test."
+  },
+  "pso": {
+    "prepass": {
+      "depth_test": "GreaterEqual",
+      "depth_write": true
+    },
+    "basepass": {
+      "depth_test": "GreaterEqual",
+      "depth_write": false,
+      "stencil_test": "Always",
+      "stencil_pass": "Replace",
+      "stencil_fail": "Keep",
+      "stencil_depth_fail": "Keep",
+      "stencil_reference": 134,
+      "stencil_write_mask": 246,
+      "stencil_read_mask": 255,
+      "cull": "Back",
+      "front_ccw": true,
+      "fill": "Solid",
+      "blend": false,
+      "attachment_write_masks": [
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "shader_output_slots": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "stages": {
+    "depth_clear": 974,
+    "prepass_draws": [
+      1014,
+      1023,
+      1032,
+      1041
+    ],
+    "attachment_clears": [
+      1736,
+      1737,
+      1738,
+      1739,
+      1740
+    ],
+    "basepass_draws": [
+      1816,
+      1827,
+      1838,
+      1853
+    ],
+    "opaque_end": 1853,
+    "sky_end": 1920,
+    "stencil_only_clear": 2383,
+    "ssgi_composite": 2497,
+    "directional_light_end": 2655,
+    "eye_adaptation": 3781,
+    "tonemap_end": 4193,
+    "directional_light_comparison": "Stage already includes SSGI; not an isolated direct-light reference"
+  },
+  "exposure": {
+    "automatic": true,
+    "pre_exposure": {
+      "value": 1.0749151706695557,
+      "source": "View.PreExposure",
+      "byte_offset": 2568
+    },
+    "inverse_pre_exposure": {
+      "value": 0.9303059577941895,
+      "source": "View.OneOverPreExposure",
+      "byte_offset": 2572
+    },
+    "current_eye_adaptation": {
+      "value": 1.0762039422988892,
+      "source": "EyeAdaptation.float4[0].x",
+      "event": 3781
+    },
+    "tonemap_global_multiplier": 1.0011989519401152,
+    "local_exposure_active": true,
+    "comparison": "Raw material GBuffer excludes exposure. SceneColor radiance=stored/preExposure. Final output also needs local exposure and tone mapping."
+  },
+  "evidence": {
+    "directory_hint": "E:/Project/falcor/Falcor/docs/research/captures/2026-09-09-1",
+    "files": [
+      {
+        "path": "manifest.json",
+        "sha256": "b8b87633f43ac7437cfb90afac6702bd713885e07305c8eacc83776052ac9267"
+      },
+      {
+        "path": "analysis.json",
+        "sha256": "eee320e8101650e1ba2d714466814391b5fae939ffad532d0c0c1e3e16c747ad"
+      },
+      {
+        "path": "pipeline-1853.json",
+        "sha256": "081694db9748225e6586706c8b5ba4ea015f1c38425805b695e1abf641a9a975"
+      },
+      {
+        "path": "pipeline-1014.json",
+        "sha256": "52cfd354407a49b8ae28f665db8eb31d1f35fef40ba655aa434d3d3ce3af73c5"
+      },
+      {
+        "path": "view-layout-evidence.json",
+        "sha256": "f71269664eb132dfcb85846fcc5c4f613f26b3a4b697c12f36e8e971c7045ec6"
+      },
+      {
+        "path": "shader-1853-Pixel.txt",
+        "sha256": "efb87c9dd322648d5df821217853c2c55df5fdbe145c80a08f894db4c776a43c"
+      },
+      {
+        "path": "shader-2655-Pixel.txt",
+        "sha256": "c4a958663f70f6271e05c254d25e372c88d3ef7e2d46a9b6d4e66e81662bdae8"
+      }
+    ]
+  }
+}

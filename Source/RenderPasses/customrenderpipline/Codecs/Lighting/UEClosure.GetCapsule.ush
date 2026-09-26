@@ -1,0 +1,13 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+FCapsuleLight GetCapsule( float3 ToLight, FDeferredLightData LightData )
+{
+	FCapsuleLight Capsule;
+	Capsule.Length = LightData.SourceLength;
+	Capsule.Radius = LightData.SourceRadius;
+	Capsule.SoftRadius = LightData.SoftSourceRadius;
+	Capsule.DistBiasSqr = 1;
+	Capsule.LightPos[0] = ToLight - 0.5 * Capsule.Length * LightData.Tangent;
+	Capsule.LightPos[1] = ToLight + 0.5 * Capsule.Length * LightData.Tangent;
+	return Capsule;
+}
+

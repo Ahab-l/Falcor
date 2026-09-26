@@ -1,0 +1,48 @@
+// Source asset graph: M_ProcGrid / MF_ProcGrid, MI_ProcGrid's active branches.
+// See docs/research/ue-legacy-targetmap-native-scene.md for node provenance.
+#define UE_MATERIAL_NATIVE_FRAME_EXPOSURE 1
+import Scene.Raster;
+Texture2D<float4> gProcGridTexture;
+SamplerState gProcGridSampler;
+cbuffer ProcGridParams
+{
+    float tileSize;
+    float3 checkerColor1;
+    float3 checkerColor2;
+    float3 lineColor;
+    float checkerRoughness1;
+    float checkerRoughness2;
+    float lineRoughness;
+};
+float2 ueSourceGridMasks(float3 q, float3 localNormalUE)
+{
+    const float wx = saturate(lerp(-1.0,2.0,abs(localNormalUE.x)));
+    const float wz = saturate(lerp(-1.0,2.0,abs(localNormalUE.z)));
+    const float wire = lerp(lerp(gProcGridTexture.Sample(gProcGridSampler,q.xz).r,
+        gProcGridTexture.Sample(gProcGridSampler,q.yz).r,wx),gProcGridTexture.Sample(gProcGridSampler,q.xy).r,wz);
+    const float3 c = q * 0.5;
+    const float checker = lerp(lerp(gProcGridTexture.Sample(gProcGridSampler,c.xz).g,
+        gProcGridTexture.Sample(gProcGridSampler,c.yz).g,wx),gProcGridTexture.Sample(gProcGridSampler,c.xy).g,wz);
+    return float2(wire,checker);
+}
+UESurface ueEvaluateMaterial(VSOut input, UESurface surface)
+{
+    const float4x4 objectToWorld = gScene.getWorldMatrix(input.instanceID);
+    const float3 delta = input.posW - mul(objectToWorld,float4(0,0,0,1)).xyz;
+    // UE local XYZ becomes Falcor local (-Z,X,Y). Normalize axes to retain
+    // world-size tiling under nonuniform scale, as MF_ProcGrid does.
+    const float3 xAxis = normalize(mul((float3x3)objectToWorld,float3(0,0,-1)));
+    const float3 yAxis = normalize(mul((float3x3)objectToWorld,float3(1,0,0)));
+    const float3 zAxis = normalize(mul((float3x3)objectToWorld,float3(0,1,0)));
+    const float3 q = float3(dot(delta,xAxis),dot(delta,yAxis),dot(delta,zAxis)) * (100.0/tileSize);
+    // defaultVS keeps normalW unnormalized. Applying L^T cancels L^-T,
+    // recovering the perspective-interpolated local source normal.
+    const float3 local = mul(transpose((float3x3)objectToWorld),input.normalW);
+    const float2 masks = ueSourceGridMasks(q,float3(-local.z,local.x,local.y));
+    const float lineMask = 1.0-masks.x;
+    surface.baseColor = lerp(lineColor,lerp(checkerColor1,checkerColor2,masks.y),lineMask);
+    surface.roughness = lerp(lineRoughness,lerp(checkerRoughness1,checkerRoughness2,masks.y),lineMask);
+    surface.metallic = 1.0-lineMask;
+    return surface;
+}
+#include "../../../CustomRenderPiplineRaster.3d.slang"

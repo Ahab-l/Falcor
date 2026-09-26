@@ -1,0 +1,258 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see UESkyMaterialSource.json and UESkyMaterialThirdPartyNotice.txt.
+
+float acosFast4(float inX)
+{
+	float x1 = abs(inX);
+	float x2 = x1 * x1;
+	float x3 = x2 * x1;
+	float s;
+
+	s = -0.2121144f * x1 + 1.5707288f;
+	s = 0.0742610f * x2 + s;
+	s = -0.0187293f * x3 + s;
+	s = sqrt(1.0f - x1) * s;
+
+	// acos function mirroring
+	// check per platform if compiles to a selector - no branch neeeded
+	return inX >= 0.0f ? s : PI - s;
+}
+
+float atan2Fast( float y, float x )
+{
+	float t0 = max( abs(x), abs(y) );
+	float t1 = min( abs(x), abs(y) );
+	float t3 = t1 / t0;
+	float t4 = t3 * t3;
+
+	// Same polynomial as atanFastPos
+	t0 =         + 0.0872929;
+	t0 = t0 * t4 - 0.301895;
+	t0 = t0 * t4 + 1.0;
+	t3 = t0 * t3;
+
+	t3 = abs(y) > abs(x) ? (0.5 * PI) - t3 : t3;
+	t3 = x < 0 ? PI - t3 : t3;
+	t3 = y < 0 ? -t3 : t3;
+
+	return t3;
+}
+
+float2 RayIntersectSphere(float3 RayOrigin, float3 RayDirection, float4 Sphere)
+{
+	float3 LocalPosition = RayOrigin - Sphere.xyz;
+	float LocalPositionSqr = dot(LocalPosition, LocalPosition);
+
+	float3 QuadraticCoef;
+	QuadraticCoef.x = dot(RayDirection, RayDirection);
+	QuadraticCoef.y = 2 * dot(RayDirection, LocalPosition);
+	QuadraticCoef.z = LocalPositionSqr - Sphere.w * Sphere.w;
+
+	float Discriminant = QuadraticCoef.y * QuadraticCoef.y - 4 * QuadraticCoef.x * QuadraticCoef.z;
+
+	float2 Intersections = -1;
+
+	// Only continue if the ray intersects the sphere
+	FLATTEN
+	if (Discriminant >= 0)
+	{
+		float SqrtDiscriminant = sqrt(Discriminant);
+		Intersections = (-QuadraticCoef.y + float2(-1, 1) * SqrtDiscriminant) / (2 * QuadraticCoef.x);
+	}
+
+	return Intersections;
+}
+
+float2 FromUnitToSubUvs(float2 uv, float4 SizeAndInvSize) { return (uv + 0.5f * SizeAndInvSize.zw) * (SizeAndInvSize.xy / (SizeAndInvSize.xy + 1.0f)); }
+
+void getTransmittanceLutUvs(
+	in float viewHeight, in float viewZenithCosAngle, in float BottomRadius, in float TopRadius,
+	out float2 UV)
+{
+	float H = sqrt(max(0.0f, TopRadius * TopRadius - BottomRadius * BottomRadius));
+	float Rho = sqrt(max(0.0f, viewHeight * viewHeight - BottomRadius * BottomRadius));
+
+	float Discriminant = viewHeight * viewHeight * (viewZenithCosAngle * viewZenithCosAngle - 1.0f) + TopRadius * TopRadius;
+	float D = max(0.0f, (-viewHeight * viewZenithCosAngle + sqrt(Discriminant))); // Distance to atmosphere boundary
+
+	float Dmin = TopRadius - viewHeight;
+	float Dmax = Rho + H;
+	float Xmu = (D - Dmin) / (Dmax - Dmin);
+	float Xr = Rho / H;
+
+	UV = float2(Xmu, Xr);
+	//UV = float2(fromUnitToSubUvs(UV.x, TRANSMITTANCE_TEXTURE_WIDTH), fromUnitToSubUvs(UV.y, TRANSMITTANCE_TEXTURE_HEIGHT)); // No real impact so off
+}
+
+void SkyViewLutParamsToUv(
+	in bool IntersectGround, in float ViewZenithCosAngle, in float3 ViewDir, in float ViewHeight, in float BottomRadius, in float4 SkyViewLutSizeAndInvSize,
+	out float2 UV)
+{
+	float Vhorizon = sqrt(ViewHeight * ViewHeight - BottomRadius * BottomRadius);
+	float CosBeta = Vhorizon / ViewHeight;				// GroundToHorizonCos
+	float Beta = acosFast4(CosBeta);
+	float ZenithHorizonAngle = PI - Beta;
+	float ViewZenithAngle = acosFast4(ViewZenithCosAngle);
+
+	if (!IntersectGround)
+	{
+		float Coord = ViewZenithAngle / ZenithHorizonAngle;
+		Coord = 1.0f - Coord;
+		Coord = sqrt(Coord);
+		Coord = 1.0f - Coord;
+		UV.y = Coord * 0.5f;
+	}
+	else
+	{
+		float Coord = (ViewZenithAngle - ZenithHorizonAngle) / Beta;
+		Coord = sqrt(Coord);
+		UV.y = Coord * 0.5f + 0.5f;
+	}
+
+	{
+		UV.x = (atan2Fast(-ViewDir.y, -ViewDir.x) + PI) / (2.0f * PI);
+	}
+
+	// Constrain uvs to valid sub texel range (avoid zenith derivative issue making LUT usage visible)
+	UV = FromUnitToSubUvs(UV, SkyViewLutSizeAndInvSize);
+}
+
+float3x3 GetSkyViewLutReferential(in float4x4 ViewSkyViewLutReferential)
+{
+	float3x3 SkyViewLutReferential = (float3x3) ViewSkyViewLutReferential;
+	return SkyViewLutReferential;
+}
+
+float3 DecodeTransmittance(float3 Transmittance)
+{
+	return Transmittance * Transmittance;
+}
+
+float3 GetAtmosphereTransmittance(
+	float3 PlanetCenterToWorldPos, float3 WorldDir, float BottomRadius, float TopRadius,
+	Texture2D<float4> TransmittanceLutTexture, SamplerState TransmittanceLutTextureSampler)
+{
+	// For each view height entry, transmittance is only stored from zenith to horizon. Earth shadow is not accounted for.
+	// It does not contain earth shadow in order to avoid texel linear interpolation artefact when LUT is low resolution.
+	// As such, at the most shadowed point of the LUT when close to horizon, pure black with earth shadow is never hit.
+	// That is why we analytically compute the virtual planet shadow here.
+	const float2 Sol = RayIntersectSphere(PlanetCenterToWorldPos, WorldDir, float4(float3(0.0f, 0.0f, 0.0f), BottomRadius));
+	if (Sol.x > 0.0f || Sol.y > 0.0f)
+	{
+		return 0.0f;
+	}
+
+	const float PHeight = length(PlanetCenterToWorldPos);
+	const float3 UpVector = PlanetCenterToWorldPos / PHeight;
+	const float LightZenithCosAngle = dot(WorldDir, UpVector);
+	float2 TransmittanceLutUv;
+	getTransmittanceLutUvs(PHeight, LightZenithCosAngle, BottomRadius, TopRadius, TransmittanceLutUv);
+	const float3 TransmittanceToLight = Texture2DSampleLevel(TransmittanceLutTexture, TransmittanceLutTextureSampler, TransmittanceLutUv, 0.0f).rgb;
+	return DecodeTransmittance(TransmittanceToLight);
+}
+
+float3 GetLightDiskLuminance(
+	float3 PlanetCenterToWorldPos, float3 WorldDir, float BottomRadius, float TopRadius,
+	Texture2D<float4> TransmittanceLutTexture, SamplerState TransmittanceLutTextureSampler,
+	float3 AtmosphereLightDirection, float AtmosphereLightDiscCosHalfApexAngle, float3 AtmosphereLightDiscLuminance)
+{
+	const float ViewDotLight = dot(WorldDir, AtmosphereLightDirection);
+	const float CosHalfApex = AtmosphereLightDiscCosHalfApexAngle;
+	if (ViewDotLight > CosHalfApex)
+	{
+		const float3 TransmittanceToLight = GetAtmosphereTransmittance(
+			PlanetCenterToWorldPos, WorldDir, BottomRadius, TopRadius, TransmittanceLutTexture, TransmittanceLutTextureSampler);
+
+		// Soften out the sun disk to avoid bloom flickering at edge. The soften is applied on the outer part of the disk.
+		const float SoftEdge = saturate(2.0f * (ViewDotLight - CosHalfApex) / (1.0f - CosHalfApex));
+
+		return TransmittanceToLight * AtmosphereLightDiscLuminance * SoftEdge;
+	}
+	return 0.0f;
+}
+
+uint3 Rand3DPCG16(int3 p)
+{
+	// taking a signed int then reinterpreting as unsigned gives good behavior for negatives
+	uint3 v = uint3(p);
+
+	// Linear congruential step. These LCG constants are from Numerical Recipies
+	// For additional #'s, PCG would do multiple LCG steps and scramble each on output
+	// So v here is the RNG state
+	v = v * 1664525u + 1013904223u;
+
+	// PCG uses xorshift for the final shuffle, but it is expensive (and cheap
+	// versions of xorshift have visible artifacts). Instead, use simple MAD Feistel steps
+	//
+	// Feistel ciphers divide the state into separate parts (usually by bits)
+	// then apply a series of permutation steps one part at a time. The permutations
+	// use a reversible operation (usually ^) to part being updated with the result of
+	// a permutation function on the other parts and the key.
+	//
+	// In this case, I'm using v.x, v.y and v.z as the parts, using + instead of ^ for
+	// the combination function, and just multiplying the other two parts (no key) for 
+	// the permutation function.
+	//
+	// That gives a simple mad per round.
+	v.x += v.y*v.z;
+	v.y += v.z*v.x;
+	v.z += v.x*v.y;
+	v.x += v.y*v.z;
+	v.y += v.z*v.x;
+	v.z += v.x*v.y;
+
+	// only top 16 bits are well shuffled
+	return v >> 16u;
+}
+
+float Rand16ToFloat(uint Rand16Bits)
+{
+	return float(Rand16Bits) * (1.0 / 65536.0);
+}
+
+float InterleavedGradientNoise( float2 uv, float FrameId )
+{
+	// magic values are found by experimentation
+	uv += FrameId * (float2(47, 17) * 0.695f);
+
+    const float3 magic = float3( 0.06711056f, 0.00583715f, 52.9829189f );
+    return frac(magic.z * frac(dot(uv, magic.xy)));
+}
+
+#define QUANTIZE_NOISE_TYPE					uint
+
+#define QUANTIZE_NOISE_HAMMERSLEY			0
+
+#define QUANTIZE_NOISE_INTERLEAVEDGRADIENT	1
+
+float3 QuantizeFloatColor(in float3 Color, in float3 QuantizationError, in float E)
+{
+	float3 Error = Color * QuantizationError;
+
+	Error[0] = asfloat(asuint(Error[0]) & ~0x007FFFFF);
+	Error[1] = asfloat(asuint(Error[1]) & ~0x007FFFFF);
+	Error[2] = asfloat(asuint(Error[2]) & ~0x007FFFFF);
+	
+	return Color + Error * E;
+}
+
+float3 QuantizeFloatColor(in float3 Color, in float3 QuantizationError, in float2 Pos2D, in QUANTIZE_NOISE_TYPE NoiseType)
+{
+	float E = 0.0;
+
+	if (NoiseType == QUANTIZE_NOISE_HAMMERSLEY)
+	{
+		uint Random = Rand3DPCG16(int3(Pos2D, View.StateFrameIndexMod8)).x;
+		E = Rand16ToFloat(Random);
+	}
+	else // QUANTIZE_NOISE_INTERLEAVEDGRADIENT
+	{
+		E = InterleavedGradientNoise(Pos2D, View.StateFrameIndexMod8);
+	}
+
+	return QuantizeFloatColor(Color, QuantizationError, E);
+}
+
+#define ENVCOMP_FLAG_SKYATMOSPHERE_RENDERINMAIN		0x08
+
+#define IsSkyAtmosphereRenderedInMain(EnvironmentComponentsFlags)   ((EnvironmentComponentsFlags[0] & ENVCOMP_FLAG_SKYATMOSPHERE_RENDERINMAIN)   > 0)

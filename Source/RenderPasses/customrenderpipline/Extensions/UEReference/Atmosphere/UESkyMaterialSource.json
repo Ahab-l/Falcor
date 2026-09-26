@@ -1,0 +1,297 @@
+{
+  "capture_inputs": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "material": "/Engine/EngineSky/M_SimpleSkyDome",
+  "expression": "SkyAtmosphereViewLuminance + SkyAtmosphereLightDiskLuminance",
+  "excerpts": [
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\FastMathThirdParty.ush",
+      "signature": "float acosFast4(",
+      "byte_offset": 6043,
+      "bytes": 352,
+      "line": 231,
+      "source_sha256": "4f0a38c0d37d1c5ba0d2b9a7cac89e6596a9403ba637088bc450910f1b0f03bc",
+      "excerpt_sha256": "ba3f0acc97fd1b6bbb493a769b2cec8f4a8bb4dcc639c481bac5e0cbb6c88a45"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\FastMathThirdParty.ush",
+      "signature": "float atan2Fast(",
+      "byte_offset": 5047,
+      "bytes": 388,
+      "line": 192,
+      "source_sha256": "4f0a38c0d37d1c5ba0d2b9a7cac89e6596a9403ba637088bc450910f1b0f03bc",
+      "excerpt_sha256": "78ac6a6867af311c7401828fa7418f72e0fe77baf3ca2e3715402fe248311174"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "float2 RayIntersectSphere(",
+      "byte_offset": 64857,
+      "bytes": 770,
+      "line": 1962,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "e0d0cfdae8f34edce2f79ed2264db1fd595d9e862fb59c7ce263b2ad36771d90"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float2 FromUnitToSubUvs(",
+      "byte_offset": 1620,
+      "bytes": 152,
+      "line": 38,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "782e8f5d162667ee5e92b9cd6a45630acaeca71b7d99ebdc8c4f087fa736eed2"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "void getTransmittanceLutUvs(",
+      "byte_offset": 7250,
+      "bytes": 841,
+      "line": 175,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "e9203e076c7e735d8d58b96bbd693c21701af79f99adafb69aca0ccb29532721"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "void SkyViewLutParamsToUv(",
+      "byte_offset": 8093,
+      "bytes": 1006,
+      "line": 194,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "5036654497b01cca7b9c1db52d5f4eef51da0cfc42537388d04e938b5e13dd3d"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3x3 GetSkyViewLutReferential(",
+      "byte_offset": 9101,
+      "bytes": 179,
+      "line": 227,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "500221e7b5552ceefb2fb54c254a8dac915d0cb9071c3673ffc09eb750628c69"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 DecodeTransmittance(",
+      "byte_offset": 9652,
+      "bytes": 91,
+      "line": 241,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "2c7475522df56e7d2f1a02b866760393d9fe5bac0d9278108342e5776cbc9ba0"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 GetAtmosphereTransmittance(",
+      "byte_offset": 9745,
+      "bytes": 1319,
+      "line": 246,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "aa0e0ba74f3bce3b3d95476a9b299629dd9c45cc921630de43c7ec5344d30f75"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 GetLightDiskLuminance(",
+      "byte_offset": 11066,
+      "bytes": 981,
+      "line": 269,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "064cb70d73daaad8410ed04401527021bc4b43127786c41f3390a93b94acf432"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\RandomPCG.ush",
+      "signature": "uint3 Rand3DPCG16(",
+      "byte_offset": 483,
+      "bytes": 1242,
+      "line": 12,
+      "source_sha256": "a9235734870fb79cf6ed3d15d6cb7b14fd7c468bba8fc759d57fabc46d7a787e",
+      "excerpt_sha256": "2e54e5fbb2e1d38f6ba1c0978ef22fe5c173fa6500f55ffd3e07d77737338a88"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\RandomPCG.ush",
+      "signature": "float Rand16ToFloat(uint Rand16Bits)",
+      "byte_offset": 3292,
+      "bytes": 85,
+      "line": 107,
+      "source_sha256": "a9235734870fb79cf6ed3d15d6cb7b14fd7c468bba8fc759d57fabc46d7a787e",
+      "excerpt_sha256": "fde0fed6a99dc8b32ca1fb4a45c1d822816d0c29ccbd2112e363032881d69c8d"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\RandomInterleavedGradientNoise.ush",
+      "signature": "float InterleavedGradientNoise(",
+      "byte_offset": 375,
+      "bytes": 279,
+      "line": 11,
+      "source_sha256": "ab34337dde66592df73c0a1cca6e0eddaa5353905ca36122792ba216b82f4fdf",
+      "excerpt_sha256": "71d27ae72274351d9c4c3327e8915303831154f3e8de066a6372d4813ad02103"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Quantization.ush",
+      "signature": "#define QUANTIZE_NOISE_TYPE",
+      "byte_offset": 723,
+      "bytes": 36,
+      "line": 25,
+      "source_sha256": "d738c08ea1f74bbfc7810191cb6f758701752fab6ae39334c0b783388b5c9862",
+      "excerpt_sha256": "03a2ccb4e350f753f3ba78dee385f1634870e7333018e94f28ee9306c1ea87c8"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Quantization.ush",
+      "signature": "#define QUANTIZE_NOISE_HAMMERSLEY",
+      "byte_offset": 760,
+      "bytes": 37,
+      "line": 26,
+      "source_sha256": "d738c08ea1f74bbfc7810191cb6f758701752fab6ae39334c0b783388b5c9862",
+      "excerpt_sha256": "a786cb1e038e7fa3d445cd10bfcb635ffa755ae9d4334e3e7757b783d0a1460e"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Quantization.ush",
+      "signature": "#define QUANTIZE_NOISE_INTERLEAVEDGRADIENT",
+      "byte_offset": 798,
+      "bytes": 44,
+      "line": 27,
+      "source_sha256": "d738c08ea1f74bbfc7810191cb6f758701752fab6ae39334c0b783388b5c9862",
+      "excerpt_sha256": "75cee766ab63532de4fdd65663da9bb7b3f8f682fc6620685c2dafd1412f362e"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Quantization.ush",
+      "signature": "float3 QuantizeFloatColor(in float3 Color, in float3 QuantizationError, in float E)",
+      "byte_offset": 401,
+      "bytes": 319,
+      "line": 13,
+      "source_sha256": "d738c08ea1f74bbfc7810191cb6f758701752fab6ae39334c0b783388b5c9862",
+      "excerpt_sha256": "283e781513c1a696d8e5ceca5d9cec80ee1976bdb6ebe1960b0cfde40ec56e13"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Quantization.ush",
+      "signature": "float3 QuantizeFloatColor(in float3 Color, in float3 QuantizationError, in float2 Pos2D,",
+      "byte_offset": 844,
+      "bytes": 466,
+      "line": 29,
+      "source_sha256": "d738c08ea1f74bbfc7810191cb6f758701752fab6ae39334c0b783388b5c9862",
+      "excerpt_sha256": "f902e4d2f4f795899602626c49928339c1b2525e5fca6d3077d423c1ffc4f3ef"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Shared\\EnvironmentComponentsFlags.h",
+      "signature": "#define ENVCOMP_FLAG_SKYATMOSPHERE_RENDERINMAIN",
+      "byte_offset": 670,
+      "bytes": 53,
+      "line": 20,
+      "source_sha256": "15bf7c0bf12c75ef9a27372494ad89ca412c38f540569b9ae2cc0f9cf842c8ef",
+      "excerpt_sha256": "f21cca3b71e02449d61140f1c9b06ddabfeb2be878e5299109692d1e1734ac99"
+    },
+    {
+      "output": "UESkyMaterialHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Shared\\EnvironmentComponentsFlags.h",
+      "signature": "#define IsSkyAtmosphereRenderedInMain(",
+      "byte_offset": 1378,
+      "bytes": 149,
+      "line": 30,
+      "source_sha256": "15bf7c0bf12c75ef9a27372494ad89ca412c38f540569b9ae2cc0f9cf842c8ef",
+      "excerpt_sha256": "1d7d8ec79af45706d92491bc2b5e7e58804d640e893e072371122159e7e8f11a"
+    },
+    {
+      "output": "UESkyMaterialOriginal.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MaterialTemplate.ush",
+      "signature": "float3 MaterialExpressionSkyAtmosphereLightDiskLuminance(",
+      "byte_offset": 82149,
+      "bytes": 1722,
+      "line": 2344,
+      "source_sha256": "2d237cc8c53a024341a6a3828a251a655fbc9a266c0a2d7ed7e244be90bf292d",
+      "excerpt_sha256": "473ef0f541ac1c13eeda5263c144e0aeb3a3807609b705f733b4f6624be38dba"
+    },
+    {
+      "output": "UESkyMaterialOriginal.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MaterialTemplate.ush",
+      "signature": "float3 MaterialExpressionSkyAtmosphereViewLuminance(",
+      "byte_offset": 83873,
+      "bytes": 2345,
+      "line": 2369,
+      "source_sha256": "2d237cc8c53a024341a6a3828a251a655fbc9a266c0a2d7ed7e244be90bf292d",
+      "excerpt_sha256": "3a3a18ef5dab4d70693cc07224ee2a455b346012d842e0c78bfc3104442a13bc"
+    },
+    {
+      "output": "UESkyMaterialQuantizationOriginal.inl",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\Quantization.cpp",
+      "signature": "FVector3f ComputePixelFormatQuantizationError(",
+      "byte_offset": 305,
+      "bytes": 1021,
+      "line": 9,
+      "source_sha256": "11dc27216663b89e226b324e13bf04b45890fd89c4763704d35a54a3278ed3ca",
+      "excerpt_sha256": "db496866f9e4f69802242c79636d30d1a32e389229897116710b831260e6d38c"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "UESkyMaterialHelpers.ush",
+      "sha256": "6ee88d5e6f5cfcab66c13671cb0ff9a60a6d16df91959a8e52dbee330d0278f6"
+    },
+    {
+      "path": "UESkyMaterialOriginal.ush",
+      "sha256": "9e114ce5c2b011b54819824468aba8fd2e6d0a55d733fa6ffadf446d74946a03"
+    },
+    {
+      "path": "UESkyMaterialPerspective.ush",
+      "sha256": "59e857c3e0e65a505ec1a77222b20d0c0a10ea0add1d344ed1c3bbd60913e007"
+    },
+    {
+      "path": "UESkyMaterialQuantizationOriginal.inl",
+      "sha256": "6b4809c747d4720d242a4f780b7e4711faa4e8cbf15b80a8aab7af34f777b097"
+    },
+    {
+      "path": "UESkyMaterialThirdPartyNotice.txt",
+      "sha256": "1268f2bf30107686692393fb930b0bfd8e65c2f85ad5f155055ff173630f5bf1"
+    }
+  ],
+  "specialization": {
+    "original": "UESkyMaterialOriginal.ush",
+    "output": "UESkyMaterialPerspective.ush",
+    "supported_projection": "perspective",
+    "unsupported_branches": [
+      "orthographic",
+      "reflection_capture",
+      "primitive_alpha_holdout"
+    ],
+    "removed_ranges": [
+      {
+        "byte_offset": 842,
+        "bytes": 180,
+        "sha256": "9fa842777caae746d6f6145760beb7fe715a240cacd3bd93a3e313b56f17a2bf"
+      },
+      {
+        "byte_offset": 2438,
+        "bytes": 214,
+        "sha256": "5b1b76001b28d3ad448692fe2081ef533a3b6cfda55f925c737aa151db52c280"
+      }
+    ],
+    "defines": {
+      "MATERIAL_SKY_ATMOSPHERE": 1,
+      "PROJECT_SUPPORT_SKY_ATMOSPHERE": 1,
+      "SUPPORT_PRIMITIVE_ALPHA_HOLDOUT": 0
+    },
+    "view_contract": {
+      "RenderingReflectionCaptureMask": 0,
+      "RealTimeReflectionCapture": 0,
+      "EnvironmentComponentsFlags": [
+        8,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

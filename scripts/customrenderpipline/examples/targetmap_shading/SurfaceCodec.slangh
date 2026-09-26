@@ -1,0 +1,33 @@
+// Linear normal encoding; physical UNORM rounding belongs to the attachment.
+// Algorithm provenance: DeferredShadingCommon.ush EncodeNormal/DecodeNormal.
+float sourceEncodeNormalComponent(float component)
+{
+    return component * 0.5f + 0.5f;
+}
+
+float sourceDecodeNormalComponent(float component)
+{
+    return component * 2.0f - 1.0f;
+}
+
+bool encodeSurfaceNormal(TargetMapSurface_normalInput value, out TargetMapSurface_normalStorage storage)
+{
+    storage = (TargetMapSurface_normalStorage)0;
+    if (!all(isfinite(value.normalW))) return false;
+    float lengthSquared = dot(value.normalW, value.normalW);
+    if (!isfinite(lengthSquared) || lengthSquared <= 1e-20f) return false;
+    float3 normal = value.normalW * rsqrt(lengthSquared);
+    // Match physical UNORM clamping before generic storage-range validation.
+    storage.normalEncoded = saturate(float3(sourceEncodeNormalComponent(normal.x),
+        sourceEncodeNormalComponent(normal.y), sourceEncodeNormalComponent(normal.z)));
+    return true;
+}
+
+TargetMapSurface_normalInput decodeSurfaceNormal(TargetMapSurface_normalStorage storage)
+{
+    TargetMapSurface_normalInput value;
+    value.normalW = float3(sourceDecodeNormalComponent(storage.normalEncoded.x),
+        sourceDecodeNormalComponent(storage.normalEncoded.y), sourceDecodeNormalComponent(storage.normalEncoded.z));
+    // Preserve quantized component values; any consumer renormalization is explicit.
+    return value;
+}

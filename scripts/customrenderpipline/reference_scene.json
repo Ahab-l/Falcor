@@ -1,0 +1,691 @@
+{
+  "version": 1,
+  "id": "ue-legacy-m0-pair-v1",
+  "coordinates": {
+    "source": "UE world: X forward, Y right, Z up; centimeters",
+    "falcor_position": "(UE.y, UE.z, -UE.x) / 100",
+    "falcor_direction": "(UE.y, UE.z, -UE.x)",
+    "source_triangle_normal": "normalize(cross(p2-p0, p1-p0)); UE clockwise convention",
+    "falcor_triangle_order": "unchanged: handedness conversion yields outward CCW triangles"
+  },
+  "meshes": {
+    "cube": {
+      "vertices": [
+        {
+          "position": [
+            50,
+            50,
+            -50
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            50,
+            50
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            50
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            -50
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            -50
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            50
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            50
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            -50
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            -50
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            50
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            50,
+            50
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            50,
+            50,
+            -50
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            -50
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            50
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            50
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            -50
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            50
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            50
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            50,
+            50
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            50
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            50,
+            -50
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            50,
+            -50
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            50,
+            -50,
+            -50
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -50,
+            -50,
+            -50
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        }
+      ],
+      "triangles": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          4,
+          6,
+          5
+        ],
+        [
+          4,
+          7,
+          6
+        ],
+        [
+          8,
+          10,
+          9
+        ],
+        [
+          8,
+          11,
+          10
+        ],
+        [
+          12,
+          14,
+          13
+        ],
+        [
+          12,
+          15,
+          14
+        ],
+        [
+          16,
+          18,
+          17
+        ],
+        [
+          16,
+          19,
+          18
+        ],
+        [
+          20,
+          22,
+          21
+        ],
+        [
+          20,
+          23,
+          22
+        ]
+      ]
+    },
+    "floor": {
+      "vertices": [
+        {
+          "position": [
+            -300,
+            -300,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            0,
+            0
+          ]
+        },
+        {
+          "position": [
+            300,
+            -300,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            1,
+            0
+          ]
+        },
+        {
+          "position": [
+            300,
+            300,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            1,
+            1
+          ]
+        },
+        {
+          "position": [
+            -300,
+            300,
+            0
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "uv": [
+            0,
+            1
+          ]
+        }
+      ],
+      "triangles": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ]
+      ]
+    }
+  },
+  "materials": {
+    "blue": {
+      "shading_model": "DefaultLit",
+      "base_color_linear": [
+        0.18,
+        0.45,
+        0.8
+      ],
+      "roughness": 0.5,
+      "metallic": 0,
+      "specular": 0.5,
+      "emissive_linear": [
+        0,
+        0,
+        0
+      ]
+    },
+    "red": {
+      "shading_model": "DefaultLit",
+      "base_color_linear": [
+        0.6,
+        0.08,
+        0.03
+      ],
+      "roughness": 0.65,
+      "metallic": 0,
+      "specular": 0.5,
+      "emissive_linear": [
+        0,
+        0,
+        0
+      ]
+    },
+    "gray": {
+      "shading_model": "DefaultLit",
+      "base_color_linear": [
+        0.18,
+        0.18,
+        0.18
+      ],
+      "roughness": 0.8,
+      "metallic": 0,
+      "specular": 0.5,
+      "emissive_linear": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "instances": [
+    {
+      "id": "BlueCube",
+      "mesh": "cube",
+      "material": "blue",
+      "translation_cm": [
+        0,
+        -90,
+        50
+      ]
+    },
+    {
+      "id": "RedCube",
+      "mesh": "cube",
+      "material": "red",
+      "translation_cm": [
+        40,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "Ground",
+      "mesh": "floor",
+      "material": "gray",
+      "translation_cm": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "camera": {
+    "position_cm": [
+      -450,
+      400,
+      320
+    ],
+    "target_cm": [
+      0,
+      0,
+      50
+    ],
+    "up": [
+      0,
+      0,
+      1
+    ],
+    "horizontal_fov_degrees": 60,
+    "resolution": [
+      640,
+      360
+    ],
+    "near_cm": 10,
+    "ue_far": "infinite reversed-Z",
+    "falcor_stock_far_m": 100,
+    "comparison_note": "M0 checks camera rays and geometry. Stock Falcor depth convention differs; M1 owns UE reversed-Z projection."
+  },
+  "lights": [
+    {
+      "id": "Sun",
+      "type": "directional",
+      "ray_direction": [
+        0.4,
+        0.3,
+        -1
+      ],
+      "color_linear": [
+        1,
+        1,
+        1
+      ],
+      "illuminance_lux": 10000,
+      "casts_shadows": false
+    }
+  ],
+  "exposure": {
+    "automatic": true,
+    "metering": "histogram",
+    "bias_ev": 0,
+    "min_ev100": -10,
+    "max_ev100": 20,
+    "note": "Preserve automatic exposure. M0 Falcor GBuffer output has no exposure consumer; UE exposure is not copied into raw material inputs."
+  },
+  "reference_features": {
+    "lumen": false,
+    "nanite": false,
+    "vsm": false,
+    "gi": "none",
+    "reflections": "none",
+    "anti_aliasing": "none",
+    "skylight": false,
+    "fog": false,
+    "bloom": false,
+    "motion_blur": false,
+    "local_exposure": false
+  },
+  "scope": "Paired inputs for future UE BasePass validation. Stock Falcor StandardMaterial is a baseline adapter, not the UE material-program implementation."
+}

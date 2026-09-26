@@ -1,0 +1,4 @@
+Original source copyright Epic Games, Inc. All Rights Reserved.
+The CPU excerpt is unchanged source evidence from the configured local engine.
+PreintegratedGF.slang is an authored GPU port of its A/B algorithm, not a verbatim UE shader.
+This metadata is provenance, not a license grant or a rendering-parity claim.

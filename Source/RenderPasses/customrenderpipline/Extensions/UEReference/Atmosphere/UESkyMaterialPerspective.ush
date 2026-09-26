@@ -1,0 +1,72 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see UESkyMaterialSource.json and UESkyMaterialThirdPartyNotice.txt.
+
+float3 MaterialExpressionSkyAtmosphereLightDiskLuminance(FMaterialPixelParameters Parameters, uint LightIndex, float OverrideAtmosphereLightDiscCosHalfApexAngle)
+{
+	float3 LightDiskLuminance = float3(0.0f, 0.0f, 0.0f);
+#if MATERIAL_SKY_ATMOSPHERE && PROJECT_SUPPORT_SKY_ATMOSPHERE
+	if (ResolvedView.RenderingReflectionCaptureMask == 0.0f) // Do not render light disk when in reflection capture in order to avoid double specular. The sun contribution is already computed analyticaly.
+	{
+		const float3 ViewDir = -Parameters.CameraVector;
+		float3 PlanetCenterToCameraTranslatedWorld = (ResolvedView.SkyCameraTranslatedWorldOrigin - ResolvedView.SkyPlanetTranslatedWorldCenterAndViewHeight.xyz);
+		
+		PlanetCenterToCameraTranslatedWorld *= CM_TO_SKY_UNIT;
+
+		// GetLightDiskLuminance does a test against the virtual planet but SkyCameraTranslatedWorldOrigin is always put safely setup above it (to never have the camera into the virtual planet with a black screen)
+		LightDiskLuminance =  GetLightDiskLuminance(PlanetCenterToCameraTranslatedWorld, ViewDir, ResolvedView.SkyAtmosphereBottomRadiusKm, ResolvedView.SkyAtmosphereTopRadiusKm,
+			View.TransmittanceLutTexture, View.TransmittanceLutTextureSampler,
+			ResolvedView.AtmosphereLightDirection[LightIndex].xyz, 
+			OverrideAtmosphereLightDiscCosHalfApexAngle >= 0.0f ? OverrideAtmosphereLightDiscCosHalfApexAngle : ResolvedView.AtmosphereLightDiscCosHalfApexAngle_PPTrans[LightIndex].x,
+			ResolvedView.AtmosphereLightDiscLuminance[LightIndex].xyz);
+	}
+#endif
+	return LightDiskLuminance;
+}
+
+float3 MaterialExpressionSkyAtmosphereViewLuminance(FMaterialPixelParameters Parameters, float3 ViewDir)
+{
+#if MATERIAL_SKY_ATMOSPHERE && PROJECT_SUPPORT_SKY_ATMOSPHERE
+	if (ResolvedView.RenderingReflectionCaptureMask == 0.0f && !IsSkyAtmosphereRenderedInMain(ResolvedView.EnvironmentComponentsFlags))
+	{
+		return float3(0.0f, 0.0f, 0.0f);
+	}
+
+	// The referencial used to build the Sky View lut
+	float3x3 LocalReferencial = GetSkyViewLutReferential(ResolvedView.SkyViewLutReferential);
+
+	float ViewHeight = ResolvedView.SkyPlanetTranslatedWorldCenterAndViewHeight.w;
+	
+	ViewHeight *= CM_TO_SKY_UNIT;
+
+	// Compute inputs in this referential
+	float3 WorldPosLocal = float3(0.0, 0.0, ViewHeight);
+	float3 UpVectorLocal = float3(0.0, 0.0, 1.0);
+	float3 WorldDirLocal = mul(LocalReferencial, ViewDir);
+	float ViewZenithCosAngle = dot(WorldDirLocal, UpVectorLocal);
+
+	float2 Sol = RayIntersectSphere(WorldPosLocal, WorldDirLocal, float4(0.0f, 0.0f, 0.0f, ResolvedView.SkyAtmosphereBottomRadiusKm));
+	const bool IntersectGround = any(Sol > 0.0f);
+
+	float2 SkyViewLutUv;
+	SkyViewLutParamsToUv(IntersectGround, ViewZenithCosAngle, WorldDirLocal, ViewHeight, ResolvedView.SkyAtmosphereBottomRadiusKm, ResolvedView.SkyViewLutSizeAndInvSize, SkyViewLutUv);
+	float3 SkyAtmosphereViewLuminance = Texture2DSampleLevel(View.SkyViewLutTexture, View.SkyViewLutTextureSampler, SkyViewLutUv, 0.0f).rgb;
+	SkyAtmosphereViewLuminance *= ResolvedView.SkyAtmosphereSkyLuminanceFactor.rgb;
+	SkyAtmosphereViewLuminance *= ResolvedView.OneOverPreExposure;
+
+	if (ResolvedView.RealTimeReflectionCapture == 0.0f)
+	{
+		SkyAtmosphereViewLuminance.rgb = QuantizeFloatColor(SkyAtmosphereViewLuminance.rgb, ResolvedView.SceneColorTextureFormatQuantizationError, Parameters.SvPosition.xy, QUANTIZE_NOISE_INTERLEAVEDGRADIENT);
+	}
+
+#if SUPPORT_PRIMITIVE_ALPHA_HOLDOUT
+	if (IsSkyAtmosphereHoldout(View.EnvironmentComponentsFlags) && View.bPrimitiveAlphaHoldoutEnabled)
+	{
+		SkyAtmosphereViewLuminance = 0.0f; // Disable sky dome luminance contribution. Throughput will be 0.
+	}
+#endif
+	
+	return SkyAtmosphereViewLuminance;
+#else
+	return float3(0.0f, 0.0f, 0.0f);
+#endif
+}

@@ -1,0 +1,1752 @@
+{
+  "schema": "ue-rdc-scene-v1",
+  "capture": "E:\\rdc\\ue\\1.rdc",
+  "capture_sha256": "822d41ea6ecb12633f42b18ed5ae1a3e7cea02653c9a72724f6e55e127d85fc9",
+  "capture_modified": false,
+  "coordinate_convention": {
+    "source": "UE left-handed centimeters, +Z up",
+    "matrix": "row vector multiplied by row-major matrix",
+    "falcor": "(UE.y, UE.z, -UE.x)/100; directions same axis mapping without /100"
+  },
+  "view_layout_provenance": {
+    "source": "E:\\ue\\project\\shadingmodeltest\\shadingmodel\\Saved\\ShaderDebugInfo\\PCD3D_SM6\\NewMaterial_56cd8527f8560838\\Default\\FLocalVertexFactory\\TBasePassPSFNoLightMapPolicyCharacterToon\\0\\BasePassPixelShader.usf",
+    "source_sha256": "20d0119090fb197fabcd2b2d156549c367ee96a717a3a56bf1c1670a1d4706cb",
+    "captured_shader_source_identity_proven": false,
+    "method": "existing normalized View layout matched to captured DXIL; transforms independently tested against postVS"
+  },
+  "camera": {
+    "position_ue_cm": [
+      -2311.294899892182,
+      -415.6758633924328,
+      643.4880514038632
+    ],
+    "forward_ue": [
+      0.973854660987854,
+      0.1647297441959381,
+      -0.15643273293972015
+    ],
+    "up_ue": [
+      0.1542416661977768,
+      0.026090331375598907,
+      0.9876886010169983
+    ],
+    "right_ue": [
+      -0.16678307950496674,
+      0.9859936237335205,
+      0.0
+    ],
+    "view_rect": [
+      0,
+      0,
+      1421,
+      1035
+    ],
+    "buffer_extent": [
+      1424,
+      1040
+    ],
+    "near_cm": 10.0,
+    "far": "infinite reverse Z",
+    "horizontal_fov_degrees": 90.00000341509468,
+    "pre_view_translation_high": [
+      2311.294921875,
+      415.6758728027344,
+      -643.488037109375
+    ],
+    "pre_view_translation_low": [
+      -2.198281799792312e-05,
+      -9.41030157264322e-06,
+      -1.4294488209998235e-05
+    ],
+    "translated_world_to_clip_row_major": [
+      [
+        -0.16678306460380554,
+        0.2118137627840042,
+        0.0,
+        0.973854660987854
+      ],
+      [
+        0.9859935641288757,
+        0.035828784108161926,
+        0.0,
+        0.1647297441959381
+      ],
+      [
+        0.0,
+        1.3563523292541504,
+        0.0,
+        -0.15643273293972015
+      ],
+      [
+        0.0,
+        0.0,
+        10.0,
+        0.0
+      ]
+    ],
+    "sv_position_to_translated_world_row_major": [
+      [
+        -0.0002347404370084405,
+        0.0013877461897209287,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0002170395600842312,
+        -3.671273952932097e-05,
+        -0.001389815704897046,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.10000000149011612
+      ],
+      [
+        1.252955675125122,
+        -0.8022650480270386,
+        0.562796950340271,
+        0.0
+      ]
+    ],
+    "relative_pre_view_translation": [
+      2311.294921875,
+      415.6758728027344,
+      -643.488037109375
+    ],
+    "translated_world_to_view_row_major": [
+      [
+        -0.16678307950496674,
+        0.1542416661977768,
+        0.973854660987854,
+        0.0
+      ],
+      [
+        0.9859936237335205,
+        0.026090331375598907,
+        0.1647297441959381,
+        0.0
+      ],
+      [
+        0.0,
+        0.9876886010169983,
+        -0.15643273293972015,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "projection_row_major": [
+      [
+        0.9999999403953552,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.3732589483261108,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        10.0,
+        0.0
+      ]
+    ],
+    "jitter": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "pre_exposure": 1.0749151706695557,
+    "position_falcor_m": [
+      -4.156758633924328,
+      6.434880514038632,
+      23.11294899892182
+    ],
+    "target_falcor_m": [
+      -3.99202888972839,
+      6.278447781098912,
+      22.139094337933965
+    ],
+    "up_falcor": [
+      0.026090331375598907,
+      0.9876886010169983,
+      -0.1542416661977768
+    ],
+    "falcor_stock_camera_limit": "finite far=1000000m and normal depth; exact reverse-Z matrix retained here for UE runtime"
+  },
+  "asset_paths_relative_to": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-scene",
+  "objects": [
+    {
+      "eid": 1816,
+      "prepass_eid": 1023,
+      "name": "sphere",
+      "material_name": "rdc_sphere_1816",
+      "asset": "mesh-1816-sphere.npz",
+      "asset_sha256": "b0791f18de923860bc8376677b0100e5bbfb0cf61f9603d6512fea0eed23aa15",
+      "vertex_count": 559,
+      "triangle_count": 960,
+      "instance_id": 18,
+      "primitive_id": 18,
+      "instance_flags": 0,
+      "packed_rotation_scale_u32": [
+        2147516416,
+        3435937792,
+        3489714176,
+        8572928
+      ],
+      "signed_scale": [
+        5.0,
+        5.0,
+        5.0
+      ],
+      "primitive_position_high_cm": [
+        -690.0,
+        -1030.0,
+        480.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_to_world_row_major": [
+        [
+          5.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          5.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          5.0,
+          0.0
+        ],
+        [
+          -690.0,
+          -1030.0,
+          480.0,
+          1.0
+        ]
+      ],
+      "world_bounds_ue_cm": [
+        [
+          -940.0,
+          -1279.9999809265137,
+          230.0
+        ],
+        [
+          -440.0,
+          -779.9999809265137,
+          730.0
+        ]
+      ],
+      "material": {
+        "program": "captured_basic_shape",
+        "base_color_linear": [
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421
+        ],
+        "roughness": 0.6406999826431274,
+        "metallic": 0.0,
+        "specular": 0.5,
+        "emissive_linear": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "shader_evidence": "shader-1816-Pixel.txt: cbuffer2 byte16 RGB/A; metallic=0, specular=.5; no UV samples",
+        "raw_material_f32_0_31": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.6406999826431274
+        ]
+      },
+      "projection_check": {
+        "vertex_count": 559,
+        "index_count": 2880,
+        "max_abs_clip_error": 0.00020945561504959187,
+        "max_screen_error_pixels_in_front": 0.00010641224031360252,
+        "max_world_normal_vs_postVS_error": 2.9098330522892013e-08,
+        "max_world_tangent_vs_postVS_error": 1.2187813558384164e-07
+      },
+      "uv_status": "not consumed or bound in this draw; unused placeholder explicitly marked",
+      "raw_binding_evidence": {
+        "IA": {
+          "indices": {
+            "file": "1816-indices.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10618368,
+            "byteSize": 5760,
+            "sha256": "83a7160bb705a070290b41131c7e9428fd3493a954a5fd3410dd338b10316e1f"
+          },
+          "vb0": {
+            "file": "1816-vb0.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10639360,
+            "byteSize": 6720,
+            "sha256": "b30b3aa32c97f9cb5987b5cfa203a70e9296fc946501c8f059a43e06d27dbd19"
+          },
+          "vb4": {
+            "file": "1816-vb4.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 1024,
+            "byteSize": 16,
+            "sha256": "5ac6a5945f16500911219129984ba8b387a06f24fe383ce4e81a73294065461b"
+          },
+          "vb5": {
+            "file": "1816-vb5.bin",
+            "resource": "ResourceId::3029885",
+            "byteOffset": 16,
+            "byteSize": 64,
+            "sha256": "cfb5a69212d224e5dd3758478b9843b6d59adfa0fa5c3c46d14d7811fd79d1d9"
+          }
+        },
+        "VS_buffers": [
+          {
+            "index": 0,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 36,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::3120557",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1816-Vertex-srv0.bin",
+            "resource": "ResourceId::3120557",
+            "byteOffset": 0,
+            "byteSize": 36,
+            "sha256": "51c253faf976c44f145c50b250acb3ca1eddcaf0f2fb13aeaeaba44a63297c9b"
+          },
+          {
+            "index": 1,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::805",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1816-Vertex-srv1.bin",
+            "resource": "ResourceId::805",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "07999af172a4816beec69d029d9edb041826dcd9de41a74d87847c05edeab8fc"
+          },
+          {
+            "index": 2,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::806",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1816-Vertex-srv2.bin",
+            "resource": "ResourceId::806",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "a1eaaa8698b8c392289026389af5905c59cc5976b0a6aa6c2048a206d85ccd81"
+          },
+          {
+            "index": 3,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 10630144,
+              "byteSize": 4472,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 1,
+                "compCount": 4,
+                "compType": 3,
+                "type": 0
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::339",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 6,
+              "view": "ResourceId::0"
+            },
+            "file": "1816-Vertex-srv3.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10630144,
+            "byteSize": 4472,
+            "sha256": "31c8470621a182ff312ef6b0648871a02c335e5e4bda78478cf925b5c83aca7d"
+          }
+        ],
+        "material_cbuffer": {
+          "file": "1816-Pixel-cb2.bin",
+          "resource": "ResourceId::361",
+          "byteOffset": 855040,
+          "byteSize": 44,
+          "sha256": "2f045d2ab16ed7f1e408506d98513d079cc74137c3df164986579322ba6f9c9b"
+        }
+      }
+    },
+    {
+      "eid": 1827,
+      "prepass_eid": 1032,
+      "name": "cube",
+      "material_name": "rdc_cube_1827",
+      "asset": "mesh-1827-cube.npz",
+      "asset_sha256": "db72fdd30e8b7b985abb4994a9192940e3aa6b7af9cbfa1290faf6118807cae9",
+      "vertex_count": 54,
+      "triangle_count": 48,
+      "instance_id": 19,
+      "primitive_id": 19,
+      "instance_flags": 0,
+      "packed_rotation_scale_u32": [
+        2147516416,
+        3435937792,
+        3892355072,
+        8509440
+      ],
+      "signed_scale": [
+        1.0,
+        3.25,
+        2.75
+      ],
+      "primitive_position_high_cm": [
+        -1550.0,
+        30.0,
+        460.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_to_world_row_major": [
+        [
+          1.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          3.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.75,
+          0.0
+        ],
+        [
+          -1550.0,
+          30.0,
+          460.0,
+          1.0
+        ]
+      ],
+      "world_bounds_ue_cm": [
+        [
+          -1600.0,
+          -132.5,
+          322.5
+        ],
+        [
+          -1500.0,
+          192.5,
+          597.5
+        ]
+      ],
+      "material": {
+        "program": "captured_basic_shape",
+        "base_color_linear": [
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421
+        ],
+        "roughness": 0.6406999826431274,
+        "metallic": 0.0,
+        "specular": 0.5,
+        "emissive_linear": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "shader_evidence": "shader-1816-Pixel.txt: cbuffer2 byte16 RGB/A; metallic=0, specular=.5; no UV samples",
+        "raw_material_f32_0_31": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.6406999826431274
+        ]
+      },
+      "projection_check": {
+        "vertex_count": 54,
+        "index_count": 144,
+        "max_abs_clip_error": 5.873578322734829e-05,
+        "max_screen_error_pixels_in_front": 0.0001287749048515252,
+        "max_world_normal_vs_postVS_error": 0.0,
+        "max_world_tangent_vs_postVS_error": 0.0
+      },
+      "uv_status": "not consumed or bound in this draw; unused placeholder explicitly marked",
+      "raw_binding_evidence": {
+        "IA": {
+          "indices": {
+            "file": "1827-indices.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10615552,
+            "byteSize": 288,
+            "sha256": "5fd0fea58f32808a8992e13c8c76f75b8f1479ceed51dc25de5a86bb5b54908e"
+          },
+          "vb0": {
+            "file": "1827-vb0.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10617600,
+            "byteSize": 656,
+            "sha256": "9355c255c3fff1877ec2a15732cda2f5d5598f3b7dd78a19fd1129b46f1933d1"
+          },
+          "vb4": {
+            "file": "1827-vb4.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 1024,
+            "byteSize": 16,
+            "sha256": "5ac6a5945f16500911219129984ba8b387a06f24fe383ce4e81a73294065461b"
+          },
+          "vb5": {
+            "file": "1827-vb5.bin",
+            "resource": "ResourceId::3029885",
+            "byteOffset": 20,
+            "byteSize": 64,
+            "sha256": "a9759ef32e7d2a6258e39212e50a9ee9ba1c713d5d0c6daec3a89513b98f3cc9"
+          }
+        },
+        "VS_buffers": [
+          {
+            "index": 0,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 36,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::3120557",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1827-Vertex-srv0.bin",
+            "resource": "ResourceId::3120557",
+            "byteOffset": 0,
+            "byteSize": 36,
+            "sha256": "51c253faf976c44f145c50b250acb3ca1eddcaf0f2fb13aeaeaba44a63297c9b"
+          },
+          {
+            "index": 1,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::805",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1827-Vertex-srv1.bin",
+            "resource": "ResourceId::805",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "07999af172a4816beec69d029d9edb041826dcd9de41a74d87847c05edeab8fc"
+          },
+          {
+            "index": 2,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::806",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1827-Vertex-srv2.bin",
+            "resource": "ResourceId::806",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "a1eaaa8698b8c392289026389af5905c59cc5976b0a6aa6c2048a206d85ccd81"
+          },
+          {
+            "index": 3,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 10616576,
+              "byteSize": 432,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 1,
+                "compCount": 4,
+                "compType": 3,
+                "type": 0
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::339",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 6,
+              "view": "ResourceId::0"
+            },
+            "file": "1827-Vertex-srv3.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10616576,
+            "byteSize": 432,
+            "sha256": "1c346a8eca0174eaaf941d79f163b0402d78cc0b457d459cfe91933c4a4beca0"
+          }
+        ],
+        "material_cbuffer": {
+          "file": "1827-Pixel-cb2.bin",
+          "resource": "ResourceId::361",
+          "byteOffset": 855040,
+          "byteSize": 44,
+          "sha256": "2f045d2ab16ed7f1e408506d98513d079cc74137c3df164986579322ba6f9c9b"
+        }
+      }
+    },
+    {
+      "eid": 1838,
+      "prepass_eid": 1041,
+      "name": "standing_plane",
+      "material_name": "rdc_standing_plane_1838",
+      "asset": "mesh-1838-standing_plane.npz",
+      "asset_sha256": "df96e049b57f4b28c6ada0470bf9b11bc366b45e98c485dab1627043d76f916c",
+      "vertex_count": 4,
+      "triangle_count": 2,
+      "instance_id": 20,
+      "primitive_id": 20,
+      "instance_flags": 0,
+      "packed_rotation_scale_u32": [
+        65537,
+        3435937792,
+        3288389632,
+        8556544
+      ],
+      "signed_scale": [
+        5.5,
+        4.25,
+        1.0
+      ],
+      "primitive_position_high_cm": [
+        -1510.0,
+        -380.0,
+        430.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_to_world_row_major": [
+        [
+          0.0,
+          0.0,
+          5.5,
+          0.0
+        ],
+        [
+          0.0,
+          4.25,
+          -0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1510.0,
+          -380.0,
+          430.0,
+          1.0
+        ]
+      ],
+      "world_bounds_ue_cm": [
+        [
+          -1510.0,
+          -592.5,
+          155.0
+        ],
+        [
+          -1510.0,
+          -167.5,
+          705.0
+        ]
+      ],
+      "material": {
+        "program": "captured_basic_shape",
+        "base_color_linear": [
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421
+        ],
+        "roughness": 0.6406999826431274,
+        "metallic": 0.0,
+        "specular": 0.5,
+        "emissive_linear": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "shader_evidence": "shader-1816-Pixel.txt: cbuffer2 byte16 RGB/A; metallic=0, specular=.5; no UV samples",
+        "raw_material_f32_0_31": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.8999999761581421,
+          0.6406999826431274
+        ]
+      },
+      "projection_check": {
+        "vertex_count": 4,
+        "index_count": 6,
+        "max_abs_clip_error": 4.63922962126162e-05,
+        "max_screen_error_pixels_in_front": 3.604597725370695e-05,
+        "max_world_normal_vs_postVS_error": 0.0,
+        "max_world_tangent_vs_postVS_error": 0.0
+      },
+      "uv_status": "not consumed or bound in this draw; unused placeholder explicitly marked",
+      "raw_binding_evidence": {
+        "IA": {
+          "indices": {
+            "file": "1838-indices.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10671872,
+            "byteSize": 16,
+            "sha256": "65cdbf1adaa148abcf933f5a65a6f9a47165c43617eb5aa5c46c3de0ea147195"
+          },
+          "vb0": {
+            "file": "1838-vb0.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10672896,
+            "byteSize": 48,
+            "sha256": "5965b0efba2d68b6c7a6b04cc55786f03d244780dc43030aa7322c2d4dc2d07e"
+          },
+          "vb4": {
+            "file": "1838-vb4.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 1024,
+            "byteSize": 16,
+            "sha256": "5ac6a5945f16500911219129984ba8b387a06f24fe383ce4e81a73294065461b"
+          },
+          "vb5": {
+            "file": "1838-vb5.bin",
+            "resource": "ResourceId::3029885",
+            "byteOffset": 24,
+            "byteSize": 64,
+            "sha256": "2e26fcbd51c7811b37f3a8d054bf1dc19d0c5d0747073acbde81d5bf562fdf17"
+          }
+        },
+        "VS_buffers": [
+          {
+            "index": 0,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 36,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::3120557",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1838-Vertex-srv0.bin",
+            "resource": "ResourceId::3120557",
+            "byteOffset": 0,
+            "byteSize": 36,
+            "sha256": "51c253faf976c44f145c50b250acb3ca1eddcaf0f2fb13aeaeaba44a63297c9b"
+          },
+          {
+            "index": 1,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::805",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1838-Vertex-srv1.bin",
+            "resource": "ResourceId::805",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "07999af172a4816beec69d029d9edb041826dcd9de41a74d87847c05edeab8fc"
+          },
+          {
+            "index": 2,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::806",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1838-Vertex-srv2.bin",
+            "resource": "ResourceId::806",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "a1eaaa8698b8c392289026389af5905c59cc5976b0a6aa6c2048a206d85ccd81"
+          },
+          {
+            "index": 3,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 10672384,
+              "byteSize": 32,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 1,
+                "compCount": 4,
+                "compType": 3,
+                "type": 0
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::339",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 6,
+              "view": "ResourceId::0"
+            },
+            "file": "1838-Vertex-srv3.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 10672384,
+            "byteSize": 32,
+            "sha256": "28051e05dbfcfcc4533ce0e2a056f61e531b353ea48a1418c7424858b5368779"
+          }
+        ],
+        "material_cbuffer": {
+          "file": "1838-Pixel-cb2.bin",
+          "resource": "ResourceId::361",
+          "byteOffset": 855040,
+          "byteSize": 44,
+          "sha256": "2f045d2ab16ed7f1e408506d98513d079cc74137c3df164986579322ba6f9c9b"
+        }
+      }
+    },
+    {
+      "eid": 1853,
+      "prepass_eid": 1014,
+      "name": "grid_floor",
+      "material_name": "rdc_grid_floor_1853",
+      "asset": "mesh-1853-grid_floor.npz",
+      "asset_sha256": "54c4c00cc40eb0ae96426d641493414d26244de114b8d3e1fa4d92c94c45f7a6",
+      "vertex_count": 90,
+      "triangle_count": 96,
+      "instance_id": 17,
+      "primitive_id": 17,
+      "instance_flags": 0,
+      "packed_rotation_scale_u32": [
+        2147516416,
+        3435937792,
+        3221274624,
+        8634368
+      ],
+      "signed_scale": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "primitive_position_high_cm": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "local_to_world_row_major": [
+        [
+          8.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          8.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          8.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.5,
+          1.0
+        ]
+      ],
+      "world_bounds_ue_cm": [
+        [
+          -4000.00244140625,
+          -3999.99951171875,
+          -400.500244140625
+        ],
+        [
+          4000.000244140625,
+          4000.00048828125,
+          -0.4999999999997551
+        ]
+      ],
+      "material": {
+        "program": "captured_triplanar_grid",
+        "emissive_linear": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_frequency_per_cm": 0.009999999776482582,
+        "checker_color_1_linear": [
+          0.23000000417232513,
+          0.23000000417232513,
+          0.23000000417232513
+        ],
+        "checker_color_0_linear": [
+          0.18000000715255737,
+          0.18000000715255737,
+          0.18000000715255737
+        ],
+        "grid_color_linear": [
+          0.33854201436042786,
+          0.33854201436042786,
+          0.33854201436042786
+        ],
+        "checker_roughness_1": 0.6499999761581421,
+        "checker_roughness_0": 0.5,
+        "line_roughness": 0.3,
+        "specular": 0.5,
+        "metallic": "saturate(triplanar texture red at full frequency)",
+        "texture": "raw/1853-grid.dds",
+        "texture_coordinates": "object-relative world position projected on normalized primitive axes; not mesh UV",
+        "blend_weights": "saturate(abs(local normal x,z)*3-1), sequential XZ/YZ then XY blends",
+        "shader_evidence": "shader-1853-Pixel.txt: _309.._420; green sampled at half frequency blends checker colors and roughness; red at full frequency controls grid color, roughness and metallic",
+        "raw_parameter_bytes_exclude_padding": {
+          "offset0": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "offset16": [
+            0.009999999776482582,
+            0.23000000417232513,
+            0.23000000417232513,
+            0.23000000417232513
+          ],
+          "offset32": [
+            0.18000000715255737,
+            0.18000000715255737,
+            0.18000000715255737
+          ],
+          "offset48": [
+            0.33854201436042786,
+            0.33854201436042786,
+            0.33854201436042786,
+            0.6499999761581421
+          ],
+          "offset64": [
+            0.5
+          ]
+        },
+        "implementation_status": "standalone Materials/RDCGrid.slangh evaluator compiled; stock scene material is a placeholder until runtime routes program 2"
+      },
+      "projection_check": {
+        "vertex_count": 90,
+        "index_count": 288,
+        "max_abs_clip_error": 0.0004004018455816549,
+        "max_screen_error_pixels_in_front": 0.002067570855615486,
+        "max_world_normal_vs_postVS_error": 0.0,
+        "max_world_tangent_vs_postVS_error": 0.0
+      },
+      "uv_status": "not consumed or bound in this draw; unused placeholder explicitly marked",
+      "raw_binding_evidence": {
+        "IA": {
+          "indices": {
+            "file": "1853-indices.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 3394304,
+            "byteSize": 576,
+            "sha256": "4654960402b864b30ba12952a84565f2370ec12475c41d023795a7bff862f0a0"
+          },
+          "vb0": {
+            "file": "1853-vb0.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 3397376,
+            "byteSize": 1088,
+            "sha256": "58392fa9a24daf18c27a042265764763b0a2196b7993ba071ce5b020e1b59ca3"
+          },
+          "vb4": {
+            "file": "1853-vb4.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 1024,
+            "byteSize": 16,
+            "sha256": "5ac6a5945f16500911219129984ba8b387a06f24fe383ce4e81a73294065461b"
+          },
+          "vb5": {
+            "file": "1853-vb5.bin",
+            "resource": "ResourceId::3029885",
+            "byteOffset": 28,
+            "byteSize": 64,
+            "sha256": "684685f698bb4ca63d1239c2a2c47f792054ba2f75c7a000392a32ca17446586"
+          }
+        },
+        "VS_buffers": [
+          {
+            "index": 0,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 36,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::3120557",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1853-Vertex-srv0.bin",
+            "resource": "ResourceId::3120557",
+            "byteOffset": 0,
+            "byteSize": 36,
+            "sha256": "51c253faf976c44f145c50b250acb3ca1eddcaf0f2fb13aeaeaba44a63297c9b"
+          },
+          {
+            "index": 1,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::805",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1853-Vertex-srv1.bin",
+            "resource": "ResourceId::805",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "07999af172a4816beec69d029d9edb041826dcd9de41a74d87847c05edeab8fc"
+          },
+          {
+            "index": 2,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 0,
+              "byteSize": 2147483648,
+              "counterByteOffset": 0,
+              "elementByteSize": 16,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 0,
+                "compCount": 0,
+                "compType": 0,
+                "type": 1
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::806",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 5,
+              "view": "ResourceId::0"
+            },
+            "file": "1853-Vertex-srv2.bin",
+            "resource": "ResourceId::806",
+            "byteOffset": 0,
+            "byteSize": 1048576,
+            "sha256": "a1eaaa8698b8c392289026389af5905c59cc5976b0a6aa6c2048a206d85ccd81"
+          },
+          {
+            "index": 3,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 1280,
+              "byteSize": 12,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 1,
+                "compCount": 4,
+                "compType": 2,
+                "type": 0
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::339",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 6,
+              "view": "ResourceId::0"
+            },
+            "file": "1853-Vertex-srv3.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 1280,
+            "byteSize": 12,
+            "sha256": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b"
+          },
+          {
+            "index": 4,
+            "descriptor": {
+              "bufferStructCount": 0,
+              "byteOffset": 3395840,
+              "byteSize": 720,
+              "counterByteOffset": 0,
+              "elementByteSize": 4,
+              "firstMip": 0,
+              "firstSlice": 0,
+              "flags": 0,
+              "format": {
+                "compByteWidth": 1,
+                "compCount": 4,
+                "compType": 3,
+                "type": 0
+              },
+              "minLODClamp": 0.0,
+              "numMips": 1,
+              "numSlices": 1,
+              "resource": "ResourceId::339",
+              "secondary": "ResourceId::0",
+              "swizzle": {
+                "alpha": 3,
+                "blue": 2,
+                "green": 1,
+                "red": 0
+              },
+              "textureType": 1,
+              "type": 6,
+              "view": "ResourceId::0"
+            },
+            "file": "1853-Vertex-srv4.bin",
+            "resource": "ResourceId::339",
+            "byteOffset": 3395840,
+            "byteSize": 720,
+            "sha256": "f4e3cfd6971ea1f116f1cd13269addbf02d90a76e1374e6a97d68437ccad0c9b"
+          }
+        ],
+        "material_cbuffer": {
+          "file": "1853-Pixel-cb2.bin",
+          "resource": "ResourceId::361",
+          "byteOffset": 1260544,
+          "byteSize": 108,
+          "sha256": "eaaa711b5597f565b11853b5f3c2a405d7183296e1addc40e7e57912842ca486"
+        }
+      }
+    }
+  ],
+  "uncertainties": [
+    "Original uasset/package identity is not established from stripped shaders.",
+    "Mesh UV attributes are not read by any of these captured shaders and the UV SRV is not bound. Zero UV in the scene adapter is an explicit unused placeholder, not recovered UV.",
+    "The floor needs the captured triplanar grid MaterialProgram, mip selection and sampler; StandardMaterial floor preview is not equivalent.",
+    "No final shaded image or light equivalence is asserted."
+  ],
+  "source_evidence": {
+    "view-layout-evidence.json": {
+      "path": "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\view-layout-evidence.json",
+      "sha256": "f71269664eb132dfcb85846fcc5c4f613f26b3a4b697c12f36e8e971c7045ec6"
+    },
+    "shader-1816-Vertex.txt": {
+      "path": "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\shader-1816-Vertex.txt",
+      "sha256": "41746c8d531ea4d57d59782f3e0e3518b2ce6884691851e3413842cf84d05eb3"
+    },
+    "shader-1853-Vertex.txt": {
+      "path": "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\shader-1853-Vertex.txt",
+      "sha256": "5131b08fb58c99de19951694d3a551e00253913de41dcfb0dbd60bf981c25bac"
+    },
+    "shader-1816-Pixel.txt": {
+      "path": "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\shader-1816-Pixel.txt",
+      "sha256": "91f0260c5ddb7a98685d9129f1bf6d3746c25fcffd52c492703fdc76b7a62045"
+    },
+    "shader-1853-Pixel.txt": {
+      "path": "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\shader-1853-Pixel.txt",
+      "sha256": "efb87c9dd322648d5df821217853c2c55df5fdbe145c80a08f894db4c776a43c"
+    },
+    "SceneData.ush": {
+      "path": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SceneData.ush",
+      "sha256": "0aeeae950b54c2391af85d825ad2d7aab5757e660800abd3ff19813a65a54fda",
+      "function": "DecodeTransform; GetInstanceSceneDataInternal"
+    }
+  },
+  "projection_verification": {
+    "resolution": [
+      1421,
+      1035
+    ],
+    "captured_covered_pixels": 866712,
+    "reconstructed_covered_pixels": 866711,
+    "coverage_mismatch_pixels": 1,
+    "coverage_iou": 0.999998846214198,
+    "depth_overlap_abs_error_max": 0.008706926277218424,
+    "depth_overlap_abs_error_p99": 3.368379844367019e-08,
+    "depth_overlap_abs_error_mean": 2.0001740558341268e-08,
+    "method": "independent CPU homogeneous clipping + backface culling + pixel-center barycentric reverse depth",
+    "limitation": "CPU edges lack hardware subpixel snapping and top-left tie rule; image differences retained, not silently ignored",
+    "postvs_role": "verification only; renderable mesh positions derived from original IA+compressed GPUScene data",
+    "depth_outliers_above_1e_6": [
+      {
+        "x": 1126,
+        "y": 565,
+        "captured": 0.012171957641839981,
+        "reconstructed": 0.0034650313646215573,
+        "abs_error": 0.008706926277218424,
+        "reconstructed_object_id": 4
+      }
+    ],
+    "coverage_mismatch_locations": [
+      {
+        "x": 421,
+        "y": 466,
+        "captured_depth": 0.006305786781013012,
+        "reconstructed_depth": 0.0
+      }
+    ]
+  },
+  "grid_texture": {
+    "index": 5,
+    "descriptor": {
+      "bufferStructCount": 0,
+      "byteOffset": 0,
+      "byteSize": 0,
+      "counterByteOffset": 0,
+      "elementByteSize": 8,
+      "firstMip": 0,
+      "firstSlice": 0,
+      "flags": 0,
+      "format": {
+        "compByteWidth": 0,
+        "compCount": 4,
+        "compType": 9,
+        "type": 2
+      },
+      "minLODClamp": 0.0,
+      "numMips": 10,
+      "numSlices": 1,
+      "resource": "ResourceId::7376",
+      "secondary": "ResourceId::0",
+      "swizzle": {
+        "alpha": 3,
+        "blue": 2,
+        "green": 1,
+        "red": 0
+      },
+      "textureType": 4,
+      "type": 4,
+      "view": "ResourceId::0"
+    },
+    "texture": {
+      "arraysize": 1,
+      "byteSize": 174776,
+      "creationFlags": 1,
+      "cubemap": false,
+      "depth": 1,
+      "dimension": 2,
+      "format": {
+        "compByteWidth": 0,
+        "compCount": 4,
+        "compType": 0,
+        "type": 2
+      },
+      "height": 512,
+      "mips": 10,
+      "msQual": 0,
+      "msSamp": 1,
+      "resourceId": "ResourceId::7376",
+      "type": 4,
+      "width": 512
+    },
+    "mips": [
+      {
+        "file": "1853-grid-mip0.bin",
+        "byteSize": 131072,
+        "sha256": "7cb28e077d0e0cad6cee0dc0a7df5ec91fd43250166048fb906b413b9c2b1dbd"
+      },
+      {
+        "file": "1853-grid-mip1.bin",
+        "byteSize": 32768,
+        "sha256": "470feb983bc8173de55f022a14988049760635309fa4b2ef2c55594829b601e0"
+      },
+      {
+        "file": "1853-grid-mip2.bin",
+        "byteSize": 8192,
+        "sha256": "1547751afc06a1a8db6d37e57f5c6588b317f35499b953c345c47b431e48e2e7"
+      },
+      {
+        "file": "1853-grid-mip3.bin",
+        "byteSize": 2048,
+        "sha256": "7e8b795507f1f015e64499dc2511131b886339a4652eaf038916ea591191e561"
+      },
+      {
+        "file": "1853-grid-mip4.bin",
+        "byteSize": 512,
+        "sha256": "31bdaa46ea434a525c96083613d163f3b72182d0bf88fdd477938b034310f475"
+      },
+      {
+        "file": "1853-grid-mip5.bin",
+        "byteSize": 128,
+        "sha256": "ef46d70cd92f5d7cacf97e763cca3abc0f86f6181421804dd3ed43ece168b832"
+      },
+      {
+        "file": "1853-grid-mip6.bin",
+        "byteSize": 32,
+        "sha256": "7403d63280ba8369692cc41210a2ab59430f89a48b04230a5e86a1e72b9096a1"
+      },
+      {
+        "file": "1853-grid-mip7.bin",
+        "byteSize": 8,
+        "sha256": "c2a373e276d3483aa8a287297d83710b15df694c262dc05ea4cd4e09c9992ec4"
+      },
+      {
+        "file": "1853-grid-mip8.bin",
+        "byteSize": 8,
+        "sha256": "a9084c99b02570c8e52cb40f2b5c971bac96acf54e33d67e8d9f4d377b30a759"
+      },
+      {
+        "file": "1853-grid-mip9.bin",
+        "byteSize": 8,
+        "sha256": "4b7233dff965b7495417c2355d38e823452cf98c21d878a1445f58259327a90d"
+      }
+    ],
+    "dds_sha256": "73f03a677acf3b8b5803c9f9ebd4b6b9ee9a4216e5dadda5f3200de5f4f98aab",
+    "captured_view_format": "BC1_UNORM_SRGB",
+    "exported_dds_format": "DXGI_FORMAT_BC1_UNORM; importer must explicitly request sRGB view"
+  },
+  "grid_sampler": {
+    "meaning": "wrap U/V/W, anisotropic8, mipBias0, LOD[0,FLT_MAX]",
+    "raw": {
+      "access": {
+        "NoShaderBinding": 65535,
+        "arrayElement": 0,
+        "byteOffset": 102,
+        "byteSize": 1,
+        "descriptorStore": "ResourceId::310",
+        "index": 0,
+        "stage": 4,
+        "staticallyUnused": false,
+        "type": 2
+      },
+      "descriptor": {
+        "bufferStructCount": 0,
+        "byteOffset": 0,
+        "byteSize": 0,
+        "counterByteOffset": 0,
+        "elementByteSize": 0,
+        "firstMip": 0,
+        "firstSlice": 0,
+        "flags": 0,
+        "format": {
+          "compByteWidth": 0,
+          "compCount": 0,
+          "compType": 0,
+          "type": 1
+        },
+        "minLODClamp": 0.0,
+        "numMips": 1,
+        "numSlices": 1,
+        "resource": "ResourceId::0",
+        "secondary": "ResourceId::0",
+        "swizzle": {
+          "alpha": 3,
+          "blue": 2,
+          "green": 1,
+          "red": 0
+        },
+        "textureType": 0,
+        "type": 0,
+        "view": "ResourceId::0"
+      },
+      "sampler": {
+        "addressU": 0,
+        "addressV": 0,
+        "addressW": 0,
+        "borderColorType": 1,
+        "borderColorValue": {
+          "floatValue": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "intValue": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "uintValue": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "chromaFilter": 0,
+        "compareFunction": 0,
+        "creationTimeConstant": false,
+        "filter": {
+          "filter": 0,
+          "magnify": 4,
+          "minify": 4,
+          "mip": 4
+        },
+        "forceExplicitReconstruction": false,
+        "maxAnisotropy": 8.0,
+        "maxLOD": 3.4028234663852886e+38,
+        "minLOD": 0.0,
+        "mipBias": 0.0,
+        "object": "ResourceId::0",
+        "seamlessCubemaps": true,
+        "srgbBorder": false,
+        "swizzle": {
+          "alpha": 3,
+          "blue": 2,
+          "green": 1,
+          "red": 0
+        },
+        "type": 2,
+        "unnormalized": false,
+        "xChromaOffset": 0,
+        "yChromaOffset": 0,
+        "ycbcrModel": 0,
+        "ycbcrRange": 0,
+        "ycbcrSampler": "ResourceId::0"
+      }
+    }
+  }
+}

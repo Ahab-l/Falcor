@@ -1,0 +1,155 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see UESkyLightSource.json and UESkyLightSourceNotice.txt.
+// Source evidence only; runtime integration is not established.
+
+#if SHADING_PATH_MOBILE
+// There's a precision problem in OpenGL because the default precision in the Pixel Shader is set to half, even for constant values, use Hammersley16 instead.
+#define HammersleyDistribution Hammersley16
+#else
+#define HammersleyDistribution Hammersley
+#endif
+
+#ifdef USE_COMPUTE
+int CubeFaceOffset;
+[numthreads(THREADGROUP_SIZE, THREADGROUP_SIZE, 1)]
+void FilterCS(uint3 ThreadId : SV_DispatchThreadID)
+{
+	const uint2 FaceCoord = uint2(ThreadId.x % uint(FaceThreadGroupSize), ThreadId.y);
+	if (any(FaceCoord >= uint2(ValidDispatchCoord)))
+	{
+		return;
+	}
+	const int SelectedCubeFace = CubeFaceOffset + int(ThreadId.x) / FaceThreadGroupSize;
+	float2 ScaledUVs = ((float2(FaceCoord) + 0.5f) / float2(ValidDispatchCoord)) * 2.0f - 1.0f;
+	float4 OutColor;
+#else // USE_COMPUTE
+void FilterPS(
+	float4 SvPosition : SV_POSITION,
+	out float4 OutColor : SV_Target0
+	)
+{ 
+	float2 UV = SvPosition.xy * SvPositionToUVScale;
+	float2 ScaledUVs = UV * 2 - 1;
+	const int SelectedCubeFace = CubeFace;
+#endif // USE_COMPUTE
+	float3 CubeCoordinates = GetCubemapVector(ScaledUVs, SelectedCubeFace);
+
+	float3 N = normalize(CubeCoordinates);
+	float3x3 TangentToWorld = GetTangentBasis( N );
+
+	float Roughness = ComputeReflectionCaptureRoughnessFromMip( MipIndex, NumMips - 1 );
+
+	if( Roughness < 0.01 )
+	{
+		OutColor = SourceCubemapTexture.SampleLevel(SourceCubemapSampler, CubeCoordinates, 0 );
+		
+		// Prevent NaNs from going into the cube map
+		OutColor = -min(-OutColor, 0);
+		
+	#ifdef USE_COMPUTE
+		OutTextureMipColor[uint3(FaceCoord, SelectedCubeFace)] = OutColor;
+	#endif
+		return;
+	}
+
+	uint CubeSize = 1u << ( NumMips - 1 );
+	const float SolidAngleTexel = 4.0f * PI / float(6.0f * CubeSize * CubeSize) * 2.0f;
+
+#if 0
+	// Reference
+	const uint NumSamples = 1024;
+#elif SHADING_PATH_MOBILE
+	// Mobile path - a bit lower quality
+	uint NumSamples = 0;
+	if (Roughness <= 0.1)
+	{
+		NumSamples = 16;
+	}
+	else if (Roughness <= 0.4)
+	{
+		NumSamples = 32;
+	}
+	else
+	{
+		NumSamples = 64;
+	}
+#else
+	// General real time
+	const uint NumSamples = Roughness < 0.1 ? 32 : 64;
+#endif
+	
+	float4 FilteredColor = 0;
+	BRANCH
+	if( Roughness > 0.99 )
+	{
+		// Roughness=1, GGX is constant. Use cosine distribution instead
+
+		LOOP
+		for( uint i = 0; i < NumSamples; i++ )
+		{
+			float2 E = HammersleyDistribution( i, NumSamples, 0 );
+
+			float3 L = CosineSampleHemisphere( E ).xyz;
+
+			float NoL = L.z;
+
+			float PDF = NoL / PI;
+			float SolidAngleSample = 1.0 / ( NumSamples * PDF );
+			float Mip = 0.5 * log2( SolidAngleSample / SolidAngleTexel );
+
+			L = mul( L, TangentToWorld );
+			FilteredColor += SourceCubemapTexture.SampleLevel(SourceCubemapSampler, L, Mip );
+		}
+
+		OutColor = FilteredColor / NumSamples;
+	}
+	else
+	{
+		float Weight = 0;
+
+		LOOP
+		for( uint i = 0; i < NumSamples; i++ )
+		{
+			float2 E = HammersleyDistribution( i, NumSamples, 0 );
+
+			// 6x6 Offset rows. Forms uniform star pattern
+			//uint2 Index = uint2( i % 6, i / 6 );
+			//float2 E = ( Index + 0.5 ) / 5.8;
+			//E.x = frac( E.x + (Index.y & 1) * (0.5 / 6.0) );
+
+			E.y *= 0.995;
+
+			float3 H = ImportanceSampleGGX( E, Pow4(Roughness) ).xyz;
+			float3 L = 2 * H.z * H - float3(0,0,1);
+
+			float NoL = L.z;
+			float NoH = H.z;
+
+			if( NoL > 0 )
+			{
+				//float TexelWeight = CubeTexelWeight( L );
+				//float SolidAngleTexel = SolidAngleAvgTexel * TexelWeight;
+
+				//float PDF = D_GGX( Pow4(Roughness), NoH ) * NoH / (4 * VoH);
+				float PDF = D_GGX( Pow4(Roughness), NoH ) * 0.25;
+				float SolidAngleSample = 1.0 / ( NumSamples * PDF );
+				float Mip = 0.5 * log2( SolidAngleSample / SolidAngleTexel );
+
+				float ConeAngle = acos( 1 - SolidAngleSample / (2*PI) );
+
+				L = mul( L, TangentToWorld );
+				FilteredColor += SourceCubemapTexture.SampleLevel(SourceCubemapSampler, L, Mip ) * NoL;
+				Weight += NoL;
+			}
+		}
+
+		OutColor = FilteredColor / Weight;
+	}
+
+	// Prevent NaNs from going into the cube map
+	OutColor = -min(-OutColor, 0);
+
+#ifdef USE_COMPUTE
+	OutTextureMipColor[uint3(FaceCoord, SelectedCubeFace)] = OutColor;
+#endif
+}

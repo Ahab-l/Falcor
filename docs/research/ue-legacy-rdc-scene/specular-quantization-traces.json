@@ -1,0 +1,4642 @@
+{
+  "scope": "Read-only offline analysis of five E1853 specular residuals; parent-created RenderDoc simulations and native diagnostic MRTs. No GPU work or production edits by this analysis.",
+  "snapshot_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+  "constants": {
+    "frame_x": {
+      "u32": 1107470582,
+      "hex": "0x4202a8f6",
+      "f32": 32.665000915527344,
+      "llvm_literal": "0x4040551EC0000000"
+    },
+    "frame_y": {
+      "u32": 1094519357,
+      "hex": "0x413d0a3d",
+      "f32": 11.8149995803833,
+      "llvm_literal": "0x4027A147A0000000"
+    },
+    "dot_x": {
+      "u32": 1032417603,
+      "hex": "0x3d897143",
+      "f32": 0.0671105608344078,
+      "llvm_literal": "0x3FB12E2860000000"
+    },
+    "dot_y": {
+      "u32": 1002390928,
+      "hex": "0x3bbf4590",
+      "f32": 0.005837149918079376,
+      "llvm_literal": "0x3F77E8B200000000"
+    },
+    "outer_scale": {
+      "u32": 1112796802,
+      "hex": "0x4253ee82",
+      "f32": 52.98291778564453,
+      "llvm_literal": "0x404A7DD040000000"
+    },
+    "quantization_scale": {
+      "u32": 998277249,
+      "hex": "0x3b808081",
+      "f32": 0.003921568859368563,
+      "llvm_literal": "0x3F70101020000000"
+    },
+    "base_specular": {
+      "u32": 1056964608,
+      "hex": "0x3f000000",
+      "f32": 0.5,
+      "llvm_literal": "5.000000e-01"
+    }
+  },
+  "bindings": {
+    "captured_frame_index_mod8": 0,
+    "captured_frame_byte_offset": 2712,
+    "primitive_index": 17,
+    "primitive_flags": 33622665,
+    "primitive_flags_hex": "0x2010a89",
+    "dbuffer_enabled_value": 1.0,
+    "dbuffer_enabled_byte_offset": 3580,
+    "dbuffer_branch_taken": true,
+    "dbuffer_specular_resource": "ResourceId::500",
+    "dbuffer_resource_name": "BlackAlphaOneDummy",
+    "dbuffer_dimensions": [
+      1,
+      1
+    ]
+  },
+  "captured_ssa_map": [
+    [
+      "pixel_x",
+      129,
+      15
+    ],
+    [
+      "pixel_y",
+      130,
+      16
+    ],
+    [
+      "frame_uint",
+      422,
+      308
+    ],
+    [
+      "frame_float",
+      423,
+      309
+    ],
+    [
+      "frame_offset_x",
+      424,
+      310
+    ],
+    [
+      "frame_offset_y",
+      425,
+      311
+    ],
+    [
+      "x",
+      426,
+      312
+    ],
+    [
+      "y",
+      427,
+      313
+    ],
+    [
+      "inner",
+      428,
+      314
+    ],
+    [
+      "first_frac",
+      429,
+      315
+    ],
+    [
+      "scaled",
+      430,
+      316
+    ],
+    [
+      "noise",
+      431,
+      317
+    ],
+    [
+      "dbuffer_condition",
+      450,
+      336
+    ],
+    [
+      "dbuffer_sample",
+      470,
+      357
+    ],
+    [
+      "dbuffer_green",
+      472,
+      359
+    ],
+    [
+      "dbuffer_alpha",
+      474,
+      361
+    ],
+    [
+      "dbuffer_scaled_base_specular",
+      502,
+      389
+    ],
+    [
+      "dbuffer_specular",
+      503,
+      390
+    ],
+    [
+      "selected_specular",
+      511,
+      399
+    ],
+    [
+      "centered",
+      521,
+      409
+    ],
+    [
+      "quantization_bias",
+      522,
+      410
+    ],
+    [
+      "clamped_specular",
+      523,
+      411
+    ],
+    [
+      "clamped_bits",
+      524,
+      412
+    ],
+    [
+      "magnitude_bits",
+      525,
+      413
+    ],
+    [
+      "nonzero_uint",
+      526,
+      414
+    ],
+    [
+      "nonzero_float",
+      527,
+      415
+    ],
+    [
+      "bias",
+      528,
+      416
+    ],
+    [
+      "biased_specular",
+      529,
+      417
+    ],
+    [
+      "final_specular",
+      530,
+      418
+    ]
+  ],
+  "native_ir_boundary": "The existing native-mode0.ll belongs to the earlier MRT diagnostic baseline6cc418..., not a byte-bound disassembly of snapshot7ebee38... or the new quantization MRT. Its Codec chain matches the pre-correction DefaultLit source snapshot; new actual diagnostic values are stored separately.",
+  "native_probe_meta": {
+    "status": "diagnostic",
+    "baseline_npz_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+    "production_source_sha256": "73de95411e9a9f4fd7c4a085577dcb2c446112cc2f5e706b5cf14b05263473e6",
+    "diagnostic_source_sha256": "6704f1b770562b6d19e55fc036301f1a93b99677c1cea9ae981dcaf4a8198e54",
+    "pipeline_signature": "967d8396e42d80fdba066cfa265057d12c8d84a3ca8efce2eb58f5c15668b4f7",
+    "packed_equal": {
+      "gBufferA": true,
+      "gBufferB": true,
+      "gBufferC": true,
+      "sceneColor": true
+    },
+    "npz_sha256": "d23f73194fb8b467967a030dbfeaeff0fab0a247d004fc5e58d28299a36c7578"
+  },
+  "points": [
+    {
+      "pixel": [
+        4,
+        567
+      ],
+      "trace_metadata": {
+        "status": "traced",
+        "event": 1853,
+        "pixel": [
+          4,
+          567
+        ],
+        "states": 547
+      },
+      "trace_inputs": {
+        "TEXCOORD10_centroid": {
+          "type": 0,
+          "u32": [
+            1065353215,
+            0,
+            0,
+            0
+          ],
+          "f32": [
+            0.9999999403953552,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TEXCOORD11_centroid": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            3212836863
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            -0.9999999403953552
+          ]
+        },
+        "TEXCOORD0": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            0
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            0.0
+          ]
+        },
+        "INSTANCE_ID": {
+          "type": 4,
+          "u32": [
+            17
+          ]
+        },
+        "TEXCOORD9": {
+          "type": 0,
+          "u32": [
+            1162417722,
+            3306260080,
+            3290496827
+          ],
+          "f32": [
+            3217.38916015625,
+            -2328.40234375,
+            -643.9879760742188
+          ]
+        },
+        "SV_Position": {
+          "type": 0,
+          "u32": [
+            1083179008,
+            1141760000,
+            996534800,
+            1160914753
+          ],
+          "f32": [
+            4.5,
+            567.5,
+            0.00350821390748024,
+            2850.453369140625
+          ]
+        },
+        "SV_IsFrontFace": {
+          "type": 4,
+          "u32": [
+            4294967295
+          ]
+        }
+      },
+      "trace_values": {
+        "pixel_x": {
+          "renderdoc": "_129",
+          "llvm": "%15",
+          "step": 15,
+          "next_instruction": 15,
+          "value": {
+            "type": 0,
+            "u32": [
+              1083179008
+            ],
+            "f32": [
+              4.5
+            ]
+          }
+        },
+        "pixel_y": {
+          "renderdoc": "_130",
+          "llvm": "%16",
+          "step": 16,
+          "next_instruction": 16,
+          "value": {
+            "type": 0,
+            "u32": [
+              1141760000
+            ],
+            "f32": [
+              567.5
+            ]
+          }
+        },
+        "frame_uint": {
+          "renderdoc": "_422",
+          "llvm": "%308",
+          "step": 308,
+          "next_instruction": 308,
+          "value": {
+            "type": 3,
+            "u32": [
+              0
+            ]
+          }
+        },
+        "frame_float": {
+          "renderdoc": "_423",
+          "llvm": "%309",
+          "step": 309,
+          "next_instruction": 309,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_x": {
+          "renderdoc": "_424",
+          "llvm": "%310",
+          "step": 310,
+          "next_instruction": 310,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_y": {
+          "renderdoc": "_425",
+          "llvm": "%311",
+          "step": 311,
+          "next_instruction": 311,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "x": {
+          "renderdoc": "_426",
+          "llvm": "%312",
+          "step": 312,
+          "next_instruction": 312,
+          "value": {
+            "type": 0,
+            "u32": [
+              1083179008
+            ],
+            "f32": [
+              4.5
+            ]
+          }
+        },
+        "y": {
+          "renderdoc": "_427",
+          "llvm": "%313",
+          "step": 313,
+          "next_instruction": 313,
+          "value": {
+            "type": 0,
+            "u32": [
+              1141760000
+            ],
+            "f32": [
+              567.5
+            ]
+          }
+        },
+        "inner": {
+          "renderdoc": "_428",
+          "llvm": "%314",
+          "step": 314,
+          "next_instruction": 314,
+          "value": {
+            "type": 0,
+            "u32": [
+              1080513863
+            ],
+            "f32": [
+              3.614579916000366
+            ]
+          }
+        },
+        "first_frac": {
+          "renderdoc": "_429",
+          "llvm": "%315",
+          "step": 315,
+          "next_instruction": 315,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058886940
+            ],
+            "f32": [
+              0.6145799160003662
+            ]
+          }
+        },
+        "scaled": {
+          "renderdoc": "_430",
+          "llvm": "%316",
+          "step": 316,
+          "next_instruction": 316,
+          "value": {
+            "type": 0,
+            "u32": [
+              1107443643
+            ],
+            "f32": [
+              32.56223678588867
+            ]
+          }
+        },
+        "noise": {
+          "renderdoc": "_431",
+          "llvm": "%317",
+          "step": 317,
+          "next_instruction": 317,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058008768
+            ],
+            "f32": [
+              0.5622367858886719
+            ]
+          }
+        },
+        "dbuffer_condition": {
+          "renderdoc": "_450",
+          "llvm": "%336",
+          "step": 336,
+          "next_instruction": 336,
+          "value": {
+            "type": 11,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "dbuffer_sample": {
+          "renderdoc": "_470",
+          "llvm": "%357",
+          "step": 357,
+          "next_instruction": 357,
+          "value": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              1065353216
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "dbuffer_green": {
+          "renderdoc": "_472",
+          "llvm": "%359",
+          "step": 359,
+          "next_instruction": 359,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "dbuffer_alpha": {
+          "renderdoc": "_474",
+          "llvm": "%361",
+          "step": 361,
+          "next_instruction": 361,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "dbuffer_scaled_base_specular": {
+          "renderdoc": "_502",
+          "llvm": "%389",
+          "step": 389,
+          "next_instruction": 389,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "dbuffer_specular": {
+          "renderdoc": "_503",
+          "llvm": "%390",
+          "step": 390,
+          "next_instruction": 390,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "selected_specular": {
+          "renderdoc": "_511",
+          "llvm": "%399",
+          "step": 399,
+          "next_instruction": 399,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "centered": {
+          "renderdoc": "_521",
+          "llvm": "%409",
+          "step": 409,
+          "next_instruction": 409,
+          "value": {
+            "type": 0,
+            "u32": [
+              1031728128
+            ],
+            "f32": [
+              0.062236785888671875
+            ]
+          }
+        },
+        "quantization_bias": {
+          "renderdoc": "_522",
+          "llvm": "%410",
+          "step": 410,
+          "next_instruction": 410,
+          "value": {
+            "type": 0,
+            "u32": [
+              964684781
+            ],
+            "f32": [
+              0.00024406584270764142
+            ]
+          }
+        },
+        "clamped_specular": {
+          "renderdoc": "_523",
+          "llvm": "%411",
+          "step": 411,
+          "next_instruction": 411,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "clamped_bits": {
+          "renderdoc": "_524",
+          "llvm": "%412",
+          "step": 412,
+          "next_instruction": 412,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "magnitude_bits": {
+          "renderdoc": "_525",
+          "llvm": "%413",
+          "step": 413,
+          "next_instruction": 413,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "nonzero_uint": {
+          "renderdoc": "_526",
+          "llvm": "%414",
+          "step": 414,
+          "next_instruction": 414,
+          "value": {
+            "type": 3,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "nonzero_float": {
+          "renderdoc": "_527",
+          "llvm": "%415",
+          "step": 415,
+          "next_instruction": 415,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "bias": {
+          "renderdoc": "_528",
+          "llvm": "%416",
+          "step": 416,
+          "next_instruction": 416,
+          "value": {
+            "type": 0,
+            "u32": [
+              964684781
+            ],
+            "f32": [
+              0.00024406584270764142
+            ]
+          }
+        },
+        "biased_specular": {
+          "renderdoc": "_529",
+          "llvm": "%417",
+          "step": 417,
+          "next_instruction": 417,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        },
+        "final_specular": {
+          "renderdoc": "_530",
+          "llvm": "%418",
+          "step": 418,
+          "next_instruction": 418,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        }
+      },
+      "trace_outputs": {
+        "step": 545,
+        "next_instruction": 643,
+        "value": {
+          "SV_Target0": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "SV_Target1": {
+            "type": 0,
+            "u32": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1051372203
+            ],
+            "f32": [
+              0.5,
+              0.5,
+              1.0,
+              0.3333333432674408
+            ]
+          },
+          "SV_Target2": {
+            "type": 0,
+            "u32": [
+              1033371648,
+              1056968703,
+              1058585786,
+              1057063298
+            ],
+            "f32": [
+              0.07421875,
+              0.5002440810203552,
+              0.5966297388076782,
+              0.5058823823928833
+            ]
+          },
+          "SV_Target3": {
+            "type": 0,
+            "u32": [
+              1047161656,
+              1047161656,
+              1047161656,
+              1065353216
+            ],
+            "f32": [
+              0.22892463207244873,
+              0.22892463207244873,
+              0.22892463207244873,
+              1.0
+            ]
+          }
+        }
+      },
+      "native_probe": {
+        "gBufferD": {
+          "float": [
+            -0.0,
+            0.0,
+            0.9999999403953552,
+            0.9999998807907104
+          ],
+          "bits": [
+            2147483648,
+            0,
+            1065353215,
+            1065353214
+          ]
+        },
+        "debug0": {
+          "float": [
+            0.5,
+            0.5,
+            1.0,
+            0.500244140625
+          ],
+          "bits": [
+            1056964608,
+            1056964608,
+            1065353216,
+            1056968704
+          ]
+        },
+        "debug1": {
+          "float": [
+            3.6145801544189453,
+            0.6145801544189453,
+            32.56224822998047,
+            0.5622482299804688
+          ],
+          "bits": [
+            1080513864,
+            1058886944,
+            1107443646,
+            1058008960
+          ]
+        },
+        "debug2": {
+          "float": [
+            0.06224822998046875,
+            0.0002441107208142057,
+            0.5002440810203552,
+            0.5
+          ],
+          "bits": [
+            1031731200,
+            964687865,
+            1056968703,
+            1056964608
+          ]
+        },
+        "native_bgra": [
+          152,
+          128,
+          19,
+          129
+        ],
+        "native_a_word": 2146958847
+      },
+      "captured_bgra": [
+        152,
+        127,
+        19,
+        129
+      ],
+      "native_bgra": [
+        152,
+        128,
+        19,
+        129
+      ],
+      "captured_debugger_final": 0.5002440810203552,
+      "native_codec_field": 0.500244140625,
+      "native_repeated_chain_biased": 0.5002440810203552,
+      "native_codec_minus_debugger_final": 5.960464477539063e-08,
+      "native_codec_minus_repeated_chain": 5.960464477539063e-08,
+      "ideal_unorm8_from_debugger": 128,
+      "ideal_unorm8_matches_capture": false
+    },
+    {
+      "pixel": [
+        280,
+        610
+      ],
+      "trace_metadata": {
+        "status": "traced",
+        "event": 1853,
+        "pixel": [
+          280,
+          610
+        ],
+        "states": 547
+      },
+      "trace_inputs": {
+        "TEXCOORD10_centroid": {
+          "type": 0,
+          "u32": [
+            1065353215,
+            0,
+            0,
+            0
+          ],
+          "f32": [
+            0.9999999403953552,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TEXCOORD11_centroid": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            3212836863
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            -0.9999999403953552
+          ]
+        },
+        "TEXCOORD0": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            0
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            0.0
+          ]
+        },
+        "INSTANCE_ID": {
+          "type": 4,
+          "u32": [
+            17
+          ]
+        },
+        "TEXCOORD9": {
+          "type": 0,
+          "u32": [
+            1158976650,
+            3296026683,
+            3290496827
+          ],
+          "f32": [
+            2377.28369140625,
+            -981.5036010742188,
+            -643.9879760742188
+          ]
+        },
+        "SV_Position": {
+          "type": 0,
+          "u32": [
+            1133264896,
+            1142464512,
+            999382386,
+            1158472447
+          ],
+          "f32": [
+            280.5,
+            610.5,
+            0.004436188377439976,
+            2254.187255859375
+          ]
+        },
+        "SV_IsFrontFace": {
+          "type": 4,
+          "u32": [
+            4294967295
+          ]
+        }
+      },
+      "trace_values": {
+        "pixel_x": {
+          "renderdoc": "_129",
+          "llvm": "%15",
+          "step": 15,
+          "next_instruction": 15,
+          "value": {
+            "type": 0,
+            "u32": [
+              1133264896
+            ],
+            "f32": [
+              280.5
+            ]
+          }
+        },
+        "pixel_y": {
+          "renderdoc": "_130",
+          "llvm": "%16",
+          "step": 16,
+          "next_instruction": 16,
+          "value": {
+            "type": 0,
+            "u32": [
+              1142464512
+            ],
+            "f32": [
+              610.5
+            ]
+          }
+        },
+        "frame_uint": {
+          "renderdoc": "_422",
+          "llvm": "%308",
+          "step": 308,
+          "next_instruction": 308,
+          "value": {
+            "type": 3,
+            "u32": [
+              0
+            ]
+          }
+        },
+        "frame_float": {
+          "renderdoc": "_423",
+          "llvm": "%309",
+          "step": 309,
+          "next_instruction": 309,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_x": {
+          "renderdoc": "_424",
+          "llvm": "%310",
+          "step": 310,
+          "next_instruction": 310,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_y": {
+          "renderdoc": "_425",
+          "llvm": "%311",
+          "step": 311,
+          "next_instruction": 311,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "x": {
+          "renderdoc": "_426",
+          "llvm": "%312",
+          "step": 312,
+          "next_instruction": 312,
+          "value": {
+            "type": 0,
+            "u32": [
+              1133264896
+            ],
+            "f32": [
+              280.5
+            ]
+          }
+        },
+        "y": {
+          "renderdoc": "_427",
+          "llvm": "%313",
+          "step": 313,
+          "next_instruction": 313,
+          "value": {
+            "type": 0,
+            "u32": [
+              1142464512
+            ],
+            "f32": [
+              610.5
+            ]
+          }
+        },
+        "inner": {
+          "renderdoc": "_428",
+          "llvm": "%314",
+          "step": 314,
+          "next_instruction": 314,
+          "value": {
+            "type": 0,
+            "u32": [
+              1102256848
+            ],
+            "f32": [
+              22.388092041015625
+            ]
+          }
+        },
+        "first_frac": {
+          "renderdoc": "_429",
+          "llvm": "%315",
+          "step": 315,
+          "next_instruction": 315,
+          "value": {
+            "type": 0,
+            "u32": [
+              1053209600
+            ],
+            "f32": [
+              0.388092041015625
+            ]
+          }
+        },
+        "scaled": {
+          "renderdoc": "_430",
+          "llvm": "%316",
+          "step": 316,
+          "next_instruction": 316,
+          "value": {
+            "type": 0,
+            "u32": [
+              1101299580
+            ],
+            "f32": [
+              20.56224822998047
+            ]
+          }
+        },
+        "noise": {
+          "renderdoc": "_431",
+          "llvm": "%317",
+          "step": 317,
+          "next_instruction": 317,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058008960
+            ],
+            "f32": [
+              0.5622482299804688
+            ]
+          }
+        },
+        "dbuffer_condition": {
+          "renderdoc": "_450",
+          "llvm": "%336",
+          "step": 336,
+          "next_instruction": 336,
+          "value": {
+            "type": 11,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "dbuffer_sample": {
+          "renderdoc": "_470",
+          "llvm": "%357",
+          "step": 357,
+          "next_instruction": 357,
+          "value": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              1065353216
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "dbuffer_green": {
+          "renderdoc": "_472",
+          "llvm": "%359",
+          "step": 359,
+          "next_instruction": 359,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "dbuffer_alpha": {
+          "renderdoc": "_474",
+          "llvm": "%361",
+          "step": 361,
+          "next_instruction": 361,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "dbuffer_scaled_base_specular": {
+          "renderdoc": "_502",
+          "llvm": "%389",
+          "step": 389,
+          "next_instruction": 389,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "dbuffer_specular": {
+          "renderdoc": "_503",
+          "llvm": "%390",
+          "step": 390,
+          "next_instruction": 390,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "selected_specular": {
+          "renderdoc": "_511",
+          "llvm": "%399",
+          "step": 399,
+          "next_instruction": 399,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "centered": {
+          "renderdoc": "_521",
+          "llvm": "%409",
+          "step": 409,
+          "next_instruction": 409,
+          "value": {
+            "type": 0,
+            "u32": [
+              1031731200
+            ],
+            "f32": [
+              0.06224822998046875
+            ]
+          }
+        },
+        "quantization_bias": {
+          "renderdoc": "_522",
+          "llvm": "%410",
+          "step": 410,
+          "next_instruction": 410,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "clamped_specular": {
+          "renderdoc": "_523",
+          "llvm": "%411",
+          "step": 411,
+          "next_instruction": 411,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "clamped_bits": {
+          "renderdoc": "_524",
+          "llvm": "%412",
+          "step": 412,
+          "next_instruction": 412,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "magnitude_bits": {
+          "renderdoc": "_525",
+          "llvm": "%413",
+          "step": 413,
+          "next_instruction": 413,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "nonzero_uint": {
+          "renderdoc": "_526",
+          "llvm": "%414",
+          "step": 414,
+          "next_instruction": 414,
+          "value": {
+            "type": 3,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "nonzero_float": {
+          "renderdoc": "_527",
+          "llvm": "%415",
+          "step": 415,
+          "next_instruction": 415,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "bias": {
+          "renderdoc": "_528",
+          "llvm": "%416",
+          "step": 416,
+          "next_instruction": 416,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "biased_specular": {
+          "renderdoc": "_529",
+          "llvm": "%417",
+          "step": 417,
+          "next_instruction": 417,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        },
+        "final_specular": {
+          "renderdoc": "_530",
+          "llvm": "%418",
+          "step": 418,
+          "next_instruction": 418,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        }
+      },
+      "trace_outputs": {
+        "step": 545,
+        "next_instruction": 643,
+        "value": {
+          "SV_Target0": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "SV_Target1": {
+            "type": 0,
+            "u32": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1051372203
+            ],
+            "f32": [
+              0.5,
+              0.5,
+              1.0,
+              0.3333333432674408
+            ]
+          },
+          "SV_Target2": {
+            "type": 0,
+            "u32": [
+              1041096704,
+              1056968703,
+              1056301570,
+              1057063298
+            ],
+            "f32": [
+              0.1385498046875,
+              0.5002440810203552,
+              0.4802399277687073,
+              0.5058823823928833
+            ]
+          },
+          "SV_Target3": {
+            "type": 0,
+            "u32": [
+              1045530327,
+              1045530327,
+              1045530327,
+              1065353216
+            ],
+            "f32": [
+              0.20461593568325043,
+              0.20461593568325043,
+              0.20461593568325043,
+              1.0
+            ]
+          }
+        }
+      },
+      "native_probe": {
+        "gBufferD": {
+          "float": [
+            -0.0,
+            0.0,
+            0.9999999403953552,
+            0.9999998807907104
+          ],
+          "bits": [
+            2147483648,
+            0,
+            1065353215,
+            1065353214
+          ]
+        },
+        "debug0": {
+          "float": [
+            0.5,
+            0.5,
+            1.0,
+            0.500244140625
+          ],
+          "bits": [
+            1056964608,
+            1056964608,
+            1065353216,
+            1056968704
+          ]
+        },
+        "debug1": {
+          "float": [
+            22.388092041015625,
+            0.388092041015625,
+            20.56224822998047,
+            0.5622482299804688
+          ],
+          "bits": [
+            1102256848,
+            1053209600,
+            1101299580,
+            1058008960
+          ]
+        },
+        "debug2": {
+          "float": [
+            0.06224822998046875,
+            0.0002441107208142057,
+            0.5002440810203552,
+            0.5
+          ],
+          "bits": [
+            1031731200,
+            964687865,
+            1056968703,
+            1056964608
+          ]
+        },
+        "native_bgra": [
+          122,
+          128,
+          35,
+          129
+        ],
+        "native_a_word": 2146958847
+      },
+      "captured_bgra": [
+        122,
+        127,
+        35,
+        129
+      ],
+      "native_bgra": [
+        122,
+        128,
+        35,
+        129
+      ],
+      "captured_debugger_final": 0.5002440810203552,
+      "native_codec_field": 0.500244140625,
+      "native_repeated_chain_biased": 0.5002440810203552,
+      "native_codec_minus_debugger_final": 5.960464477539063e-08,
+      "native_codec_minus_repeated_chain": 5.960464477539063e-08,
+      "ideal_unorm8_from_debugger": 128,
+      "ideal_unorm8_matches_capture": false
+    },
+    {
+      "pixel": [
+        1060,
+        722
+      ],
+      "trace_metadata": {
+        "status": "traced",
+        "event": 1853,
+        "pixel": [
+          1060,
+          722
+        ],
+        "states": 547
+      },
+      "trace_inputs": {
+        "TEXCOORD10_centroid": {
+          "type": 0,
+          "u32": [
+            1065353215,
+            0,
+            0,
+            0
+          ],
+          "f32": [
+            0.9999999403953552,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TEXCOORD11_centroid": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            3212836863
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            -0.9999999403953552
+          ]
+        },
+        "TEXCOORD0": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            0
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            0.0
+          ]
+        },
+        "INSTANCE_ID": {
+          "type": 4,
+          "u32": [
+            17
+          ]
+        },
+        "TEXCOORD9": {
+          "type": 0,
+          "u32": [
+            1150977619,
+            1147832134,
+            3290496827
+          ],
+          "f32": [
+            1236.1976318359375,
+            938.1136474609375,
+            -643.9879760742188
+          ]
+        },
+        "SV_Position": {
+          "type": 0,
+          "u32": [
+            1149538304,
+            1144299520,
+            1004573074,
+            1152804069
+          ],
+          "f32": [
+            1060.5,
+            722.5,
+            0.00685329083353281,
+            1459.1529541015625
+          ]
+        },
+        "SV_IsFrontFace": {
+          "type": 4,
+          "u32": [
+            4294967295
+          ]
+        }
+      },
+      "trace_values": {
+        "pixel_x": {
+          "renderdoc": "_129",
+          "llvm": "%15",
+          "step": 15,
+          "next_instruction": 15,
+          "value": {
+            "type": 0,
+            "u32": [
+              1149538304
+            ],
+            "f32": [
+              1060.5
+            ]
+          }
+        },
+        "pixel_y": {
+          "renderdoc": "_130",
+          "llvm": "%16",
+          "step": 16,
+          "next_instruction": 16,
+          "value": {
+            "type": 0,
+            "u32": [
+              1144299520
+            ],
+            "f32": [
+              722.5
+            ]
+          }
+        },
+        "frame_uint": {
+          "renderdoc": "_422",
+          "llvm": "%308",
+          "step": 308,
+          "next_instruction": 308,
+          "value": {
+            "type": 3,
+            "u32": [
+              0
+            ]
+          }
+        },
+        "frame_float": {
+          "renderdoc": "_423",
+          "llvm": "%309",
+          "step": 309,
+          "next_instruction": 309,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_x": {
+          "renderdoc": "_424",
+          "llvm": "%310",
+          "step": 310,
+          "next_instruction": 310,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_y": {
+          "renderdoc": "_425",
+          "llvm": "%311",
+          "step": 311,
+          "next_instruction": 311,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "x": {
+          "renderdoc": "_426",
+          "llvm": "%312",
+          "step": 312,
+          "next_instruction": 312,
+          "value": {
+            "type": 0,
+            "u32": [
+              1149538304
+            ],
+            "f32": [
+              1060.5
+            ]
+          }
+        },
+        "y": {
+          "renderdoc": "_427",
+          "llvm": "%313",
+          "step": 313,
+          "next_instruction": 313,
+          "value": {
+            "type": 0,
+            "u32": [
+              1144299520
+            ],
+            "f32": [
+              722.5
+            ]
+          }
+        },
+        "inner": {
+          "renderdoc": "_428",
+          "llvm": "%314",
+          "step": 314,
+          "next_instruction": 314,
+          "value": {
+            "type": 0,
+            "u32": [
+              1117177524
+            ],
+            "f32": [
+              75.38809204101562
+            ]
+          }
+        },
+        "first_frac": {
+          "renderdoc": "_429",
+          "llvm": "%315",
+          "step": 315,
+          "next_instruction": 315,
+          "value": {
+            "type": 0,
+            "u32": [
+              1053209600
+            ],
+            "f32": [
+              0.388092041015625
+            ]
+          }
+        },
+        "scaled": {
+          "renderdoc": "_430",
+          "llvm": "%316",
+          "step": 316,
+          "next_instruction": 316,
+          "value": {
+            "type": 0,
+            "u32": [
+              1101299580
+            ],
+            "f32": [
+              20.56224822998047
+            ]
+          }
+        },
+        "noise": {
+          "renderdoc": "_431",
+          "llvm": "%317",
+          "step": 317,
+          "next_instruction": 317,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058008960
+            ],
+            "f32": [
+              0.5622482299804688
+            ]
+          }
+        },
+        "dbuffer_condition": {
+          "renderdoc": "_450",
+          "llvm": "%336",
+          "step": 336,
+          "next_instruction": 336,
+          "value": {
+            "type": 11,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "dbuffer_sample": {
+          "renderdoc": "_470",
+          "llvm": "%357",
+          "step": 357,
+          "next_instruction": 357,
+          "value": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              1065353216
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "dbuffer_green": {
+          "renderdoc": "_472",
+          "llvm": "%359",
+          "step": 359,
+          "next_instruction": 359,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "dbuffer_alpha": {
+          "renderdoc": "_474",
+          "llvm": "%361",
+          "step": 361,
+          "next_instruction": 361,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "dbuffer_scaled_base_specular": {
+          "renderdoc": "_502",
+          "llvm": "%389",
+          "step": 389,
+          "next_instruction": 389,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "dbuffer_specular": {
+          "renderdoc": "_503",
+          "llvm": "%390",
+          "step": 390,
+          "next_instruction": 390,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "selected_specular": {
+          "renderdoc": "_511",
+          "llvm": "%399",
+          "step": 399,
+          "next_instruction": 399,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "centered": {
+          "renderdoc": "_521",
+          "llvm": "%409",
+          "step": 409,
+          "next_instruction": 409,
+          "value": {
+            "type": 0,
+            "u32": [
+              1031731200
+            ],
+            "f32": [
+              0.06224822998046875
+            ]
+          }
+        },
+        "quantization_bias": {
+          "renderdoc": "_522",
+          "llvm": "%410",
+          "step": 410,
+          "next_instruction": 410,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "clamped_specular": {
+          "renderdoc": "_523",
+          "llvm": "%411",
+          "step": 411,
+          "next_instruction": 411,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "clamped_bits": {
+          "renderdoc": "_524",
+          "llvm": "%412",
+          "step": 412,
+          "next_instruction": 412,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "magnitude_bits": {
+          "renderdoc": "_525",
+          "llvm": "%413",
+          "step": 413,
+          "next_instruction": 413,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "nonzero_uint": {
+          "renderdoc": "_526",
+          "llvm": "%414",
+          "step": 414,
+          "next_instruction": 414,
+          "value": {
+            "type": 3,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "nonzero_float": {
+          "renderdoc": "_527",
+          "llvm": "%415",
+          "step": 415,
+          "next_instruction": 415,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "bias": {
+          "renderdoc": "_528",
+          "llvm": "%416",
+          "step": 416,
+          "next_instruction": 416,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "biased_specular": {
+          "renderdoc": "_529",
+          "llvm": "%417",
+          "step": 417,
+          "next_instruction": 417,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        },
+        "final_specular": {
+          "renderdoc": "_530",
+          "llvm": "%418",
+          "step": 418,
+          "next_instruction": 418,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        }
+      },
+      "trace_outputs": {
+        "step": 545,
+        "next_instruction": 643,
+        "value": {
+          "SV_Target0": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "SV_Target1": {
+            "type": 0,
+            "u32": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1051372203
+            ],
+            "f32": [
+              0.5,
+              0.5,
+              1.0,
+              0.3333333432674408
+            ]
+          },
+          "SV_Target2": {
+            "type": 0,
+            "u32": [
+              0,
+              1056968703,
+              1056964608,
+              1057063298
+            ],
+            "f32": [
+              0.0,
+              0.5002440810203552,
+              0.5,
+              0.5058823823928833
+            ]
+          },
+          "SV_Target3": {
+            "type": 0,
+            "u32": [
+              1043878380,
+              1043878380,
+              1043878380,
+              1065353216
+            ],
+            "f32": [
+              0.18000000715255737,
+              0.18000000715255737,
+              0.18000000715255737,
+              1.0
+            ]
+          }
+        }
+      },
+      "native_probe": {
+        "gBufferD": {
+          "float": [
+            -0.0,
+            0.0,
+            0.9999999403953552,
+            0.9999998807907104
+          ],
+          "bits": [
+            2147483648,
+            0,
+            1065353215,
+            1065353214
+          ]
+        },
+        "debug0": {
+          "float": [
+            0.5,
+            0.5,
+            1.0,
+            0.500244140625
+          ],
+          "bits": [
+            1056964608,
+            1056964608,
+            1065353216,
+            1056968704
+          ]
+        },
+        "debug1": {
+          "float": [
+            75.38809204101562,
+            0.388092041015625,
+            20.56224822998047,
+            0.5622482299804688
+          ],
+          "bits": [
+            1117177524,
+            1053209600,
+            1101299580,
+            1058008960
+          ]
+        },
+        "debug2": {
+          "float": [
+            0.06224822998046875,
+            0.0002441107208142057,
+            0.5002440810203552,
+            0.5
+          ],
+          "bits": [
+            1031731200,
+            964687865,
+            1056968703,
+            1056964608
+          ]
+        },
+        "native_bgra": [
+          127,
+          128,
+          0,
+          129
+        ],
+        "native_a_word": 2146958847
+      },
+      "captured_bgra": [
+        127,
+        127,
+        0,
+        129
+      ],
+      "native_bgra": [
+        127,
+        128,
+        0,
+        129
+      ],
+      "captured_debugger_final": 0.5002440810203552,
+      "native_codec_field": 0.500244140625,
+      "native_repeated_chain_biased": 0.5002440810203552,
+      "native_codec_minus_debugger_final": 5.960464477539063e-08,
+      "native_codec_minus_repeated_chain": 5.960464477539063e-08,
+      "ideal_unorm8_from_debugger": 128,
+      "ideal_unorm8_matches_capture": false
+    },
+    {
+      "pixel": [
+        1359,
+        882
+      ],
+      "trace_metadata": {
+        "status": "traced",
+        "event": 1853,
+        "pixel": [
+          1359,
+          882
+        ],
+        "states": 547
+      },
+      "trace_inputs": {
+        "TEXCOORD10_centroid": {
+          "type": 0,
+          "u32": [
+            1065353215,
+            0,
+            0,
+            0
+          ],
+          "f32": [
+            0.9999999403953552,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TEXCOORD11_centroid": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            3212836863
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            -0.9999999403953552
+          ]
+        },
+        "TEXCOORD0": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            0
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            0.0
+          ]
+        },
+        "INSTANCE_ID": {
+          "type": 4,
+          "u32": [
+            17
+          ]
+        },
+        "TEXCOORD9": {
+          "type": 0,
+          "u32": [
+            1144262265,
+            1149185418,
+            3290496827
+          ],
+          "f32": [
+            720.2261352539062,
+            1020.7115478515625,
+            -643.9879760742188
+          ]
+        },
+        "SV_Position": {
+          "type": 0,
+          "u32": [
+            1151987712,
+            1146920960,
+            1009310683,
+            1148359115
+          ],
+          "f32": [
+            1359.5,
+            882.5,
+            0.010306323878467083,
+            970.2780151367188
+          ]
+        },
+        "SV_IsFrontFace": {
+          "type": 4,
+          "u32": [
+            4294967295
+          ]
+        }
+      },
+      "trace_values": {
+        "pixel_x": {
+          "renderdoc": "_129",
+          "llvm": "%15",
+          "step": 15,
+          "next_instruction": 15,
+          "value": {
+            "type": 0,
+            "u32": [
+              1151987712
+            ],
+            "f32": [
+              1359.5
+            ]
+          }
+        },
+        "pixel_y": {
+          "renderdoc": "_130",
+          "llvm": "%16",
+          "step": 16,
+          "next_instruction": 16,
+          "value": {
+            "type": 0,
+            "u32": [
+              1146920960
+            ],
+            "f32": [
+              882.5
+            ]
+          }
+        },
+        "frame_uint": {
+          "renderdoc": "_422",
+          "llvm": "%308",
+          "step": 308,
+          "next_instruction": 308,
+          "value": {
+            "type": 3,
+            "u32": [
+              0
+            ]
+          }
+        },
+        "frame_float": {
+          "renderdoc": "_423",
+          "llvm": "%309",
+          "step": 309,
+          "next_instruction": 309,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_x": {
+          "renderdoc": "_424",
+          "llvm": "%310",
+          "step": 310,
+          "next_instruction": 310,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_y": {
+          "renderdoc": "_425",
+          "llvm": "%311",
+          "step": 311,
+          "next_instruction": 311,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "x": {
+          "renderdoc": "_426",
+          "llvm": "%312",
+          "step": 312,
+          "next_instruction": 312,
+          "value": {
+            "type": 0,
+            "u32": [
+              1151987712
+            ],
+            "f32": [
+              1359.5
+            ]
+          }
+        },
+        "y": {
+          "renderdoc": "_427",
+          "llvm": "%313",
+          "step": 313,
+          "next_instruction": 313,
+          "value": {
+            "type": 0,
+            "u32": [
+              1146920960
+            ],
+            "f32": [
+              882.5
+            ]
+          }
+        },
+        "inner": {
+          "renderdoc": "_428",
+          "llvm": "%314",
+          "step": 314,
+          "next_instruction": 314,
+          "value": {
+            "type": 0,
+            "u32": [
+              1119930036
+            ],
+            "f32": [
+              96.38809204101562
+            ]
+          }
+        },
+        "first_frac": {
+          "renderdoc": "_429",
+          "llvm": "%315",
+          "step": 315,
+          "next_instruction": 315,
+          "value": {
+            "type": 0,
+            "u32": [
+              1053209600
+            ],
+            "f32": [
+              0.388092041015625
+            ]
+          }
+        },
+        "scaled": {
+          "renderdoc": "_430",
+          "llvm": "%316",
+          "step": 316,
+          "next_instruction": 316,
+          "value": {
+            "type": 0,
+            "u32": [
+              1101299580
+            ],
+            "f32": [
+              20.56224822998047
+            ]
+          }
+        },
+        "noise": {
+          "renderdoc": "_431",
+          "llvm": "%317",
+          "step": 317,
+          "next_instruction": 317,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058008960
+            ],
+            "f32": [
+              0.5622482299804688
+            ]
+          }
+        },
+        "dbuffer_condition": {
+          "renderdoc": "_450",
+          "llvm": "%336",
+          "step": 336,
+          "next_instruction": 336,
+          "value": {
+            "type": 11,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "dbuffer_sample": {
+          "renderdoc": "_470",
+          "llvm": "%357",
+          "step": 357,
+          "next_instruction": 357,
+          "value": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              1065353216
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "dbuffer_green": {
+          "renderdoc": "_472",
+          "llvm": "%359",
+          "step": 359,
+          "next_instruction": 359,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "dbuffer_alpha": {
+          "renderdoc": "_474",
+          "llvm": "%361",
+          "step": 361,
+          "next_instruction": 361,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "dbuffer_scaled_base_specular": {
+          "renderdoc": "_502",
+          "llvm": "%389",
+          "step": 389,
+          "next_instruction": 389,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "dbuffer_specular": {
+          "renderdoc": "_503",
+          "llvm": "%390",
+          "step": 390,
+          "next_instruction": 390,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "selected_specular": {
+          "renderdoc": "_511",
+          "llvm": "%399",
+          "step": 399,
+          "next_instruction": 399,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "centered": {
+          "renderdoc": "_521",
+          "llvm": "%409",
+          "step": 409,
+          "next_instruction": 409,
+          "value": {
+            "type": 0,
+            "u32": [
+              1031731200
+            ],
+            "f32": [
+              0.06224822998046875
+            ]
+          }
+        },
+        "quantization_bias": {
+          "renderdoc": "_522",
+          "llvm": "%410",
+          "step": 410,
+          "next_instruction": 410,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "clamped_specular": {
+          "renderdoc": "_523",
+          "llvm": "%411",
+          "step": 411,
+          "next_instruction": 411,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "clamped_bits": {
+          "renderdoc": "_524",
+          "llvm": "%412",
+          "step": 412,
+          "next_instruction": 412,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "magnitude_bits": {
+          "renderdoc": "_525",
+          "llvm": "%413",
+          "step": 413,
+          "next_instruction": 413,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "nonzero_uint": {
+          "renderdoc": "_526",
+          "llvm": "%414",
+          "step": 414,
+          "next_instruction": 414,
+          "value": {
+            "type": 3,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "nonzero_float": {
+          "renderdoc": "_527",
+          "llvm": "%415",
+          "step": 415,
+          "next_instruction": 415,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "bias": {
+          "renderdoc": "_528",
+          "llvm": "%416",
+          "step": 416,
+          "next_instruction": 416,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "biased_specular": {
+          "renderdoc": "_529",
+          "llvm": "%417",
+          "step": 417,
+          "next_instruction": 417,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        },
+        "final_specular": {
+          "renderdoc": "_530",
+          "llvm": "%418",
+          "step": 418,
+          "next_instruction": 418,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        }
+      },
+      "trace_outputs": {
+        "step": 545,
+        "next_instruction": 643,
+        "value": {
+          "SV_Target0": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "SV_Target1": {
+            "type": 0,
+            "u32": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1051372203
+            ],
+            "f32": [
+              0.5,
+              0.5,
+              1.0,
+              0.3333333432674408
+            ]
+          },
+          "SV_Target2": {
+            "type": 0,
+            "u32": [
+              0,
+              1056968703,
+              1056964608,
+              1057063298
+            ],
+            "f32": [
+              0.0,
+              0.5002440810203552,
+              0.5,
+              0.5058823823928833
+            ]
+          },
+          "SV_Target3": {
+            "type": 0,
+            "u32": [
+              1043878380,
+              1043878380,
+              1043878380,
+              1065353216
+            ],
+            "f32": [
+              0.18000000715255737,
+              0.18000000715255737,
+              0.18000000715255737,
+              1.0
+            ]
+          }
+        }
+      },
+      "native_probe": {
+        "gBufferD": {
+          "float": [
+            -0.0,
+            0.0,
+            0.9999999403953552,
+            0.9999998807907104
+          ],
+          "bits": [
+            2147483648,
+            0,
+            1065353215,
+            1065353214
+          ]
+        },
+        "debug0": {
+          "float": [
+            0.5,
+            0.5,
+            1.0,
+            0.500244140625
+          ],
+          "bits": [
+            1056964608,
+            1056964608,
+            1065353216,
+            1056968704
+          ]
+        },
+        "debug1": {
+          "float": [
+            96.38809204101562,
+            0.388092041015625,
+            20.56224822998047,
+            0.5622482299804688
+          ],
+          "bits": [
+            1119930036,
+            1053209600,
+            1101299580,
+            1058008960
+          ]
+        },
+        "debug2": {
+          "float": [
+            0.06224822998046875,
+            0.0002441107208142057,
+            0.5002440810203552,
+            0.5
+          ],
+          "bits": [
+            1031731200,
+            964687865,
+            1056968703,
+            1056964608
+          ]
+        },
+        "native_bgra": [
+          127,
+          128,
+          0,
+          129
+        ],
+        "native_a_word": 2146958847
+      },
+      "captured_bgra": [
+        127,
+        127,
+        0,
+        129
+      ],
+      "native_bgra": [
+        127,
+        128,
+        0,
+        129
+      ],
+      "captured_debugger_final": 0.5002440810203552,
+      "native_codec_field": 0.500244140625,
+      "native_repeated_chain_biased": 0.5002440810203552,
+      "native_codec_minus_debugger_final": 5.960464477539063e-08,
+      "native_codec_minus_repeated_chain": 5.960464477539063e-08,
+      "ideal_unorm8_from_debugger": 128,
+      "ideal_unorm8_matches_capture": false
+    },
+    {
+      "pixel": [
+        878,
+        930
+      ],
+      "trace_metadata": {
+        "status": "traced",
+        "event": 1853,
+        "pixel": [
+          878,
+          930
+        ],
+        "states": 547
+      },
+      "trace_inputs": {
+        "TEXCOORD10_centroid": {
+          "type": 0,
+          "u32": [
+            1065353215,
+            0,
+            0,
+            0
+          ],
+          "f32": [
+            0.9999999403953552,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "TEXCOORD11_centroid": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            3212836863
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            -0.9999999403953552
+          ]
+        },
+        "TEXCOORD0": {
+          "type": 0,
+          "u32": [
+            0,
+            0,
+            1065353215,
+            0
+          ],
+          "f32": [
+            0.0,
+            0.0,
+            0.9999999403953552,
+            0.0
+          ]
+        },
+        "INSTANCE_ID": {
+          "type": 4,
+          "u32": [
+            17
+          ]
+        },
+        "TEXCOORD9": {
+          "type": 0,
+          "u32": [
+            1144665035,
+            1135130089,
+            3290496827
+          ],
+          "f32": [
+            744.8092651367188,
+            337.4211730957031,
+            -643.9879760742188
+          ]
+        },
+        "SV_Position": {
+          "type": 0,
+          "u32": [
+            1146855424,
+            1147707392,
+            1010422987,
+            1146907201
+          ],
+          "f32": [
+            878.5,
+            930.5,
+            0.011342237703502178,
+            881.6602172851562
+          ]
+        },
+        "SV_IsFrontFace": {
+          "type": 4,
+          "u32": [
+            4294967295
+          ]
+        }
+      },
+      "trace_values": {
+        "pixel_x": {
+          "renderdoc": "_129",
+          "llvm": "%15",
+          "step": 15,
+          "next_instruction": 15,
+          "value": {
+            "type": 0,
+            "u32": [
+              1146855424
+            ],
+            "f32": [
+              878.5
+            ]
+          }
+        },
+        "pixel_y": {
+          "renderdoc": "_130",
+          "llvm": "%16",
+          "step": 16,
+          "next_instruction": 16,
+          "value": {
+            "type": 0,
+            "u32": [
+              1147707392
+            ],
+            "f32": [
+              930.5
+            ]
+          }
+        },
+        "frame_uint": {
+          "renderdoc": "_422",
+          "llvm": "%308",
+          "step": 308,
+          "next_instruction": 308,
+          "value": {
+            "type": 3,
+            "u32": [
+              0
+            ]
+          }
+        },
+        "frame_float": {
+          "renderdoc": "_423",
+          "llvm": "%309",
+          "step": 309,
+          "next_instruction": 309,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_x": {
+          "renderdoc": "_424",
+          "llvm": "%310",
+          "step": 310,
+          "next_instruction": 310,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "frame_offset_y": {
+          "renderdoc": "_425",
+          "llvm": "%311",
+          "step": 311,
+          "next_instruction": 311,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "x": {
+          "renderdoc": "_426",
+          "llvm": "%312",
+          "step": 312,
+          "next_instruction": 312,
+          "value": {
+            "type": 0,
+            "u32": [
+              1146855424
+            ],
+            "f32": [
+              878.5
+            ]
+          }
+        },
+        "y": {
+          "renderdoc": "_427",
+          "llvm": "%313",
+          "step": 313,
+          "next_instruction": 313,
+          "value": {
+            "type": 0,
+            "u32": [
+              1147707392
+            ],
+            "f32": [
+              930.5
+            ]
+          }
+        },
+        "inner": {
+          "renderdoc": "_428",
+          "llvm": "%314",
+          "step": 314,
+          "next_instruction": 314,
+          "value": {
+            "type": 0,
+            "u32": [
+              1115735732
+            ],
+            "f32": [
+              64.38809204101562
+            ]
+          }
+        },
+        "first_frac": {
+          "renderdoc": "_429",
+          "llvm": "%315",
+          "step": 315,
+          "next_instruction": 315,
+          "value": {
+            "type": 0,
+            "u32": [
+              1053209600
+            ],
+            "f32": [
+              0.388092041015625
+            ]
+          }
+        },
+        "scaled": {
+          "renderdoc": "_430",
+          "llvm": "%316",
+          "step": 316,
+          "next_instruction": 316,
+          "value": {
+            "type": 0,
+            "u32": [
+              1101299580
+            ],
+            "f32": [
+              20.56224822998047
+            ]
+          }
+        },
+        "noise": {
+          "renderdoc": "_431",
+          "llvm": "%317",
+          "step": 317,
+          "next_instruction": 317,
+          "value": {
+            "type": 0,
+            "u32": [
+              1058008960
+            ],
+            "f32": [
+              0.5622482299804688
+            ]
+          }
+        },
+        "dbuffer_condition": {
+          "renderdoc": "_450",
+          "llvm": "%336",
+          "step": 336,
+          "next_instruction": 336,
+          "value": {
+            "type": 11,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "dbuffer_sample": {
+          "renderdoc": "_470",
+          "llvm": "%357",
+          "step": 357,
+          "next_instruction": 357,
+          "value": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              1065353216
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        "dbuffer_green": {
+          "renderdoc": "_472",
+          "llvm": "%359",
+          "step": 359,
+          "next_instruction": 359,
+          "value": {
+            "type": 0,
+            "u32": [
+              0
+            ],
+            "f32": [
+              0.0
+            ]
+          }
+        },
+        "dbuffer_alpha": {
+          "renderdoc": "_474",
+          "llvm": "%361",
+          "step": 361,
+          "next_instruction": 361,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "dbuffer_scaled_base_specular": {
+          "renderdoc": "_502",
+          "llvm": "%389",
+          "step": 389,
+          "next_instruction": 389,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "dbuffer_specular": {
+          "renderdoc": "_503",
+          "llvm": "%390",
+          "step": 390,
+          "next_instruction": 390,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "selected_specular": {
+          "renderdoc": "_511",
+          "llvm": "%399",
+          "step": 399,
+          "next_instruction": 399,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "centered": {
+          "renderdoc": "_521",
+          "llvm": "%409",
+          "step": 409,
+          "next_instruction": 409,
+          "value": {
+            "type": 0,
+            "u32": [
+              1031731200
+            ],
+            "f32": [
+              0.06224822998046875
+            ]
+          }
+        },
+        "quantization_bias": {
+          "renderdoc": "_522",
+          "llvm": "%410",
+          "step": 410,
+          "next_instruction": 410,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "clamped_specular": {
+          "renderdoc": "_523",
+          "llvm": "%411",
+          "step": 411,
+          "next_instruction": 411,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056964608
+            ],
+            "f32": [
+              0.5
+            ]
+          }
+        },
+        "clamped_bits": {
+          "renderdoc": "_524",
+          "llvm": "%412",
+          "step": 412,
+          "next_instruction": 412,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "magnitude_bits": {
+          "renderdoc": "_525",
+          "llvm": "%413",
+          "step": 413,
+          "next_instruction": 413,
+          "value": {
+            "type": 3,
+            "u32": [
+              1056964608
+            ]
+          }
+        },
+        "nonzero_uint": {
+          "renderdoc": "_526",
+          "llvm": "%414",
+          "step": 414,
+          "next_instruction": 414,
+          "value": {
+            "type": 3,
+            "u32": [
+              1
+            ]
+          }
+        },
+        "nonzero_float": {
+          "renderdoc": "_527",
+          "llvm": "%415",
+          "step": 415,
+          "next_instruction": 415,
+          "value": {
+            "type": 0,
+            "u32": [
+              1065353216
+            ],
+            "f32": [
+              1.0
+            ]
+          }
+        },
+        "bias": {
+          "renderdoc": "_528",
+          "llvm": "%416",
+          "step": 416,
+          "next_instruction": 416,
+          "value": {
+            "type": 0,
+            "u32": [
+              964687865
+            ],
+            "f32": [
+              0.0002441107208142057
+            ]
+          }
+        },
+        "biased_specular": {
+          "renderdoc": "_529",
+          "llvm": "%417",
+          "step": 417,
+          "next_instruction": 417,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        },
+        "final_specular": {
+          "renderdoc": "_530",
+          "llvm": "%418",
+          "step": 418,
+          "next_instruction": 418,
+          "value": {
+            "type": 0,
+            "u32": [
+              1056968703
+            ],
+            "f32": [
+              0.5002440810203552
+            ]
+          }
+        }
+      },
+      "trace_outputs": {
+        "step": 545,
+        "next_instruction": 643,
+        "value": {
+          "SV_Target0": {
+            "type": 0,
+            "u32": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "f32": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "SV_Target1": {
+            "type": 0,
+            "u32": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1051372203
+            ],
+            "f32": [
+              0.5,
+              0.5,
+              1.0,
+              0.3333333432674408
+            ]
+          },
+          "SV_Target2": {
+            "type": 0,
+            "u32": [
+              0,
+              1056968703,
+              1059481190,
+              1057063298
+            ],
+            "f32": [
+              0.0,
+              0.5002440810203552,
+              0.6499999761581421,
+              0.5058823823928833
+            ]
+          },
+          "SV_Target3": {
+            "type": 0,
+            "u32": [
+              1047233823,
+              1047233823,
+              1047233823,
+              1065353216
+            ],
+            "f32": [
+              0.23000000417232513,
+              0.23000000417232513,
+              0.23000000417232513,
+              1.0
+            ]
+          }
+        }
+      },
+      "native_probe": {
+        "gBufferD": {
+          "float": [
+            -0.0,
+            0.0,
+            0.9999999403953552,
+            0.9999998807907104
+          ],
+          "bits": [
+            2147483648,
+            0,
+            1065353215,
+            1065353214
+          ]
+        },
+        "debug0": {
+          "float": [
+            0.5,
+            0.5,
+            1.0,
+            0.500244140625
+          ],
+          "bits": [
+            1056964608,
+            1056964608,
+            1065353216,
+            1056968704
+          ]
+        },
+        "debug1": {
+          "float": [
+            64.38809204101562,
+            0.388092041015625,
+            20.56224822998047,
+            0.5622482299804688
+          ],
+          "bits": [
+            1115735732,
+            1053209600,
+            1101299580,
+            1058008960
+          ]
+        },
+        "debug2": {
+          "float": [
+            0.06224822998046875,
+            0.0002441107208142057,
+            0.5002440810203552,
+            0.5
+          ],
+          "bits": [
+            1031731200,
+            964687865,
+            1056968703,
+            1056964608
+          ]
+        },
+        "native_bgra": [
+          166,
+          128,
+          0,
+          129
+        ],
+        "native_a_word": 2146958847
+      },
+      "captured_bgra": [
+        166,
+        127,
+        0,
+        129
+      ],
+      "native_bgra": [
+        166,
+        128,
+        0,
+        129
+      ],
+      "captured_debugger_final": 0.5002440810203552,
+      "native_codec_field": 0.500244140625,
+      "native_repeated_chain_biased": 0.5002440810203552,
+      "native_codec_minus_debugger_final": 5.960464477539063e-08,
+      "native_codec_minus_repeated_chain": 5.960464477539063e-08,
+      "ideal_unorm8_from_debugger": 128,
+      "ideal_unorm8_matches_capture": false
+    }
+  ],
+  "conclusions": {
+    "captured_debugger_final_same_all_five": true,
+    "native_codec_field_same_all_five": true,
+    "copied_native_chain_same_as_captured_debugger_final": true,
+    "dbuffer_is_neutral_all_five": true,
+    "debugger_ideal_quantization_matches_actual_capture": false,
+    "float32_ulp_at_half": 5.960464477539063e-08,
+    "controlled_precise_codec_matches_all_B_bytes": true,
+    "controlled_identity_normal_matches_all_A_bytes": true
+  },
+  "evidence": {
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe\\result.json": {
+      "bytes": 8366,
+      "sha256": "e4ae4a0aedd4235229047d20ad42df04178173f9471cd6f3c26cde66a229c830"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-render\\snapshots\\7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626.npz": {
+      "bytes": 10235817,
+      "sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\1853-GBufferB.bin.gz": {
+      "bytes": 288321,
+      "sha256": "9aaf08f56cc755330f421a49fd87bce6bfd9e685884c6bbb4d81d4a083204a9b"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-scene\\raw\\1853-Pixel-cb0.bin": {
+      "bytes": 6748,
+      "sha256": "4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-scene\\raw\\1853-Pixel-srv1.bin": {
+      "bytes": 1048576,
+      "sha256": "a1eaaa8698b8c392289026389af5905c59cc5976b0a6aa6c2048a206d85ccd81"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-4-567\\result.json": {
+      "bytes": 99,
+      "sha256": "c718ae577319ad92e11025445307b41f334ab37619b556bf70d8714c67dd8666"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-4-567\\trace.json": {
+      "bytes": 2366521,
+      "sha256": "6e2edf663afb2d681db810882be510243da207df036341cca6b2655d69502620"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-4-567\\states.json": {
+      "bytes": 21448666,
+      "sha256": "7f7dc11fff4f23e61a7f18bb74b126e7da66a992e21cea174298af38b89d99e2"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-280-610\\result.json": {
+      "bytes": 101,
+      "sha256": "35d7480d2cf5f9fa049273a398ad91f56ac605d25e44b3cfd9894ee2366e3261"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-280-610\\trace.json": {
+      "bytes": 2366518,
+      "sha256": "16ecdc477f106a5674fde310f56851cd3c4d5437a09e675ad68c0e4f234b6b83"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-280-610\\states.json": {
+      "bytes": 21449414,
+      "sha256": "ce8627ee4a85d01b6827c2691462192674dcd625606037aa3a485f33442e2ff0"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1060-722\\result.json": {
+      "bytes": 102,
+      "sha256": "28f971048b8f211628634a5f4d879da394a37f09349748bcd68d328381d94d56"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1060-722\\trace.json": {
+      "bytes": 2366572,
+      "sha256": "85284c10ee89061475089504f010bcf638a4db1ccfbddd12c1bca15f7c459385"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1060-722\\states.json": {
+      "bytes": 21441218,
+      "sha256": "c070a2c1c38754b03600c9e66d83d31d370612c3e8f371159a6881c00a952141"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1359-882\\result.json": {
+      "bytes": 102,
+      "sha256": "519d244c20c4696c2a5cd0606a57e4bd1961d29b26852732051b3aae76442101"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1359-882\\trace.json": {
+      "bytes": 2366548,
+      "sha256": "31c20463a4e34b59570478031e38596dd77729bd519c2b778266f90253bec423"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-1359-882\\states.json": {
+      "bytes": 21440806,
+      "sha256": "fdae0a4e53850a983f1aa3d90136d688a24ce793afd5f330faac8b27838df2a7"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-878-930\\result.json": {
+      "bytes": 101,
+      "sha256": "df34a759db795dfd5458c64e703f3e8ff6ba164686ffe561c212522dd8c15d68"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-878-930\\trace.json": {
+      "bytes": 2366524,
+      "sha256": "36fbe621eee6433600031407b1088e057027c9d6c2373ed3655aed5293e7e8a4"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-traces\\1853-878-930\\states.json": {
+      "bytes": 21444126,
+      "sha256": "80c4f5179ecebc9025949a1544a123cfa686fb6e08ae28c053797646956a4776"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.slangh": {
+      "bytes": 2846,
+      "sha256": "ef49f95245ae7f7191cb9cc8eed7e1bb5c48ba2d67d87346727c2c70581c84ee"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-pixel-probe\\native-mode0.ll": {
+      "bytes": 43040,
+      "sha256": "0e02c4121d45eb96ea9d9d0dcfec7d606b182337e2e6e518a1d3bfc53084c445"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-pixel-trace\\original-1853.ll": {
+      "bytes": 63009,
+      "sha256": "2ba8c3840a74f28c11ae346103ca161a74ac1d37c2fc2f00029ab387ffee364c"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\reflection-1853-Pixel.json": {
+      "bytes": 121759,
+      "sha256": "d14c4ea2708c753e23f2aea20f069b5d35b665d6e4fd2ef092e47534ff1390e9"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\shader-1853-Pixel.txt": {
+      "bytes": 31937,
+      "sha256": "efb87c9dd322648d5df821217853c2c55df5fdbe145c80a08f894db4c776a43c"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\bindings-1853-Pixel.json": {
+      "bytes": 21236,
+      "sha256": "35332594ec5ba1f691a7cceb02e3c18468a25ca24ea4505c7996412f21d96df2"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\textures.json": {
+      "bytes": 249934,
+      "sha256": "ad27bec842130ab3eb1f76f8205cf5cd8946e173487ef1c5d1ec3d4cc39bd0f8"
+    },
+    "E:\\Project\\falcor\\Falcor\\docs\\research\\captures\\2026-09-09-1\\resources.json": {
+      "bytes": 735553,
+      "sha256": "1deae175ad8e7248c18279d832eaf3dfcf740db845bffb13ddce2a64c7a9d861"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\quantization_probe_smoke.py": {
+      "bytes": 5839,
+      "sha256": "4a39c7d0e1c16a3da5c2d2d176a9d433637a74c5aaed5d963537c7f880802213"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe\\QuantizationProbe.3d.slang": {
+      "bytes": 3987,
+      "sha256": "6704f1b770562b6d19e55fc036301f1a93b99677c1cea9ae981dcaf4a8198e54"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-specular_precise\\result.json": {
+      "bytes": 8511,
+      "sha256": "42ff2abe752ed0ea817bd676bbb43a8afa59a8a97308d2fbb1dedc29935ed641"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-specular_precise\\outputs.npz": {
+      "bytes": 25706053,
+      "sha256": "7f5be88261b2e11dbc2b1876a53cfcb2a8ddd534e93be5ce86d969bb0a4edb4a"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-specular_precise\\QuantizationProbe.3d.slang": {
+      "bytes": 3981,
+      "sha256": "380eb4f34508a445fe4332b76823bf6d93842427e1735949ba390a7ab8c9edec"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-dbuffer_normal\\result.json": {
+      "bytes": 8489,
+      "sha256": "6c327efaa445c4abb28f22193882eb3e26cf69047a18aa98d2d9af10c9c43ba2"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-dbuffer_normal\\outputs.npz": {
+      "bytes": 25706162,
+      "sha256": "1583ae682ab01b4f95dc4a0f517baa7e208f53f347537356318e5bd876cd1916"
+    },
+    "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-quantization-probe-dbuffer_normal\\QuantizationProbe.3d.slang": {
+      "bytes": 4087,
+      "sha256": "fbf35821c772741d81528b4b8408e09d8ddce3a1a854cd13d1a2c8e288913199"
+    },
+    "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\BasePassPixelShader.usf": {
+      "bytes": 125887,
+      "sha256": "9a555efaafd5909e2c9c30861f6dcc5a246a96976f23040797b02ec5cc17e22b"
+    },
+    "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\DBufferDecalShared.ush": {
+      "bytes": 21731,
+      "sha256": "0bdd9e9e0da3b8cca076fe99c54b950ccee49ea80ff615f860289a7fec6fa3a7"
+    },
+    "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Shared\\SceneDefinitions.h": {
+      "bytes": 6533,
+      "sha256": "a772f110dba82d93acee4875fd70be746aec310fffb1db09debf856462feae30"
+    },
+    "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\DBufferTextures.cpp": {
+      "bytes": 7197,
+      "sha256": "7818fde2b7d336db8845ffc208f72589e7ce0353f8b465e5d808b6e3b0b5d2ca"
+    },
+    "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\SystemTextures.cpp": {
+      "bytes": 83363,
+      "sha256": "977d6c267dfb8bf5435e72ed2e3bb1b7baeda4369461733bf54011872af1c3c6"
+    }
+  },
+  "controlled_experiments": {
+    "specular_precise": {
+      "status": "diagnostic",
+      "variant": "specular_precise",
+      "baseline_npz_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+      "production_source_sha256": "73de95411e9a9f4fd7c4a085577dcb2c446112cc2f5e706b5cf14b05263473e6",
+      "diagnostic_source_sha256": "380eb4f34508a445fe4332b76823bf6d93842427e1735949ba390a7ab8c9edec",
+      "pipeline_signature": "45430478c3d96ec9853f071a0e4869baf2dec70b916de87b5cd204fe9239e1c6",
+      "packed_equal": {
+        "gBufferA": true,
+        "gBufferB": false,
+        "gBufferC": true,
+        "sceneColor": true
+      },
+      "points": {
+        "(4, 567)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.5002440810203552
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968703
+            ]
+          },
+          "debug1": {
+            "float": [
+              3.6145801544189453,
+              0.6145801544189453,
+              32.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1080513864,
+              1058886944,
+              1107443646,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            152,
+            127,
+            19,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(280, 610)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.5002440810203552
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968703
+            ]
+          },
+          "debug1": {
+            "float": [
+              22.388092041015625,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1102256848,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            122,
+            127,
+            35,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(1060, 722)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.5002440810203552
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968703
+            ]
+          },
+          "debug1": {
+            "float": [
+              75.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1117177524,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            127,
+            127,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(1359, 882)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.5002440810203552
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968703
+            ]
+          },
+          "debug1": {
+            "float": [
+              96.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1119930036,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            127,
+            127,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(878, 930)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.5002440810203552
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968703
+            ]
+          },
+          "debug1": {
+            "float": [
+              64.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1115735732,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            166,
+            127,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(341, 534)": {
+          "gBufferD": {
+            "float": [
+              -0.7489356398582458,
+              0.558865487575531,
+              -0.3265402317047119,
+              0.9798637628555298
+            ],
+            "bits": [
+              3208624703,
+              1057952207,
+              3198627912,
+              1065015386
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.12170407176017761,
+              0.7822893261909485,
+              0.33506080508232117,
+              0.4981359839439392
+            ],
+            "bits": [
+              1039745020,
+              1061700637,
+              1051430167,
+              1056902062
+            ]
+          },
+          "debug1": {
+            "float": [
+              26.0382137298584,
+              0.03821372985839844,
+              2.024674892425537,
+              0.02467489242553711
+            ],
+            "bits": [
+              1104170563,
+              1025279488,
+              1073845318,
+              1019880192
+            ]
+          },
+          "debug2": {
+            "float": [
+              -0.4753251075744629,
+              -0.001864020130597055,
+              0.4981359839439392,
+              0.5
+            ],
+            "bits": [
+              3203620304,
+              3136573987,
+              1056902062,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            163,
+            127,
+            0,
+            129
+          ],
+          "native_a_word": 1434222716
+        }
+      },
+      "capture_mismatch": {
+        "GBufferA": 1,
+        "GBufferB": 0,
+        "GBufferC": 0
+      },
+      "npz_sha256": "7f5be88261b2e11dbc2b1876a53cfcb2a8ddd534e93be5ce86d969bb0a4edb4a",
+      "independently_verified_allocation_mismatch": {
+        "GBufferA": 1,
+        "GBufferB": 0,
+        "GBufferC": 0
+      }
+    },
+    "dbuffer_normal": {
+      "status": "diagnostic",
+      "variant": "dbuffer_normal",
+      "baseline_npz_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+      "production_source_sha256": "73de95411e9a9f4fd7c4a085577dcb2c446112cc2f5e706b5cf14b05263473e6",
+      "diagnostic_source_sha256": "fbf35821c772741d81528b4b8408e09d8ddce3a1a854cd13d1a2c8e288913199",
+      "pipeline_signature": "c875cd34d858f7befc939deb2174190ae090433205be70eb41c798171e437ccc",
+      "packed_equal": {
+        "gBufferA": false,
+        "gBufferB": true,
+        "gBufferC": true,
+        "sceneColor": true
+      },
+      "points": {
+        "(4, 567)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.500244140625
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968704
+            ]
+          },
+          "debug1": {
+            "float": [
+              3.6145801544189453,
+              0.6145801544189453,
+              32.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1080513864,
+              1058886944,
+              1107443646,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            152,
+            128,
+            19,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(280, 610)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.500244140625
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968704
+            ]
+          },
+          "debug1": {
+            "float": [
+              22.388092041015625,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1102256848,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            122,
+            128,
+            35,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(1060, 722)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.500244140625
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968704
+            ]
+          },
+          "debug1": {
+            "float": [
+              75.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1117177524,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            127,
+            128,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(1359, 882)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.500244140625
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968704
+            ]
+          },
+          "debug1": {
+            "float": [
+              96.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1119930036,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            127,
+            128,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(878, 930)": {
+          "gBufferD": {
+            "float": [
+              -0.0,
+              0.0,
+              0.9999999403953552,
+              0.9999998807907104
+            ],
+            "bits": [
+              2147483648,
+              0,
+              1065353215,
+              1065353214
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.5,
+              0.5,
+              1.0,
+              0.500244140625
+            ],
+            "bits": [
+              1056964608,
+              1056964608,
+              1065353216,
+              1056968704
+            ]
+          },
+          "debug1": {
+            "float": [
+              64.38809204101562,
+              0.388092041015625,
+              20.56224822998047,
+              0.5622482299804688
+            ],
+            "bits": [
+              1115735732,
+              1053209600,
+              1101299580,
+              1058008960
+            ]
+          },
+          "debug2": {
+            "float": [
+              0.06224822998046875,
+              0.0002441107208142057,
+              0.5002440810203552,
+              0.5
+            ],
+            "bits": [
+              1031731200,
+              964687865,
+              1056968703,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            166,
+            128,
+            0,
+            129
+          ],
+          "native_a_word": 2146958847
+        },
+        "(341, 534)": {
+          "gBufferD": {
+            "float": [
+              -0.7489356398582458,
+              0.558865487575531,
+              -0.3265402317047119,
+              0.9798637628555298
+            ],
+            "bits": [
+              3208624703,
+              1057952207,
+              3198627912,
+              1065015386
+            ]
+          },
+          "debug0": {
+            "float": [
+              0.12170413136482239,
+              0.7822892665863037,
+              0.33506083488464355,
+              0.4981359839439392
+            ],
+            "bits": [
+              1039745028,
+              1061700636,
+              1051430168,
+              1056902062
+            ]
+          },
+          "debug1": {
+            "float": [
+              26.0382137298584,
+              0.03821372985839844,
+              2.024674892425537,
+              0.02467489242553711
+            ],
+            "bits": [
+              1104170563,
+              1025279488,
+              1073845318,
+              1019880192
+            ]
+          },
+          "debug2": {
+            "float": [
+              -0.4753251075744629,
+              -0.001864020130597055,
+              0.4981359839439392,
+              0.5
+            ],
+            "bits": [
+              3203620304,
+              3136573987,
+              1056902062,
+              1056964608
+            ]
+          },
+          "native_bgra": [
+            163,
+            127,
+            0,
+            129
+          ],
+          "native_a_word": 1434222717
+        }
+      },
+      "capture_mismatch": {
+        "GBufferA": 0,
+        "GBufferB": 5,
+        "GBufferC": 0
+      },
+      "npz_sha256": "1583ae682ab01b4f95dc4a0f517baa7e208f53f347537356318e5bd876cd1916",
+      "independently_verified_allocation_mismatch": {
+        "GBufferA": 0,
+        "GBufferB": 5,
+        "GBufferC": 0
+      }
+    }
+  },
+  "local_ue_source_root": "E:\\ue\\engine\\UnrealEngine",
+  "local_ue_source_identity_to_capture_proven": false
+}

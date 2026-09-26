@@ -1,0 +1,115 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Unchanged source excerpts; see UECSMSource.json.
+
+
+struct FPCFSamplerSettings
+{
+	Texture2D		ShadowDepthTexture;
+	SamplerState	ShadowDepthTextureSampler;
+
+	//XY - Pixel size of shadowmap
+	//ZW - Inverse pixel size of shadowmap
+	float4			ShadowBufferSize;
+
+	// SceneDepth in lightspace.
+	float			SceneDepth;
+
+	float			TransitionScale;
+
+	// set by the caller, constant for the code so only one code branch should be compiled
+	bool			bSubsurface;
+
+	// Whether to treat shadow depths near 1 as unshadowed.  This is useful when the shadowmap does not contain all the points being shadowed.
+	bool			bTreatMaxDepthUnshadowed;
+
+	// only used if bSubsurface is true
+	float			DensityMulConstant;
+
+	// only used if bSubsurface is true
+	float2			ProjectionDepthBiasParameters;
+};
+
+float2 HorizontalPCF5x2(float2 Fraction, float4 Values00, float4 Values20, float4 Values40)
+{
+	float Results0;
+	float Results1;
+
+	Results0 = Values00.w * (1.0 - Fraction.x);
+	Results1 = Values00.x * (1.0 - Fraction.x);
+	Results0 += Values00.z;
+	Results1 += Values00.y;
+	Results0 += Values20.w;
+	Results1 += Values20.x;
+	Results0 += Values20.z;
+	Results1 += Values20.y;
+	Results0 += Values40.w;
+	Results1 += Values40.x;
+	Results0 += Values40.z * Fraction.x;
+	Results1 += Values40.y * Fraction.x;
+
+	return float2(Results0, Results1);
+}
+
+float4 CalculateShadowVisibilityTransmittanceFactor(float4 ShadowmapDepth, FPCFSamplerSettings Settings)
+{
+	if (Settings.bSubsurface)
+	{
+		float4 OccluderDistance = max(Settings.SceneDepth - ShadowmapDepth, 0);
+		float4 Transmittance = GetSubSurfaceTransmission(OccluderDistance, Settings.DensityMulConstant);
+		// Never shadow from depths that were never written to (max depth value)
+		return select(ShadowmapDepth > .99f, 1.0f, Transmittance);
+	}
+	else
+	{
+		// The standard comparison is SceneDepth < ShadowmapDepth
+		// Using a soft transition based on depth difference
+		// Offsets shadows a bit but reduces self shadowing artifacts considerably
+		float TransitionScale = Settings.TransitionScale;
+
+		// Unoptimized Math: saturate((ShadowmapDepth - Settings.SceneDepth) * TransitionScale + 1);
+		// Rearranged the math so that per pixel constants can be optimized from per sample constants.
+		float ConstantFactor = (Settings.SceneDepth * TransitionScale - 1);
+		float4 ShadowFactor = saturate(ShadowmapDepth * TransitionScale - ConstantFactor);
+
+		FLATTEN
+		if (Settings.bTreatMaxDepthUnshadowed)
+		{
+			ShadowFactor = saturate(ShadowFactor + (ShadowmapDepth > .99f));
+		}
+
+		return ShadowFactor;
+	}
+}
+
+float Manual5x5PCF(float2 ShadowPosition, FPCFSamplerSettings Settings)
+{
+	// high quality, 6x6 samples, using gather4
+	float2 TexelPos = ShadowPosition * Settings.ShadowBufferSize.xy - 0.5f;	// bias to be consistent with texture filtering hardware
+	float2 Fraction = frac(TexelPos);
+	// Gather4 samples "at the following locations: (-,+),(+,+),(+,-),(-,-), where the magnitude of the deltas are always half a texel" - DX11 Func. Spec.
+	// So we need to offset to the centre of the 2x2 grid we want to sample.
+	float2 SamplePos = (floor(TexelPos) + 1.0f) * Settings.ShadowBufferSize.zw;	// bias to get reliable texel center content
+
+	float4 Values00 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(-2, -2)), Settings);
+	float4 Values20 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(0, -2)), Settings);
+	float4 Values40 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(2, -2)), Settings);
+
+	float2 Row0 = HorizontalPCF5x2(Fraction, Values00, Values20, Values40);
+	float Results = Row0.x * (1.0f - Fraction.y) + Row0.y;
+
+	float4 Values02 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(-2, 0)), Settings);
+	float4 Values22 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(0, 0)), Settings);
+	float4 Values42 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(2, 0)), Settings);
+
+	float2 Row1 = HorizontalPCF5x2(Fraction, Values02, Values22, Values42);
+	Results += Row1.x + Row1.y;
+
+	float4 Values04 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(-2, 2)), Settings);
+	float4 Values24 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(0, 2)), Settings);
+	float4 Values44 = CalculateShadowVisibilityTransmittanceFactor(Settings.ShadowDepthTexture.Gather(Settings.ShadowDepthTextureSampler, SamplePos, int2(2, 2)), Settings);
+
+	float2 Row2 = HorizontalPCF5x2(Fraction, Values04, Values24, Values44);
+	Results += Row2.x + Row2.y * Fraction.y;
+
+	return 0.04f * Results;
+}

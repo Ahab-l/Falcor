@@ -1,0 +1,50 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Unchanged source excerpts; see UECSMSource.json.
+
+
+float ComputeDepthBiasDirectionalSpot(float4x4 WorldToShadowMatrix, float3 WorldVertexNormal)
+{
+	const float NoL = abs(dot(
+		float3(WorldToShadowMatrix[0].z, WorldToShadowMatrix[1].z, WorldToShadowMatrix[2].z),
+		WorldVertexNormal));
+
+	const float MaxSlopeDepthBias = PassStruct.ShadowParams.z;
+	const float Slope = clamp(abs(NoL) > 0 ? sqrt(saturate(1 - NoL*NoL)) / NoL : MaxSlopeDepthBias, 0, MaxSlopeDepthBias);
+	
+	const float SlopeDepthBias = PassStruct.ShadowParams.y;
+	const float SlopeBias = SlopeDepthBias * Slope;
+
+	const float ConstantDepthBias = PassStruct.ShadowParams.x;
+	const float DepthBias = SlopeBias + ConstantDepthBias;
+
+	return DepthBias;
+}
+
+float4 TransformShadowDirectional(
+	float4x4 WorldToClipMatrix, 
+	float4x4 WorldToShadowMatrix, 
+	float4 WorldPosition, 
+	float3 WorldVertexNormal)
+{
+	float4 OutPosition = mul(WorldPosition, WorldToClipMatrix);
+
+	// Clamp the vertex to the near plane if it is in front of the near plane
+	// This has problems if some vertices of a triangle get clamped and others do not, also causes artifacts with non-ortho projections
+	if (PassStruct.bClampToNearPlane > 0 && OutPosition.z > OutPosition.w)
+	{
+		OutPosition.z = 0.999999f;
+		OutPosition.w = 1.0f;
+	}
+
+	const float DepthBias = ComputeDepthBiasDirectionalSpot(WorldToShadowMatrix, WorldVertexNormal);
+
+	// Output linear, normalized depth
+	const float InvMaxSubjectDepth = PassStruct.ShadowParams.w;
+#if PLATFORM_NEEDS_PRECISE_SHADOW_DEPTH
+	precise
+#endif
+	float AdjustedDepth = ( 1 - OutPosition.z * InvMaxSubjectDepth ) + DepthBias;
+	OutPosition.z = AdjustedDepth;
+
+	return OutPosition;
+}

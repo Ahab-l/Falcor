@@ -1,0 +1,12 @@
+#ifndef UE_NATIVE_CSM_PARAMETERS
+#define UE_NATIVE_CSM_PARAMETERS
+// Native setup's 64-byte header and four 128-byte records. Matrix rows use
+// Falcor world meters; setup keeps UE's unit-sensitive math in centimeters.
+ByteAddressBuffer gCSMParameters;
+float4 ueCSMHeader(uint row) { return asfloat(gCSMParameters.Load4(row*16)); }
+float4 ueCSMData(uint cascade,uint row) { return asfloat(gCSMParameters.Load4(64+cascade*128+row*16)); }
+float4x4 ueCSMMatrix(uint cascade)
+{
+    return float4x4(ueCSMData(cascade,0),ueCSMData(cascade,1),ueCSMData(cascade,2),ueCSMData(cascade,3));
+}
+#endif

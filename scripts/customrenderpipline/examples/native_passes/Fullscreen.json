@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "type": "CustomRenderPiplineFullscreenPass",
+  "properties": {
+    "shader": {"file": "Fullscreen.slang"},
+    "resources": [
+      {"name": "source", "direction": "input", "binding": "source", "format": "RGBA32Float"},
+      {"name": "color", "direction": "output", "format": "RGBA32Float", "slot": 0}
+    ],
+    "uniforms": {"Params.gain": {"type": "float", "value": 1.0}}
+  }
+}

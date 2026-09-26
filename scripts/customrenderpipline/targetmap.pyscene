@@ -1,0 +1,47 @@
+"""Original targetmap asset instances. UE shaders consume the separate Scene.json."""
+import json,math,os,sys
+from pathlib import Path
+import numpy as np
+from falcor import *
+root=Path.cwd();sys.path.insert(0,str(root/'scripts/customrenderpipline'))
+from build_targetmap_scene import verify
+from source_scene import load_ue_internal_obj,ue_instance_transform
+path=Path(os.environ.get('UE_TARGETMAP_SCENE',str(root/'build/source-targetmap/Scene.json')))
+data=json.loads(path.read_text())
+required=SceneBuilderFlags.DontPretransformStaticMeshes|SceneBuilderFlags.DontOptimizeGraph|SceneBuilderFlags.DontMergeMaterials
+if sceneBuilder.flags & required != required:raise ValueError('targetmap requires preservation of original object-space geometry and materials')
+materials={}
+for name,source in data['materials'].items():
+    material=StandardMaterial(name)
+    material.baseColor=float4(*source['base_color_linear'],1);material.roughness=source['roughness']
+    material.metallic=source['metallic'];material.indexOfRefraction=1.5
+    materials[name]=material
+meshes={}
+for instance in data['instances']:
+    key=(instance['mesh'],instance['material'])
+    if key not in meshes:
+        source=load_ue_internal_obj(verify(data['source_meshes'][instance['mesh']]['file']))
+        mesh=TriangleMesh()
+        for p,n,uv in zip(source.positions,source.normals,source.texcoords):mesh.addVertex(float3(*p),float3(*n),float2(*uv))
+        for triangle in source.triangles:mesh.addTriangle(*(int(i) for i in triangle))
+        mesh.frontFaceCW=False
+        meshes[key]=sceneBuilder.addTriangleMesh(mesh,materials[instance['material']])
+    xf=ue_instance_transform(instance['translation_cm'],instance['rotation_pitch_yaw_roll'],instance['scale'])
+    # Falcor's public Transform accepts look-at orientation and signed scale.
+    rotation=ue_instance_transform(rotation_deg=instance['rotation_pitch_yaw_roll']).matrix[:3,:3]
+    t=xf.matrix[:3,3];f=rotation@np.array([0,0,-1]);u=rotation@np.array([0,1,0])
+    transform=Transform(position=float3(*t),target=float3(*(t+f)),up=float3(*u),
+        scaling=float3(instance['scale'][1],instance['scale'][2],instance['scale'][0]))
+    node=sceneBuilder.addNode(instance['id'],transform);sceneBuilder.addMeshInstance(node,meshes[key])
+source=data['camera'];xf=ue_instance_transform(source['position_cm'],source['rotation_pitch_yaw_roll'])
+t=xf.matrix[:3,3];r=xf.matrix[:3,:3]
+camera=Camera('targetmapSavedPerspective');camera.position=float3(*t);camera.target=float3(*(t+r@np.array([0,0,-1])))
+camera.up=float3(*(r@np.array([0,1,0])));camera.nearPlane=source['near_cm']/100;camera.farPlane=source['falcor_far_m']
+camera.aspectRatio=source['resolution'][0]/source['resolution'][1];camera.frameHeight=24
+camera.focalLength=24*camera.aspectRatio/(2*math.tan(math.radians(source['horizontal_fov_degrees'])/2))
+sceneBuilder.addCamera(camera)
+for index,source in enumerate(data['lighting']['lights']):
+    light=DirectionalLight('targetmapSun'+str(index));toward=source['direction_ue']
+    settings=dict(source['source_sun'],direction_ue=toward)
+    native=json.loads(ueReferenceSourceSun(json.dumps(settings)))
+    light.direction=float3(-toward[1],-toward[2],toward[0]);light.intensity=float3(*native['direct_illuminance']);sceneBuilder.addLight(light)

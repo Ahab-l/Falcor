@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "TargetMapSurface",
+  "attachments": [
+    {"name": "sceneColor", "format": "RGBA16Float"},
+    {"name": "gbufferA", "format": "RGB10A2Unorm"},
+    {"name": "gbufferB", "format": "BGRA8Unorm"},
+    {"name": "gbufferC", "format": "BGRA8UnormSrgb"}
+  ],
+  "fields": [
+    {"name": "radiance", "type": "float4"},
+    {"name": "normalW", "type": "float3"},
+    {"name": "objectData", "type": "uint"},
+    {"name": "metallic", "type": "float"},
+    {"name": "specular", "type": "float"},
+    {"name": "roughness", "type": "float"},
+    {"name": "shadingModel", "type": "uint"},
+    {"name": "skipVelocity", "type": "bool"},
+    {"name": "firstPerson", "type": "bool"},
+    {"name": "baseColor", "type": "float3"},
+    {"name": "ao", "type": "float"}
+  ],
+  "storage": [
+    {"name": "radianceValue", "attachment": "sceneColor", "channels": "rgba"},
+    {"name": "normalEncoded", "attachment": "gbufferA", "channels": "rgb"},
+    {"name": "objectCode", "attachment": "gbufferA", "channels": "a", "bits": {"offset": 0, "width": 2}},
+    {"name": "metallicValue", "attachment": "gbufferB", "channels": "r"},
+    {"name": "specularValue", "attachment": "gbufferB", "channels": "g"},
+    {"name": "roughnessValue", "attachment": "gbufferB", "channels": "b"},
+    {"name": "modelCode", "attachment": "gbufferB", "channels": "a", "bits": {"offset": 0, "width": 5}},
+    {"name": "skipVelocityCode", "attachment": "gbufferB", "channels": "a", "bits": {"offset": 7, "width": 1}},
+    {"name": "firstPersonCode", "attachment": "gbufferB", "channels": "a", "bits": {"offset": 6, "width": 1}},
+    {"name": "baseColorValue", "attachment": "gbufferC", "channels": "rgb"},
+    {"name": "aoValue", "attachment": "gbufferC", "channels": "a"}
+  ],
+  "codecs": [
+    {"kind": "direct", "field": "radiance", "storage": "radianceValue", "range": [0, 65504], "overflow": "clamp"},
+    {"kind": "custom", "name": "normal", "file": "SurfaceCodec.slangh", "encode": "encodeSurfaceNormal", "decode": "decodeSurfaceNormal", "fields": ["normalW"], "storage": ["normalEncoded"]},
+    {"kind": "uint", "field": "objectData", "storage": "objectCode", "range": [0, 3], "overflow": "reject"},
+    {"kind": "direct", "field": "metallic", "storage": "metallicValue", "range": [0, 1], "overflow": "clamp"},
+    {"kind": "direct", "field": "specular", "storage": "specularValue", "range": [0, 1], "overflow": "clamp"},
+    {"kind": "direct", "field": "roughness", "storage": "roughnessValue", "range": [0, 1], "overflow": "clamp"},
+    {"kind": "uint", "field": "shadingModel", "storage": "modelCode", "range": [0, 31], "overflow": "reject"},
+    {"kind": "bool", "field": "skipVelocity", "storage": "skipVelocityCode"},
+    {"kind": "bool", "field": "firstPerson", "storage": "firstPersonCode"},
+    {"kind": "direct", "field": "baseColor", "storage": "baseColorValue", "range": [0, 1], "overflow": "clamp"},
+    {"kind": "direct", "field": "ao", "storage": "aoValue", "range": [0, 1], "overflow": "clamp"}
+  ],
+  "depthFormat": "D32FloatS8Uint"
+}

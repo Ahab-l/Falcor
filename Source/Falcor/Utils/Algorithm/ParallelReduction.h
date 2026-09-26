@@ -94,7 +94,7 @@ public:
     uint64_t getMemoryUsageInBytes() const;
 
 private:
-    void allocate(uint32_t elementCount, uint32_t elementSize);
+    void allocate(uint32_t elementCount, uint32_t elementSize, ResourceFormat format);
 
     ref<Device> mpDevice;
 

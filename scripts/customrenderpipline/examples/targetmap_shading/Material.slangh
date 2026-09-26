@@ -1,0 +1,137 @@
+// Source-authored BasicShape / MI_ProcGrid active branch evaluation.
+// Provenance and known precision gaps: build/targetmap-shading-a1/material-evidence.md.
+// No engine/capture constant-buffer ABI or stored rendering output is consumed.
+#ifndef PROCGRID
+#define PROCGRID 0
+#endif
+
+struct SurfaceParams
+{
+    float3 baseColor;
+    float roughness;
+    float specular;
+    float metallic;
+    float ao;
+    float3 emissive;
+    uint capsuleRepresentation;
+    uint castContactShadow;
+    uint shadingModel;
+    uint skipVelocity;
+    uint firstPerson;
+};
+ConstantBuffer<SurfaceParams> Surface;
+
+struct FrameParams
+{
+    uint phase;
+    float preExposure;
+};
+ConstantBuffer<FrameParams> Frame;
+
+#if PROCGRID
+struct GridParams
+{
+    float tileSize;
+    float3 checkerColor1;
+    float3 checkerColor2;
+    float3 lineColor;
+    float checkerRoughness1;
+    float checkerRoughness2;
+    float lineRoughness;
+};
+ConstantBuffer<GridParams> ProcGridParams;
+Texture2D<float4> gGrid;
+SamplerState gGridSampler;
+#endif
+
+// Keep these scalar expressions directly executable by the CPU endpoint audit.
+float sourceProjectionWeight(float component)
+{
+    return saturate(component * 3.0f - 1.0f);
+}
+
+float sourceBlend(float a, float b, float weight)
+{
+    return a + (b - a) * weight;
+}
+
+float sourceLineMask(float firstBlend, float secondWeightedDelta)
+{
+    return (1.0f - firstBlend) - secondWeightedDelta;
+}
+
+float sourceGridRoughness(float lineMask, float checker, float rough1, float rough2, float lineRoughness)
+{
+    return lineRoughness + lineMask * ((rough1 - lineRoughness) + (rough2 - rough1) * checker);
+}
+
+float sourceSpecularDither(float value, float noise, float nonZero)
+{
+    return saturate(saturate(value) + (noise - 0.5f) * (1.0f / 255.0f) * nonZero);
+}
+
+float sourceFrameNoise(float2 pixelCenter, uint phase)
+{
+    float2 uv = pixelCenter + float(phase & 7u) * (float2(47.0f, 17.0f) * 0.695f);
+    return frac(52.9829189f * frac(dot(uv, float2(0.06711056f, 0.00583715f))));
+}
+
+TargetMapSurfaceFields evaluateSourceMaterial(VSOut input)
+{
+    TargetMapSurfaceFields value = (TargetMapSurfaceFields)0;
+    value.baseColor = Surface.baseColor;
+    value.roughness = Surface.roughness;
+    value.metallic = Surface.metallic;
+
+#if PROCGRID
+    float4x4 objectToWorld = gScene.getWorldMatrix(input.instanceID);
+    float3x3 objectLinear = (float3x3)objectToWorld;
+    // Source ActorPosition and component origin coincide for this imported scene.
+    float3 delta = input.posW - mul(objectToWorld, float4(0.0f, 0.0f, 0.0f, 1.0f)).xyz;
+    float3 xAxis = normalize(mul(objectLinear, float3(0.0f, 0.0f, -1.0f)));
+    float3 yAxis = normalize(mul(objectLinear, float3(1.0f, 0.0f, 0.0f)));
+    float3 zAxis = normalize(mul(objectLinear, float3(0.0f, 1.0f, 0.0f)));
+    float3 q = float3(dot(delta, xAxis), dot(delta, yAxis), dot(delta, zAxis)) * (100.0f / ProcGridParams.tileSize);
+    float3 c = q * 0.5f;
+
+    // Cancel defaultVS's inverse transpose BEFORE any pixel normalization.
+    float3 localFalcor = mul(transpose(objectLinear), input.normalW);
+    float3 localNormal = float3(-localFalcor.z, localFalcor.x, localFalcor.y);
+    float wx = sourceProjectionWeight(abs(localNormal.x));
+    float wz = sourceProjectionWeight(abs(localNormal.z));
+
+    float checkerXZ = gGrid.Sample(gGridSampler, c.xz).g;
+    float checkerYZ = gGrid.Sample(gGridSampler, c.yz).g;
+    float checkerXY = gGrid.Sample(gGridSampler, c.xy).g;
+    float checker = sourceBlend(sourceBlend(checkerXZ, checkerYZ, wx), checkerXY, wz);
+    float3 checkerColor = ProcGridParams.checkerColor1 + (ProcGridParams.checkerColor2 - ProcGridParams.checkerColor1) * checker;
+
+    float wireXZ = gGrid.Sample(gGridSampler, q.xz).r;
+    float wireYZ = gGrid.Sample(gGridSampler, q.yz).r;
+    float wireXY = gGrid.Sample(gGridSampler, q.xy).r;
+    float wireFirst = sourceBlend(wireXZ, wireYZ, wx);
+    float wireDelta = (wireXY - wireFirst) * wz;
+    float lineMask = sourceLineMask(wireFirst, wireDelta);
+    value.baseColor = ProcGridParams.lineColor + lineMask * (checkerColor - ProcGridParams.lineColor);
+    value.metallic = wireDelta + wireFirst;
+    value.roughness = sourceGridRoughness(lineMask, checker, ProcGridParams.checkerRoughness1,
+        ProcGridParams.checkerRoughness2, ProcGridParams.lineRoughness);
+#endif
+
+    value.baseColor = saturate(value.baseColor);
+    value.roughness = saturate(value.roughness);
+    value.metallic = saturate(value.metallic);
+    float specular = saturate(Surface.specular);
+    value.specular = sourceSpecularDither(specular, sourceFrameNoise(input.posH.xy, Frame.phase),
+        specular != 0.0f ? 1.0f : 0.0f);
+    // A1 source materials have AO=1; generalized multibounce AO is not claimed.
+    value.ao = saturate(Surface.ao);
+    value.radiance = float4(max(Surface.emissive, 0.0f) * Frame.preExposure, 0.0f);
+    // Falcor (-Z,X,Y) coordinates -> source world XYZ. Normalize only in codec.
+    value.normalW = float3(-input.normalW.z, input.normalW.x, input.normalW.y);
+    value.objectData = 2u * Surface.capsuleRepresentation + Surface.castContactShadow;
+    value.shadingModel = Surface.shadingModel;
+    value.skipVelocity = Surface.skipVelocity != 0u;
+    value.firstPerson = Surface.firstPerson != 0u;
+    return value;
+}

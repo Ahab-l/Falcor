@@ -1,0 +1,69 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see UESkyLightSource.json and UESkyLightSourceNotice.txt.
+// Source evidence only; runtime integration is not established.
+
+#if defined(DXC_GROUPSHARED_ALIGNMENT_WORKAROUND) && DXC_GROUPSHARED_ALIGNMENT_WORKAROUND
+// Workaround for shader compiler bug affecting certain platforms
+// Align groupshared SH data if the shader compiler requires it
+#define NEED_SH_VECTOR_PADDING 1
+#endif
+
+float3 GetCubemapVector(float2 ScaledUVs, int InCubeFace)
+{
+	float3 CubeCoordinates;
+
+	//@todo - this could be a 3x3 matrix multiply
+	if (InCubeFace == 0)
+	{
+		CubeCoordinates = float3(1, -ScaledUVs.y, -ScaledUVs.x);
+	}
+	else if (InCubeFace == 1)
+	{
+		CubeCoordinates = float3(-1, -ScaledUVs.y, ScaledUVs.x);
+	}
+	else if (InCubeFace == 2)
+	{
+		CubeCoordinates = float3(ScaledUVs.x, 1, ScaledUVs.y);
+	}
+	else if (InCubeFace == 3)
+	{
+		CubeCoordinates = float3(ScaledUVs.x, -1, -ScaledUVs.y);
+	}
+	else if (InCubeFace == 4)
+	{
+		CubeCoordinates = float3(ScaledUVs.x, -ScaledUVs.y, 1);
+	}
+	else
+	{
+		CubeCoordinates = float3(-ScaledUVs.x, -ScaledUVs.y, -1);
+	}
+
+	return CubeCoordinates;
+}
+
+TextureCube SourceCubemapTexture;
+SamplerState SourceCubemapSampler;
+
+uint MipIndex;
+uint NumMips;
+uint SourceMipIndex;
+
+float4 SampleCubemap(float3 Coordinates, uint InMipIndex)
+{
+	return TextureCubeSampleLevel(SourceCubemapTexture, SourceCubemapSampler, Coordinates, InMipIndex);
+}
+
+float4 SampleCubemap(float3 Coordinates)
+{
+#ifdef USE_COMPUTE
+	return SampleCubemap(Coordinates, 0);
+#else
+	return SampleCubemap(Coordinates, SourceMipIndex);
+#endif
+}
+
+#ifdef USE_COMPUTE
+int FaceThreadGroupSize;
+int2 ValidDispatchCoord;
+RWTexture2DArray<float4> OutTextureMipColor;	// All slices, i.e. faces, of a cube map mip level
+#endif 

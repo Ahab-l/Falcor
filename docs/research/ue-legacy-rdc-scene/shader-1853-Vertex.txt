@@ -1,0 +1,472 @@
+; shader hash: 1406d8f800da934482c3415717303507
+
+; Vertex Shader, compiled under SM6.6
+
+_dx.types.Handle = type { int8* }
+_dx.types.ResBind = type { int, int, int, int8 }
+_dx.types.ResourceProperties = type { int, int }
+_dx.types.CBufRet.f32 = type { float, float, float, float }
+_dx.types.ResRet.f32 = type { float, float, float, float, int }
+_dx.types.ResRet.i32 = type { int, int, int, int, int }
+_dx.types.CBufRet.i32 = type { int, int, int, int }
+_"class.StructuredBuffer<unsigned int>" = type { int }
+_"class.StructuredBuffer<vector<float, 4> >" = type { float4 }
+_"class.Buffer<vector<float, 4> >" = type { float4 }
+_hostlayout.View = type { float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4, float4, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4[4], float4[4], float4[4], float4[4], float4, float4, float2, float2, float2, float2, float4, float4, int4, float4, float4, float4, float4, float2, float2, int, float, float, float, float4, float4, float4, float2, float2, float, float, float, float, float3, float, float, float, float, float, float, float, float, int, int, int, int, int, int, int, int, float, float, float, float, float, float4, float3, float, float4[2], float4[2], float4, float4, float, float, float, float, float, float, float, float, float, float, float, float, float3, float, float3, float, float3, float, float3, float, float4[2], float4[2], float4[2], float4[2], float4[2], float4, float3, float, float4, float4[4], float4, float, float, float, float, float4, float, float, float, float, float, float, float, float, float3, float, float, float, float, float, float4, float, float, float, float, float4, float, float, float, float, float4[8], float, float, float, float, int, float, float, float, float3, int, float4[6], float4[6], float4[6], float4[6], float, float, int, int, float3, float, float3, float, float, float, int, float, float, float, float, float, float, float, int2, float, float, float, float, float3, float, float3, float, float3, float, float2, float2, float2, float2, float2, float, float, float3, float, float2, float2, float, float, float, float, float3, float, float3, float, float3, float, float3, float, float, float, float, float, float4[2], float4, int, int, int, int, int, int, int, float, float4, int, int, int, float, float4, float4, float4, float4, float2, float, float, float3, float, int, int, int, int, int4[32], int4[32], int, float, float, float, float4, float4, float4, float4, float2, float, float, float4, float4, float4, float, float, float, int, int4, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, float4, float, float, int, int, int, int, int, int, float4, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int3, int, int3, int, float3, float, float3 }
+_Scene = type { int, int, int, int, int, int, int, float, int, int, int, int, int, int, int, int, int, float, float, float, int, int, int, int, int4, int, int, int, int, int, float, float, float, int, int, int, float, int, int, int, int, int, int, int, float, int, int, int, int, int, int, int, int, int, float, float, float, float2, int, int, int, int, int, float, int, int, int, int, int, float, float, float, int, int, int, float, int, int, int }
+_LocalVF = type { int4, float4, float4, float4, float4, float4, int, int, int, int, int, int, int, int, int, int, int, int, int }
+
+Inputs
+  float4 ATTRIBUTE0; // Rows:1 StartRow:0 Cols:4 StartCol:0
+  uint ATTRIBUTE13; // Rows:1 StartRow:1 Cols:1 StartCol:0
+  uint SV_InstanceID; // Rows:1 StartRow:2 Cols:1 StartCol:0
+  uint SV_VertexID; // Rows:1 StartRow:3 Cols:1 StartCol:0
+
+Outputs
+  float4 TEXCOORD10_centroid; // Rows:1 StartRow:0 Cols:4 StartCol:0
+  float4 TEXCOORD11_centroid; // Rows:1 StartRow:1 Cols:4 StartCol:0
+  float4 TEXCOORD0; // Rows:1 StartRow:2 Cols:4 StartCol:0
+  nointerpolation uint INSTANCE_ID; // Rows:1 StartRow:3 Cols:1 StartCol:0
+  float3 TEXCOORD9; // Rows:1 StartRow:4 Cols:3 StartCol:0
+  linear noperspective float4 SV_Position; // Rows:1 StartRow:5 Cols:4 StartCol:0
+
+StructuredBuffer<int> StructuredBuffer0 : register(t0, space0);
+StructuredBuffer<float4> StructuredBuffer1 : register(t1, space0);
+StructuredBuffer<float4> StructuredBuffer2 : register(t2, space0);
+TypedBuffer<float4> Buffer3 : register(t3, space0);
+TypedBuffer<float4> Buffer4 : register(t4, space0);
+
+cbuffer cbuffer0 : register(b0, space0)
+
+cbuffer cbuffer1 : register(b1, space0)
+
+cbuffer cbuffer2 : register(b2, space0)
+
+void Main()
+{
+_label0: 
+  _dx.types.Handle _66 = InitialiseHandle(Buffer4); //  index = 4
+  _dx.types.Handle _67 = InitialiseHandle(Buffer3); //  index = 3
+  _dx.types.Handle _68 = InitialiseHandle(StructuredBuffer2); //  index = 2
+  _dx.types.Handle _69 = InitialiseHandle(StructuredBuffer1); //  index = 1
+  _dx.types.Handle _70 = InitialiseHandle(StructuredBuffer0); //  index = 0
+  _dx.types.Handle _71 = InitialiseHandle(cbuffer2); //  index = 2
+  _dx.types.Handle _72 = InitialiseHandle(cbuffer1); //  index = 1
+  _dx.types.Handle _73 = InitialiseHandle(cbuffer0); //  index = 0
+  _dx.types.Handle __cbuffer2_74 = (CBuffer)_71;
+  _dx.types.Handle __cbuffer1_75 = (CBuffer)_72;
+  _dx.types.Handle __cbuffer0_76 = (CBuffer)_73;
+  int _77 = _IN.SV_VertexID.x;
+  int _78 = _IN.SV_InstanceID.x;
+  int _79 = _IN.ATTRIBUTE13.x;
+  float _80 = _IN.ATTRIBUTE0.x;
+  float _81 = _IN.ATTRIBUTE0.y;
+  float _82 = _IN.ATTRIBUTE0.z;
+  _dx.types.CBufRet.f32 _83 = __cbuffer0_76.Load4(byte_offset = 0);
+  float _84 = extractvalue _83, 0;
+  float _85 = extractvalue _83, 1;
+  float _86 = extractvalue _83, 2;
+  float _87 = extractvalue _83, 3;
+  _dx.types.CBufRet.f32 _88 = __cbuffer0_76.Load4(byte_offset = 16);
+  float _89 = extractvalue _88, 0;
+  float _90 = extractvalue _88, 1;
+  float _91 = extractvalue _88, 2;
+  float _92 = extractvalue _88, 3;
+  _dx.types.CBufRet.f32 _93 = __cbuffer0_76.Load4(byte_offset = 32);
+  float _94 = extractvalue _93, 0;
+  float _95 = extractvalue _93, 1;
+  float _96 = extractvalue _93, 2;
+  float _97 = extractvalue _93, 3;
+  _dx.types.CBufRet.f32 _98 = __cbuffer0_76.Load4(byte_offset = 48);
+  float _99 = extractvalue _98, 0;
+  float _100 = extractvalue _98, 1;
+  float _101 = extractvalue _98, 2;
+  float _102 = extractvalue _98, 3;
+  _dx.types.CBufRet.f32 _103 = __cbuffer0_76.Load4(byte_offset = 1024);
+  float _104 = extractvalue _103, 0;
+  float _105 = extractvalue _103, 1;
+  float _106 = extractvalue _103, 2;
+  _dx.types.CBufRet.f32 _107 = __cbuffer0_76.Load4(byte_offset = 1040);
+  float _108 = extractvalue _107, 0;
+  float _109 = extractvalue _107, 1;
+  float _110 = extractvalue _107, 2;
+  _dx.types.CBufRet.f32 _111 = __cbuffer0_76.Load4(byte_offset = 1056);
+  float _112 = extractvalue _111, 0;
+  float _113 = extractvalue _111, 1;
+  float _114 = extractvalue _111, 2;
+  _dx.types.CBufRet.f32 _115 = __cbuffer0_76.Load4(byte_offset = 1408);
+  float _116 = extractvalue _115, 0;
+  float _117 = extractvalue _115, 1;
+  float _118 = extractvalue _115, 2;
+  _dx.types.CBufRet.f32 _119 = __cbuffer0_76.Load4(byte_offset = 1424);
+  float _120 = extractvalue _119, 0;
+  float _121 = extractvalue _119, 1;
+  float _122 = extractvalue _119, 2;
+  bool _123 = (_79 < 0); // signed 
+  if (_123) goto _label1; else goto _label2;
+
+_label1:                      
+  int _124 = _79 & 2147483647;
+  int _125 = _124 * 44;
+  _dx.types.Handle __StructuredBuffer2_126 = (StructuredBuffer<stride=16>)_68;
+  _dx.types.ResRet.f32 _127 = __StructuredBuffer2_126.Load(_125);
+  float _128 = extractvalue _127, 1;
+  int _129 = asint(_128); // bitcast 
+  int _130 = _129 + _78;
+  goto _label3;
+
+_label2:                      
+  int _131 = _79 + _78;
+  _dx.types.Handle __StructuredBuffer0_132 = (StructuredBuffer<stride=4>)_70;
+  _dx.types.ResRet.i32 _133 = __StructuredBuffer0_132.Load(_131);
+  int _134 = extractvalue _133, 0;
+  int _135 = _134 & 16777215;
+  goto _label3;
+
+_label3:                      // preceded by _label2, _label1
+  int _136 = phi int [ _label1::_130, _label1 ], [ _label2::_135, _label2 ];
+  _dx.types.CBufRet.i32 _137 = __cbuffer1_75.Load4(byte_offset = 0);
+  int _138 = extractvalue _137, 0;
+  int _139 = extractvalue _137, 1;
+  int _140 = extractvalue _137, 2;
+  int _141 = _138 & 31;
+  int _142 = _136 >> _141; // logical 
+  int _143 = _139 & _136;
+  int _144 = _140 * _142;
+  int _145 = _144 + _143;
+  _dx.types.Handle __StructuredBuffer1_146 = (StructuredBuffer<stride=16>)_69;
+  _dx.types.ResRet.f32 _147 = __StructuredBuffer1_146.Load(_145);
+  float _148 = extractvalue _147, 0;
+  int _149 = asint(_148); // bitcast 
+  int _150 = _149 & 1048575;
+  int _151 = _149 >> 20; // logical 
+  bool _152 = (_150 != 1048575);
+  int _153 = _151 & 1024;
+  bool _154 = (_153 == 0);
+  bool _155 = _152 & _154;
+  int _156 = _150 * 44;
+  if (_155) goto _label4; else goto _label5;
+
+_label4:                      // preceded by _label3
+  int _157 = _156 | 1;
+  _dx.types.Handle __StructuredBuffer2_158 = (StructuredBuffer<stride=16>)_68;
+  _dx.types.ResRet.f32 _159 = __StructuredBuffer2_158.Load(_157);
+  float _160 = extractvalue _159, 0;
+  float _161 = extractvalue _159, 1;
+  float _162 = extractvalue _159, 2;
+  int _163 = 1 << _141;
+  int _164 = _143 + _163;
+  int _165 = _164 + _144;
+  _dx.types.ResRet.f32 _166 = __StructuredBuffer1_146.Load(_165);
+  float _167 = extractvalue _166, 0;
+  float _168 = extractvalue _166, 1;
+  float _169 = extractvalue _166, 2;
+  float _170 = extractvalue _166, 3;
+  int _171 = asint(_167); // bitcast 
+  int _172 = asint(_168); // bitcast 
+  int _173 = asint(_169); // bitcast 
+  int _174 = asint(_170); // bitcast 
+  int _175 = 2 << _141;
+  int _176 = _143 + _175;
+  int _177 = _176 + _144;
+  _dx.types.ResRet.f32 _178 = __StructuredBuffer1_146.Load(_177);
+  float _179 = extractvalue _178, 0;
+  float _180 = extractvalue _178, 1;
+  float _181 = extractvalue _178, 2;
+  int _182 = _171 & 65535;
+  float _183 = (float)(_182); // unsigned 
+  int _184 = _171 >> 16; // logical 
+  float _185 = (float)(_184); // unsigned 
+  int _186 = _172 & 32767;
+  float _187 = (float)(_186); // unsigned 
+  float _188 = _183 + -32768.0;
+  float _189 = _185 + -32768.0;
+  float _190 = _188 * 3.05185e-05;
+  float _191 = _189 * 3.05185e-05;
+  float _192 = _187 + -16384.0;
+  float _193 = _192 * 4.31610e-05;
+  int _194 = _172 & 32768;
+  bool _195 = (_194 != 0);
+  float _196 = _190 + _191;
+  float _197 = _190 - _191;
+  float _198 = abs(_196);
+  float _199 = abs(_197);
+  float _200 = dot({1.00000, 1.00000}, {_198, _199});
+  float _201 = 2.00000 - _200;
+  float _202 = dot({_196, _197, _201}, {_196, _197, _201});
+  float _203 = rsqrt(_202);
+  float _204 = _196 * _203;
+  float _205 = _197 * _203;
+  float _206 = _201 * _203;
+  float _207 = _206 + 1.00000;
+  float _208 = 1.00000 / _207;
+  float _209 = _204 * _205;
+  float _210 = _208 * _209;
+  float _211 = -0.000000 - _210;
+  float _212 = _204 * _204;
+  float _213 = _208 * _212;
+  float _214 = 1.00000 - _213;
+  float _215 = _205 * _205;
+  float _216 = _208 * _215;
+  float _217 = 1.00000 - _216;
+  float _218 = _193 * _193;
+  float _219 = 1.00000 - _218;
+  float _220 = sqrt(_219);
+  float _221 = _195 ? _193 : _220;
+  float _222 = _195 ? _220 : _193;
+  float _223 = _221 * _214;
+  float _224 = _221 * _211;
+  float _225 = _204 * _221;
+  float _226 = _222 * _211;
+  float _227 = _222 * _217;
+  float _228 = _205 * _222;
+  float _229 = -0.000000 - _228;
+  float _230 = _226 + _223;
+  float _231 = _224 + _227;
+  float _232 = _229 - _225;
+  float _233 = _205 * _232;
+  float _234 = _206 * _231;
+  float _235 = _233 - _234;
+  float _236 = _206 * _230;
+  float _237 = _204 * _232;
+  float _238 = _236 - _237;
+  float _239 = _204 * _231;
+  float _240 = _205 * _230;
+  float _241 = _239 - _240;
+  int _242 = _174 >> 16; // logical 
+  int _243 = _242 << 23;
+  int _244 = _243 + -125829120;
+  float _245 = asfloat(_244); // bitcast 
+  int _246 = _173 >> 16; // logical 
+  int _247 = _173 & 65535;
+  int _248 = _174 & 65535;
+  float _249 = (float)(_247); // unsigned 
+  float _250 = (float)(_246); // unsigned 
+  float _251 = (float)(_248); // unsigned 
+  float _252 = _249 + -32768.0;
+  float _253 = _250 + -32768.0;
+  float _254 = _251 + -32768.0;
+  float _255 = _252 * _245;
+  float _256 = _253 * _245;
+  float _257 = _254 * _245;
+  float _258 = _255 * _230;
+  float _259 = _255 * _231;
+  float _260 = _255 * _232;
+  float _261 = _256 * _235;
+  float _262 = _256 * _238;
+  float _263 = _256 * _241;
+  float _264 = _257 * _204;
+  float _265 = _257 * _205;
+  float _266 = _257 * _206;
+  float _267 = abs(_255);
+  float _268 = abs(_256);
+  float _269 = abs(_257);
+  float _270 = 1.00000 / _267;
+  float _271 = 1.00000 / _268;
+  float _272 = 1.00000 / _269;
+  int _273 = _151 & 1;
+  bool _274 = (_273 != 0);
+  float _275 = _274 ? -1.00000 : 1.00000;
+  goto _label5;
+
+_label5:                      // preceded by _label4, _label3
+  float _276 = phi float [ _label4::_270, _label4 ], [ _label3::0.000000, _label3 ];
+  float _277 = phi float [ _label4::_271, _label4 ], [ _label3::0.000000, _label3 ];
+  float _278 = phi float [ _label4::_272, _label4 ], [ _label3::0.000000, _label3 ];
+  float _279 = phi float [ _label4::_275, _label4 ], [ _label3::0.000000, _label3 ];
+  float _280 = phi float [ _label4::_160, _label4 ], [ _label3::0.000000, _label3 ];
+  float _281 = phi float [ _label4::_161, _label4 ], [ _label3::0.000000, _label3 ];
+  float _282 = phi float [ _label4::_162, _label4 ], [ _label3::0.000000, _label3 ];
+  float _283 = phi float [ _label4::_258, _label4 ], [ _label3::0.000000, _label3 ];
+  float _284 = phi float [ _label4::_259, _label4 ], [ _label3::0.000000, _label3 ];
+  float _285 = phi float [ _label4::_260, _label4 ], [ _label3::0.000000, _label3 ];
+  float _286 = phi float [ _label4::_261, _label4 ], [ _label3::0.000000, _label3 ];
+  float _287 = phi float [ _label4::_262, _label4 ], [ _label3::0.000000, _label3 ];
+  float _288 = phi float [ _label4::_263, _label4 ], [ _label3::0.000000, _label3 ];
+  float _289 = phi float [ _label4::_264, _label4 ], [ _label3::0.000000, _label3 ];
+  float _290 = phi float [ _label4::_265, _label4 ], [ _label3::0.000000, _label3 ];
+  float _291 = phi float [ _label4::_266, _label4 ], [ _label3::0.000000, _label3 ];
+  float _292 = phi float [ _label4::_179, _label4 ], [ _label3::0.000000, _label3 ];
+  float _293 = phi float [ _label4::_180, _label4 ], [ _label3::0.000000, _label3 ];
+  float _294 = phi float [ _label4::_181, _label4 ], [ _label3::0.000000, _label3 ];
+  _dx.types.Handle __StructuredBuffer2_295 = (StructuredBuffer<stride=16>)_68;
+  _dx.types.ResRet.f32 _296 = __StructuredBuffer2_295.Load(_156);
+  float _297 = extractvalue _296, 0;
+  int _298 = asint(_297); // bitcast 
+  _dx.types.CBufRet.i32 _299 = __cbuffer2_74.Load4(byte_offset = 0);
+  int _300 = extractvalue _299, 3;
+  int _301 = _300 + _77;
+  int _302 = _301 << 1;
+  _dx.types.Handle __Buffer4_303 = (TypedBuffer<float4>)_66;
+  _dx.types.ResRet.f32 _304 = __Buffer4_303.Load(_302);
+  float _305 = extractvalue _304, 0;
+  float _306 = extractvalue _304, 1;
+  float _307 = extractvalue _304, 2;
+  int _308 = _302 | 1;
+  _dx.types.ResRet.f32 _309 = __Buffer4_303.Load(_308);
+  float _310 = extractvalue _309, 0;
+  float _311 = extractvalue _309, 1;
+  float _312 = extractvalue _309, 2;
+  float _313 = extractvalue _309, 3;
+  float _314 = _311 * _307;
+  float _315 = _312 * _306;
+  float _316 = _314 - _315;
+  float _317 = _312 * _305;
+  float _318 = _310 * _307;
+  float _319 = _317 - _318;
+  float _320 = _310 * _306;
+  float _321 = _311 * _305;
+  float _322 = _320 - _321;
+  float _323 = _316 * _313;
+  float _324 = _319 * _313;
+  float _325 = _322 * _313;
+  float _326 = _324 * _312;
+  float _327 = _325 * _311;
+  float _328 = _326 - _327;
+  float _329 = _325 * _310;
+  float _330 = _323 * _312;
+  float _331 = _329 - _330;
+  float _332 = _323 * _311;
+  float _333 = _324 * _310;
+  float _334 = _332 - _333;
+  float _335 = _328 * _313;
+  float _336 = _331 * _313;
+  float _337 = _334 * _313;
+  float _338 = _283 * _276;
+  float _339 = _284 * _276;
+  float _340 = _285 * _276;
+  float _341 = _286 * _277;
+  float _342 = _287 * _277;
+  float _343 = _288 * _277;
+  float _344 = _289 * _278;
+  float _345 = _290 * _278;
+  float _346 = _291 * _278;
+  float _347 = _335 * _338;
+  float _348 = mad(_336, _341, _347);
+  float _349 = mad(_337, _344, _348);
+  float _350 = _335 * _339;
+  float _351 = mad(_336, _342, _350);
+  float _352 = mad(_337, _345, _351);
+  float _353 = _335 * _340;
+  float _354 = mad(_336, _343, _353);
+  float _355 = mad(_337, _346, _354);
+  float _356 = _310 * _338;
+  float _357 = mad(_311, _341, _356);
+  float _358 = mad(_312, _344, _357);
+  float _359 = _310 * _339;
+  float _360 = mad(_311, _342, _359);
+  float _361 = mad(_312, _345, _360);
+  float _362 = _310 * _340;
+  float _363 = mad(_311, _343, _362);
+  float _364 = mad(_312, _346, _363);
+  float _365 = _313 * _279;
+  float _366 = _82 * _289;
+  float _367 = _82 * _290;
+  float _368 = _82 * _291;
+  float _369 = mad(_81, _286, _366);
+  float _370 = mad(_81, _287, _367);
+  float _371 = mad(_81, _288, _368);
+  float _372 = mad(_80, _283, _369);
+  float _373 = mad(_80, _284, _370);
+  float _374 = mad(_80, _285, _371);
+  float _375 = _116 + _280;
+  float _376 = _117 + _281;
+  float _377 = _118 + _282;
+  float _378 = _120 + _375;
+  float _379 = _121 + _376;
+  float _380 = _122 + _377;
+  float _381 = _378 + _292;
+  float _382 = _379 + _293;
+  float _383 = _380 + _294;
+  float _384 = _381 + _372;
+  float _385 = _382 + _373;
+  float _386 = _383 + _374;
+  _dx.types.CBufRet.i32 _387 = __cbuffer2_74.Load4(byte_offset = 96);
+  int _388 = extractvalue _387, 2;
+  bool _389 = (_388 == 0);
+  if (_389) goto _label7; else goto _label6;
+
+_label6:                      // preceded by _label5
+  int _390 = _77 << 1;
+  int _391 = _390 | 1;
+  _dx.types.Handle __Buffer3_392 = (TypedBuffer<float4>)_67;
+  _dx.types.ResRet.f32 _393 = __Buffer3_392.Load(_391);
+  float _394 = extractvalue _393, 0;
+  float _395 = extractvalue _393, 1;
+  float _396 = extractvalue _393, 2;
+  goto _label7;
+
+_label7:                      // preceded by _label6, _label5
+  float _397 = phi float [ _label6::_394, _label6 ], [ _label5::_310, _label5 ];
+  float _398 = phi float [ _label6::_395, _label6 ], [ _label5::_311, _label5 ];
+  float _399 = phi float [ _label6::_396, _label6 ], [ _label5::_312, _label5 ];
+  float _400 = _384 + 0.000000;
+  float _401 = _385 + 0.000000;
+  float _402 = _386 + 0.000000;
+  int _403 = _298 & 1073741824;
+  bool _404 = (_403 == 0);
+  if (_404) goto _label9; else goto _label8;
+
+_label8:                      // preceded by _label7
+  float _405 = _104 * _400;
+  float _406 = mad(_401, _108, _405);
+  float _407 = mad(_402, _112, _406);
+  float _408 = _105 * _400;
+  float _409 = mad(_401, _109, _408);
+  float _410 = mad(_402, _113, _409);
+  float _411 = _106 * _400;
+  float _412 = mad(_401, _110, _411);
+  float _413 = mad(_402, _114, _412);
+  float _414 = _407 - _400;
+  float _415 = _410 - _401;
+  float _416 = _413 - _402;
+  float _417 = _400 + _414;
+  float _418 = _401 + _415;
+  float _419 = _402 + _416;
+  goto _label9;
+
+_label9:                      // preceded by _label8, _label7
+  float _420 = phi float [ _label8::_417, _label8 ], [ _label7::_400, _label7 ];
+  float _421 = phi float [ _label8::_418, _label8 ], [ _label7::_401, _label7 ];
+  float _422 = phi float [ _label8::_419, _label8 ], [ _label7::_402, _label7 ];
+  float _423 = _84 * _420;
+  float _424 = mad(_421, _89, _423);
+  float _425 = mad(_422, _94, _424);
+  float _426 = mad(1.00000, _99, _425);
+  float _427 = _85 * _420;
+  float _428 = mad(_421, _90, _427);
+  float _429 = mad(_422, _95, _428);
+  float _430 = mad(1.00000, _100, _429);
+  float _431 = _86 * _420;
+  float _432 = mad(_421, _91, _431);
+  float _433 = mad(_422, _96, _432);
+  float _434 = mad(1.00000, _101, _433);
+  float _435 = _87 * _420;
+  float _436 = mad(_421, _92, _435);
+  float _437 = mad(_422, _97, _436);
+  float _438 = mad(1.00000, _102, _437);
+  _OUT.SV_Position.x = _426;
+  _OUT.SV_Position.y = _430;
+  _OUT.SV_Position.z = _434;
+  _OUT.SV_Position.w = _438;
+  _OUT.TEXCOORD9.x = _384;
+  _OUT.TEXCOORD9.y = _385;
+  _OUT.TEXCOORD9.z = _386;
+  _OUT.TEXCOORD10_centroid.x = _349;
+  _OUT.TEXCOORD10_centroid.y = _352;
+  _OUT.TEXCOORD10_centroid.z = _355;
+  _OUT.TEXCOORD10_centroid.w = 0.000000;
+  _OUT.TEXCOORD11_centroid.x = _358;
+  _OUT.TEXCOORD11_centroid.y = _361;
+  _OUT.TEXCOORD11_centroid.z = _364;
+  _OUT.TEXCOORD11_centroid.w = _365;
+  _OUT.TEXCOORD0.x = _397;
+  _OUT.TEXCOORD0.y = _398;
+  _OUT.TEXCOORD0.z = _399;
+  _OUT.TEXCOORD0.w = 0.000000;
+  _OUT.INSTANCE_ID.x = _136;
+  return;
+}
+
+
+

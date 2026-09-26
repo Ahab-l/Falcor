@@ -1,0 +1,10 @@
+{
+  "shader": "../../../../Source/RenderPasses/customrenderpipline/NativeGBuffer.3d.slang",
+  "defines": {"PACKED_LAYOUT": 1},
+  "attachments": [
+    {"name": "materialBits", "format": "R32Uint"},
+    {"name": "color", "format": "RGBA8Unorm"},
+    {"name": "normal", "format": "RGBA16Float"}
+  ],
+  "depthFormat": "D32Float"
+}

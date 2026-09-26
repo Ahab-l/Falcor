@@ -27,6 +27,8 @@
  **************************************************************************/
 #include "ErrorMeasurePass.h"
 #include "Core/AssetResolver.h"
+#include <cstring>
+#include <iomanip>
 #include <sstream>
 
 namespace
@@ -57,6 +59,11 @@ const std::string kSelectedOutputId = "SelectedOutputId";
 extern "C" FALCOR_API_EXPORT void registerPlugin(Falcor::PluginRegistry& registry)
 {
     registry.registerClass<RenderPass, ErrorMeasurePass>();
+    ScriptBindings::registerBinding([](pybind11::module& m)
+    {
+        pybind11::class_<ErrorMeasurePass, RenderPass, ref<ErrorMeasurePass>> pass(m, "ErrorMeasurePass");
+        pass.def_property_readonly("statistics", [](const ErrorMeasurePass& self) { return self.getStatistics().toPython(); });
+    });
 }
 
 const Gui::RadioButtonGroup ErrorMeasurePass::sOutputSelectionButtons = {
@@ -130,14 +137,34 @@ RenderPassReflection ErrorMeasurePass::reflect(const CompileData& compileData)
 
 void ErrorMeasurePass::execute(RenderContext* pRenderContext, const RenderData& renderData)
 {
+    ++mExecutionFrame;
+    mBackpressured = false;
     ref<Texture> pSourceImageTexture = renderData.getTexture(kInputChannelSourceImage);
     ref<Texture> pOutputImageTexture = renderData.getTexture(kOutputChannelImage);
+    ref<Texture> pReference = getReference(renderData);
+    ref<Texture> pWorldPosition = renderData.getTexture(kInputChannelWorldPosition);
+
+    // Check identity BEFORE collecting. A completed old result must never be
+    // normalized with new dimensions or enter the new reference/config EMA.
+    // Ordinary animation/upstream refresh changes image contents, not the
+    // measurement contract. Cancelling those frozen samples every frame would
+    // starve asynchronous statistics. Resource/reference/config changes still
+    // invalidate the generation before collection.
+    if (mpObservedSource != pSourceImageTexture || mpObservedReference != pReference || mpObservedWorldPosition != pWorldPosition)
+    {
+        invalidateMeasurements();
+        mpObservedSource = pSourceImageTexture;
+        mpObservedReference = pReference;
+        mpObservedWorldPosition = pWorldPosition;
+    }
+    mHasReference = pReference != nullptr;
 
     // Create the texture for the difference image if this is our first
     // time through or if the source image resolution has changed.
     const uint32_t width = pSourceImageTexture->getWidth(), height = pSourceImageTexture->getHeight();
     if (!mpDifferenceTexture || mpDifferenceTexture->getWidth() != width || mpDifferenceTexture->getHeight() != height)
     {
+        invalidateMeasurements();
         mpDifferenceTexture = mpDevice->createTexture2D(
             width,
             height,
@@ -150,9 +177,7 @@ void ErrorMeasurePass::execute(RenderContext* pRenderContext, const RenderData& 
         FALCOR_ASSERT(mpDifferenceTexture);
     }
 
-    mMeasurements.valid = false;
-
-    ref<Texture> pReference = getReference(renderData);
+    collectMeasurements();
     if (!pReference)
     {
         // We don't have a reference image, so just copy the source image to the output.
@@ -177,8 +202,6 @@ void ErrorMeasurePass::execute(RenderContext* pRenderContext, const RenderData& 
     default:
         FALCOR_THROW("ErrorMeasurePass: Unhandled OutputId case");
     }
-
-    saveMeasurementsToFile();
 }
 
 void ErrorMeasurePass::runDifferencePass(RenderContext* pRenderContext, const RenderData& renderData)
@@ -206,25 +229,146 @@ void ErrorMeasurePass::runDifferencePass(RenderContext* pRenderContext, const Re
 
 void ErrorMeasurePass::runReductionPasses(RenderContext* pRenderContext, const RenderData& renderData)
 {
-    float4 error;
-    mpParallelReduction->execute(pRenderContext, mpDifferenceTexture, ParallelReduction::Type::Sum, &error);
-
-    const float pixelCountf = static_cast<float>(mpDifferenceTexture->getWidth() * mpDifferenceTexture->getHeight());
-    mMeasurements.error = error.xyz() / pixelCountf;
-    mMeasurements.avgError = (mMeasurements.error.x + mMeasurements.error.y + mMeasurements.error.z) / 3.f;
-    mMeasurements.valid = true;
-
-    if (mRunningAvgError < 0)
+    // Skip CPU statistics, never the difference image, when the queue is full.
+    if (mPendingMeasurements.size() >= kMaxPendingMeasurements)
     {
-        // The running error values are invalid. Start them off with the current frame's error.
-        mRunningError = mMeasurements.error;
-        mRunningAvgError = mMeasurements.avgError;
+        ++mSkippedMeasurements;
+        mBackpressured = true;
+        return;
     }
-    else
+
+    MeasurementSample sample;
+    sample.submittedFrame = mExecutionFrame;
+    sample.submittedTime = std::chrono::duration<double>(std::chrono::steady_clock::now() - mStartTime).count();
+    sample.generation = mMeasurementGeneration;
+    sample.width = mpDifferenceTexture->getWidth();
+    sample.height = mpDifferenceTexture->getHeight();
+    sample.squaredDifference = mComputeSquaredDifference;
+    sample.computeAverage = mComputeAverage;
+    sample.ignoreBackground = mIgnoreBackground && renderData.getTexture(kInputChannelWorldPosition) != nullptr;
+    sample.useLoadedReference = mUseLoadedReference;
+    sample.reportRunningError = mReportRunningError;
+    sample.runningErrorSigma = mRunningErrorSigma;
+    sample.selectedOutput = mSelectedOutputId;
+
+    if (!mpReductionResult)
+        mpReductionResult = mpDevice->createBuffer(sizeof(float4), ResourceBindFlags::None, MemoryType::DeviceLocal);
+    mpParallelReduction->execute<float4>(pRenderContext, mpDifferenceTexture, ParallelReduction::Type::Sum, nullptr, mpReductionResult);
+    // The native task copies before the scratch result is reused, submits without
+    // waiting, and owns the 16-byte staging allocation and completion fence.
+    auto task = pRenderContext->asyncReadBuffer(mpReductionResult.get(), 0, sizeof(float4), sizeof(float4));
+    mPendingMeasurements.push_back({sample, std::move(task)});
+    ++mSubmittedMeasurements;
+}
+
+void ErrorMeasurePass::collectMeasurements()
+{
+    // FIFO retirement preserves EMA/CSV order. Poll at most four tasks per call.
+    while (!mPendingMeasurements.empty() && mPendingMeasurements.front().task->isReady())
     {
-        mRunningError = mRunningErrorSigma * mRunningError + (1 - mRunningErrorSigma) * mMeasurements.error;
-        mRunningAvgError = mRunningErrorSigma * mRunningAvgError + (1 - mRunningErrorSigma) * mMeasurements.avgError;
+        const auto sample = mPendingMeasurements.front().sample;
+        if (sample.generation != mMeasurementGeneration)
+        {
+            mPendingMeasurements.pop_front();
+            ++mDiscardedMeasurements;
+            continue;
+        }
+        const auto bytes = mPendingMeasurements.front().task->getDataNonBlocking();
+        FALCOR_CHECK(bytes.size() == sizeof(float4), "ErrorMeasurePass: Invalid reduction readback size");
+        float4 error;
+        std::memcpy(&error, bytes.data(), sizeof(error));
+        mPendingMeasurements.pop_front();
+        const float pixelCountf = static_cast<float>(uint64_t(sample.width) * sample.height);
+        mMeasurements.error = error.xyz() / pixelCountf;
+        mMeasurements.avgError = (mMeasurements.error.x + mMeasurements.error.y + mMeasurements.error.z) / 3.f;
+        mMeasurements.sample = sample;
+        mMeasurements.valid = true;
+        mLastCollectionFrame = mExecutionFrame;
+        ++mCompletedMeasurements;
+
+        if (mRunningAvgError < 0)
+        {
+            mRunningError = mMeasurements.error;
+            mRunningAvgError = mMeasurements.avgError;
+        }
+        else
+        {
+            const float sigma = sample.runningErrorSigma;
+            mRunningError = sigma * mRunningError + (1 - sigma) * mMeasurements.error;
+            mRunningAvgError = sigma * mRunningAvgError + (1 - sigma) * mMeasurements.avgError;
+        }
+        // A row belongs to this newly completed submission, never to a polling frame.
+        saveMeasurementsToFile();
     }
+}
+
+void ErrorMeasurePass::invalidateMeasurements()
+{
+    ++mMeasurementGeneration;
+    mMeasurements.valid = false;
+    mRunningAvgError = -1.f;
+    // Do not clear the queue: cancelled GPU work remains in the count/byte budget.
+    // On destruction native staging Buffer release uses Falcor's deferred release;
+    // this pass neither drains the GPU nor introduces a separate worker/scheduler.
+}
+
+void ErrorMeasurePass::setScene(RenderContext* pRenderContext, const ref<Scene>& pScene)
+{
+    invalidateMeasurements();
+}
+
+void ErrorMeasurePass::onHotReload(HotReloadFlags reloaded)
+{
+    if (is_set(reloaded, HotReloadFlags::Program))
+        invalidateMeasurements();
+}
+
+Properties ErrorMeasurePass::getStatistics() const
+{
+    Properties stats;
+    stats["schema_version"] = uint32_t(2);
+    stats["frame_domain"] = std::string("pass_execute_ordinal");
+    stats["time_domain"] = std::string("monotonic_seconds_since_pass_construction");
+    stats["status"] = std::string(!mHasReference ? "no_reference" : mBackpressured ? "backpressure" :
+        !mMeasurements.valid ? "pending" : "ready");
+    stats["valid"] = mMeasurements.valid;
+    stats["generation"] = mMeasurementGeneration;
+    stats["execute_frame"] = mExecutionFrame;
+    stats["pending_samples"] = uint64_t(mPendingMeasurements.size());
+    stats["max_pending_samples"] = uint64_t(kMaxPendingMeasurements);
+    uint64_t stagingBytes = 0;
+    for (const auto& pending : mPendingMeasurements)
+        stagingBytes += pending.task->getStagingSize();
+    stats["staging_bytes"] = stagingBytes;
+    stats["max_staging_bytes"] = uint64_t(kMaxPendingMeasurements * sizeof(float4));
+    stats["submitted_samples"] = mSubmittedMeasurements;
+    stats["completed_samples"] = mCompletedMeasurements;
+    stats["discarded_samples"] = mDiscardedMeasurements;
+    stats["skipped_samples"] = mSkippedMeasurements;
+    stats["backpressured"] = mBackpressured;
+    if (mMeasurements.valid)
+    {
+        const auto& sample = mMeasurements.sample;
+        stats["submitted_frame"] = sample.submittedFrame;
+        stats["submitted_time"] = sample.submittedTime;
+        stats["collected_frame"] = mLastCollectionFrame;
+        stats["age_frames"] = mExecutionFrame - sample.submittedFrame;
+        stats["sample_generation"] = sample.generation;
+        stats["width"] = sample.width;
+        stats["height"] = sample.height;
+        stats["squared_difference"] = sample.squaredDifference;
+        stats["compute_average"] = sample.computeAverage;
+        stats["ignore_background"] = sample.ignoreBackground;
+        stats["use_loaded_reference"] = sample.useLoadedReference;
+        stats["report_running_error"] = sample.reportRunningError;
+        stats["running_error_sigma"] = sample.runningErrorSigma;
+        stats["selected_output"] = uint32_t(sample.selectedOutput);
+        stats["error"] = mMeasurements.error;
+        stats["avg_error"] = mMeasurements.avgError;
+        stats["running_error"] = mRunningError;
+        stats["running_avg_error"] = mRunningAvgError;
+    }
+    return stats;
 }
 
 void ErrorMeasurePass::renderUI(Gui::Widgets& widget)
@@ -262,7 +406,7 @@ void ErrorMeasurePass::renderUI(Gui::Widgets& widget)
 
     // Radio buttons to select the output.
     widget.text("Show:");
-    if (mMeasurements.valid)
+    if (mHasReference)
     {
         widget.radioButtons(sOutputSelectionButtons, reinterpret_cast<uint32_t&>(mSelectedOutputId));
         widget.tooltip(
@@ -277,21 +421,21 @@ void ErrorMeasurePass::renderUI(Gui::Widgets& widget)
         widget.radioButtons(sOutputSelectionButtonsSourceOnly, dummyId);
     }
 
-    widget.checkbox("Ignore background", mIgnoreBackground);
+    bool optionsChanged = widget.checkbox("Ignore background", mIgnoreBackground);
     widget.tooltip(
         "Do not include background pixels in the error measurements.\n"
         "This option requires the optional input '" +
             std::string(kInputChannelWorldPosition) + "' to be bound",
         true
     );
-    widget.checkbox("Compute L2 error (rather than L1)", mComputeSquaredDifference);
-    widget.checkbox("Compute RGB average", mComputeAverage);
+    optionsChanged |= widget.checkbox("Compute L2 error (rather than L1)", mComputeSquaredDifference);
+    optionsChanged |= widget.checkbox("Compute RGB average", mComputeAverage);
     widget.tooltip(
         "When enabled, the average error over the RGB components is computed when creating the difference image.\n"
         "The average is computed after squaring the differences when L2 error is selected."
     );
 
-    widget.checkbox("Use loaded reference image", mUseLoadedReference);
+    optionsChanged |= widget.checkbox("Use loaded reference image", mUseLoadedReference);
     widget.tooltip(
         "Take the reference from the loaded image instead or the input channel.\n\n"
         "If the chosen reference doesn't exist, the error measurements are disabled.",
@@ -314,28 +458,34 @@ void ErrorMeasurePass::renderUI(Gui::Widgets& widget)
     }
 
     // Print numerical error (scalar and RGB).
-    if (widget.checkbox("Report running error", mReportRunningError) && mReportRunningError)
-    {
-        // The checkbox was enabled; mark the running error values invalid so that they start fresh.
-        mRunningAvgError = -1.f;
-    }
+    optionsChanged |= widget.checkbox("Report running error", mReportRunningError);
+    if (optionsChanged)
+        invalidateMeasurements();
     widget.tooltip("Exponential moving average, sigma = " + std::to_string(mRunningErrorSigma));
+    widget.text(fmt::format("Async statistics: {}/{} queued, {} skipped, {} discarded{}",
+        mPendingMeasurements.size(), kMaxPendingMeasurements, mSkippedMeasurements, mDiscardedMeasurements,
+        mBackpressured ? " (backpressure)" : ""));
+    widget.tooltip("Statistics lag the image. A full queue skips statistics without delaying Difference output.\n"
+        "Frame identity is the pass execute ordinal; CSV v2 time is monotonic seconds since pass construction.");
     if (mMeasurements.valid)
     {
         // Use stream so we can control formatting.
         std::ostringstream oss;
         oss << std::scientific;
-        oss << (mComputeSquaredDifference ? "MSE (avg): " : "L1 error (avg): ")
+        oss << (mMeasurements.sample.squaredDifference ? "MSE (avg): " : "L1 error (avg): ")
             << (mReportRunningError ? mRunningAvgError : mMeasurements.avgError) << std::endl;
-        oss << (mComputeSquaredDifference ? "MSE (rgb): " : "L1 error (rgb): ")
+        oss << (mMeasurements.sample.squaredDifference ? "MSE (rgb): " : "L1 error (rgb): ")
             << (mReportRunningError ? mRunningError.r : mMeasurements.error.r) << ", "
             << (mReportRunningError ? mRunningError.g : mMeasurements.error.g) << ", "
             << (mReportRunningError ? mRunningError.b : mMeasurements.error.b);
         widget.text(oss.str());
+        widget.text(fmt::format("Last completed: submitted frame {}, {} frames old ({}x{})",
+            mMeasurements.sample.submittedFrame, mExecutionFrame - mMeasurements.sample.submittedFrame,
+            mMeasurements.sample.width, mMeasurements.sample.height));
     }
     else
     {
-        widget.text("Error: N/A");
+        widget.text(mHasReference ? "Error: pending current-generation statistics" : "Error: N/A (no reference)");
     }
 }
 
@@ -357,6 +507,7 @@ bool ErrorMeasurePass::loadReference()
 {
     if (mReferenceImagePath.empty())
         return false;
+    invalidateMeasurements();
 
     // TODO: it would be nice to also be able to take the reference image as an input.
     std::filesystem::path resolvedPath = AssetResolver::getDefaultResolver().resolvePath(mReferenceImagePath);
@@ -382,6 +533,8 @@ bool ErrorMeasurePass::loadMeasurementsFile()
 {
     if (mMeasurementsFilePath.empty())
         return false;
+    // Pending samples from the old output session must not enter this new file.
+    invalidateMeasurements();
 
     mMeasurementsFile = std::ofstream(mMeasurementsFilePath, std::ios::trunc);
     if (!mMeasurementsFile)
@@ -394,13 +547,18 @@ bool ErrorMeasurePass::loadMeasurementsFile()
     {
         if (mComputeSquaredDifference)
         {
-            mMeasurementsFile << "avg_L2_error,red_L2_error,green_L2_error,blue_L2_error" << std::endl;
+            mMeasurementsFile << "avg_L2_error,red_L2_error,green_L2_error,blue_L2_error";
         }
         else
         {
-            mMeasurementsFile << "avg_L1_error,red_L1_error,green_L1_error,blue_L1_error" << std::endl;
+            mMeasurementsFile << "avg_L1_error,red_L1_error,green_L1_error,blue_L1_error";
         }
-        mMeasurementsFile << std::scientific;
+        // First four fields retain legacy numeric layout/header. In v2 the
+        // per-row error_metric is authoritative if UI options change mid-file.
+        mMeasurementsFile << ",schema_version,status,submitted_frame,submitted_time,width,height,generation,error_metric,"
+            "compute_average,ignore_background,use_loaded_reference,report_running_error,running_error_sigma,selected_output,"
+            "collected_frame,skipped_samples,frame_domain,time_domain" << std::endl;
+        mMeasurementsFile << std::scientific << std::setprecision(17);
     }
 
     return true;
@@ -408,11 +566,17 @@ bool ErrorMeasurePass::loadMeasurementsFile()
 
 void ErrorMeasurePass::saveMeasurementsToFile()
 {
-    if (!mMeasurementsFile)
+    if (!mMeasurementsFile.is_open() || !mMeasurementsFile)
         return;
 
     FALCOR_ASSERT(mMeasurements.valid);
     mMeasurementsFile << mMeasurements.avgError << ",";
     mMeasurementsFile << mMeasurements.error.r << ',' << mMeasurements.error.g << ',' << mMeasurements.error.b;
+    const auto& sample = mMeasurements.sample;
+    mMeasurementsFile << ",2,completed," << sample.submittedFrame << ',' << sample.submittedTime << ',' << sample.width << ','
+        << sample.height << ',' << sample.generation << ',' << (sample.squaredDifference ? "MSE" : "L1") << ','
+        << sample.computeAverage << ',' << sample.ignoreBackground << ',' << sample.useLoadedReference << ','
+        << sample.reportRunningError << ',' << sample.runningErrorSigma << ',' << uint32_t(sample.selectedOutput) << ','
+        << mLastCollectionFrame << ',' << mSkippedMeasurements << ",pass_execute_ordinal,monotonic_seconds_since_pass_construction";
     mMeasurementsFile << std::endl;
 }

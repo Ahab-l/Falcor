@@ -1,0 +1,11 @@
+# Native source sun setup implementation plan
+
+This is the next authorized pixel-effect correction, not a new renderer architecture. Reuse the existing source scene / immutable config / declared pipeline. Original UE/project remain read-only, no RDC inputs, no commits. UE/build/GPU execution is serial and root-owned.
+
+- [x] Extract unchanged `FAtmosphereSetup::GetTransmittanceAtGroundLevel` and `FColorSpace::MakeFromColorTemperature` with source-file/fragment hashes. Supply small UE-compatible vector/color/math types and the original sRGB working-space matrix construction. Preserve original scalar precision and loop semantics. The double cofactor matrix inverse is a compatibility implementation, not SIMD instruction emulation.
+- [x] Add independent CPU/standalone tests: vacuum transmittance, constant-medium Beer law, solar elevation clamp, disabled temperature, non-white FColor conversion and finite settings. Root compiles/runs native tests. Evidence `build/sun-setup/run-fqrprirl`, config suite `build/sun-final-tests.log`.
+- [x] Integrate setup into source sun contract: outer-space irradiance is decoded source color × brightness × optional temperature; when atmosphere sun uses no per-pixel transmittance, multiply by computed ground transmittance. Preserve source source-angle/disk-scale for later sky.
+- [x] Validate direct Lighting uses the corrected native source data through existing framework, with independent source inputs and raw outputs. Re-run relevant targetmap shadow/exposure integration checks. Sun `run-4w6ell2x` / launcher `run-qeaotzg6`; exposure/LUT composition `run-17sr7axi` / launcher `run-34qtboqi`; 385 Python tests.
+- [ ] Follow with source camera/planet `ComputeViewData`, SkyView LUT and M_SimpleSkyDome's original view-luminance + sun-disk behavior. Realtime SkyLight is a generated environment/convolution consumer after visible sky.
+
+Source references: LightComponent.cpp:560,1623; ColorManagement/ColorSpace.cpp:230,271; Rendering/SkyAtmosphereCommonData.cpp:182,271; DirectionalLightComponent.cpp:602; SkyAtmosphereRendering.cpp:577,584; MaterialTemplate.ush:2358,2369. Source target atmosphere is PlanetTopAtComponentTransform at (0,0,-6000) cm, so planet center is (0,0,-6360.06) km. Current camera/capture match remains unproven.

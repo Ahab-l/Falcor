@@ -221,7 +221,7 @@ void ParameterBlock::createConstantBuffers(const ShaderVar& var)
     }
 }
 
-void ParameterBlock::prepareResource(CopyContext* pContext, Resource* pResource, bool isUav)
+void ParameterBlock::prepareResource(CopyContext* pContext, Resource* pResource, bool isUav, const ResourceViewInfo* pViewInfo)
 {
     if (!pResource)
         return;
@@ -238,10 +238,13 @@ void ParameterBlock::prepareResource(CopyContext* pContext, Resource* pResource,
     insertBarrier = (is_set(pResource->getBindFlags(), ResourceBindFlags::AccelerationStructure) == false);
     if (insertBarrier)
     {
-        insertBarrier = !pContext->resourceBarrier(pResource, isUav ? Resource::State::UnorderedAccess : Resource::State::ShaderResource);
+        insertBarrier = !pContext->resourceBarrier(
+            pResource, isUav ? Resource::State::UnorderedAccess : Resource::State::ShaderResource, pViewInfo
+        );
     }
 
-    // Insert UAV barrier automatically if the resource is an UAV that is already in UnorderedAccess state.
+    // If any selected subresource was already a UAV, its prior writes still need a UAV ordering barrier.
+    // resourceBarrier() returns true only when every selected subresource changed state.
     // Otherwise the user would have to insert barriers explicitly between passes accessing UAVs, which is easily forgotten.
     if (insertBarrier && isUav)
         pContext->uavBarrier(pResource);
@@ -805,11 +808,13 @@ bool ParameterBlock::prepareDescriptorSets(CopyContext* pCopyContext)
     // Insert necessary resource barriers for bound resources.
     for (auto& srv : mSRVs)
     {
-        prepareResource(pCopyContext, srv.second ? srv.second->getResource() : nullptr, false);
+        const auto& view = srv.second;
+        prepareResource(pCopyContext, view ? view->getResource() : nullptr, false, view ? &view->getViewInfo() : nullptr);
     }
     for (auto& uav : mUAVs)
     {
-        prepareResource(pCopyContext, uav.second ? uav.second->getResource() : nullptr, true);
+        const auto& view = uav.second;
+        prepareResource(pCopyContext, view ? view->getResource() : nullptr, true, view ? &view->getViewInfo() : nullptr);
     }
     for (auto& subObj : this->mParameterBlocks)
     {

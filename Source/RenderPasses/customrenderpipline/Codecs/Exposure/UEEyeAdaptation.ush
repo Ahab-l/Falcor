@@ -1,0 +1,56 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+float4 EyeAdaptationCommon(float AverageSceneLuminance, float OldExposureScale)
+{
+	const float TargetAverageLuminance = clamp(AverageSceneLuminance, EyeAdaptation_MinAverageLuminance, EyeAdaptation_MaxAverageLuminance);
+
+	// White point luminance is target luminance divided by 0.18 (18% grey).
+	const float TargetExposure = TargetAverageLuminance / 0.18;
+
+	const float EyeAdaptationEV100 = log2((AverageSceneLuminance / 0.18) / EyeAdaptation_LuminanceMax);
+	const float LUT_U = EyeAdaptationEV100 * EyeAdaptation_EV100ToExposureCompensationCurveLUTScaleBias.x + EyeAdaptation_EV100ToExposureCompensationCurveLUTScaleBias.y;
+	const float ExposureCompensationFromCurveLUT = Texture2DSampleLevel(EyeAdaptation_ExposureCompensationCurveLUT, EyeAdaptation_ExposureCompensationCurveSampler, float2(LUT_U, 0.5f), 0).x;
+
+	const float MiddleGreyExposureCompensation = EyeAdaptation_ExposureCompensationSettings * EyeAdaptation_ExposureCompensationCurve * ExposureCompensationFromCurveLUT; // we want the average luminance remapped to 0.18, not 1.0
+	const float OldExposure = MiddleGreyExposureCompensation / (OldExposureScale != 0 ? OldExposureScale : 1.0f);
+
+	// eye adaptation changes over time
+	const float EstimatedExposure = ComputeEyeAdaptation(OldExposure, TargetExposure, EyeAdaptation_DeltaWorldTime);
+
+	// maybe make this an option to avoid hard clamping when transitioning between different exposure volumes?
+	const float SmoothedExposure = clamp(EstimatedExposure, EyeAdaptation_MinAverageLuminance / .18f, EyeAdaptation_MaxAverageLuminance / .18f);
+
+	const float SmoothedExposureScale = 1.0f / max(0.0001f, SmoothedExposure);
+	const float TargetExposureScale = 1.0f / max(0.0001f, TargetExposure);
+
+	float4 OutData;
+	// Output the number that will rescale the image intensity
+	OutData.x = MiddleGreyExposureCompensation * SmoothedExposureScale;
+	// Output the target value
+	OutData.y = MiddleGreyExposureCompensation * TargetExposureScale;
+	OutData.z = AverageSceneLuminance;
+	OutData.w = MiddleGreyExposureCompensation;
+
+	return OutData;
+}
+
+#if COMPUTESHADER
+[numthreads(1, 1, 1)]
+void EyeAdaptationCS(uint2 DispatchThreadId : SV_DispatchThreadID)
+{
+	const float AverageSceneLuminance = ComputeEyeAdaptationExposure(HistogramTexture);
+	const float OldExposureScale = HistogramTexture.Load(int3(0, 1, 0)).x;
+
+	const float4 OutData0 = EyeAdaptationCommon(AverageSceneLuminance, OldExposureScale);
+	
+
+#if COMPUTE_AVERAGE_LOCAL_EXPOSURE
+	const float AverageLocalExposure = ComputeAverageLocalExposure(HistogramTexture, OutData0.x, OutData0.w);
+#else
+	const float AverageLocalExposure = 1.0f;
+#endif
+
+	RWEyeAdaptationBuffer[0] = OutData0;
+	RWEyeAdaptationBuffer[1] = float4(AverageLocalExposure, 0.0f, 0.0f, 0.0f);
+}
+#endif
+

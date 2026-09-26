@@ -26,6 +26,10 @@
  # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **************************************************************************/
 #include "RenderContext.h"
+#if FALCOR_HAS_D3D12
+#include <d3d12sdklayers.h>
+#include "NativeHandleTraits.h"
+#endif
 #include "FBO.h"
 #include "Texture.h"
 #include "BlitContext.h"
@@ -43,6 +47,33 @@ namespace Falcor
 {
 namespace
 {
+void checkDrawResult(Device* device, SlangResult result)
+{
+#if FALCOR_HAS_D3D12
+    if (SLANG_FAILED(result) && device->getType() == Device::Type::D3D12)
+    {
+        ID3D12InfoQueue* queue = nullptr;
+        if (SUCCEEDED(device->getNativeHandle().as<ID3D12Device*>()->QueryInterface(IID_PPV_ARGS(&queue))))
+        {
+            for (UINT64 i = 0; i < queue->GetNumStoredMessages(); ++i)
+            {
+                SIZE_T size = 0;
+                queue->GetMessage(i, nullptr, &size);
+                std::vector<uint8_t> storage(size);
+                auto message = reinterpret_cast<D3D12_MESSAGE*>(storage.data());
+                if (SUCCEEDED(queue->GetMessage(i, message, &size)) && message->Severity <= D3D12_MESSAGE_SEVERITY_ERROR)
+                    logError("D3D12 draw validation {}: {}", uint32_t(message->ID), message->pDescription);
+            }
+            queue->Release();
+        }
+    }
+    // An invalid pipeline/input is recoverable by rejecting the candidate
+    // graph. Device removal and other execution failures keep the fatal path.
+    FALCOR_CHECK(result != E_INVALIDARG, "D3D12 draw rejected invalid pipeline or arguments; see validation diagnostics");
+#endif
+    FALCOR_GFX_CALL(result);
+}
+
 constexpr void checkViewportScissorBinaryCompatiblity()
 {
     static_assert(offsetof(gfx::Viewport, originX) == offsetof(GraphicsState::Viewport, originX));
@@ -452,7 +483,8 @@ void RenderContext::drawInstanced(
 void RenderContext::draw(GraphicsState* pState, ProgramVars* pVars, uint32_t vertexCount, uint32_t startVertexLocation)
 {
     auto encoder = drawCallCommon(pState, pVars);
-    FALCOR_GFX_CALL(encoder->draw(vertexCount, startVertexLocation));
+    const auto result = encoder->draw(vertexCount, startVertexLocation);
+    checkDrawResult(mpDevice, result);
     mCommandsPending = true;
 }
 
@@ -467,8 +499,7 @@ void RenderContext::drawIndexedInstanced(
 )
 {
     auto encoder = drawCallCommon(pState, pVars);
-    FALCOR_GFX_CALL(encoder->drawIndexedInstanced(indexCount, instanceCount, startIndexLocation, baseVertexLocation, startInstanceLocation)
-    );
+    checkDrawResult(mpDevice, encoder->drawIndexedInstanced(indexCount, instanceCount, startIndexLocation, baseVertexLocation, startInstanceLocation));
     mCommandsPending = true;
 }
 
@@ -654,9 +685,14 @@ gfx::IRenderCommandEncoder* RenderContext::drawCallCommon(GraphicsState* pState,
     // Insert barriers for render targets.
     ensureFboAttachmentResourceStates(this, pState->getFbo().get());
 
-    // Insert barriers for vertex/index buffers.
+    // Resource states can change between draws without changing the GSO (for example, a compute UAV write).
+    // D3D12 therefore validates IA states on every draw, independently of the binding cache below.
     auto pGso = pState->getGSO(pVars).get();
-    if (pGso != mpLastBoundGraphicsStateObject)
+    bool checkIaStates = pGso != mpLastBoundGraphicsStateObject;
+#if FALCOR_HAS_D3D12
+    checkIaStates |= mpDevice->getType() == Device::Type::D3D12;
+#endif
+    if (checkIaStates)
     {
         auto pVao = pState->getVao().get();
         for (uint32_t i = 0; i < pVao->getVertexBuffersCount(); i++)
@@ -677,6 +713,7 @@ gfx::IRenderCommandEncoder* RenderContext::drawCallCommon(GraphicsState* pState,
     );
 
     FALCOR_GFX_CALL(encoder->bindPipelineWithRootObject(pGso->getGfxPipelineState(), pVars->getShaderObject()));
+    encoder->setStencilReference(pState->getStencilRef());
 
     if (isNewEncoder || pGso != mpLastBoundGraphicsStateObject)
     {

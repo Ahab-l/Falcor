@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "type": "CustomRenderPiplineMeshDrawPass",
+  "properties": {
+    "shader": {"file": "Mesh.slang", "vertex": "vsMain", "pixel": "psMain"},
+    "colorTargets": [{"name": "color", "format": "RGBA32Float", "slot": 0}],
+    "depthTarget": {"name": "depth", "format": "D32Float"},
+    "state": {"cull_mode": "Material"}
+  }
+}

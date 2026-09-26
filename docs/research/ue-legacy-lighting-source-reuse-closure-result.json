@@ -1,0 +1,305 @@
+{
+  "status": "production_source_reuse_batch_verified",
+  "capture_equivalence": false,
+  "full_goal_complete": false,
+  "scope": "Existing shared Lighting mathematics source reuse. Capture remains four DefaultLit opaque meshes; other material models are separate regression fixtures.",
+  "cpu_tests": {
+    "count": 181,
+    "passed": true,
+    "execution_evidence": "Root tool session 88626 exit 0; original discovery without NumPy path recorded separately as setup failure."
+  },
+  "strict_hdr": {
+    "pixels": 1480960,
+    "raw_channel_mismatches": 31,
+    "raw_pixel_mismatches": 31,
+    "raw_mismatches_rgba": [
+      14,
+      8,
+      9,
+      0
+    ],
+    "nonfinite_channels": 0,
+    "max_abs_error": 0.0009765625,
+    "mean_abs_error": 2.0812684951821793e-09,
+    "p99_abs_error": 0.0,
+    "max_half_ulp": 1,
+    "half_ulp_counts": {
+      "0": 5923809,
+      "1": 31,
+      "2": 0,
+      "3": 0,
+      "4": 0
+    },
+    "half_ulp_over_4": 0
+  },
+  "evidence": {
+    "original_source_staging": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-reuse\\run-7896wpt0\\manifest.json",
+      "bytes": 29194,
+      "sha256": "481f548f8dcd833b9d1a1f32550470ab452a4746413ef9fbe58b28c0b39653cf"
+    },
+    "private_components_and_rdc": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-gpu\\run-d1xl2w6b\\result.json",
+      "bytes": 616738,
+      "sha256": "c73fe54cba1ab351859600de559ccb5ebeee39b94cac0ee4b7c195c4da8761f1"
+    },
+    "independent_source_and_numeric_review": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-independent-review\\admission-review.json",
+      "bytes": 54096,
+      "sha256": "950bdf53ce0032c7ae53e90a33315b498de94f5b9beab7bc8b5c84004fcda4df"
+    },
+    "non_capture_existing_model_regression": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-broader-gpu\\run-f2izuhmo\\result.json",
+      "bytes": 1291760,
+      "sha256": "32b3e671ffa734663879be7145c95e6b022cc7e27d1ced05553db4c93ce9f345"
+    },
+    "installed_source": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-install\\run-bx8c0ax9\\receipt.json",
+      "bytes": 5641,
+      "sha256": "3892414853933e4b2d0a2373a835c96e3a4f6b3eb2f9212584d3220d8184b59b"
+    },
+    "build": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-build\\run-gwxye78_\\result.json",
+      "bytes": 55,
+      "sha256": "bb27daacda2df2cfc6ed9b41a1c1e01e0f0ba34f742dbbe764700f307ca68c14"
+    },
+    "build_log": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-build\\run-gwxye78_\\build.log",
+      "bytes": 2589,
+      "sha256": "bf8ed676720d84cd2f1fff37fae4a970e330274f5ff27ef1cc2e15791c147eb8"
+    },
+    "production_rdc": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-production\\run-p1e3_dkq\\result.json",
+      "bytes": 32154,
+      "sha256": "a58c7256615951c769031b64b272f65352ec4f8022280314d1dca2d9b28a9e7b"
+    },
+    "schema_migration": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-migration\\run-2qnqroga\\result.json",
+      "bytes": 81355,
+      "sha256": "cd6fd44948df589793f11da2c6a7753310b2b391cff14c9c5cea1d9e2e83caba"
+    },
+    "production_process": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-cache\\run-4iiyq_6u\\process-result.json",
+      "bytes": 274,
+      "sha256": "c206f921aba69ed50faf13d24e9a46abcf0b7abcab9d4131d102b1fcebde4239"
+    },
+    "migration_process": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\ue-lighting-closure-cache\\run-s_xkeaf1\\process-result.json",
+      "bytes": 285,
+      "sha256": "bff331633f7d414ef0e24386eba7e805ce32c64dc5e929903ddaefbc224ee0aa"
+    },
+    "init_bxdf_ue_comparison": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-dxil-prefix-generations\\replay-md97pnx7\\native-comparison-v3-archived-worker.json",
+      "bytes": 91947,
+      "sha256": "5a8cb62712c0c1489ce799d1a97b02f868b0ff039aa675d8d8db072abfddfce2"
+    },
+    "init_bxdf_worker_receipt": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-dxil-prefix-generations\\replay-md97pnx7\\worker-archive-receipt.json",
+      "bytes": 908,
+      "sha256": "aee10ecbe441ab8283bd51ab3385740c7150f7b9423911c08937e09a17cd8970"
+    },
+    "init_bxdf_native_dataflow": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-bxdf-init-prefix-cache\\run-4_jabzi2\\native-dataflow-review.json",
+      "bytes": 12426,
+      "sha256": "e58a0c47fa2596fc90c982bd054ff014eba41d966f50af87761a0d0c81a1da92"
+    },
+    "shadow_export_incomplete": {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-shadow-provenance\\run-5pd03t_f\\raw\\replay-done.json",
+      "bytes": 1225,
+      "sha256": "cf4d16865d56e81ee6d6a61b89da48f5a32b895ea96dfbbd21ce9757feab7ad0"
+    }
+  },
+  "current_source_files": [
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\ClearCoat.lighting.json",
+      "bytes": 421,
+      "sha256": "55ebf8bf174663453b8b45451fb2769b49de48c6976798b247503b432f794ba5"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\ClearCoat.slangh",
+      "bytes": 5740,
+      "sha256": "4367ca40675217102670ac4b1ed6d463c9a3d695df28e26bc2fb0c02cf352cab"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Cloth.lighting.json",
+      "bytes": 417,
+      "sha256": "349c566e49e0bdc9320c224d2ac116e5504ece094d2cc4a9b8784b52cd548233"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Cloth.slangh",
+      "bytes": 2052,
+      "sha256": "2e7f5417023ba078cad03756213c642d336abccfdc6f2667321e6df9a5552cfd"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\DefaultLit.lighting.json",
+      "bytes": 387,
+      "sha256": "9ffeb59dbe92ac501f04ccac4489701171c77de525c75e1fe430b58c537efe09"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\DefaultLit.slangh",
+      "bytes": 1679,
+      "sha256": "95fa47bda7871e30165074b16fbd9b033b3bb1a5bfcfeecf0939a717588b1480"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\LightingCommon.slangh",
+      "bytes": 1595,
+      "sha256": "1d9b4cf2c7764396bfc907c04f2db40634176c33dc9e5a9dae3e23e8b87c8887"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\LightTerms.slangh",
+      "bytes": 6088,
+      "sha256": "a70dc27b2f8f526125c5399cd78a1d6e39a7c0d5aace349e3e3d0487e589a098"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\PreintegratedSkin.lighting.json",
+      "bytes": 447,
+      "sha256": "d99841102ede2771cac500d088222332d8714b2d359dab846e0b6d6ad495c897"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\PreintegratedSkin.slangh",
+      "bytes": 953,
+      "sha256": "384d7e863c5ee81ca4640f7bb402e6376ad26999e2390360b68c38b0888d8b57"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Subsurface.lighting.json",
+      "bytes": 441,
+      "sha256": "7cb9817e9d327c616cc63f4aab4691d0ee1998293acfdd8fd730feb6a956c1b1"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Subsurface.slangh",
+      "bytes": 1811,
+      "sha256": "1b754f380c9b6ae852c02d4157b3bd51f4467af85507be9e6ff3ef9bba6d05d8"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\SubsurfaceColor.slangh",
+      "bytes": 1693,
+      "sha256": "7a64e0f029434f4188fd17f29471cafca2205fead288b3426a7cddd09cd1a218"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\TwoSidedFoliage.lighting.json",
+      "bytes": 427,
+      "sha256": "e5221808e837f571dc520d6e2eb82b51141c1efcce008abdf95f4124299aac7f"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\TwoSidedFoliage.slangh",
+      "bytes": 982,
+      "sha256": "ff2a56637ca8a733f0db8151b378b6f44c8994a0fa91e8835fb694c295b098f8"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEBRDF.prefix.ush",
+      "bytes": 4506,
+      "sha256": "7ddeb1bc1a0c143f754ef7019c11ba5af0250f6ad8b7161e34ee0f9e294510f7"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEBRDFBxDFAdapter.slangh",
+      "bytes": 1366,
+      "sha256": "19515df257b5f9858794c5d9a6c61e89fa962875481b54a122e7836adeebb36a"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEBRDFPCCompat.slangh",
+      "bytes": 808,
+      "sha256": "1a21441ce0a3b419f8abbe280ec8c1e85685f1b3fe2b7d5e36e7011cfa1dd45c"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.Area.ush",
+      "bytes": 1653,
+      "sha256": "a6b6778f441d70cec8784e103762e066c5610755b2c51c220c4b78f358ece6b0"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.BRDF.ush",
+      "bytes": 1159,
+      "sha256": "c123589ce31f4a4cff7cd92274f23d28b6e082f92e65032b224d96041a70c442"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.Capsule.ush",
+      "bytes": 2866,
+      "sha256": "707055ac0395142ca9cff7df4e183658c6db2a8830d72cd79fe4278cee8960fe"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.Common.ush",
+      "bytes": 272,
+      "sha256": "18f56fec292c122686f8ccb72e413b6decf9024366359a8d58740254f6abc23d"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.CreateArea.ush",
+      "bytes": 2643,
+      "sha256": "d39d87adae5e8a1e861135cfcb4079d50694aad045cba950af9706dbd1ef7bca"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.FastMath.ush",
+      "bytes": 1879,
+      "sha256": "e6b484b4367cdfa4964b203bb315e40dc4f8c559406c690595d0ac0e42f9ff83"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.GetCapsule.ush",
+      "bytes": 480,
+      "sha256": "ef3a67f37f23e248d341689b0e217ae1022578c050371a43a5d5491843508f88"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.LightData.ush",
+      "bytes": 331,
+      "sha256": "534f08b38f48a03605b90ed015aba803ca111049401bf9d5dc667b1ddc6377fa"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.Platform.ush",
+      "bytes": 75,
+      "sha256": "931a644bff68e0964b7fb0a0a09759832f8b820d02ea5e316ba0ccbe7a6be1de"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.Rect.ush",
+      "bytes": 158,
+      "sha256": "97ccbfdb28981f778031b9bfec8155c466392f357330d2045d59aeaf5b187f95"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosure.ShadingModels.ush",
+      "bytes": 1797,
+      "sha256": "169b37b939a5da95c7a0ee285fe45afa73850cd952d639b061b13f5369184d82"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosureAdapters.slangh",
+      "bytes": 3807,
+      "sha256": "dcabcea1f9ceb6d3ac02ed3d60c604a9ee37d56c944b4250d3691a89df61a63f"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEClosurePCCompat.slangh",
+      "bytes": 1227,
+      "sha256": "ff89d8c987e82e9296553e17d306629f3980c2f8d3e69f1b6eb26184686a86f0"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\UEPow2.scalar.ush",
+      "bytes": 40,
+      "sha256": "1fecb8d3b05f05cb732464d87fadcd672ffc5f6adc483e86bb710f6366f1e996"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Unlit.lighting.json",
+      "bytes": 248,
+      "sha256": "4da08f26f5ac70efd9bc8a0f7e97bdf00b87f2efa520bab489f3f4f0260f7878"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Unlit.slangh",
+      "bytes": 492,
+      "sha256": "c3c8ec02cb212a3f21fa8dffa720da29a295b2800e54e59f3cbb8a87850f95c6"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\import_ue_lighting.py",
+      "bytes": 3528,
+      "sha256": "209457c0a338e0b617ae3187e608bae3890c5aeedd1c0e2b29be1b8f862de2b5"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\ue_lighting_sources.json",
+      "bytes": 18836,
+      "sha256": "0c6be818271cb8b4e7191c53cd8e7554f693575524005e1c8334d7a542ac5e51"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\test_ue_source_reuse.py",
+      "bytes": 2259,
+      "sha256": "58aea97370104d7a2b14b7c97f1d1379213acaefd85d8b7e758fdc6cf264f662"
+    },
+    {
+      "path": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\CMakeLists.txt",
+      "bytes": 2997,
+      "sha256": "6523f0455d27407d6e4f5f44517cac91c66274b6a6b8e57d1e5be8d5d0ef8ce4"
+    }
+  ],
+  "archive_boundary": "Authenticated evidence index. Detailed immutable raw data and frozen source snapshots remain at the named build paths; this is not a standalone replay package."
+}

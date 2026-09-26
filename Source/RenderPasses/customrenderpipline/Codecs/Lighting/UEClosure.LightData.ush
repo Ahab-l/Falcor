@@ -1,0 +1,18 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+#define MAX_RECT_ATLAS_MIP			32
+struct FRectTexture
+{
+	half2 AtlasUVOffset;
+	half2 AtlasUVScale;
+	half  AtlasMaxLevel;
+};
+
+FRectTexture InitRectTexture()
+{
+	FRectTexture Out;
+	Out.AtlasUVOffset = 0;
+	Out.AtlasUVScale  = 0;
+	Out.AtlasMaxLevel = MAX_RECT_ATLAS_MIP;
+	return Out;
+}
+

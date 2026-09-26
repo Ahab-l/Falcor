@@ -1,0 +1,11 @@
+{
+  "type": "CustomRenderPiplineComputePass",
+  "file_inputs": ["shader.file"],
+  "properties": {
+    "shader": {"file": "Pattern.slang"},
+    "resources": [
+      {"name": "color", "direction": "output", "binding": "gColor", "format": "RGBA32Float", "size": [64, 32]}
+    ],
+    "dispatch": {"extent": "color"}
+  }
+}

@@ -1,0 +1,107 @@
+#ifndef UE_LEGACY_RDC_GRID_MATERIAL
+#define UE_LEGACY_RDC_GRID_MATERIAL
+
+// Captured EID 1853, PS ResourceId::2277503. See docs/research/ue-legacy-rdc-scene.
+// This material evaluator has no dependency on GBuffer layout or physical MRTs.
+// Bind ResourceId::7376 as BC1_UNORM_SRGB, preserving all 10 captured mip levels.
+// Sampler s0: Wrap U/V/W, anisotropic min/mag/mip, maxAnisotropy=8, bias=0,
+// minLOD=0, maxLOD=FLT_MAX. Sample() intentionally uses pixel derivatives.
+
+struct RDCGridParameters
+{
+    float3 objectOriginUECm;
+    float frequencyPerCm;
+    float3 projectionAxisX;
+    float checkerRoughness1;
+    float3 projectionAxisY;
+    float checkerRoughness0;
+    float3 projectionAxisZ;
+    float lineRoughness;
+    float3 checkerColor1;
+    float specular;
+    float3 checkerColor0;
+    float pad0;
+    float3 gridColor;
+    float pad1;
+    float3 emissive;
+    float pad2;
+};
+
+struct RDCGridMaterialInputs
+{
+    float3 baseColor;
+    float metallic;
+    float roughness;
+    float specular;
+    float3 emissive;
+};
+
+RDCGridParameters capturedRDCGridParameters()
+{
+    RDCGridParameters p = (RDCGridParameters)0;
+    p.objectOriginUECm = float3(0.0, 0.0, -0.5);
+    p.frequencyPerCm = 0.009999999776482582;
+    p.projectionAxisX = float3(1.0, 0.0, 0.0);
+    p.projectionAxisY = float3(0.0, 1.0, 0.0);
+    p.projectionAxisZ = float3(0.0, 0.0, 1.0);
+    p.checkerColor1 = float3(0.23000000417232513);
+    p.checkerColor0 = float3(0.18000000715255737);
+    p.gridColor = float3(0.33854201436042786);
+    p.checkerRoughness1 = 0.6499999761581421;
+    p.checkerRoughness0 = 0.5;
+    p.lineRoughness = 0.3;
+    p.specular = 0.5;
+    return p;
+}
+
+// positionWorldUECm must be the pixel's absolute UE-space position in centimeters.
+// For closest agreement, reconstruct it from SV_Position using the captured View
+// matrix, as the captured PS does; vertex-interpolated world position can round
+// differently. normalLocal is TEXCOORD0.xyz (un-normalized packed local normal),
+// not tangent-space normal-map output. For this floor its local and UE world axes
+// coincide. The first blend uses normalLocal.x, the second normalLocal.z.
+RDCGridMaterialInputs evaluateRDCGridMaterial(
+    float3 positionWorldUECm,
+    float3 normalLocal,
+    Texture2D<float4> gridTexture,
+    SamplerState gridSampler,
+    RDCGridParameters p
+)
+{
+    float3 delta = positionWorldUECm - p.objectOriginUECm;
+    float3 uvw = p.frequencyPerCm * float3(
+        dot(delta, p.projectionAxisX),
+        dot(delta, p.projectionAxisY),
+        dot(delta, p.projectionAxisZ)
+    );
+    float blendX = saturate(abs(normalLocal.x) * 3.0 - 1.0);
+    float blendZ = saturate(abs(normalLocal.z) * 3.0 - 1.0);
+
+    // DXIL _333.._361: green checker mask, half-frequency coordinates.
+    float gxz = gridTexture.Sample(gridSampler, uvw.xz * 0.5).g;
+    float gyz = gridTexture.Sample(gridSampler, uvw.yz * 0.5).g;
+    float gxy = gridTexture.Sample(gridSampler, uvw.xy * 0.5).g;
+    float checkerMaskXZ_YZ = gxz + blendX * (gyz - gxz);
+    float checkerMask = checkerMaskXZ_YZ + blendZ * (gxy - checkerMaskXZ_YZ);
+
+    // DXIL _381.._411: red grid mask, full-frequency coordinates.
+    float rxz = gridTexture.Sample(gridSampler, uvw.xz).r;
+    float ryz = gridTexture.Sample(gridSampler, uvw.yz).r;
+    float rxy = gridTexture.Sample(gridSampler, uvw.xy).r;
+    float gridMaskXZ_YZ = rxz + blendX * (ryz - rxz);
+    float gridMask = gridMaskXZ_YZ + blendZ * (rxy - gridMaskXZ_YZ);
+    // Captured E1853 DXIL %282/%283 subtract separately before color/roughness.
+    float inverseGridMask = (1.0 - gridMaskXZ_YZ) - blendZ * (rxy - gridMaskXZ_YZ);
+    float3 checkerColor = p.checkerColor0 + checkerMask * (p.checkerColor1 - p.checkerColor0);
+
+    RDCGridMaterialInputs result;
+    result.baseColor = saturate(p.gridColor + inverseGridMask * (checkerColor - p.gridColor));
+    result.metallic = saturate(gridMask);
+    result.roughness = saturate(p.lineRoughness + inverseGridMask *
+        (p.checkerRoughness0 - p.lineRoughness + checkerMask * (p.checkerRoughness1 - p.checkerRoughness0)));
+    result.specular = p.specular;
+    result.emissive = p.emissive;
+    return result;
+}
+
+#endif

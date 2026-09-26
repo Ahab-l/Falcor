@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "SchemaMaterial",
+  "attachments": [
+    {"name": "materialBits", "format": "R32Uint"},
+    {"name": "color", "format": "RGBA8Unorm"},
+    {"name": "normal", "format": "RG16Unorm"}
+  ],
+  "fields": [
+    {"name": "roughness", "type": "float"},
+    {"name": "materialID", "type": "uint"},
+    {"name": "emissive", "type": "bool"},
+    {"name": "baseColor", "type": "float3"},
+    {"name": "coverage", "type": "float"},
+    {"name": "normalW", "type": "float3"}
+  ],
+  "storage": [
+    {"name": "roughnessCode", "attachment": "materialBits", "channels": "r", "bits": {"offset": 0, "width": 8}},
+    {"name": "idCode", "attachment": "materialBits", "channels": "r", "bits": {"offset": 8, "width": 16}},
+    {"name": "emissiveCode", "attachment": "materialBits", "channels": "r", "bits": {"offset": 24, "width": 1}},
+    {"name": "rgb", "attachment": "color", "channels": "rgb"},
+    {"name": "alpha", "attachment": "color", "channels": "a"},
+    {"name": "oct", "attachment": "normal", "channels": "rg"}
+  ],
+  "codecs": [
+    {"kind": "custom", "name": "surface", "file": "SurfaceCodec.slangh", "encode": "encodeSurface", "decode": "decodeSurface",
+     "fields": ["roughness", "normalW"], "storage": ["roughnessCode", "oct"]},
+    {"kind": "uint", "field": "materialID", "storage": "idCode", "range": [0, 65535], "overflow": "reject"},
+    {"kind": "bool", "field": "emissive", "storage": "emissiveCode"},
+    {"kind": "direct", "field": "baseColor", "storage": "rgb", "range": [0, 1], "overflow": "clamp"},
+    {"kind": "direct", "field": "coverage", "storage": "alpha", "range": [0, 1], "overflow": "reject"}
+  ],
+  "producer": {"file": "Material.slangh", "entry": "evaluateGBuffer"},
+  "depthFormat": "D32Float"
+}

@@ -65,9 +65,9 @@ Buffer<DataType> gInputBuffer;
 RWBuffer<DataType> gResult;
 
 #if REDUCTION_TYPE == REDUCTION_TYPE_SUM
-groupshared DataType gIntermediateCache[32 /* = 1024 / 32 */];
+groupshared DataType gIntermediateCache[1024];
 #elif REDUCTION_TYPE == REDUCTION_TYPE_MINMAX
-groupshared DataType gIntermediateCache[64 /* = 1024 / 32 * 2 */];
+groupshared DataType gIntermediateCache[2048];
 #endif
 
 DataType loadTexture(uint2 pixelCoords)
@@ -85,20 +85,20 @@ DataType loadTexture(uint2 pixelCoords)
  */
 void reduceSum(DataType value, uint dstIdx, uint groupThreadIdx)
 {
-    // Add all elements within warp. Store result to shared memory.
-    {
-        value = WaveActiveSum(value);
-        if (WaveIsFirstLane())
-            gIntermediateCache[groupThreadIdx / 32] = value;
-    }
+    // Group indices need not be contiguous within a wave (notably for 2D
+    // groups on D3D12). Use unique group-index slots, not index / wave size.
+    value = WaveActiveSum(value);
+    gIntermediateCache[groupThreadIdx] = WaveIsFirstLane() ? value : DataType(0);
     GroupMemoryBarrierWithGroupSync();
 
-    // Add all elements produced by the warps.
-    if (groupThreadIdx < 32)
+    // Select exactly one complete wave without assuming which indices it owns.
+    if (WaveActiveAnyTrue(groupThreadIdx == 0))
     {
-        value = gIntermediateCache[groupThreadIdx];
+        value = 0;
+        for (uint i = WaveGetLaneIndex(); i < 1024; i += WaveGetLaneCount())
+            value += gIntermediateCache[i];
         value = WaveActiveSum(value);
-        if (groupThreadIdx == 0)
+        if (WaveIsFirstLane())
             gResult[dstIdx] = value;
     }
 }
@@ -108,26 +108,24 @@ void reduceSum(DataType value, uint dstIdx, uint groupThreadIdx)
  */
 void reduceMinMax(DataType minValue, DataType maxValue, uint dstIdx, uint groupThreadIdx)
 {
-    // Add all elements within warp. Store result to shared memory.
+    minValue = WaveActiveMin(minValue);
+    maxValue = WaveActiveMax(maxValue);
+    gIntermediateCache[groupThreadIdx * 2] = WaveIsFirstLane() ? minValue : DataType(kMaxValue);
+    gIntermediateCache[groupThreadIdx * 2 + 1] = WaveIsFirstLane() ? maxValue : DataType(kMinValue);
+    GroupMemoryBarrierWithGroupSync();
+
+    if (WaveActiveAnyTrue(groupThreadIdx == 0))
     {
+        minValue = kMaxValue;
+        maxValue = kMinValue;
+        for (uint i = WaveGetLaneIndex(); i < 1024; i += WaveGetLaneCount())
+        {
+            minValue = min(minValue, gIntermediateCache[i * 2]);
+            maxValue = max(maxValue, gIntermediateCache[i * 2 + 1]);
+        }
         minValue = WaveActiveMin(minValue);
         maxValue = WaveActiveMax(maxValue);
         if (WaveIsFirstLane())
-        {
-            gIntermediateCache[(groupThreadIdx / 32) * 2] = minValue;
-            gIntermediateCache[(groupThreadIdx / 32) * 2 + 1] = maxValue;
-        }
-    }
-    GroupMemoryBarrierWithGroupSync();
-
-    // Take the min/max of all elements produced by the warps.
-    if (groupThreadIdx < 32)
-    {
-        minValue = gIntermediateCache[groupThreadIdx * 2];
-        maxValue = gIntermediateCache[groupThreadIdx * 2 + 1];
-        minValue = WaveActiveMin(minValue);
-        maxValue = WaveActiveMax(maxValue);
-        if (groupThreadIdx == 0)
         {
             gResult[dstIdx * 2] = minValue;
             gResult[dstIdx * 2 + 1] = maxValue;

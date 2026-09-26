@@ -1,0 +1,167 @@
+{
+  "capture_inputs": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "excerpts": [
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "float2 RayIntersectSphere(",
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "e0d0cfdae8f34edce2f79ed2264db1fd595d9e862fb59c7ce263b2ad36771d90",
+      "line": 1962
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ParticipatingMediaCommon.ush",
+      "signature": "float HenyeyGreensteinPhase(",
+      "source_sha256": "3b5f52a05c9981d4669f7f8a84a7458e182c9a9cf1fb19a4f17edec865d6384f",
+      "excerpt_sha256": "f0aa1c836decc31af77859786b415e4edde388af72603643941a356a67b4aed5",
+      "line": 91
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ParticipatingMediaCommon.ush",
+      "signature": "float RayleighPhase(",
+      "source_sha256": "3b5f52a05c9981d4669f7f8a84a7458e182c9a9cf1fb19a4f17edec865d6384f",
+      "excerpt_sha256": "580b0791e334488e0f11386e7a1908caa17bb3c8c34a84e1faead49d39604758",
+      "line": 100
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "void fromTransmittanceLutUVs(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "6d7f445d86edf4e0924a5e1fc03eb8932dddb0f09062c9d904b754357b254bb6",
+      "line": 156
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "void getTransmittanceLutUvs(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "e9203e076c7e735d8d58b96bbd693c21701af79f99adafb69aca0ccb29532721",
+      "line": 175
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 EncodeTransmittance(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "ddecb04c2632d48c324abd8c7aa565b17105de9b5b141dc59f02ede79b4bb025",
+      "line": 233
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 DecodeTransmittance(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "2c7475522df56e7d2f1a02b866760393d9fe5bac0d9278108342e5776cbc9ba0",
+      "line": 241
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3 GetAlbedo(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "4b09a9624b3080e306719a22d760ba0022b3c3aee30af5840b21c8b1168bc400",
+      "line": 294
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "struct MediumSampleRGB",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "dfc44de7eb5ba19c0b008d12c82362b307f760b10662acdc10f189d171573723",
+      "line": 299
+    },
+    {
+      "output": "UEAtmosphereCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "MediumSampleRGB SampleAtmosphereMediumRGB(",
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "e964f3af6a367297b246ca5a9ece0711ee66e8273e7988021551b173bede2a1a",
+      "line": 321
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float RaySphereIntersectNearest(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "0499644f02c4fb1b13cefba07d6cb9ee86263e1c80b43283d82b7c5ecea6b2a9",
+      "line": 142
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void UvToLutTransmittanceParams(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "7c2b0ac7f61e7abe3c8253be6793107d1000896213b8d34f059953e271945e5c",
+      "line": 199
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void LutTransmittanceParamsToUv(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "0068afec72ab2e2773e7fccdbb9a89719c561e9b8cb94955f7d9dc3ff7ab3ea6",
+      "line": 205
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetTransmittance(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "1b662c8427c7599235f48b0d41262fffda471b5e4e4c2f5d51c59e005b786664",
+      "line": 390
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float SkyAtmosphereNoise(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "77d67ba5be085b9dda3d25098734e065629a675f26f2cf66cdb3a50193c2984c",
+      "line": 405
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "struct SingleScatteringResult",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "c8bbe675c1fb0995435b42834cc8a61099952c87311f7740c19c8fb305193c84",
+      "line": 426
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "struct SamplingSetup",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "45875e4d9decd99b2bd9283a5ca6a6399fe0f2aef712f82f03a7fdb4551a8e08",
+      "line": 438
+    },
+    {
+      "output": "UEAtmosphereIntegration.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "SingleScatteringResult IntegrateSingleScatteredLuminance(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "2f050899ea38b4429128c6dec49c124e171bae966694e1ee62523035a09248c1",
+      "line": 448
+    },
+    {
+      "output": "UETransmittance.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void RenderTransmittanceLutCS(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "b660ce7aebb153013c3906a6483d04aa093b40a62f2b95aa9d9e459054daf1d2",
+      "line": 1167
+    },
+    {
+      "output": "UEMultiScattering.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void RenderMultiScatteredLuminanceLutCS(",
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "ad58b8eabe5108b709a60121fba015810c4e6a4503842e01d91b334bc3dbc7ed",
+      "line": 1225
+    }
+  ],
+  "srgb_table": "UESRGBToLinearTable.json"
+}

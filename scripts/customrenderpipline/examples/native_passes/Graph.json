@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "metadata": {"description": "Native Schema GBuffer + selected Mesh -> Compute -> Fullscreen -> stock Blit"},
+  "nodes": [
+    {"name": "GBuffer", "type": "CustomRenderPiplineGBufferPass"},
+    {"name": "Selected", "description": "Mesh.json"},
+    {
+      "name": "Combine", "type": "CustomRenderPiplineComputePass",
+      "properties": {
+        "shader": {"file": "Combine.slang"},
+        "resources": [
+          {"name": "surface", "direction": "input", "binding": "surface", "format": "RGBA8Unorm"},
+          {"name": "selection", "direction": "input", "binding": "selection", "format": "RGBA32Float"},
+          {"name": "color", "direction": "output", "binding": "result", "format": "RGBA32Float"}
+        ],
+        "uniforms": {"Params.extent": {"type": "uint2", "source": "extent"}},
+        "dispatch": {"extent": "color"}
+      }
+    },
+    {"name": "Display", "description": "Fullscreen.json"},
+    {"name": "Blit", "type": "BlitPass", "properties": {"outputFormat": "RGBA32Float"}}
+  ],
+  "edges": [
+    ["GBuffer.color", "Combine.surface"],
+    ["Selected.color", "Combine.selection"],
+    ["Combine.color", "Display.source"],
+    ["Display.color", "Blit.src"]
+  ],
+  "outputs": ["Blit.dst", "Combine.color", "Display.color", "Selected.color", "Selected.depth"]
+}

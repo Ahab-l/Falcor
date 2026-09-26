@@ -41,12 +41,26 @@ RenderPassReflection::Field& RenderPassReflection::Field::rawBuffer(uint32_t siz
     mType = Type::RawBuffer;
     mWidth = size;
     mHeight = mDepth = mArraySize = mMipCount = 0;
+    mStructSize = 0;
+    return *this;
+}
+
+RenderPassReflection::Field& RenderPassReflection::Field::structuredBuffer(uint32_t structSize, uint32_t elementCount)
+{
+    FALCOR_CHECK(structSize > 0 && structSize % 4 == 0, "Structured buffer stride must be a positive multiple of four");
+    FALCOR_CHECK(elementCount > 0, "Structured buffer count must be positive");
+    const uint64_t byteSize = uint64_t(structSize) * elementCount;
+    FALCOR_CHECK(byteSize <= UINT32_MAX, "Structured buffer byte size exceeds uint32");
+    rawBuffer(uint32_t(byteSize));
+    mType = Type::StructuredBuffer;
+    mStructSize = structSize;
     return *this;
 }
 
 RenderPassReflection::Field& RenderPassReflection::Field::texture1D(uint32_t width, uint32_t mipCount, uint32_t arraySize)
 {
     mType = Type::Texture1D;
+    mStructSize = 0;
     mWidth = width;
     mHeight = 1;
     mDepth = 1;
@@ -65,6 +79,7 @@ RenderPassReflection::Field& RenderPassReflection::Field::texture2D(
 )
 {
     mType = Type::Texture2D;
+    mStructSize = 0;
     mWidth = width;
     mHeight = height;
     mDepth = 1;
@@ -77,6 +92,7 @@ RenderPassReflection::Field& RenderPassReflection::Field::texture2D(
 RenderPassReflection::Field& RenderPassReflection::Field::texture3D(uint32_t width, uint32_t height, uint32_t depth, uint32_t arraySize)
 {
     mType = Type::Texture3D;
+    mStructSize = 0;
     mWidth = width;
     mHeight = height;
     mDepth = depth;
@@ -94,6 +110,7 @@ RenderPassReflection::Field& RenderPassReflection::Field::textureCube(
 )
 {
     mType = Type::TextureCube;
+    mStructSize = 0;
     mWidth = width;
     mHeight = height;
     mDepth = 1;
@@ -110,15 +127,22 @@ RenderPassReflection::Field& RenderPassReflection::Field::resourceType(
     uint32_t depth,
     uint32_t sampleCount,
     uint32_t mipCount,
-    uint32_t arraySize
+    uint32_t arraySize,
+    uint32_t structSize
 )
 {
+    FALCOR_CHECK(type == Type::StructuredBuffer || structSize == 0, "Only structured buffers may specify an element stride");
     switch (type)
     {
     case RenderPassReflection::Field::Type::RawBuffer:
         if (height > 0 || depth > 0 || sampleCount > 0)
             logWarning("RenderPassReflection::Field::resourceType - height, depth, sampleCount for {} must be 0.", to_string(type));
         return rawBuffer(width);
+    case RenderPassReflection::Field::Type::StructuredBuffer:
+        FALCOR_CHECK(structSize > 0 && width % structSize == 0, "Structured buffer byte size must contain whole elements");
+        FALCOR_CHECK(height == 0 && depth == 0 && sampleCount == 0 && mipCount == 0 && arraySize == 0,
+            "Structured buffer resourceType cannot specify texture dimensions");
+        return structuredBuffer(structSize, width / structSize);
     case RenderPassReflection::Field::Type::Texture1D:
         if (height > 1 || depth > 1 || sampleCount > 1)
             logWarning(
@@ -175,6 +199,12 @@ RenderPassReflection::Field& RenderPassReflection::Field::desc(const std::string
 
 bool RenderPassReflection::Field::isValid() const
 {
+    if (mType == Type::StructuredBuffer &&
+        (mStructSize == 0 || mStructSize % 4 != 0 || mWidth == 0 || mWidth % mStructSize != 0 || mFormat != ResourceFormat::Unknown))
+    {
+        logError("Invalid structured buffer shape or format for RenderPassReflection::Field '{}'", mName);
+        return false;
+    }
     if (mSampleCount > 1 && mMipCount > 1)
     {
         logError("Trying to create a multisampled RenderPassReflection::Field '{}' with mip-count larger than 1. This is illegal.", mName);
@@ -292,6 +322,7 @@ RenderPassReflection::Field& RenderPassReflection::Field::merge(const RenderPass
 
 #define merge_field(f) mf(m##f, other.m##f, #f)
     merge_field(Width);
+    merge_field(StructSize);
     merge_field(Height);
     merge_field(Depth);
     merge_field(ArraySize);
@@ -320,6 +351,7 @@ bool RenderPassReflection::Field::operator==(const Field& other) const
     check(mName);
     check(mDesc);
     check(mWidth);
+    check(mStructSize);
     check(mHeight);
     check(mDepth);
     check(mSampleCount);

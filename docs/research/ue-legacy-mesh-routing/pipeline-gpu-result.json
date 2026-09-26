@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "frozen_project_sources": true,
+  "input_identity_separate": true,
+  "native_project_shader_rollback": true,
+  "mixed_inputs_rejected": true,
+  "signed_node_filters": true,
+  "external_falcor_modules_immutable": false,
+  "initial_signature": "73375761d82c4ab7a0e6cac947ecc22e5bd3414fb8607bd90e2d2c329dfa23fe"
+}

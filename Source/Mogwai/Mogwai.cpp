@@ -65,11 +65,15 @@ namespace Mogwai
         , mOptions(options)
         , mAppData(kAppDataPath)
     {
+        mpScreen = make_ref<python_ui::Screen>();
         setActivePythonRenderGraphDevice(getDevice());
     }
 
     Renderer::~Renderer()
     {
+        // Also cover startup/script exceptions that bypass onShutdown().
+        if (mpScreen) mpScreen->clear_children();
+        mpScreen = nullptr;
         setActivePythonRenderGraphDevice(nullptr);
     }
 
@@ -85,6 +89,10 @@ namespace Mogwai
 
     void Renderer::onShutdown()
     {
+        // Drop native UI ownership before Python and GPU services are shut down.
+        if (mpScreen) mpScreen->clear_children();
+        mpScreen = nullptr;
+        mGraphExecutionCallback = {};
         resetEditor();
         getDevice()->wait(); // Need to do that because clearing the graphs will try to release some state objects which might be in use
         mGraphs.clear();
@@ -151,6 +159,7 @@ namespace Mogwai
     void Renderer::onGuiRender(Gui* pGui)
     {
         for (auto& pe : mpExtensions)  pe->renderUI(pGui);
+        if (mpScreen) mpScreen->render();
     }
 
     bool isInVector(const std::vector<std::string>& strVec, const std::string& str)
@@ -641,9 +650,10 @@ namespace Mogwai
     void Renderer::executeActiveGraph(RenderContext* pRenderContext)
     {
         if (mGraphs.empty()) return;
+        FALCOR_CHECK(!mExecutingGraphCallback, "Graph execution callback cannot recursively render a frame");
 
         auto& data = mGraphs[mActiveGraph];
-        auto& pGraph = data.pGraph;
+        auto pGraph = data.pGraph;
 
         // Notify active graph of any scene updates.
         if (data.sceneUpdates != IScene::UpdateFlags::None)
@@ -652,8 +662,21 @@ namespace Mogwai
             data.sceneUpdates = IScene::UpdateFlags::None;
         }
 
-        // Execute graph.
+        // A temporal/scripted executor must replace the default execution;
+        // calling it in sceneUpdateCallback would render the graph twice.
         pGraph->getPassesDictionary()[kRenderPassRefreshFlags] = RenderPassRefreshFlags::None;
+        if (auto callback = mGraphExecutionCallback)
+        {
+            struct Guard
+            {
+                bool& active;
+                Guard(bool& value) : active(value) { active = true; }
+                ~Guard() { active = false; }
+            } guard(mExecutingGraphCallback);
+            const bool handled = callback(pGraph, getGlobalClock().getTime());
+            FALCOR_CHECK(getActiveGraph() == pGraph.get(), "Graph execution callback must preserve the active graph");
+            if (handled) return;
+        }
         pGraph->execute(pRenderContext);
     }
 
@@ -692,8 +715,6 @@ namespace Mogwai
 
         if (mActiveGraph < mGraphs.size())
         {
-            auto& pGraph = mGraphs[mActiveGraph].pGraph;
-
             if (mSceneUpdateCallback)
                 mSceneUpdateCallback(mpScene, getGlobalClock().getTime());
 
@@ -711,6 +732,15 @@ namespace Mogwai
             }
 
             executeActiveGraph(pRenderContext);
+
+            // The scene callback may switch or remove graphs. Present the graph
+            // that actually executed, rather than retaining its predecessor.
+            if (mActiveGraph >= mGraphs.size())
+            {
+                endFrame(pRenderContext, pTargetFbo);
+                return;
+            }
+            auto pGraph = mGraphs[mActiveGraph].pGraph;
 
             // Blit main graph output to frame buffer.
             if (mGraphs[mActiveGraph].mainOutput.size())

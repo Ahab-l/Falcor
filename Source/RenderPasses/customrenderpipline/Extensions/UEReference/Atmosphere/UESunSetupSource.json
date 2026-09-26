@@ -1,0 +1,58 @@
+{
+  "capture_inputs": false,
+  "native_integration_pending": false,
+  "integration": "UESunSetup.cpp via UEReferenceLightingConfig and customRenderPiplineSourceSun",
+  "compatibility": "FVector/FVector2D and color matrices are double; medium, color and integration are float. Matrix inverse is a double cofactor adapter, not UE SIMD instruction emulation. RGB channels are implemented; alpha is unused.",
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "excerpts": [
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Core\\Public\\Math\\Color.h",
+      "signature": "FLinearColor::sRGBToLinearTable",
+      "source_sha256": "d6bedea2c62bd73de23b06ef4c8464c588576856bd6c2461830b920fff14a454",
+      "excerpt_sha256": "d83e79b916c4d03f2384b1ac6ec40ad27355111708129c010e20ed03db75b149",
+      "byte_offset": 1656,
+      "bytes": 5338,
+      "line": 70
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Core\\Private\\ColorManagement\\ColorSpace.cpp",
+      "signature": "FMatrix44d FColorSpace::CalcRgbToXYZ() const",
+      "source_sha256": "28e803cbeb01e2a1a8668814ed82d0d428baa0fa5eb479f1f566bec3982ce9ec",
+      "excerpt_sha256": "4989a9d405063be24b23f80b7e7bca1eceeeff99da05eafa4dea6fa3265abbd0",
+      "byte_offset": 8019,
+      "bytes": 785,
+      "line": 230
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Core\\Private\\ColorManagement\\ColorSpace.cpp",
+      "signature": "FLinearColor FColorSpace::MakeFromColorTemperature(float Temp) const",
+      "source_sha256": "28e803cbeb01e2a1a8668814ed82d0d428baa0fa5eb479f1f566bec3982ce9ec",
+      "excerpt_sha256": "970e963bd1f67073645b1f8f67a8639748579d643a0fe579e50d1bdb855dea63",
+      "byte_offset": 9358,
+      "bytes": 903,
+      "line": 271
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Core\\Private\\Math\\UnrealMath.cpp",
+      "signature": "FVector2D FMath::GetAzimuthAndElevation",
+      "source_sha256": "0e0bfe3cb82a6f322f45d159ab97ea37666d4e0744861372d5885a652dd4a6e6",
+      "excerpt_sha256": "a3fd6f21d366944997eaa2297e7a8377c5d5955677e04d659154254483797f3a",
+      "byte_offset": 79662,
+      "bytes": 782,
+      "line": 2519
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\Rendering\\SkyAtmosphereCommonData.cpp",
+      "signature": "FLinearColor FAtmosphereSetup::GetTransmittanceAtGroundLevel(const FVector& SunDirection) const",
+      "source_sha256": "658de39bc41b0cf8a67344cb52730fc757203f836a514416caf6d88da3861465",
+      "excerpt_sha256": "8646a415cbbd2756cc1bcc5f0042b9582d0a042a40fd4e77c27e24d122332659",
+      "byte_offset": 7275,
+      "bytes": 4052,
+      "line": 182
+    }
+  ],
+  "output": {
+    "path": "UESunSetupOriginal.inl",
+    "sha256": "7907ef9322c584afd57dbe2a9eb29b9ad2f03dd79eb3d755e8a7609ac6a6d65a"
+  }
+}

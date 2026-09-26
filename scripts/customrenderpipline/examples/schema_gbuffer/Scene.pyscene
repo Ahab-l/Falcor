@@ -1,0 +1,28 @@
+from falcor import *
+
+# Pure Falcor fixture; no old Scene JSON, model registry or UE depth convention.
+for i, color in enumerate((float4(0.8, 0.15, 0.05, 1), float4(0.05, 0.2, 0.8, 1))):
+    material = StandardMaterial('schema_material_'+str(i))
+    material.baseColor = color
+    material.roughness = (0.2, 0.75)[i]
+    mesh = TriangleMesh()
+    center = (-0.65, 0.65)[i]
+    for x, y, u, v in ((-0.5, -0.65, 0, 0), (0.5, -0.65, 1, 0),
+                       (0.5, 0.65, 1, 1), (-0.5, 0.65, 0, 1)):
+        mesh.addVertex(float3(center+x, y, 0), float3(0, 0, 1), float2(u, v))
+    mesh.addTriangle(0, 1, 2)
+    mesh.addTriangle(0, 2, 3)
+    mesh.frontFaceCW = False
+    node = sceneBuilder.addNode('quad_'+str(i), Transform())
+    sceneBuilder.addMeshInstance(node, sceneBuilder.addTriangleMesh(mesh, material))
+
+camera = Camera('SchemaCamera')
+camera.position = float3(0, 0, 3)
+camera.target = float3(0, 0, 0)
+camera.up = float3(0, 1, 0)
+camera.nearPlane = 0.1
+camera.farPlane = 100
+camera.aspectRatio = 16/9
+camera.frameHeight = 24
+camera.focalLength = 28
+sceneBuilder.addCamera(camera)

@@ -1,0 +1,16 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see LightingSource.json.
+
+	// Compute the preconvolved incoming lighting with the bent normal direction
+	float3 DiffuseLookup = GetSkySHDiffuse(SkyVisData.SkyDiffuseLookUpNormal) * View.SkyLightColor.rgb;
+
+	// And accumulate the lighting
+	Lighting += (SkyVisData.SkyDiffuseLookUpMul * DiffuseLookup + SkyVisData.SkyDiffuseLookUpAdd) * DiffuseColor * DiffuseWeight;
+
+#if FEATURE_LEVEL > FEATURE_LEVEL_ES3_1
+	Lighting *= View.PreExposure;
+#endif
+
+	//Lighting = (Texture2DSampleLevel(BentNormalAOTexture, BentNormalAOSampler, UV, 0).xyz);
+
+	return Lighting;

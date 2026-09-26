@@ -1,0 +1,70 @@
+{
+  "capture_inputs": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "excerpts": [
+    {
+      "output": "UECSMFiltering.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowFilteringCommon.ush",
+      "signature": "struct FPCFSamplerSettings",
+      "source_sha256": "ad623cb679aba95c53c96bb83cb5fc5dd211dafbc43dfcd262e69fe2d5e6f754",
+      "excerpt_sha256": "8dd46b76bf3f5226c8750568f7a5e849ee41d63c912ad39c63969691d94877b0",
+      "line": 13
+    },
+    {
+      "output": "UECSMFiltering.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowFilteringCommon.ush",
+      "signature": "float2 HorizontalPCF5x2(",
+      "source_sha256": "ad623cb679aba95c53c96bb83cb5fc5dd211dafbc43dfcd262e69fe2d5e6f754",
+      "excerpt_sha256": "a2ef1874b3c9c5f16deda34b568127de63d8209caf71ba13ad55c9b68e2d437b",
+      "line": 122
+    },
+    {
+      "output": "UECSMFiltering.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowFilteringCommon.ush",
+      "signature": "float4 CalculateShadowVisibilityTransmittanceFactor(",
+      "source_sha256": "ad623cb679aba95c53c96bb83cb5fc5dd211dafbc43dfcd262e69fe2d5e6f754",
+      "excerpt_sha256": "1ecc1856acd199297459733e4e66c6d9100f5e3a378d70c81131eac3ff198c1f",
+      "line": 151
+    },
+    {
+      "output": "UECSMFiltering.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowFilteringCommon.ush",
+      "signature": "float Manual5x5PCF(",
+      "source_sha256": "ad623cb679aba95c53c96bb83cb5fc5dd211dafbc43dfcd262e69fe2d5e6f754",
+      "excerpt_sha256": "c5704f82617e15f470c2b121139ed8630dc1e7408bfb6304c54975a950bf2779",
+      "line": 264
+    },
+    {
+      "output": "UECSMDepth.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowDepthVertexShader.usf",
+      "signature": "float ComputeDepthBiasDirectionalSpot(",
+      "source_sha256": "bf51ff79cabea6db2a82fe68920accd5eb87b4f1a2c646b53bc93a70bfc65f60",
+      "excerpt_sha256": "5f9d94662d730a93fb625cb746af672ca518311b146cb6f3640bf875666c7fe8",
+      "line": 97
+    },
+    {
+      "output": "UECSMDepth.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowDepthVertexShader.usf",
+      "signature": "float4 TransformShadowDirectional(",
+      "source_sha256": "bf51ff79cabea6db2a82fe68920accd5eb87b4f1a2c646b53bc93a70bfc65f60",
+      "excerpt_sha256": "891e874fcfafaf1bc4c5fadff7e74c689e3bdd1ad78532f02f7691e0fe83c674",
+      "line": 116
+    },
+    {
+      "output": "UECSMEncode.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadowProjectionPixelShader.usf",
+      "signature": "float ApplyPCFOverBlurCorrection(",
+      "source_sha256": "0e6b32fdfbbafba5209475861fe83536ca81a592acb6fb658eaedcc350a6f7ce",
+      "excerpt_sha256": "09d34f13ad035e3cde78ec2a25f72974d95ae655fbd391b8532dad7e53b285b3",
+      "line": 90
+    },
+    {
+      "output": "UECSMEncode.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "MaterialFloat EncodeLightAttenuation(",
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "9eaad21ad09fbd222bf163d313df759a5364815a8063ea0eea3d8b473f0797ba",
+      "line": 1195
+    }
+  ]
+}

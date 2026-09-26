@@ -1,0 +1,24 @@
+Unreal Engine source notice
+
+The excerpts retain their original Unreal Engine source notices and remain subject to the applicable Unreal Engine license.
+No Falcor license is substituted for the extracted source. The byte ranges and source paths are recorded in UESkyLightSource.json.
+Original attribution comments (including Duff et al., Walter et al., and Stupid Spherical Harmonics (SH) Tricks) remain in the excerpts.
+Each original source-header copyright line follows, in source-path order as listed in the manifest.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+// Copyright Epic Games, Inc. All Rights Reserved.

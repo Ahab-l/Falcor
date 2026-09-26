@@ -1,0 +1,829 @@
+{
+  "schema": "ue-vertex-fidelity-analysis-v1",
+  "gpu_work": false,
+  "native_npz_sha256": "85cce6c14ad5d176b16cbed1849af42a90fcb27290a798bef92ff3609d14d620",
+  "capture_sha256": "822d41ea6ecb12633f42b18ed5ae1a3e7cea02653c9a72724f6e55e127d85fc9",
+  "postvs_role": "validation only; all simulated clip positions computed from original local IA and decoded GPUScene transforms",
+  "source_files": {
+    "Source/Falcor/Scene/SceneTypes.slang": "ccb271c0d9cd92cebaff9b2bf49fdbee4cf81b2e94486595977b8840bc20e239",
+    "Source/Falcor/Scene/SceneBuilder.cpp": "f6012e13be933a7fb93380cb7573d6e7149286d520fde44f777a816f101d74dc",
+    "Source/Falcor/Scene/Raster.slang": "d235adfafdd130ea394d9930c4da76d012e3101d82135d6c443f26f4c4da3403",
+    "Source/Falcor/Scene/Scene.cpp": "7b9996974c457b72a2ddb41745c66a1d83d1f3c20f0862b9332c563b8364268a",
+    "Source/Falcor/Utils/Math/MatrixMath.h": "ec550b9e218b946519f572eabf9ca849d2e822080c83677c6f5eacc68a3844f5"
+  },
+  "objects": [
+    {
+      "eid": 1816,
+      "name": "sphere",
+      "source_vertex_count": 559,
+      "local_fma_vs_captured_clip": {
+        "values": 2236,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "different_float32_bit_patterns": 0
+      },
+      "baked_meter_order_vs_captured_clip_same_clip_fma": {
+        "values": 2236,
+        "different_values": 722,
+        "max_abs_error": 0.00018310546875,
+        "p99_abs_error": 0.0001220703125,
+        "mean_abs_error": 2.075115981809995e-05
+      },
+      "baked_meter_roundtrip_ue_cm": {
+        "values": 1677,
+        "different_values": 371,
+        "max_abs_error": 0.0001220703125,
+        "p99_abs_error": 0.0001220703125,
+        "mean_abs_error": 1.4922131223911747e-05
+      },
+      "translated_world_order_error_cm": {
+        "values": 1677,
+        "different_values": 727,
+        "max_abs_error": 0.0001220703125,
+        "p99_abs_error": 0.0001220703125,
+        "mean_abs_error": 2.254868236125475e-05
+      },
+      "normal_half_storage_error": {
+        "values": 1677,
+        "different_values": 1390,
+        "max_abs_error": 0.0002383589744567871,
+        "p99_abs_error": 0.0002383589744567871,
+        "mean_abs_error": 7.197826425447732e-05
+      },
+      "normal_half_plus_vertex_normalize_error": {
+        "values": 1677,
+        "different_values": 1390,
+        "max_abs_error": 0.005212903022766113,
+        "p99_abs_error": 0.004638924598693849,
+        "mean_abs_error": 0.0011100108953516043
+      },
+      "raw_normal_length_range": [
+        0.9934062361717224,
+        1.0061808824539185
+      ],
+      "linear_rows_ue": [
+        [
+          5.0,
+          0.0,
+          -0.0
+        ],
+        [
+          -0.0,
+          5.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          5.0
+        ]
+      ],
+      "primitive_position_high_cm": [
+        -690.0,
+        -1030.0,
+        480.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eid": 1827,
+      "name": "cube",
+      "source_vertex_count": 54,
+      "local_fma_vs_captured_clip": {
+        "values": 216,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "different_float32_bit_patterns": 0
+      },
+      "baked_meter_order_vs_captured_clip_same_clip_fma": {
+        "values": 216,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "baked_meter_roundtrip_ue_cm": {
+        "values": 162,
+        "different_values": 12,
+        "max_abs_error": 1.9073486328125e-06,
+        "p99_abs_error": 1.9073486328125e-06,
+        "mean_abs_error": 1.4128508391203703e-07
+      },
+      "translated_world_order_error_cm": {
+        "values": 162,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "normal_half_storage_error": {
+        "values": 162,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "normal_half_plus_vertex_normalize_error": {
+        "values": 162,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "raw_normal_length_range": [
+        1.0,
+        1.0
+      ],
+      "linear_rows_ue": [
+        [
+          1.0,
+          0.0,
+          -0.0
+        ],
+        [
+          -0.0,
+          3.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.75
+        ]
+      ],
+      "primitive_position_high_cm": [
+        -1550.0,
+        30.0,
+        460.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eid": 1838,
+      "name": "standing_plane",
+      "source_vertex_count": 4,
+      "local_fma_vs_captured_clip": {
+        "values": 16,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "different_float32_bit_patterns": 0
+      },
+      "baked_meter_order_vs_captured_clip_same_clip_fma": {
+        "values": 16,
+        "different_values": 4,
+        "max_abs_error": 3.0517578125e-05,
+        "p99_abs_error": 3.0517578125e-05,
+        "mean_abs_error": 5.7220458984375e-06
+      },
+      "baked_meter_roundtrip_ue_cm": {
+        "values": 12,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "translated_world_order_error_cm": {
+        "values": 12,
+        "different_values": 4,
+        "max_abs_error": 1.52587890625e-05,
+        "p99_abs_error": 1.52587890625e-05,
+        "mean_abs_error": 5.086263020833333e-06
+      },
+      "normal_half_storage_error": {
+        "values": 12,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "normal_half_plus_vertex_normalize_error": {
+        "values": 12,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "raw_normal_length_range": [
+        1.0,
+        1.0
+      ],
+      "linear_rows_ue": [
+        [
+          0.0,
+          0.0,
+          5.5
+        ],
+        [
+          0.0,
+          4.25,
+          -0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "primitive_position_high_cm": [
+        -1510.0,
+        -380.0,
+        430.0
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "eid": 1853,
+      "name": "grid_floor",
+      "source_vertex_count": 90,
+      "local_fma_vs_captured_clip": {
+        "values": 360,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "different_float32_bit_patterns": 0
+      },
+      "baked_meter_order_vs_captured_clip_same_clip_fma": {
+        "values": 360,
+        "different_values": 94,
+        "max_abs_error": 0.00048828125,
+        "p99_abs_error": 0.00048828125,
+        "mean_abs_error": 6.222195095486111e-05
+      },
+      "baked_meter_roundtrip_ue_cm": {
+        "values": 270,
+        "different_values": 91,
+        "max_abs_error": 0.000244140625,
+        "p99_abs_error": 0.000244140625,
+        "mean_abs_error": 5.3236219618055556e-05
+      },
+      "translated_world_order_error_cm": {
+        "values": 270,
+        "different_values": 69,
+        "max_abs_error": 0.00048828125,
+        "p99_abs_error": 0.00048828125,
+        "mean_abs_error": 6.668655960648148e-05
+      },
+      "normal_half_storage_error": {
+        "values": 270,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "normal_half_plus_vertex_normalize_error": {
+        "values": 270,
+        "different_values": 0,
+        "max_abs_error": 0.0,
+        "p99_abs_error": 0.0,
+        "mean_abs_error": 0.0
+      },
+      "raw_normal_length_range": [
+        1.0,
+        1.0
+      ],
+      "linear_rows_ue": [
+        [
+          8.0,
+          0.0,
+          -0.0
+        ],
+        [
+          -0.0,
+          8.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          8.0
+        ]
+      ],
+      "primitive_position_high_cm": [
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "instance_relative_translation_cm": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "pixel_position_reconstruction": {
+    "cbuffer_sha256": "4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6",
+    "SVPositionToTranslatedWorld_byte_offset": 704,
+    "SVPositionToTranslatedWorld_row_major": [
+      [
+        -0.0002347404370084405,
+        0.0013877461897209287,
+        0.0,
+        0.0
+      ],
+      [
+        -0.0002170395600842312,
+        -3.671273952932097e-05,
+        -0.001389815704897046,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.10000000149011612
+      ],
+      [
+        1.252955675125122,
+        -0.8022650480270386,
+        0.562796950340271,
+        0.0
+      ]
+    ],
+    "SVPositionToTranslatedWorld_float32_bits": [
+      [
+        "b97624a8",
+        "3ab5e509",
+        "00000000",
+        "00000000"
+      ],
+      [
+        "b963951d",
+        "b819fc01",
+        "bab62a7a",
+        "00000000"
+      ],
+      [
+        "00000000",
+        "00000000",
+        "00000000",
+        "3dcccccd"
+      ],
+      [
+        "3fa060da",
+        "bf4d613e",
+        "3f101376",
+        "00000000"
+      ]
+    ],
+    "ClipToTranslatedWorld_byte_offset": 640,
+    "ClipToTranslatedWorld_row_major": [
+      [
+        -0.16678307950496674,
+        0.9859936833381653,
+        0.0,
+        0.0
+      ],
+      [
+        0.11231797933578491,
+        0.01899884268641472,
+        0.7192296385765076,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.10000000149011612
+      ],
+      [
+        0.973854660987854,
+        0.1647297441959381,
+        -0.15643273293972015,
+        0.0
+      ]
+    ],
+    "relative_preview_translation_byte_offset": 2048,
+    "relative_preview_translation": [
+      2311.294921875,
+      415.6758728027344,
+      -643.488037109375
+    ],
+    "falcor_inverse_row_major_cpu_model": [
+      [
+        -0.16678307950496674,
+        0.9859937429428101,
+        -2.170189583594606e-09,
+        0.0
+      ],
+      [
+        0.11231797933578491,
+        0.01899884268641472,
+        0.7192296385765076,
+        -0.0
+      ],
+      [
+        -0.0,
+        0.0,
+        -0.0,
+        0.10000000149011612
+      ],
+      [
+        0.9738547205924988,
+        0.1647297441959381,
+        -0.15643271803855896,
+        -0.0
+      ]
+    ],
+    "inverse_identity_max_abs_residual": 7.886872754880869e-08,
+    "matrix_float32_inverse_vs_captured_inverse": {
+      "values": 16,
+      "different_values": 4,
+      "max_abs_error": 5.960464477539063e-08,
+      "p99_abs_error": 5.960464477539063e-08,
+      "mean_abs_error": 8.51754002051397e-09
+    },
+    "alternatives": {
+      "captured_clip_inverse_plus_uv": {
+        "covered_position_cm": {
+          "values": 2600136,
+          "different_values": 1426941,
+          "max_abs_error": 0.0009765625,
+          "p99_abs_error": 0.00030517578125,
+          "mean_abs_error": 5.8181113831641884e-05
+        },
+        "floor_interior_position_cm": {
+          "values": 1673844,
+          "different_values": 912208,
+          "max_abs_error": 0.0009765625,
+          "p99_abs_error": 0.0003662109375,
+          "mean_abs_error": 6.630329291054284e-05
+        },
+        "floor_uv_ddx_at_frequency_0_01": {
+          "values": 835104,
+          "different_values": 298307,
+          "max_abs_error": 1.9073486328125e-05,
+          "p99_abs_error": 3.814697265625e-06,
+          "mean_abs_error": 4.758259324446032e-07
+        },
+        "floor_uv_ddy_at_frequency_0_01": {
+          "values": 833682,
+          "different_values": 469732,
+          "max_abs_error": 1.1444091796875e-05,
+          "p99_abs_error": 3.662108697426447e-06,
+          "mean_abs_error": 5.966910250189078e-07
+        }
+      },
+      "falcor_float32_inverse_plus_uv": {
+        "covered_position_cm": {
+          "values": 2600136,
+          "different_values": 1677499,
+          "max_abs_error": 0.00146484375,
+          "p99_abs_error": 0.00048828125,
+          "mean_abs_error": 8.132490398458965e-05
+        },
+        "floor_interior_position_cm": {
+          "values": 1673844,
+          "different_values": 1068048,
+          "max_abs_error": 0.00146484375,
+          "p99_abs_error": 0.00048828125,
+          "mean_abs_error": 9.222922482305792e-05
+        },
+        "floor_uv_ddx_at_frequency_0_01": {
+          "values": 835104,
+          "different_values": 374425,
+          "max_abs_error": 1.52587890625e-05,
+          "p99_abs_error": 3.814697265625e-06,
+          "mean_abs_error": 6.148807219014276e-07
+        },
+        "floor_uv_ddy_at_frequency_0_01": {
+          "values": 833682,
+          "different_values": 507601,
+          "max_abs_error": 1.1444091796875e-05,
+          "p99_abs_error": 3.814697265625e-06,
+          "mean_abs_error": 7.150330970319973e-07
+        }
+      }
+    },
+    "derivative_model": "form float32 UV first, then subtract horizontal/vertical even-odd pixel pairs matching 2x2 quad alignment; not a texture hardware LOD simulation",
+    "limit": "CPU models native mul with the same FMA accumulation as captured PS; actual backend reassociation is not assumed bit-identical"
+  },
+  "depth_boundary_pixels": {
+    "source_object": "cube, event 1827",
+    "source_vs_baked_same_fma_clip_bit_differences": 0,
+    "model_limit": "1/256 screen snapping is a CPU diagnostic supported by captured depths; native postVS and raster setup have not been compared here",
+    "pixels": [
+      {
+        "x": 1126,
+        "y": 565,
+        "captured_depth": 0.012171957641839981,
+        "native_depth": 0.012171957641839981,
+        "cpu_object_id": 4,
+        "nearby_front_facing_cube_triangles": [
+          {
+            "triangle_index": 42,
+            "source_vertex_indices": [
+              49,
+              48,
+              45
+            ],
+            "unsnapped": {
+              "screen_vertices": [
+                [
+                  1137.6699692046063,
+                  446.3012338020563
+                ],
+                [
+                  997.2696535517179,
+                  571.0487314443159
+                ],
+                [
+                  1126.4864522460887,
+                  565.6367541193115
+                ]
+              ],
+              "barycentrics": [
+                0.0011457053687944363,
+                -5.686091107133069e-06,
+                0.9988599807223126
+              ],
+              "min_signed_edge_distance_pixels": -0.0007286618658664062,
+              "inside": false,
+              "interpolated_reverse_z": 0.012171952023417238
+            },
+            "screen_snapped_to_1_over_256": {
+              "screen_vertices": [
+                [
+                  1137.671875,
+                  446.30078125
+                ],
+                [
+                  997.26953125,
+                  571.046875
+                ],
+                [
+                  1126.48828125,
+                  565.63671875
+                ]
+              ],
+              "barycentrics": [
+                0.0011460481391279975,
+                8.498664520056002e-06,
+                0.998845453196352
+              ],
+              "min_signed_edge_distance_pixels": 0.0010891057601661088,
+              "inside": true,
+              "interpolated_reverse_z": 0.012171957950266567
+            },
+            "snapped_depth_abs_error": 0.0,
+            "snapped_depth_float32_ulp_distance": 0
+          }
+        ]
+      },
+      {
+        "x": 1123,
+        "y": 597,
+        "captured_depth": 0.012084214948117733,
+        "native_depth": 0.012084214948117733,
+        "cpu_object_id": 2,
+        "nearby_front_facing_cube_triangles": [
+          {
+            "triangle_index": 40,
+            "source_vertex_indices": [
+              45,
+              46,
+              47
+            ],
+            "unsnapped": {
+              "screen_vertices": [
+                [
+                  1126.4864522460887,
+                  565.6367541193115
+                ],
+                [
+                  989.7135384372332,
+                  687.8660466876979
+                ],
+                [
+                  1115.8736047934174,
+                  678.8831642737636
+                ]
+              ],
+              "barycentrics": [
+                0.7186381695489241,
+                3.1869078596048003e-06,
+                0.2813586435432163
+              ],
+              "min_signed_edge_distance_pixels": 0.00039763539331868944,
+              "inside": true,
+              "interpolated_reverse_z": 0.01208421018403107
+            },
+            "screen_snapped_to_1_over_256": {
+              "screen_vertices": [
+                [
+                  1126.48828125,
+                  565.63671875
+                ],
+                [
+                  989.71484375,
+                  687.8671875
+                ],
+                [
+                  1115.875,
+                  678.8828125
+                ]
+              ],
+              "barycentrics": [
+                0.7186381443920438,
+                1.6714812929455498e-05,
+                0.28134514079502687
+              ],
+              "min_signed_edge_distance_pixels": 0.0020855306706145825,
+              "inside": true,
+              "interpolated_reverse_z": 0.0120842154377794
+            },
+            "snapped_depth_abs_error": 9.313225746154785e-10,
+            "snapped_depth_float32_ulp_distance": 1
+          }
+        ]
+      }
+    ]
+  },
+  "native_normal_mismatch_pixels": {
+    "count": 1,
+    "coordinate_limit": 32,
+    "pixels": [
+      {
+        "x": 341,
+        "y": 534,
+        "cpu_object_id": 1,
+        "captured_word": "557c807d",
+        "native_word": "557c807c",
+        "captured_rgb": [
+          125,
+          800,
+          343
+        ],
+        "native_rgb": [
+          124,
+          800,
+          343
+        ]
+      }
+    ]
+  },
+  "normal_encoding_arithmetic": {
+    "captured_final_encode": "PS DXIL values %460..%465 (lines 630-635): three fmul fast by 0.5, then three fadd fast 0.5; contraction is permitted",
+    "native_final_encode": "Codecs/DefaultLit.slangh: surface.normalUE * 0.5 + 0.5; contraction is permitted",
+    "conclusion": "For the remaining non-subnormal normal, multiplication by exactly 0.5 is exact. FMA versus separated multiply/add cannot differ for identical float32 input normal.",
+    "captured_normalize": "UE x/y/z dot3, rsqrt, per-component multiply (captured PS values %140..%144)",
+    "native_normalize": "UELegacyMaterial.slangh normalizes Falcor (UE.y, UE.z, -UE.x) then swizzles to UE",
+    "recommendation": "Swizzle the unnormalized input to UE axes before normalize, preserving the captured dot component order. This is source-fidelity guidance, not proof that it resolves the last pixel.",
+    "limit": "This CPU analysis has no native interpolated-normal or final-PS-float readback; actual backend rsqrt/dot and ROP conversion remain unmeasured"
+  },
+  "sphere_normal_interpolation": {
+    "interior_pixels": 49956,
+    "variants": {
+      "captured_raw_snorm": {
+        "normal_delta_from_raw_interp": {
+          "values": 149868,
+          "different_values": 0,
+          "max_abs_error": 0.0,
+          "p99_abs_error": 0.0,
+          "mean_abs_error": 0.0
+        },
+        "predicted_code_vs_capture": {
+          "values": 149868,
+          "different_values": 4866,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.032468572343662426
+        },
+        "predicted_code_vs_native": {
+          "values": 149868,
+          "different_values": 4867,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.03247524488216297
+        },
+        "pixels_matching_capture_all_rgb": 45239,
+        "pixels_matching_native_all_rgb": 45238
+      },
+      "vertex_normalize_only": {
+        "normal_delta_from_raw_interp": {
+          "values": 149868,
+          "different_values": 149868,
+          "max_abs_error": 0.0006124951014261915,
+          "p99_abs_error": 0.00031519759823759686,
+          "mean_abs_error": 6.440826666603354e-05
+        },
+        "predicted_code_vs_capture": {
+          "values": 149868,
+          "different_values": 7254,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.04840259428296901
+        },
+        "predicted_code_vs_native": {
+          "values": 149868,
+          "different_values": 7255,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.04840926682146956
+        },
+        "pixels_matching_capture_all_rgb": 43076,
+        "pixels_matching_native_all_rgb": 43075
+      },
+      "float16_and_vertex_normalize": {
+        "normal_delta_from_raw_interp": {
+          "values": 149868,
+          "different_values": 149868,
+          "max_abs_error": 0.0006814167501686397,
+          "p99_abs_error": 0.00032207521017696384,
+          "mean_abs_error": 7.911389132282738e-05
+        },
+        "predicted_code_vs_capture": {
+          "values": 149868,
+          "different_values": 8269,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.05517522086102437
+        },
+        "predicted_code_vs_native": {
+          "values": 149868,
+          "different_values": 8270,
+          "max_abs_error": 1.0,
+          "p99_abs_error": 1.0,
+          "mean_abs_error": 0.055181893399524916
+        },
+        "pixels_matching_capture_all_rgb": 42163,
+        "pixels_matching_native_all_rgb": 42162
+      }
+    },
+    "quantization_model": "nearest UNORM10 with exact halfway ties to lower integer; diagnostic only",
+    "interpolation_model": "float64 perspective-correct barycentrics at centers from original-IA-derived clip; no hardware edge snapping",
+    "actual_native_vs_capture_codes": {
+      "values": 149868,
+      "different_values": 1,
+      "max_abs_error": 1.0,
+      "p99_abs_error": 0.0,
+      "mean_abs_error": 6.672538500547148e-06
+    }
+  },
+  "recommended_vertex_record": {
+    "stride_bytes": 48,
+    "members": [
+      {
+        "byte_offset": 0,
+        "type": "float3",
+        "name": "localPositionUECm"
+      },
+      {
+        "byte_offset": 12,
+        "type": "uint",
+        "name": "sourceVertexID"
+      },
+      {
+        "byte_offset": 16,
+        "type": "float3",
+        "name": "normalLocalUnnormalized"
+      },
+      {
+        "byte_offset": 28,
+        "type": "float",
+        "name": "tangentSign"
+      },
+      {
+        "byte_offset": 32,
+        "type": "float3",
+        "name": "tangentLocal"
+      },
+      {
+        "byte_offset": 44,
+        "type": "uint",
+        "name": "padding"
+      }
+    ],
+    "input_source": "original IA positions and manual tangent SRV SNORM8 decode; never postVS",
+    "instance_fields": [
+      "localLinearRowsUE[3]",
+      "primitivePositionHighUECm",
+      "instanceRelativeTranslationUECm",
+      "inverseAbsoluteScale[3]",
+      "primitiveFlags",
+      "vertexBase",
+      "vertexCount"
+    ],
+    "normal_transform": "multiply original local normal by localLinearRowsUE / abs(scale) per row; do not normalize per vertex; normalize only in PS",
+    "scene_mapping": "explicit Scene-processed vertex->source vertex mapping required; SV_VertexID includes mesh.vbOffset and SceneBuilder can reorder/split",
+    "mapping_option": "carry original source vertex numeric integer in otherwise unused texC.x; identity texture transform required, float32 exactly represents these IDs; declare this an ID channel, not recovered UV"
+  }
+}

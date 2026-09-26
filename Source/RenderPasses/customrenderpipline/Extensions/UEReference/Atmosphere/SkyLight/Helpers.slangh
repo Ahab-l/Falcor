@@ -1,0 +1,10 @@
+#ifndef UE_SKYLIGHT_HELPERS_ADAPTER
+#define UE_SKYLIGHT_HELPERS_ADAPTER
+#include "Platform.slangh"
+// The generated material Schema can already declare UE BRDF helpers. Prefix
+// this independent source program's copies without changing their bodies.
+#define Pow2 UESkyLightPow2
+#define Pow4 UESkyLightPow4
+#define D_GGX UESkyLightD_GGX
+#include "../UESkyLightHelpers.ush"
+#endif

@@ -1,0 +1,14 @@
+{
+  "status": "independent_cold_cache_ssa_review_archived",
+  "observation_report": {
+    "path": "E:\\Project\\falcor\\Falcor-m0\\docs\\research\\ue-legacy-lighting-local-prefix-result.json",
+    "sha256": "b8ef0ce50c7b95a7d81e277cd8bcc33835415abab63e9d3e345f3fd7c1cb784a"
+  },
+  "review": {
+    "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-local-prefix-cache\\run-7k8k96ft\\native-local-producer-review.json",
+    "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-local-prefix-acceptance\\archive\\a5fcc0df798bff08770916b160a3f258d7f1741a333e95e83558c02f0bb1d965\\native-local-producer-review.json",
+    "sha256": "a5fcc0df798bff08770916b160a3f258d7f1741a333e95e83558c02f0bb1d965",
+    "bytes": 36398
+  },
+  "scope": "Supplemental independent static SSA review of the two cold-cache lightPS products; no new GPU execution, native-capture draw binding, or machine-instruction claim."
+}

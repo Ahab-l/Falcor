@@ -1,0 +1,80 @@
+// Authored numerical adapter for the Epic CPU PreintegratedGF source-algorithm port.
+// Original FMath::Sqrt/Cos and scalar float division are not GPU shader intrinsics.
+// The source Editor uses /fp:precise. Return FP32 after EACH source operation;
+// do not change the complete integrator to FP64. Original attribution/provenance
+// remains in PreintegratedGFCPUOriginal.inl and PreintegratedGFSource.json.
+// Domains below are the source's finite nonnegative normal values. Cos accepts
+// phase within [-2*pi,2*pi]. No coefficients depend on LUT sample outputs.
+
+float SourceCPUFloatDivide(float numerator, float denominator)
+{
+    if (numerator == 0.0f) return 0.0f;
+    precise float candidate = numerator / denominator;
+    // Hardware division was observed up to2 ULP from source FP32 division.
+    // A float midpoint needs25 bits; midpoint*denominator needs at most49.
+    // Binary64 therefore compares these thresholds exactly, including ties.
+    [unroll]
+    for (uint step = 0; step < 4; ++step)
+    {
+        uint bits = asuint(candidate);
+        float lower = asfloat(bits - 1);
+        float upper = asfloat(bits + 1);
+        precise double lowMid = (double(candidate) + double(lower)) * 0.5;
+        precise double highMid = (double(candidate) + double(upper)) * 0.5;
+        precise double low = lowMid * double(denominator);
+        precise double high = highMid * double(denominator);
+        bool odd = (bits & 1) != 0;
+        if (double(numerator) < low || (double(numerator) == low && odd)) candidate = lower;
+        else if (double(numerator) > high || (double(numerator) == high && odd)) candidate = upper;
+    }
+    return candidate;
+}
+
+float SourceCPUFloatSqrt(float value)
+{
+    if (value == 0.0f) return 0.0f;
+    precise float candidate = sqrt(value);
+    // A squared float midpoint needs at most50 bits: exact binary64 comparison.
+    [unroll]
+    for (uint step = 0; step < 4; ++step)
+    {
+        uint bits = asuint(candidate);
+        float lower = asfloat(bits - 1);
+        float upper = asfloat(bits + 1);
+        precise double low = (double(candidate) + double(lower)) * 0.5;
+        precise double high = (double(candidate) + double(upper)) * 0.5;
+        precise double lowSquared = low * low;
+        precise double highSquared = high * high;
+        bool odd = (bits & 1) != 0;
+        if (double(value) < lowSquared || (double(value) == lowSquared && odd)) candidate = lower;
+        else if (double(value) > highSquared || (double(value) == highSquared && odd)) candidate = upper;
+    }
+    return candidate;
+}
+
+float SourceCPUFloatCos(float value)
+{
+    // cosf consumes the original already-rounded float Phi. Range reduction and
+    // factorial Taylor coefficients evaluate its real cosine before FP32 output.
+    // Degree28 remainder is below4e-18 on [-pi,pi], independently of this LUT.
+    precise double angle = double(value);
+    if (angle > 3.14159265358979323846L) angle -= 6.28318530717958647692L;
+    if (angle < -3.14159265358979323846L) angle += 6.28318530717958647692L;
+    precise double squared = angle * angle;
+    precise double result = 3.2798892370698379e-30L;
+    result = result * squared - 2.4795962632247976e-27L;
+    result = result * squared + 1.6117375710961184e-24L;
+    result = result * squared - 8.8967913924505741e-22L;
+    result = result * squared + 4.1103176233121648e-19L;
+    result = result * squared - 1.5619206968586225e-16L;
+    result = result * squared + 4.7794773323873853e-14L;
+    result = result * squared - 1.1470745597729725e-11L;
+    result = result * squared + 2.0876756987868099e-9L;
+    result = result * squared - 2.7557319223985891e-7L;
+    result = result * squared + 2.4801587301587302e-5L;
+    result = result * squared - 1.3888888888888889e-3L;
+    result = result * squared + 4.1666666666666664e-2L;
+    result = result * squared - 5.0e-1L;
+    result = result * squared + 1.0L;
+    return float(result);
+}

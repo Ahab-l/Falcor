@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "engine_head": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "scope": "Ordinary PC atomic Histogram and global EyeAdaptation; exact source slices with resource adapters.",
+  "outputs": {
+    "UEDownsample.ush": {
+      "sha256": "05374c4da21e40a2fb226341cdf0de003d821704d2c912193d8eacf85ef82667",
+      "bytes": 1232,
+      "segments": [
+        {
+          "source": "Private/PostProcessDownsample.usf",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "line_start_1based": 1,
+          "source_sha256": "9c036c55f2ca3b82bfef6b0036ee5309e94833bbff07d8db1c13e1abf9107813"
+        },
+        {
+          "source": "Private/PostProcessDownsample.usf",
+          "input_start": 658,
+          "input_end": 1839,
+          "output_start": 51,
+          "output_end": 1232,
+          "line_start_1based": 27,
+          "source_sha256": "9c036c55f2ca3b82bfef6b0036ee5309e94833bbff07d8db1c13e1abf9107813"
+        }
+      ]
+    },
+    "UEDownsamplePS.ush": {
+      "sha256": "da8f32c4bdd6c552a64c67fbb23658ffa12a74295642aeda1d7ace5003f7ca81",
+      "bytes": 227,
+      "segments": [
+        {
+          "source": "Private/PostProcessDownsample.usf",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "line_start_1based": 1,
+          "source_sha256": "9c036c55f2ca3b82bfef6b0036ee5309e94833bbff07d8db1c13e1abf9107813"
+        },
+        {
+          "source": "Private/PostProcessDownsample.usf",
+          "input_start": 1884,
+          "input_end": 2060,
+          "output_start": 51,
+          "output_end": 227,
+          "line_start_1based": 73,
+          "source_sha256": "9c036c55f2ca3b82bfef6b0036ee5309e94833bbff07d8db1c13e1abf9107813"
+        }
+      ]
+    },
+    "UEHistogramCommon.ush": {
+      "sha256": "3f721a0c1df06c6a72f5cc9868664c4acc32e3032699d1cad2372b40ede28280",
+      "bytes": 6455,
+      "segments": [
+        {
+          "source": "Private/PostProcessHistogramCommon.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "line_start_1based": 1,
+          "source_sha256": "b85ae143d49fbd38ba5632e3c4e1875a1e29b1b34c1be74bb5aab832d00e442e"
+        },
+        {
+          "source": "Private/PostProcessHistogramCommon.ush",
+          "input_start": 2059,
+          "input_end": 8463,
+          "output_start": 51,
+          "output_end": 6455,
+          "line_start_1based": 52,
+          "source_sha256": "b85ae143d49fbd38ba5632e3c4e1875a1e29b1b34c1be74bb5aab832d00e442e"
+        }
+      ]
+    },
+    "UEHistogram.usf": {
+      "sha256": "416df3eac818086b8780ce5d9d343c313000782653ca9929e98ad02e975e281a",
+      "bytes": 14091,
+      "segments": [
+        {
+          "source": "Private/Histogram.usf",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "line_start_1based": 1,
+          "source_sha256": "1e9d83d5c16aa524de7d78ca4397727b626d05d7fda5668ea3f01c2f568c5793"
+        },
+        {
+          "source": "Private/Histogram.usf",
+          "input_start": 2564,
+          "input_end": 3134,
+          "output_start": 51,
+          "output_end": 621,
+          "line_start_1based": 38,
+          "source_sha256": "1e9d83d5c16aa524de7d78ca4397727b626d05d7fda5668ea3f01c2f568c5793"
+        },
+        {
+          "source": "Private/Histogram.usf",
+          "input_start": 3261,
+          "input_end": 16731,
+          "output_start": 621,
+          "output_end": 14091,
+          "line_start_1based": 50,
+          "source_sha256": "1e9d83d5c16aa524de7d78ca4397727b626d05d7fda5668ea3f01c2f568c5793"
+        }
+      ]
+    },
+    "UEEyeAdaptation.ush": {
+      "sha256": "403a4da012e2f6fac04936319fb9cb2476c650685f7f58d714be19d37a390fa2",
+      "bytes": 2777,
+      "segments": [
+        {
+          "source": "Private/PostProcessEyeAdaptation.usf",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "line_start_1based": 1,
+          "source_sha256": "e6c45e260ecb8a8d18a3393b1ae2520b79c6198fac2ac091f415481829994669"
+        },
+        {
+          "source": "Private/PostProcessEyeAdaptation.usf",
+          "input_start": 4333,
+          "input_end": 6380,
+          "output_start": 51,
+          "output_end": 2098,
+          "line_start_1based": 168,
+          "source_sha256": "e6c45e260ecb8a8d18a3393b1ae2520b79c6198fac2ac091f415481829994669"
+        },
+        {
+          "source": "Private/PostProcessEyeAdaptation.usf",
+          "input_start": 7508,
+          "input_end": 8187,
+          "output_start": 2098,
+          "output_end": 2777,
+          "line_start_1based": 231,
+          "source_sha256": "e6c45e260ecb8a8d18a3393b1ae2520b79c6198fac2ac091f415481829994669"
+        }
+      ]
+    }
+  }
+}

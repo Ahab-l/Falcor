@@ -1,0 +1,714 @@
+; shader hash: a577efd370e35391bea3c2976224e0ef
+
+; Pixel Shader, compiled under SM6.6
+
+_dx.types.Handle = type { int8* }
+_dx.types.ResBind = type { int, int, int, int8 }
+_dx.types.ResourceProperties = type { int, int }
+_dx.types.CBufRet.f32 = type { float, float, float, float }
+_dx.types.CBufRet.i32 = type { int, int, int, int }
+_dx.types.ResRet.f32 = type { float, float, float, float, int }
+_"class.StructuredBuffer<vector<float, 4> >" = type { float4 }
+_"class.Texture2D<vector<float, 4> >" = type { float4, _"class.Texture2D<vector<float, 4> >::mips_type" }
+_"class.Texture2D<vector<float, 4> >::mips_type" = type { int }
+_hostlayout.View = type { float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4, float4, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float4[4], float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float3, float, float4[4], float4[4], float4[4], float4[4], float4, float4, float2, float2, float2, float2, float4, float4, int4, float4, float4, float4, float4, float2, float2, int, float, float, float, float4, float4, float4, float2, float2, float, float, float, float, float3, float, float, float, float, float, float, float, float, int, int, int, int, int, int, int, int, float, float, float, float, float, float4, float3, float, float4[2], float4[2], float4, float4, float, float, float, float, float, float, float, float, float, float, float, float, float3, float, float3, float, float3, float, float3, float, float4[2], float4[2], float4[2], float4[2], float4[2], float4, float3, float, float4, float4[4], float4, float, float, float, float, float4, float, float, float, float, float, float, float, float, float3, float, float, float, float, float, float4, float, float, float, float, float4, float, float, float, float, float4[8], float, float, float, float, int, float, float, float, float3, int, float4[6], float4[6], float4[6], float4[6], float, float, int, int, float3, float, float3, float, float, float, int, float, float, float, float, float, float, float, int2, float, float, float, float, float3, float, float3, float, float3, float, float2, float2, float2, float2, float2, float, float, float3, float, float2, float2, float, float, float, float, float3, float, float3, float, float3, float, float3, float, float, float, float, float, float4[2], float4, int, int, int, int, int, int, int, float, float4, int, int, int, float, float4, float4, float4, float4, float2, float, float, float3, float, int, int, int, int, int4[32], int4[32], int, float, float, float, float4, float4, float4, float4, float2, float, float, float4, float4, float4, float, float, float, int, int4, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, float4, float, float, int, int, int, int, int, int, float4, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int3, int, int3, int, float3, float, float3 }
+_Scene = type { int, int, int, int, int, int, int, float, int, int, int, int, int, int, int, int, int, float, float, float, int, int, int, int, int4, int, int, int, int, int, float, float, float, int, int, int, float, int, int, int, int, int, int, int, float, int, int, int, int, int, int, int, int, int, float, float, float, float2, int, int, int, int, int, float, int, int, int, int, int, float, float, float, int, int, int, float, int, int, int }
+_Material = type { float4[5], int, int, int, int, int, int, int }
+_struct.SamplerState = type { int }
+
+Inputs
+  float4 TEXCOORD10_centroid; // Rows:1 StartRow:0 Cols:4 StartCol:0
+  float4 TEXCOORD11_centroid; // Rows:1 StartRow:1 Cols:4 StartCol:0
+  float4 TEXCOORD0; // Rows:1 StartRow:2 Cols:4 StartCol:0
+  nointerpolation uint INSTANCE_ID; // Rows:1 StartRow:3 Cols:1 StartCol:0
+  float3 TEXCOORD9; // Rows:1 StartRow:4 Cols:3 StartCol:0
+  linear noperspective float4 SV_Position; // Rows:1 StartRow:5 Cols:4 StartCol:0
+  nointerpolation uint SV_IsFrontFace; // Rows:1 StartRow:3 Cols:1 StartCol:1
+
+Outputs
+  float4 SV_Target0; // Rows:1 StartRow:0 Cols:4 StartCol:0
+  float4 SV_Target1; // Rows:1 StartRow:1 Cols:4 StartCol:0
+  float4 SV_Target2; // Rows:1 StartRow:2 Cols:4 StartCol:0
+  float4 SV_Target3; // Rows:1 StartRow:3 Cols:4 StartCol:0
+
+StructuredBuffer<float4> StructuredBuffer0 : register(t0, space0);
+StructuredBuffer<float4> StructuredBuffer1 : register(t1, space0);
+Texture2D<float4> Texture2D2 : register(t2, space0);
+Texture2D<float4> Texture2D3 : register(t3, space0);
+Texture2D<float4> Texture2D4 : register(t4, space0);
+Texture2D<float4> Texture2D5 : register(t5, space0);
+
+cbuffer cbuffer0 : register(b0, space0)
+
+cbuffer cbuffer1 : register(b1, space0)
+
+cbuffer cbuffer2 : register(b2, space0)
+
+SamplerState sampler0 : register(s0, space0);
+SamplerState sampler1 : register(s1, space0);
+
+void MainPS()
+{
+_label0: 
+  _dx.types.Handle _115 = InitialiseHandle(Texture2D5); //  index = 5
+  _dx.types.Handle _116 = InitialiseHandle(Texture2D4); //  index = 4
+  _dx.types.Handle _117 = InitialiseHandle(Texture2D3); //  index = 3
+  _dx.types.Handle _118 = InitialiseHandle(Texture2D2); //  index = 2
+  _dx.types.Handle _119 = InitialiseHandle(StructuredBuffer1); //  index = 1
+  _dx.types.Handle _120 = InitialiseHandle(StructuredBuffer0); //  index = 0
+  _dx.types.Handle _121 = InitialiseHandle(sampler1); //  index = 1
+  _dx.types.Handle _122 = InitialiseHandle(sampler0); //  index = 0
+  _dx.types.Handle _123 = InitialiseHandle(cbuffer2); //  index = 2
+  _dx.types.Handle _124 = InitialiseHandle(cbuffer1); //  index = 1
+  _dx.types.Handle _125 = InitialiseHandle(cbuffer0); //  index = 0
+  _dx.types.Handle __cbuffer2_126 = (CBuffer)_123;
+  _dx.types.Handle __cbuffer1_127 = (CBuffer)_124;
+  _dx.types.Handle __cbuffer0_128 = (CBuffer)_125;
+  float _129 = _IN.SV_Position.x;
+  float _130 = _IN.SV_Position.y;
+  float _131 = _IN.SV_Position.z;
+  float _132 = _IN.TEXCOORD9.x;
+  float _133 = _IN.TEXCOORD9.y;
+  float _134 = _IN.TEXCOORD9.z;
+  int _135 = _IN.INSTANCE_ID.x;
+  float _136 = _IN.TEXCOORD11_centroid.x;
+  float _137 = _IN.TEXCOORD11_centroid.y;
+  float _138 = _IN.TEXCOORD11_centroid.z;
+  float _139 = _IN.TEXCOORD11_centroid.w;
+  float _140 = _IN.TEXCOORD10_centroid.x;
+  float _141 = _IN.TEXCOORD10_centroid.y;
+  float _142 = _IN.TEXCOORD10_centroid.z;
+  _dx.types.CBufRet.f32 _143 = __cbuffer0_128.Load4(byte_offset = 704);
+  float _144 = extractvalue _143, 0;
+  float _145 = extractvalue _143, 1;
+  float _146 = extractvalue _143, 2;
+  float _147 = extractvalue _143, 3;
+  _dx.types.CBufRet.f32 _148 = __cbuffer0_128.Load4(byte_offset = 720);
+  float _149 = extractvalue _148, 0;
+  float _150 = extractvalue _148, 1;
+  float _151 = extractvalue _148, 2;
+  float _152 = extractvalue _148, 3;
+  _dx.types.CBufRet.f32 _153 = __cbuffer0_128.Load4(byte_offset = 736);
+  float _154 = extractvalue _153, 0;
+  float _155 = extractvalue _153, 1;
+  float _156 = extractvalue _153, 2;
+  float _157 = extractvalue _153, 3;
+  _dx.types.CBufRet.f32 _158 = __cbuffer0_128.Load4(byte_offset = 752);
+  float _159 = extractvalue _158, 0;
+  float _160 = extractvalue _158, 1;
+  float _161 = extractvalue _158, 2;
+  float _162 = extractvalue _158, 3;
+  _dx.types.CBufRet.f32 _163 = __cbuffer0_128.Load4(byte_offset = 2000);
+  float _164 = extractvalue _163, 0;
+  float _165 = extractvalue _163, 1;
+  float _166 = extractvalue _163, 2;
+  _dx.types.CBufRet.f32 _167 = __cbuffer0_128.Load4(byte_offset = 2048);
+  float _168 = extractvalue _167, 0;
+  float _169 = extractvalue _167, 1;
+  float _170 = extractvalue _167, 2;
+  _dx.types.CBufRet.f32 _171 = __cbuffer0_128.Load4(byte_offset = 2608);
+  float _172 = extractvalue _171, 0;
+  float _173 = extractvalue _171, 1;
+  float _174 = extractvalue _171, 2;
+  float _175 = extractvalue _171, 3;
+  _dx.types.CBufRet.f32 _176 = __cbuffer0_128.Load4(byte_offset = 2624);
+  float _177 = extractvalue _176, 0;
+  float _178 = extractvalue _176, 1;
+  float _179 = extractvalue _176, 2;
+  float _180 = extractvalue _176, 3;
+  float _181 = -0.000000 - _164;
+  float _182 = -0.000000 - _165;
+  float _183 = -0.000000 - _166;
+  float _184 = _IN.TEXCOORD0.x;
+  float _185 = _IN.TEXCOORD0.z;
+  float _186 = _142 * _137;
+  float _187 = _141 * _138;
+  float _188 = _186 - _187;
+  float _189 = _140 * _138;
+  float _190 = _142 * _136;
+  float _191 = _189 - _190;
+  float _192 = _141 * _136;
+  float _193 = _140 * _137;
+  float _194 = _192 - _193;
+  float _195 = _188 * _139;
+  float _196 = _191 * _139;
+  float _197 = _194 * _139;
+  _dx.types.CBufRet.i32 _198 = __cbuffer1_127.Load4(byte_offset = 0);
+  int _199 = extractvalue _198, 0;
+  int _200 = extractvalue _198, 1;
+  int _201 = extractvalue _198, 2;
+  int _202 = _199 & 31;
+  int _203 = _135 >> _202; // logical 
+  int _204 = _200 & _135;
+  int _205 = _201 * _203;
+  int _206 = _205 + _204;
+  _dx.types.Handle __StructuredBuffer0_207 = (StructuredBuffer<stride=16>)_120;
+  _dx.types.ResRet.f32 _208 = __StructuredBuffer0_207.Load(_206);
+  float _209 = extractvalue _208, 0;
+  int _210 = asint(_209); // bitcast 
+  int _211 = _210 & 1048575;
+  float _212 = _129 * _144;
+  float _213 = mad(_130, _149, _212);
+  float _214 = mad(_131, _154, _213);
+  float _215 = mad(1.00000, _159, _214);
+  float _216 = _129 * _145;
+  float _217 = mad(_130, _150, _216);
+  float _218 = mad(_131, _155, _217);
+  float _219 = mad(1.00000, _160, _218);
+  float _220 = _129 * _146;
+  float _221 = mad(_130, _151, _220);
+  float _222 = mad(_131, _156, _221);
+  float _223 = mad(1.00000, _161, _222);
+  float _224 = _129 * _147;
+  float _225 = mad(_130, _152, _224);
+  float _226 = mad(_131, _157, _225);
+  float _227 = mad(1.00000, _162, _226);
+  float _228 = _215 / _227;
+  float _229 = _219 / _227;
+  float _230 = _223 / _227;
+  float _231 = _228 - _168;
+  float _232 = _229 - _169;
+  float _233 = _230 - _170;
+  float _234 = mad(_164, 2.09715e+06, _231);
+  float _235 = mad(_165, 2.09715e+06, _232);
+  float _236 = mad(_166, 2.09715e+06, _233);
+  float _237 = mad(_181, 2.09715e+06, _234);
+  float _238 = mad(_182, 2.09715e+06, _235);
+  float _239 = mad(_183, 2.09715e+06, _236);
+  float _240 = _231 - _237;
+  float _241 = _232 - _238;
+  float _242 = _233 - _239;
+  float _243 = _175 + _174;
+  float _244 = dot({_172, _173, _243}, {_172, _173, _243});
+  float _245 = rsqrt(_244);
+  float _246 = _245 * _172;
+  float _247 = _245 * _173;
+  float _248 = _245 * _243;
+  float _249 = _246 * _140;
+  float _250 = mad(_247, _195, _249);
+  float _251 = mad(_248, _136, _250);
+  float _252 = _246 * _141;
+  float _253 = mad(_247, _196, _252);
+  float _254 = mad(_248, _137, _253);
+  float _255 = _246 * _142;
+  float _256 = mad(_247, _197, _255);
+  float _257 = mad(_248, _138, _256);
+  float _258 = dot({_251, _254, _257}, {_251, _254, _257});
+  float _259 = rsqrt(_258);
+  float _260 = _259 * _251;
+  float _261 = _259 * _254;
+  float _262 = _259 * _257;
+  _dx.types.CBufRet.f32 _263 = __cbuffer2_126.Load4(byte_offset = 0);
+  float _264 = extractvalue _263, 0;
+  float _265 = extractvalue _263, 1;
+  float _266 = extractvalue _263, 2;
+  float _267 = extractvalue _263, 3;
+  float _268 = _265 * _264;
+  float _269 = _266 * _264;
+  float _270 = _267 * _264;
+  int _271 = _211 * 44;
+  int _272 = _271 + 20;
+  _dx.types.Handle __StructuredBuffer1_273 = (StructuredBuffer<stride=16>)_119;
+  _dx.types.ResRet.f32 _274 = __StructuredBuffer1_273.Load(_272);
+  float _275 = extractvalue _274, 0;
+  float _276 = extractvalue _274, 1;
+  float _277 = extractvalue _274, 2;
+  int _278 = _271 + 21;
+  _dx.types.ResRet.f32 _279 = __StructuredBuffer1_273.Load(_278);
+  float _280 = extractvalue _279, 0;
+  float _281 = extractvalue _279, 1;
+  float _282 = extractvalue _279, 2;
+  float _283 = _275 - _164;
+  float _284 = _276 - _165;
+  float _285 = _277 - _166;
+  float _286 = _283 * 2.09715e+06;
+  float _287 = _284 * 2.09715e+06;
+  float _288 = _285 * 2.09715e+06;
+  float _289 = _231 - _286;
+  float _290 = _289 - _280;
+  float _291 = _232 - _287;
+  float _292 = _291 - _281;
+  float _293 = _233 - _288;
+  float _294 = _293 - _282;
+  int _295 = _271 | 2;
+  _dx.types.ResRet.f32 _296 = __StructuredBuffer1_273.Load(_295);
+  float _297 = extractvalue _296, 0;
+  int _298 = _271 | 3;
+  _dx.types.ResRet.f32 _299 = __StructuredBuffer1_273.Load(_298);
+  float _300 = extractvalue _299, 0;
+  int _301 = _271 + 4;
+  _dx.types.ResRet.f32 _302 = __StructuredBuffer1_273.Load(_301);
+  float _303 = extractvalue _302, 0;
+  float _304 = dot({_297, _300, _303}, {_297, _300, _303});
+  float _305 = rsqrt(_304);
+  float _306 = _305 * _297;
+  float _307 = _305 * _300;
+  float _308 = _305 * _303;
+  float _309 = dot({_290, _292, _294}, {_306, _307, _308});
+  float _310 = extractvalue _296, 1;
+  float _311 = extractvalue _299, 1;
+  float _312 = extractvalue _302, 1;
+  float _313 = dot({_310, _311, _312}, {_310, _311, _312});
+  float _314 = rsqrt(_313);
+  float _315 = _314 * _310;
+  float _316 = _314 * _311;
+  float _317 = _314 * _312;
+  float _318 = dot({_290, _292, _294}, {_315, _316, _317});
+  float _319 = extractvalue _296, 2;
+  float _320 = extractvalue _299, 2;
+  float _321 = extractvalue _302, 2;
+  float _322 = dot({_319, _320, _321}, {_319, _320, _321});
+  float _323 = rsqrt(_322);
+  float _324 = _323 * _319;
+  float _325 = _323 * _320;
+  float _326 = _323 * _321;
+  float _327 = dot({_290, _292, _294}, {_324, _325, _326});
+  _dx.types.CBufRet.f32 _328 = __cbuffer2_126.Load4(byte_offset = 16);
+  float _329 = extractvalue _328, 0;
+  float _330 = _329 * _309;
+  float _331 = _329 * _318;
+  float _332 = _329 * _327;
+  float _333 = _330 * 0.500000;
+  float _334 = _331 * 0.500000;
+  float _335 = _332 * 0.500000;
+  _dx.types.Handle __Texture2D5_336 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_337 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _338 = __Texture2D5_336.Sample(__sampler0_337, _333, _335, Offset = {0, 0});
+  float _339 = extractvalue _338, 1;
+  _dx.types.Handle __Texture2D5_340 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_341 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _342 = __Texture2D5_340.Sample(__sampler0_341, _334, _335, Offset = {0, 0});
+  float _343 = extractvalue _342, 1;
+  float _344 = abs(_184);
+  float _345 = _344 * 3.00000;
+  float _346 = _345 + -1.00000;
+  float _347 = sat(_346);
+  float _348 = _343 - _339;
+  float _349 = _347 * _348;
+  float _350 = _349 + _339;
+  _dx.types.Handle __Texture2D5_351 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_352 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _353 = __Texture2D5_351.Sample(__sampler0_352, _333, _334, Offset = {0, 0});
+  float _354 = extractvalue _353, 1;
+  float _355 = abs(_185);
+  float _356 = _355 * 3.00000;
+  float _357 = _356 + -1.00000;
+  float _358 = sat(_357);
+  float _359 = _354 - _350;
+  float _360 = _358 * _359;
+  float _361 = _360 + _350;
+  _dx.types.CBufRet.f32 _362 = __cbuffer2_126.Load4(byte_offset = 16);
+  float _363 = extractvalue _362, 1;
+  float _364 = extractvalue _362, 2;
+  float _365 = extractvalue _362, 3;
+  _dx.types.CBufRet.f32 _366 = __cbuffer2_126.Load4(byte_offset = 32);
+  float _367 = extractvalue _366, 0;
+  float _368 = extractvalue _366, 1;
+  float _369 = extractvalue _366, 2;
+  float _370 = _363 - _367;
+  float _371 = _364 - _368;
+  float _372 = _365 - _369;
+  float _373 = _370 * _361;
+  float _374 = _371 * _361;
+  float _375 = _372 * _361;
+  float _376 = _373 + _367;
+  float _377 = _374 + _368;
+  float _378 = _375 + _369;
+  _dx.types.Handle __Texture2D5_379 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_380 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _381 = __Texture2D5_379.Sample(__sampler0_380, _330, _332, Offset = {0, 0});
+  float _382 = extractvalue _381, 0;
+  _dx.types.Handle __Texture2D5_383 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_384 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _385 = __Texture2D5_383.Sample(__sampler0_384, _331, _332, Offset = {0, 0});
+  float _386 = extractvalue _385, 0;
+  float _387 = _386 - _382;
+  float _388 = _387 * _347;
+  float _389 = _388 + _382;
+  _dx.types.Handle __Texture2D5_390 = (Texture2D<float4>)_115;
+  _dx.types.Handle __sampler0_391 = (SamplerState)_122;
+  _dx.types.ResRet.f32 _392 = __Texture2D5_390.Sample(__sampler0_391, _330, _331, Offset = {0, 0});
+  float _393 = extractvalue _392, 0;
+  float _394 = _393 - _389;
+  float _395 = _394 * _358;
+  float _396 = 1.00000 - _389;
+  float _397 = _396 - _395;
+  _dx.types.CBufRet.f32 _398 = __cbuffer2_126.Load4(byte_offset = 48);
+  float _399 = extractvalue _398, 0;
+  float _400 = extractvalue _398, 1;
+  float _401 = extractvalue _398, 2;
+  float _402 = _376 - _399;
+  float _403 = _377 - _400;
+  float _404 = _378 - _401;
+  float _405 = _397 * _402;
+  float _406 = _397 * _403;
+  float _407 = _397 * _404;
+  float _408 = _405 + _399;
+  float _409 = _406 + _400;
+  float _410 = _407 + _401;
+  float _411 = _395 + _389;
+  float _412 = extractvalue _398, 3;
+  _dx.types.CBufRet.f32 _413 = __cbuffer2_126.Load4(byte_offset = 64);
+  float _414 = extractvalue _413, 0;
+  float _415 = _412 - _414;
+  float _416 = _415 * _361;
+  float _417 = _414 + -0.300000;
+  float _418 = _417 + _416;
+  float _419 = _418 * _397;
+  float _420 = _419 + 0.300000;
+  _dx.types.CBufRet.i32 _421 = __cbuffer0_128.Load4(byte_offset = 2704);
+  int _422 = extractvalue _421, 2;
+  float _423 = (float)(_422); // unsigned 
+  float _424 = _423 * 32.6650;
+  float _425 = _423 * 11.8150;
+  float _426 = _424 + _129;
+  float _427 = _425 + _130;
+  float _428 = dot({_426, _427}, {0.0671106, 0.00583715});
+  float _429 = Frc(_428);
+  float _430 = _429 * 52.9829;
+  float _431 = Frc(_430);
+  float _432 = sat(_408);
+  float _433 = sat(_409);
+  float _434 = sat(_410);
+  float _435 = sat(_411);
+  float _436 = sat(_420);
+  float _437 = _436 * _178;
+  float _438 = _437 + _177;
+  float _439 = _180 + _179;
+  float _440 = sat(_439);
+  _dx.types.Handle __StructuredBuffer1_441 = (StructuredBuffer<stride=16>)_119;
+  _dx.types.ResRet.f32 _442 = __StructuredBuffer1_441.Load(_271);
+  float _443 = extractvalue _442, 0;
+  int _444 = asint(_443); // bitcast 
+  int _445 = _444 & 8;
+  bool _446 = (_445 != 0);
+  _dx.types.CBufRet.f32 _447 = __cbuffer0_128.Load4(byte_offset = 3568);
+  float _448 = extractvalue _447, 3;
+  bool _449 = (_448 > 0.000000);
+  bool _450 = _449 & _446;
+  if (_450) goto _label1; else goto _label2;
+
+_label1:                      
+  _dx.types.CBufRet.f32 _451 = __cbuffer0_128.Load4(byte_offset = 2496);
+  float _452 = extractvalue _451, 2;
+  float _453 = extractvalue _451, 3;
+  float _454 = _452 * _129;
+  float _455 = _453 * _130;
+  _dx.types.Handle __Texture2D2_456 = (Texture2D<float4>)_118;
+  _dx.types.Handle __sampler1_457 = (SamplerState)_121;
+  _dx.types.ResRet.f32 _458 = __Texture2D2_456.SampleLevel(__sampler1_457, _454, _455, Offset = {0, 0}, /*LOD*/ 0.000000);
+  float _459 = extractvalue _458, 0;
+  float _460 = extractvalue _458, 1;
+  float _461 = extractvalue _458, 2;
+  float _462 = extractvalue _458, 3;
+  _dx.types.Handle __Texture2D3_463 = (Texture2D<float4>)_117;
+  _dx.types.ResRet.f32 _464 = __Texture2D3_463.SampleLevel(__sampler1_457, _454, _455, Offset = {0, 0}, /*LOD*/ 0.000000);
+  float _465 = extractvalue _464, 0;
+  float _466 = extractvalue _464, 1;
+  float _467 = extractvalue _464, 2;
+  float _468 = extractvalue _464, 3;
+  _dx.types.Handle __Texture2D4_469 = (Texture2D<float4>)_116;
+  _dx.types.ResRet.f32 _470 = __Texture2D4_469.SampleLevel(__sampler1_457, _454, _455, Offset = {0, 0}, /*LOD*/ 0.000000);
+  float _471 = extractvalue _470, 0;
+  float _472 = extractvalue _470, 1;
+  float _473 = extractvalue _470, 2;
+  float _474 = extractvalue _470, 3;
+  float _475 = _465 * 2.00000;
+  float _476 = _466 * 2.00000;
+  float _477 = _467 * 2.00000;
+  float _478 = _475 + -1.00392;
+  float _479 = _476 + -1.00392;
+  float _480 = _477 + -1.00392;
+  float _481 = _462 * _432;
+  float _482 = _462 * _433;
+  float _483 = _462 * _434;
+  float _484 = _481 + _459;
+  float _485 = _482 + _460;
+  float _486 = _483 + _461;
+  float _487 = _468 * _260;
+  float _488 = _468 * _261;
+  float _489 = _468 * _262;
+  float _490 = _478 + _487;
+  float _491 = _479 + _488;
+  float _492 = _480 + _489;
+  float _493 = dot({_490, _491, _492}, {_490, _491, _492});
+  float _494 = rsqrt(_493);
+  float _495 = _494 * _490;
+  float _496 = _494 * _491;
+  float _497 = _494 * _492;
+  float _498 = _474 * _438;
+  float _499 = _498 + _473;
+  float _500 = _474 * _435;
+  float _501 = _500 + _471;
+  float _502 = _474 * 0.500000;
+  float _503 = _502 + _472;
+  goto _label2;
+
+_label2:                      // preceded by _label1
+  float _504 = phi float [ _label1::_495, _label1 ], [ _label0::_260, _label0 ];
+  float _505 = phi float [ _label1::_496, _label1 ], [ _label0::_261, _label0 ];
+  float _506 = phi float [ _label1::_497, _label1 ], [ _label0::_262, _label0 ];
+  float _507 = phi float [ _label1::_484, _label1 ], [ _label0::_432, _label0 ];
+  float _508 = phi float [ _label1::_485, _label1 ], [ _label0::_433, _label0 ];
+  float _509 = phi float [ _label1::_486, _label1 ], [ _label0::_434, _label0 ];
+  float _510 = phi float [ _label1::_501, _label1 ], [ _label0::_435, _label0 ];
+  float _511 = phi float [ _label1::_503, _label1 ], [ _label0::0.500000, _label0 ];
+  float _512 = phi float [ _label1::_499, _label1 ], [ _label0::_438, _label0 ];
+  int _513 = _444 & 256;
+  bool _514 = (_513 != 0);
+  int _515 = _444 & 512;
+  bool _516 = (_515 != 0);
+  float _517 = _516 ? 1.00000 : 0.000000;
+  float _518 = _514 ? 2.00000 : 0.000000;
+  float _519 = _518 + _517;
+  float _520 = _519 * 0.333333;
+  float _521 = _431 + -0.500000;
+  float _522 = _521 * 0.00392157;
+  float _523 = sat(_511);
+  int _524 = asint(_523); // bitcast 
+  int _525 = _524 & 2147483647;
+  int _526 = UMin(_525, 1);
+  float _527 = (float)(_526); // unsigned 
+  float _528 = _522 * _527;
+  float _529 = _528 + _523;
+  float _530 = sat(_529);
+  float _531 = _511 * 0.0800000;
+  float _532 = _507 - _531;
+  float _533 = _508 - _531;
+  float _534 = _509 - _531;
+  float _535 = _532 * _510;
+  float _536 = _533 * _510;
+  float _537 = _534 * _510;
+  float _538 = _535 + _531;
+  float _539 = _536 + _531;
+  float _540 = _537 + _531;
+  float _541 = _510 * _507;
+  float _542 = _510 * _508;
+  float _543 = _510 * _509;
+  float _544 = _507 - _541;
+  float _545 = _508 - _542;
+  float _546 = _509 - _543;
+  _dx.types.CBufRet.f32 _547 = __cbuffer0_128.Load4(byte_offset = 2576);
+  float _548 = extractvalue _547, 3;
+  float _549 = _548 * _544;
+  float _550 = _548 * _545;
+  float _551 = _548 * _546;
+  float _552 = extractvalue _547, 0;
+  float _553 = extractvalue _547, 1;
+  float _554 = extractvalue _547, 2;
+  float _555 = _549 + _552;
+  float _556 = _550 + _553;
+  float _557 = _551 + _554;
+  _dx.types.CBufRet.f32 _558 = __cbuffer0_128.Load4(byte_offset = 2592);
+  float _559 = extractvalue _558, 3;
+  float _560 = _559 * _538;
+  float _561 = _559 * _539;
+  float _562 = _559 * _540;
+  float _563 = extractvalue _558, 0;
+  float _564 = extractvalue _558, 1;
+  float _565 = extractvalue _558, 2;
+  float _566 = _560 + _563;
+  float _567 = _561 + _564;
+  float _568 = _562 + _565;
+  _dx.types.CBufRet.f32 _569 = __cbuffer0_128.Load4(byte_offset = 3344);
+  float _570 = extractvalue _569, 3;
+  bool _571 = (_570 != 0.000000);
+  float _572 = _566 * 0.450000;
+  float _573 = _567 * 0.450000;
+  float _574 = _568 * 0.450000;
+  float _575 = _572 + _555;
+  float _576 = _573 + _556;
+  float _577 = _574 + _557;
+  float _578 = _571 ? _575 : _555;
+  float _579 = _571 ? _576 : _556;
+  float _580 = _571 ? _577 : _557;
+  float _581 = _571 ? 0.000000 : _566;
+  float _582 = _571 ? 0.000000 : _567;
+  float _583 = _571 ? 0.000000 : _568;
+  float _584 = dot({_581, _582, _583}, {0.212639, 0.715169, 0.0721923});
+  float _585 = _584 * 2.04040;
+  float _586 = _585 + -0.332400;
+  float _587 = _584 * 4.79510;
+  float _588 = 0.641700 - _587;
+  float _589 = _584 * 2.75520;
+  float _590 = _589 + 0.690300;
+  float _591 = _586 * _440;
+  float _592 = _588 + _591;
+  float _593 = _592 * _440;
+  float _594 = _590 + _593;
+  float _595 = _594 * _440;
+  float _596 = max(_440, _595);
+  float _597 = _581 * 0.450000;
+  float _598 = _582 * 0.450000;
+  float _599 = _583 * 0.450000;
+  float _600 = _578 + _597;
+  float _601 = _579 + _598;
+  float _602 = _580 + _599;
+  _dx.types.CBufRet.f32 _603 = __cbuffer0_128.Load4(byte_offset = 2736);
+  float _604 = extractvalue _603, 0;
+  float _605 = _600 * _604;
+  float _606 = _601 * _604;
+  float _607 = _602 * _604;
+  float _608 = max(_268, 0.000000);
+  float _609 = max(_269, 0.000000);
+  float _610 = max(_270, 0.000000);
+  _dx.types.CBufRet.f32 _611 = __cbuffer0_128.Load4(byte_offset = 2640);
+  float _612 = extractvalue _611, 2;
+  bool _613 = (_612 > 0.000000);
+  if (_613) goto _label3; else goto _label7;
+
+_label3:                      // preceded by _label2
+  int _614 = _271 + 18;
+  _dx.types.ResRet.f32 _615 = __StructuredBuffer1_441.Load(_614);
+  float _616 = extractvalue _615, 0;
+  float _617 = extractvalue _615, 1;
+  float _618 = extractvalue _615, 2;
+  int _619 = _271 + 19;
+  _dx.types.ResRet.f32 _620 = __StructuredBuffer1_441.Load(_619);
+  float _621 = extractvalue _620, 0;
+  float _622 = extractvalue _620, 1;
+  float _623 = extractvalue _620, 2;
+  int _624 = _271 + 17;
+  _dx.types.ResRet.f32 _625 = __StructuredBuffer1_441.Load(_624);
+  float _626 = extractvalue _625, 3;
+  float _627 = _616 * 2.09715e+06;
+  float _628 = _617 * 2.09715e+06;
+  float _629 = _618 * 2.09715e+06;
+  float _630 = _627 + _621;
+  float _631 = _628 + _622;
+  float _632 = _629 + _623;
+  float _633 = _630 - _627;
+  float _634 = _631 - _628;
+  float _635 = _632 - _629;
+  float _636 = _621 - _633;
+  float _637 = _622 - _634;
+  float _638 = _623 - _635;
+  int _639 = _271 + 26;
+  _dx.types.ResRet.f32 _640 = __StructuredBuffer1_441.Load(_639);
+  float _641 = extractvalue _640, 3;
+  int _642 = _271 + 27;
+  _dx.types.ResRet.f32 _643 = __StructuredBuffer1_441.Load(_642);
+  float _644 = extractvalue _643, 3;
+  int _645 = _271 + 32;
+  _dx.types.ResRet.f32 _646 = __StructuredBuffer1_441.Load(_645);
+  float _647 = extractvalue _646, 0;
+  float _648 = _234 - _630;
+  float _649 = _235 - _631;
+  float _650 = _236 - _632;
+  float _651 = _240 - _636;
+  float _652 = _241 - _637;
+  float _653 = _242 - _638;
+  float _654 = _648 + _651;
+  float _655 = _649 + _652;
+  float _656 = _650 + _653;
+  float _657 = abs(_654);
+  float _658 = abs(_655);
+  float _659 = abs(_656);
+  float _660 = _626 + 1.00000;
+  float _661 = _641 + 1.00000;
+  float _662 = _644 + 1.00000;
+  bool _663 = (_657 > _660);
+  bool _664 = (_658 > _661);
+  bool _665 = (_659 > _662);
+  bool _666 = _663 | _664;
+  bool _667 = _666 | _665;
+  if (_667) goto _label4; else goto _label5;
+
+_label4:                      // preceded by _label3
+  float _668 = _240 * 1.52588e-05;
+  float _669 = _241 * 1.52588e-05;
+  float _670 = _242 * 1.52588e-05;
+  float _671 = _234 * 1.52588e-05;
+  float _672 = _235 * 1.52588e-05;
+  float _673 = _236 * 1.52588e-05;
+  float _674 = Frc(_671);
+  float _675 = Frc(_672);
+  float _676 = Frc(_673);
+  float _677 = Frc(_668);
+  float _678 = Frc(_669);
+  float _679 = Frc(_670);
+  float _680 = _677 + _674;
+  float _681 = _678 + _675;
+  float _682 = _679 + _676;
+  float _683 = Frc(_680);
+  float _684 = Frc(_681);
+  float _685 = Frc(_682);
+  float _686 = _683 * 65536.0;
+  float _687 = _684 * 65536.0;
+  float _688 = _685 * 65536.0;
+  float _689 = dot({_686, _687, _688}, {0.00115400, 0.00115400, 0.00115400});
+  float _690 = Frc(_689);
+  bool _691 = (_690 > 0.500000);
+  float _692 = (float)(_691); // unsigned 
+  float _693 = 1.00000 - _692;
+  goto _label7;
+
+_label5:                      // preceded by _label3
+  bool _694 = (_647 > 0.000000);
+  if (_694) goto _label6; else goto _label7;
+
+_label6:                      // preceded by _label5
+  float _695 = _228 - _132;
+  float _696 = _229 - _133;
+  float _697 = _230 - _134;
+  float _698 = abs(_695);
+  float _699 = abs(_696);
+  float _700 = abs(_697);
+  float _701 = max(_699, _700);
+  float _702 = max(_698, _701);
+  float _703 = _702 - _647;
+  float _704 = abs(_703);
+  float _705 = _704 * 20.0000;
+  float _706 = sat(_705);
+  float _707 = 1.00000 - _706;
+  goto _label7;
+
+_label7:                      // preceded by _label6, _label5, _label4, _label2
+  float _708 = phi float [ _label4::_693, _label4 ], [ _label6::_707, _label6 ], [ _label5::_608, _label5 ], [ _label2::_608, _label2 ];
+  float _709 = phi float [ _label4::1.00000, _label4 ], [ _label6::0.000000, _label6 ], [ _label5::_609, _label5 ], [ _label2::_609, _label2 ];
+  float _710 = phi float [ _label4::_692, _label4 ], [ _label6::_707, _label6 ], [ _label5::_610, _label5 ], [ _label2::_610, _label2 ];
+  float _711 = _708 + _605;
+  float _712 = _709 + _606;
+  float _713 = _710 + _607;
+  float _714 = _504 * 0.500000;
+  float _715 = _505 * 0.500000;
+  float _716 = _506 * 0.500000;
+  float _717 = _714 + 0.500000;
+  float _718 = _715 + 0.500000;
+  float _719 = _716 + 0.500000;
+  int _720 = _444 >> 24; // logical 
+  int _721 = _720 & 64;
+  int _722 = _721 | 129;
+  float _723 = (float)(_722); // unsigned 
+  float _724 = _723 * 0.00392157;
+  _dx.types.CBufRet.f32 _725 = __cbuffer0_128.Load4(byte_offset = 2560);
+  float _726 = extractvalue _725, 2;
+  float _727 = _726 * _711;
+  float _728 = _726 * _712;
+  float _729 = _726 * _713;
+  _dx.types.CBufRet.f32 _730 = __cbuffer0_128.Load4(byte_offset = 5728);
+  float _731 = extractvalue _730, 2;
+  float _732 = min(_727, _731);
+  float _733 = min(_728, _731);
+  float _734 = min(_729, _731);
+  _OUT.SV_Target0.x = _732;
+  _OUT.SV_Target0.y = _733;
+  _OUT.SV_Target0.z = _734;
+  _OUT.SV_Target0.w = 0.000000;
+  _OUT.SV_Target1.x = _717;
+  _OUT.SV_Target1.y = _718;
+  _OUT.SV_Target1.z = _719;
+  _OUT.SV_Target1.w = _520;
+  _OUT.SV_Target2.x = _510;
+  _OUT.SV_Target2.y = _530;
+  _OUT.SV_Target2.z = _512;
+  _OUT.SV_Target2.w = _724;
+  _OUT.SV_Target3.x = _507;
+  _OUT.SV_Target3.y = _508;
+  _OUT.SV_Target3.z = _509;
+  _OUT.SV_Target3.w = _596;
+  return;
+}
+
+
+

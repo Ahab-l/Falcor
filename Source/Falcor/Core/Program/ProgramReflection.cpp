@@ -757,7 +757,9 @@ ref<ReflectionType> reflectResourceType(
     ReflectionResourceType::Dimensions dims = getResourceDimensions(pSlangType->getResourceShape());
     ;
     ReflectionResourceType::ShaderAccess shaderAccess = getShaderAccess(pSlangType->getType());
-    ReflectionResourceType::ReturnType retType = getReturnType(pSlangType->getType());
+    // The resource itself has no scalar type. Query the element returned by
+    // texture/buffer access so consumers can validate integer vs float views.
+    ReflectionResourceType::ReturnType retType = getReturnType(pSlangType->getType()->getResourceResultType());
     ReflectionResourceType::StructuredType structuredType = getStructuredBufferType(pSlangType->getType());
 
     FALCOR_ASSERT(pPath->pPrimary && pPath->pPrimary->pVar);

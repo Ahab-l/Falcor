@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "metadata": {"description": "Asset -> Add(previous) -> History + native Blit; no Scene or legacy ABI"},
+  "nodes": [
+    {"name":"Assets", "type":"CustomRenderPiplineAssetPass", "file_inputs":["assets.increment.file"],
+     "properties":{"assets":{"increment":{"kind":"raw_buffer","file":"increment.bin","bytes":16}}}},
+    {"name":"Previous", "type":"CustomRenderPiplineHistoryReadPass",
+     "properties":{"key":"accumulation","resources":[{"name":"color","format":"RGBA32Float"}]}},
+    {"name":"Add", "type":"CustomRenderPiplineComputePass", "properties":{
+      "shader":{"file":"Accumulate.slang"},
+      "resources":[
+        {"name":"increment","direction":"input","binding":"increment","kind":"raw_buffer","bytes":16},
+        {"name":"previous","direction":"input","binding":"previous","format":"RGBA32Float"},
+        {"name":"current","direction":"output","binding":"current","format":"RGBA32Float"}
+      ],
+      "uniforms":{"Params.extent":{"type":"uint2","source":"extent"}},
+      "dispatch":{"extent":"current"}
+    }},
+    {"name":"Save", "type":"CustomRenderPiplineHistoryWritePass",
+     "properties":{"key":"accumulation","resources":[{"name":"color","format":"RGBA32Float"}]}},
+    {"name":"Blit","type":"BlitPass","properties":{"outputFormat":"RGBA32Float"}}
+  ],
+  "edges":[["Assets.increment","Add.increment"],["Previous.color","Add.previous"],
+           ["Add.current","Save.color"],["Add.current","Blit.src"]],
+  "outputs":["Blit.dst","Add.current","Previous.color","Previous.status","Save.status"]
+}

@@ -1,0 +1,46 @@
+"""Instanced analytic planes, including a truly >64K-vertex indexed mesh."""
+import math
+from falcor import *
+
+# Every mesh has four instances, so SceneBuilder must retain its world transforms.
+# The large grid is offscreen; four vertices appended after its 66,049 vertices
+# form the entire visible quad. Truncating the visible indices to 16 bits must
+# remove that quad, rather than merely perturb subpixel grid triangles.
+for row, (name, subdivisions) in enumerate((("single", 1), ("double", 1), ("wide", 256))):
+    material = StandardMaterial(name)
+    material.baseColor = float4(0.1 + row * 0.2, 0.3, 0.7 - row * 0.2, 1.0)
+    mesh = TriangleMesh()
+    normal = float3(0.25, 0.5, 1.0) / math.sqrt(1.3125)
+    for y in range(subdivisions + 1):
+        for x in range(subdivisions + 1):
+            u, v = x / subdivisions, y / subdivisions
+            mesh.addVertex(float3(u * 2 - 1 + (100 if name == "wide" else 0), v * 2 - 1, 0), normal, float2(u, v))
+    for y in range(subdivisions):
+        for x in range(subdivisions):
+            a = y * (subdivisions + 1) + x
+            mesh.addTriangle(a, a + 1, a + subdivisions + 2)
+            mesh.addTriangle(a, a + subdivisions + 2, a + subdivisions + 1)
+    if name == "wide":
+        first = (subdivisions + 1) ** 2
+        for x, y in ((-1, -1), (1, -1), (1, 1), (-1, 1)):
+            mesh.addVertex(float3(x, y, 0), normal, float2((x + 1) / 2, (y + 1) / 2))
+        mesh.addTriangle(first, first + 1, first + 2)
+        mesh.addTriangle(first, first + 2, first + 3)
+    mesh.frontFaceCW = False
+    mesh_id = sceneBuilder.addTriangleMesh(mesh, material)
+    for column, (sx, sz) in enumerate(((1, 1), (-1, 1), (-1, -1), (1, -1))):
+        transform = Transform(translation=float3(-4.5 + column * 3, 3 - row * 3, 0),
+                              scaling=float3(sx, 0.75, sz * 1.25))
+        node = sceneBuilder.addNode(name + str(column), transform)
+        sceneBuilder.addMeshInstance(node, mesh_id)
+
+camera = Camera("MeshAcceptanceCamera")
+camera.position = float3(0, 0, 8)
+camera.target = float3(0, 0, 0)
+camera.up = float3(0, 1, 0)
+camera.nearPlane = 0.1
+camera.farPlane = 100
+camera.aspectRatio = 4 / 3
+camera.frameHeight = 24
+camera.focalLength = 16  # 90-degree horizontal field of view.
+sceneBuilder.addCamera(camera)

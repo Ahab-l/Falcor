@@ -1,0 +1,256 @@
+#include "../../Codecs/Lighting/LightTerms.slangh"
+#include "../../CustomRenderPiplineFrameExposure.slangh"
+
+Texture2D<float> gDepthCopy;
+Texture2D<uint> gPrimaryCoverage;
+RWStructuredBuffer<uint> gLightingErrors;
+#if UE_LIGHTING_NATIVE_SHADOW
+#include "Shadows/CSMParameters.slangh"
+Texture2D<float4> gNativeShadowMask;
+#endif
+#if UE_LIGHTING_SCENE_FIXTURE
+Texture2D<float4> scene_color_before;
+#endif
+#if UE_LIGHTING_SHADOW_FIXTURE
+Texture2D<float4> shadow_mask;
+#endif
+#if UE_LIGHTING_AO_FIXTURE
+Texture2D<float4> scene_ao;
+#endif
+
+cbuffer LightingCB
+{
+    float4x4 gInverseViewProjection;
+    float4x4 gScreenToTranslatedWorld;
+    uint2 gDimensions;
+    uint4 gViewRect;
+    float2 gInvViewSize;
+    uint gCapturedView;
+    float3 gCameraUE;
+    float4 gInvDeviceZToWorldZ;
+    float gPreExposure;
+    float gMinRoughness;
+    float gSubsurfaceTransmittanceDistanceM;
+};
+cbuffer LightCB
+{
+    uint gLightType;
+    float3 gLightColor;
+    float3 gLightPositionUE;
+    float3 gLightDirectionUE;
+    float3 gLightTangentUE;
+    float gInvRadius;
+    float2 gSpotAngles;
+    float gFalloffExponent;
+    uint gInverseSquared;
+    float gSourceRadius;
+    float gSoftSourceRadius;
+    float gSourceLength;
+    float gDiffuseScale;
+    float gSpecularScale;
+    float4 gShadowMapChannelMask;
+    float2 gDistanceFadeMAD;
+    uint gShadowedBits;
+    uint gNativeShadowForLight;
+};
+struct RasterInput
+{
+    float4 position : SV_Position;
+    float3 screenVector : TEXCOORD0;
+};
+RasterInput vsMain(uint vertexID : SV_VertexID)
+{
+    // UE DrawRectangle full-screen triangle order.
+    const float2 rawPosition = float2(vertexID == 1u ? -1.0 : 1.0, vertexID == 2u ? -1.0 : 1.0);
+    precise float2 position = rawPosition * float2(gViewRect.zw);
+    precise float2 scale = 2.0 * gInvViewSize;
+    precise float2 clipXY = mad(scale, position, float2(-1.0));
+    clipXY.y = -clipXY.y;
+    RasterInput output;
+    output.position = float4(clipXY, 0.0, 1.0);
+    // The runtime matrix stores the transpose of UE's row-vector matrix.
+    const float3 matrix0 = float3(gScreenToTranslatedWorld[0][0], gScreenToTranslatedWorld[1][0], gScreenToTranslatedWorld[2][0]);
+    const float3 matrix1 = float3(gScreenToTranslatedWorld[0][1], gScreenToTranslatedWorld[1][1], gScreenToTranslatedWorld[2][1]);
+    const float3 matrix2 = float3(gScreenToTranslatedWorld[0][2], gScreenToTranslatedWorld[1][2], gScreenToTranslatedWorld[2][2]);
+    precise float3 xTerm = output.position.x * matrix0;
+    precise float3 xyTerm = mad(output.position.y, matrix1, xTerm);
+    precise float3 screenVector = xyTerm + matrix2;
+    output.screenVector = screenVector;
+    return output;
+}
+float4 initPS(RasterInput input) : SV_Target0
+{
+    const uint2 pixel = uint2(input.position.xy);
+    const UERaw raw = ueLoadRaw(pixel);
+    const UEFields fields = ueReadFields(raw);
+    if (gPrimaryCoverage.Load(int3(pixel, 0)) != 0)
+    {
+        const float deviceZ = gDepthCopy.Load(int3(pixel, 0));
+        if (!isfinite(deviceZ) || deviceZ <= 0 || deviceZ > 1) InterlockedOr(gLightingErrors[0], 16u);
+        if (!ueIsLightingSupported(fields.modelID)) InterlockedOr(gLightingErrors[0], 1u);
+        const UESurface surface = decodeGBuffer(raw, ueFramePreExposure(gPreExposure));
+        bool valid = all(isfinite(surface.baseColor)) && all(isfinite(surface.normalUE)) && all(isfinite(surface.emissive)) &&
+            all(isfinite(float4(surface.metallic, surface.specular, surface.roughness, surface.ao))) &&
+            all(isfinite(float4(surface.subsurfaceColor, surface.opacity))) &&
+            all(isfinite(float3(surface.clearCoat, surface.clearCoatRoughness, surface.cloth))) &&
+            all(isfinite(surface.clearCoatBottomNormalUE));
+#if UE_LIGHTING_HAS_NORMAL
+        if (ueIsFieldValid(fields.modelID, kField_normalEncoded)) valid = valid && dot(surface.normalUE, surface.normalUE) > 0;
+#endif
+        if (!valid) InterlockedOr(gLightingErrors[0], 4u);
+    }
+#if UE_LIGHTING_SCENE_FIXTURE
+    const float4 initial = scene_color_before.Load(int3(pixel, 0));
+#else
+    const float4 initial = float4(fields.sceneRadiance, fields.sceneAlpha);
+#endif
+    // Validate preservation even with zero lights and in background pixels.
+    if (!all(isfinite(initial)))
+    {
+        InterlockedOr(gLightingErrors[0], 8u);
+        return float4(0);
+    }
+    return initial;
+}
+struct LightOutput
+{
+    float4 color : SV_Target0;
+    float4 diffuse : SV_Target1;
+    float4 specular : SV_Target2;
+    float4 transmission : SV_Target3;
+};
+LightOutput lightPS(RasterInput input)
+{
+    const uint2 pixel = uint2(input.position.xy);
+    if (gPrimaryCoverage.Load(int3(pixel, 0)) == 0) discard;
+    const float deviceZ = gDepthCopy.Load(int3(pixel, 0));
+    if (!isfinite(deviceZ) || deviceZ <= 0 || deviceZ > 1)
+    {
+        InterlockedOr(gLightingErrors[0], 16u);
+        discard;
+    }
+    const float preExposure = ueFramePreExposure(gPreExposure);
+    UESurface surface = decodeGBuffer(ueLoadRaw(pixel), preExposure);
+    if (!ueIsLightingSupported(surface.modelID))
+    {
+        InterlockedOr(gLightingErrors[0], 1u);
+        discard;
+    }
+    const float sceneDepth = deviceZ * gInvDeviceZToWorldZ.x + gInvDeviceZToWorldZ.y +
+        rcp(deviceZ * gInvDeviceZToWorldZ.z - gInvDeviceZToWorldZ.w);
+    float3 positionUE;
+    float3 V;
+    if (gCapturedView != 0)
+    {
+        positionUE = input.screenVector * sceneDepth + gCameraUE;
+        V = -normalize(input.screenVector);
+    }
+    else
+    {
+        const float2 uv = (input.position.xy - float2(gViewRect.xy)) / float2(gViewRect.zw);
+        const float4 h = mul(gInverseViewProjection, float4(uv.x * 2 - 1, 1 - uv.y * 2, deviceZ, 1));
+        const float3 p = h.xyz / h.w;
+        positionUE = float3(-p.z, p.x, p.y) * 100;
+        V = normalize(gCameraUE - positionUE);
+    }
+    if (!isfinite(sceneDepth) || sceneDepth <= 0 || !all(isfinite(positionUE)) ||
+        !all(isfinite(V)) || dot(V, V) == 0)
+    {
+        InterlockedOr(gLightingErrors[0], 16u);
+        discard;
+    }
+    float3 N = float3(0, 0, 1);
+#if UE_LIGHTING_HAS_NORMAL
+    if (ueIsFieldValid(surface.modelID, kField_normalEncoded)) N = normalize(surface.normalUE);
+#endif
+    if (surface.hasClearCoatBottomNormal != 0) N = surface.clearCoatBottomNormalUE;
+    surface.roughness = max(surface.roughness, gMinRoughness);
+    float3 toLight = gLightDirectionUE;
+    float lightMask = 1;
+    if (gLightType != kUELightTypeDirectional)
+    {
+        UELocalLightTerms terms;
+        if (!ueTryGetLocalLightTerms(gLightType, positionUE, gLightPositionUE, gInvRadius, gLightDirectionUE,
+            gSpotAngles, gFalloffExponent, gInverseSquared != 0, terms))
+        {
+            InterlockedOr(gLightingErrors[0], 2u);
+            discard;
+        }
+        toLight = terms.toLight;
+        lightMask = terms.mask;
+    }
+    if (!all(isfinite(toLight)) || !isfinite(lightMask) || dot(toLight, toLight) == 0)
+    {
+        InterlockedOr(gLightingErrors[0], 16u);
+        discard;
+    }
+    if (lightMask <= 0) discard;
+    float4 rawShadowMask = float4(1);
+    float2 distanceFadeMAD = gDistanceFadeMAD;
+    uint shadowedBits = gShadowedBits;
+#if UE_LIGHTING_NATIVE_SHADOW
+    if (gNativeShadowForLight != 0)
+    {
+        rawShadowMask = gNativeShadowMask.Load(int3(pixel,0));
+        const float4 fade = ueCSMHeader(3);
+        distanceFadeMAD = float2(fade.y*.01,-fade.x*fade.y);
+        shadowedBits = 1;
+    }
+#endif
+    float sceneAO = 1;
+#if UE_LIGHTING_SHADOW_FIXTURE
+    rawShadowMask = shadow_mask.Load(int3(pixel, 0));
+#endif
+#if UE_LIGHTING_AO_FIXTURE
+    uint aoWidth, aoHeight;
+    scene_ao.GetDimensions(aoWidth, aoHeight);
+    sceneAO = scene_ao.Load(int3(min(pixel, uint2(aoWidth - 1, aoHeight - 1)), 0)).r;
+#endif
+    UEDirectLightingContext shading = (UEDirectLightingContext)0;
+    shading.N = N;
+    shading.V = V;
+    shading.subsurfaceTransmittanceDistanceM = gSubsurfaceTransmittanceDistanceM;
+    if (!ueTryGetShadowTerms(gLightType, sceneDepth, float4(1), gShadowMapChannelMask, distanceFadeMAD,
+        shadowedBits, 0, rawShadowMask, sceneAO, 0, false, shading.shadow))
+    {
+        InterlockedOr(gLightingErrors[0], 2u);
+        discard;
+    }
+    shading.area = ueMakeCapsuleAreaLight(surface.roughness, N, V, toLight, gLightTangentUE,
+        gSourceLength, gSourceRadius, gSoftSourceRadius, gInverseSquared != 0);
+    // Validate the capsule helper's geometry before a model can mask NaNs with
+    // a back-facing/Unlit zero result. Keep the target law free of added epsilons.
+    if (!all(isfinite(shading.area.diffuseL)) || !all(isfinite(shading.area.specularL)) ||
+        !all(isfinite(shading.area.falloffColor)) ||
+        !all(isfinite(float4(shading.area.sphereSinAlpha, shading.area.sphereSinAlphaSoft,
+            shading.area.lineCosSubtended, shading.area.NoL))) || !isfinite(shading.area.falloff) ||
+        dot(shading.area.diffuseL, shading.area.diffuseL) == 0 || dot(shading.area.specularL, shading.area.specularL) == 0)
+    {
+        InterlockedOr(gLightingErrors[0], 16u);
+        discard;
+    }
+    UEModelLighting lighting = ueShadeModel(surface, shading);
+    lighting.diffuse *= gDiffuseScale;
+    lighting.specular *= gSpecularScale;
+    lighting.transmission *= gDiffuseScale;
+    const float3 maskedLightColor = gLightColor * lightMask;
+    const float3 diffuse = lighting.diffuse * (maskedLightColor * shading.shadow.surfaceShadow);
+    const float3 specular = lighting.specular * (maskedLightColor * shading.shadow.surfaceShadow);
+    const float3 transmission = lighting.transmission * (maskedLightColor * shading.shadow.transmissionShadow);
+    // UE GetDynamicLighting returns Split.SpecularLighting + Split.DiffuseLighting.
+    // E2655 adds the already-colored lobes, then applies exposure. Without
+    // precise, Slang extracts a common (exposure * lightColor * mask) factor;
+    // that changes float32 output and hardware half-target blending boundaries.
+    precise float3 radiance = (specular + (diffuse + transmission)) * preExposure;
+    if (!all(isfinite(radiance)) || !all(isfinite(diffuse)) || !all(isfinite(specular)) || !all(isfinite(transmission)))
+    {
+        InterlockedOr(gLightingErrors[0], 4u);
+        discard;
+    }
+    LightOutput result;
+    result.color = float4(radiance, 0);
+    result.diffuse = float4(diffuse, shading.shadow.surfaceShadow);
+    result.specular = float4(specular, lightMask);
+    result.transmission = float4(transmission, shading.shadow.transmissionShadow);
+    return result;
+}

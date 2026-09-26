@@ -1,0 +1,17 @@
+# A1 source platform texture / native sampler implementation
+
+> Continue the approved source-only targetmap alignment. Independent sampler work uses subagent-driven-development; root exclusively runs UE/Falcor builds and GPU.
+
+**Goal:** Replace the known single-mip Texture.Source baseline with source-built BC1 sRGB/mips, and configure native Aniso8 without old material/depth ABI. Capture texture data remains an offline oracle, never an input.
+
+**Architecture:** An isolated UE Editor module under the Falcor worktree loads only the original Engine T_GridChecker_A asset, finishes its platform texture compilation, retrieves its platform mips and emits DDS + metadata into a fresh scratch export. It does not open/save the user's original project. All generated User/DDC/Config/Content are under the scratch project. Existing Editor executable and asset/source files remain unchanged. Build with NoEngineChanges and a bounded process; never silently rebuild or patch UE. Native sampler JSON only gains max_anisotropy via existing Sampler::Desc. No fixed targetmap C++ rendering ABI.
+
+## Tasks
+- [x] Write CPU DDS contract tests for 512x512 BC1_SRGB full10mips and strict byte sizes, then source exporter/header helpers.
+- [x] Create source-side PostEngineInit module and scratch .uproject/.uplugin; TDD lifecycle/output contracts and finite launcher. UTexture2D virtual GetInitialMipData supplies sizes, via real platform data; don't mistake TextureExporterDDS original-source data for platform mips.
+- [x] Build only scratch module using existing UE5.8.1 binaries/headers, max4actions, NoEngineChanges. Actual builds3actions pass. NullRHI proved incapable of building running-platform mips (CanEverRender gate); revised to offscreen D3D12/AllowCommandletRendering,3shaderworkers/corelimit4,private source DDC. NoShaderCompile then proved invalid by MaterialShader assertion, removed rather than modifying engine. FirstsourceBC1 succeeded but exit crashed in pending Shader/DDC cancellation/PythonGC; post-main compilation-drain exports _l124_46 andlwut1xhz nowcleanexit0/drain0 (378sfirst,16scachedrepeat). Preserve oldfailures/dump;900s observation retainsliveprocessifexpired,neverrestartautomatically.
+- [x] Sampler agent: backup exact existing files; strict max_anisotropy1..16/default1 in MeshDraw+ShaderPass using native API. CPU RED/GREEN, rootbuild4nativeCPU andD3D12 12oraclecomparisons/36rejections pass. Defaultnative7raw stillbyte-identical. Evidence sampler-gpu-aeto40k2 andsampler-baseline-regression.json.
+- [x] Root validate source DDS vs read-only captured oracle offline (capture export separate); all10mips174776Bexactequal. SourceDDS/aniso1 thenaniso8 verifiedwithonlysamplerchanged;independentnative/sourceexportrepeat7rawbyte-identical. Sourcecompressionmismatchnowruledout.
+- [x] Re-run scopedtests118targetmap/16platform/59native;preserveinitialbaselinesandcurrenthashes199files. Currentplatform-verification.json. ResidualfloorBrough1069/metal2993,C1350andnormal/depth/backgroundremain;A1andfullE2793/E2962stillopen. Subplancompleteisnotfullobjectivecomplete.
+
+Important known boundaries: TryLoadMipsWithSizes is not directly exported or a Python UFUNCTION; UTexture2D virtual GetInitialMipData calls it and returns sizes. Commandlet PostEngineInit plugins load after GEngine init and before commandlet Main (LaunchEngineLoop.cpp4068–4074), allowing a finite module export before a Python sentinel verifies the result. Do not wait on OnFEngineLoopInitComplete for a commandlet. Original project and RDC are read-only.

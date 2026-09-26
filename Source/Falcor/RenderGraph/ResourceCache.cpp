@@ -137,7 +137,7 @@ inline ref<Resource> createResourceForPass(
 
     ResourceFormat format = ResourceFormat::Unknown;
 
-    if (field.getType() != RenderPassReflection::Field::Type::RawBuffer)
+    if (!field.isBuffer())
     {
         format = field.getFormat() == ResourceFormat::Unknown ? params.format : field.getFormat();
         if (resolveBindFlags)
@@ -152,7 +152,7 @@ inline ref<Resource> createResourceForPass(
             bindFlags |= mask;
         }
     }
-    else // RawBuffer
+    else // Raw or structured buffer
     {
         if (resolveBindFlags)
             bindFlags = ResourceBindFlags::UnorderedAccess | ResourceBindFlags::ShaderResource;
@@ -163,6 +163,11 @@ inline ref<Resource> createResourceForPass(
     {
     case RenderPassReflection::Field::Type::RawBuffer:
         pResource = pDevice->createBuffer(width, bindFlags, MemoryType::DeviceLocal);
+        break;
+    case RenderPassReflection::Field::Type::StructuredBuffer:
+        pResource = pDevice->createStructuredBuffer(
+            field.getStructSize(), field.getWidth() / field.getStructSize(), bindFlags, MemoryType::DeviceLocal
+        );
         break;
     case RenderPassReflection::Field::Type::Texture1D:
         pResource = pDevice->createTexture1D(width, format, arraySize, mipLevels, nullptr, bindFlags);

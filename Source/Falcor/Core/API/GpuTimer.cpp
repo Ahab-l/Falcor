@@ -126,6 +126,9 @@ void GpuTimer::resolve()
     // This should be batched across all active timers and results copied into a single staging buffer once per frame instead.
 
     // Resolve timestamps into buffer.
+    // Raw query resolution writes CopyDest; keep the tracker in agreement on
+    // first use and when reusing the CopySource buffer from a previous resolve.
+    mpDevice->getRenderContext()->resourceBarrier(mpResolveBuffer.get(), Resource::State::CopyDest);
     auto encoder = mpDevice->getRenderContext()->getLowLevelData()->getResourceCommandEncoder();
 
     encoder->resolveQuery(mpDevice->getTimestampQueryHeap()->getGfxQueryPool(), mStart, 2, mpResolveBuffer->getGfxBufferResource(), 0);

@@ -1,0 +1,68 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see UESkyLightSource.json and UESkyLightSourceNotice.txt.
+// Source evidence only; runtime integration is not established.
+
+#ifdef USE_COMPUTE
+[numthreads(THREADGROUP_SIZE, THREADGROUP_SIZE, 1)]
+void DownsampleCS(uint3 ThreadId : SV_DispatchThreadID)
+{
+	const uint2 FaceCoord = uint2(ThreadId.x % uint(FaceThreadGroupSize), ThreadId.y);
+	if (any(FaceCoord >= uint2(ValidDispatchCoord)))
+	{
+		return;
+	}
+	const int SelectedCubeFace = int(ThreadId.x) / FaceThreadGroupSize;
+	float2 ScaledUVs = ((float2(FaceCoord) + 0.5f) / float2(ValidDispatchCoord)) * 2.0f - 1.0f;
+	float4 OutColor;
+#else // USE_COMPUTE
+void DownsamplePS(
+	float4 SvPosition : SV_POSITION,
+	out float4 OutColor : SV_Target0
+	)
+{ 
+	float2 UV = SvPosition.xy * SvPositionToUVScale;
+	float2 ScaledUVs = UV * 2 - 1;
+	const int SelectedCubeFace = CubeFace;
+#endif // USE_COMPUTE
+	float3 CubeCoordinates = GetCubemapVector(ScaledUVs, SelectedCubeFace);
+
+	uint MipSize = 1u << ( NumMips - MipIndex - 1 );
+
+	float3 TangentZ = normalize( CubeCoordinates );
+	float3 TangentX = normalize( cross( GetCubemapVector( ScaledUVs + float2(0,1), SelectedCubeFace), TangentZ ) );
+	float3 TangentY = cross( TangentZ, TangentX );
+
+	const float SampleOffset = 2.0 * 2 / MipSize;
+
+	float2 Offsets[] =
+	{
+		float2(-1, -1) * 0.7,
+		float2( 1, -1) * 0.7,
+		float2(-1,  1) * 0.7,
+		float2( 1,  1) * 0.7,
+		
+		float2( 0, -1),
+		float2(-1,  0),
+		float2( 1,  0),
+		float2( 0,  1),
+	};
+
+	OutColor = SampleCubemap(CubeCoordinates);
+
+	UNROLL
+	for( uint i = 0; i < 8; i++ )
+	{
+		float Weight = 0.375;
+
+		float3 SampleDir = CubeCoordinates;
+		SampleDir += TangentX * ( Offsets[i].x * SampleOffset );
+		SampleDir += TangentY * ( Offsets[i].y * SampleOffset );
+		OutColor += SampleCubemap(SampleDir) * Weight;
+	}
+
+	OutColor *= rcp( 1.0 + 1.0 + 2.0 );
+
+#ifdef USE_COMPUTE
+	OutTextureMipColor[uint3(FaceCoord, SelectedCubeFace)] = OutColor;
+#endif
+}

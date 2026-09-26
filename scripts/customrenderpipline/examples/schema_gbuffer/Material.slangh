@@ -1,0 +1,15 @@
+// Native material evaluation remains authored separately from storage encoding.
+SchemaMaterialFields evaluateGBuffer(ShadingData sd, uint materialID)
+{
+    let lod = ImplicitLodTextureSampler();
+    let material = gScene.materials.getMaterialInstance(sd, lod, uint(MaterialInstanceHints::AdjustShadingNormal));
+    let properties = material.getProperties(sd);
+    SchemaMaterialFields fields;
+    fields.roughness = properties.roughness;
+    fields.materialID = materialID;
+    fields.emissive = any(properties.emission > 0.f);
+    fields.baseColor = properties.diffuseReflectionAlbedo;
+    fields.coverage = 1.f;
+    fields.normalW = properties.guideNormal;
+    return fields;
+}

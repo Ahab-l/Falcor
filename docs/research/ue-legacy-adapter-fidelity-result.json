@@ -1,0 +1,626 @@
+{
+  "status": "passed_for_scoped_adapter_and_source_fidelity",
+  "full_goal_complete": false,
+  "final_image_equivalence": false,
+  "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140",
+  "falcor_sha256": "68ddc1613c296091d1a478269156989432c501a92d2c255b81fe1f0ef705a71b",
+  "offline_tests": 79,
+  "capability_gpu_tests": 3,
+  "smoke_processes": {
+    "m1_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\m1_smoke-adapter-fidelity-final.log",
+      "log_sha256": "1b6db92e7dafb3ad70e28f55c06b846225737d11cc12776023f00dc9ae8045a8",
+      "result": {
+        "status": "passed",
+        "scope": "M1 first real mesh path; full M1 acceptance remains open",
+        "source_sha256": "765e135c34da20b07161522ec32d5e4d445e38a298d4eca898de7d7ce11c9b29",
+        "pre_exposure": 1.0749151706695557,
+        "material_sample_hits": {
+          "blue": 39,
+          "red": 49,
+          "gray": 338
+        },
+        "sampled_misses": 437,
+        "max_position_error_m": 5.061258435796484e-05,
+        "max_normal_error": 0.0009775171065493637,
+        "max_depth_error": 1.0019243547494672e-07,
+        "max_unorm_code_error": 0.5,
+        "quantization_reference": "D3D functional spec 3.2.2 and 3.2.3.6; https://microsoft.github.io/DirectX-Specs/d3d/archive/D3D11_3_FunctionalSpec.htm",
+        "split_basepass_bitwise_equal": true,
+        "programs": [
+          "constant",
+          "uv"
+        ],
+        "surface_model_ids": [
+          1
+        ],
+        "index16_32_bitwise_equal": true,
+        "draw_diagnostics": {
+          "M1Union.Depth": [
+            {
+              "instance": 0,
+              "mesh": 0,
+              "material": "blue",
+              "materialID": 0,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 0,
+              "baseVertex": 0,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 1,
+              "mesh": 1,
+              "material": "red",
+              "materialID": 1,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 36,
+              "baseVertex": 24,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 2,
+              "mesh": 2,
+              "material": "gray",
+              "materialID": 2,
+              "program": "uv",
+              "programID": 1,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 6,
+              "startIndex": 72,
+              "baseVertex": 48,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            }
+          ],
+          "M1Union.Base0": [
+            {
+              "instance": 0,
+              "mesh": 0,
+              "material": "blue",
+              "materialID": 0,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 0,
+              "baseVertex": 0,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 1,
+              "mesh": 1,
+              "material": "red",
+              "materialID": 1,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 36,
+              "baseVertex": 24,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 2,
+              "mesh": 2,
+              "material": "gray",
+              "materialID": 2,
+              "program": "uv",
+              "programID": 1,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 6,
+              "startIndex": 72,
+              "baseVertex": 48,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            }
+          ],
+          "M1Split.Depth": [
+            {
+              "instance": 0,
+              "mesh": 0,
+              "material": "blue",
+              "materialID": 0,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 0,
+              "baseVertex": 0,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 1,
+              "mesh": 1,
+              "material": "red",
+              "materialID": 1,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 36,
+              "baseVertex": 24,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 2,
+              "mesh": 2,
+              "material": "gray",
+              "materialID": 2,
+              "program": "uv",
+              "programID": 1,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 6,
+              "startIndex": 72,
+              "baseVertex": 48,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            }
+          ],
+          "M1Split.Base0": [
+            {
+              "instance": 0,
+              "mesh": 0,
+              "material": "blue",
+              "materialID": 0,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 0,
+              "baseVertex": 0,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            }
+          ],
+          "M1Split.Base1": [
+            {
+              "instance": 1,
+              "mesh": 1,
+              "material": "red",
+              "materialID": 1,
+              "program": "constant",
+              "programID": 0,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 36,
+              "startIndex": 36,
+              "baseVertex": 24,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            },
+            {
+              "instance": 2,
+              "mesh": 2,
+              "material": "gray",
+              "materialID": 2,
+              "program": "uv",
+              "programID": 1,
+              "modelID": 1,
+              "basePass": "",
+              "indexBits": 16,
+              "indexCount": 6,
+              "startIndex": 72,
+              "baseVertex": 48,
+              "frontCCW": true,
+              "sourceGeometry": false,
+              "twoSided": false
+            }
+          ]
+        },
+        "material_program_count": 2,
+        "incompatible_runtime_metadata_rejected": true,
+        "schema_generation": "803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34"
+      }
+    },
+    "schema_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\schema_smoke-adapter-fidelity-final.log",
+      "log_sha256": "feeb2753653007466471bb8cc142314a913286f4444ed07ed751226d1ed29455",
+      "result": {
+        "status": "passed",
+        "default_generation": "803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34",
+        "active_generation": "7de8acaec7a993479127cce439afce7f6195365007f64ed91c5d5119a4a8ce0d",
+        "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140",
+        "schema_only_without_cpp_rebuild": true,
+        "logical_outputs_bitwise_equal": true,
+        "physical_slot_channel_and_bit_relocation": true,
+        "alias_model_dispatch": true,
+        "alias_is_test_fixture_not_new_ue_algorithm": true,
+        "zero_model_id_coverage": true,
+        "compile_failure_rollback": true,
+        "mixed_generation_rejected": true,
+        "invalid_edit_clears_pending": true,
+        "history_epoch": 3,
+        "covered_pixels": 117087
+      }
+    },
+    "routing_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\routing_smoke-adapter-fidelity-final.log",
+      "log_sha256": "c64ed4d2b2d06851db0337dc37fe6b5cf759077c41ad6dac267aa2790d588891",
+      "result": {
+        "status": "passed",
+        "selectors": [
+          {
+            "filter": {
+              "instances": [
+                0
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "meshes": [
+                1
+              ]
+            },
+            "instances": [
+              1
+            ]
+          },
+          {
+            "filter": {
+              "material_ids": [
+                0
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "materials": [
+                "blue"
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "model_ids": [
+                0
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "models": [
+                "AliasZero"
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "program_ids": [
+                1
+              ]
+            },
+            "instances": [
+              2
+            ]
+          },
+          {
+            "filter": {
+              "programs": [
+                "constant"
+              ]
+            },
+            "instances": [
+              0,
+              1
+            ]
+          },
+          {
+            "filter": {
+              "tags_any": [
+                "hero"
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "tags_all": [
+                "hero",
+                "opaque"
+              ]
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "tags_none": [
+                "hero"
+              ]
+            },
+            "instances": [
+              1,
+              2
+            ]
+          },
+          {
+            "filter": {
+              "pass_mask_all": 4
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "pass_mask_any": 4
+            },
+            "instances": [
+              0
+            ]
+          },
+          {
+            "filter": {
+              "instances": []
+            },
+            "instances": []
+          },
+          {
+            "filter": {
+              "instances": [
+                0,
+                1
+              ],
+              "tags_none": [
+                "hero"
+              ]
+            },
+            "instances": [
+              1
+            ]
+          }
+        ],
+        "sorted_draw_list_reused": true,
+        "primary_ownership_unique": true,
+        "priority_conflict_rejected": true,
+        "unrouted_rejected": true,
+        "independent_equal_depth_state": true,
+        "packed_outputs_bitwise_equal": true,
+        "native_rejections": [
+          "Priority0",
+          "Priority1",
+          "Priority2",
+          "Priority3",
+          "Priority4",
+          "Default0",
+          "Default1",
+          "Default2",
+          "Version0",
+          "Version1",
+          "InstanceFilter0",
+          "PassMask0",
+          "InstanceFilter1",
+          "PassMask1",
+          "InstanceFilter2",
+          "PassMask2",
+          "InstanceFilter3",
+          "PassMask3",
+          "InstanceFilter4",
+          "PassMask4",
+          "FilterObject",
+          "FilterUnknown",
+          "FilterArray",
+          "FilterDuplicate",
+          "FilterEmptyName",
+          "FilterDuplicateTag",
+          "DependencyDuplicate",
+          "DependencyUnknown",
+          "DependencySelf",
+          "DependencyArray",
+          "DependencyName",
+          "DependencyCycle",
+          "InstanceKey0",
+          "InstanceKey1",
+          "InstanceKey2",
+          "InstanceKey3",
+          "InstanceKey4",
+          "InstanceKey5",
+          "InstanceKey6",
+          "enabled0",
+          "enabled1",
+          "enabled2",
+          "main_enabled0",
+          "main_enabled1",
+          "main_enabled2",
+          "StateObject",
+          "ShaderObject",
+          "ShaderDefinesObject",
+          "WriteMasksObject",
+          "WriteMaskLength",
+          "WriteMaskBoolean",
+          "stencil_reference0",
+          "stencil_reference1",
+          "stencil_reference2",
+          "stencil_read_mask0",
+          "stencil_read_mask1",
+          "stencil_read_mask2",
+          "stencil_write_mask0",
+          "stencil_write_mask1",
+          "stencil_write_mask2",
+          "PrimaryDepthAlways",
+          "PrimaryDepthLess",
+          "PrimaryDepthLessEqual",
+          "PrimaryDepthGreater",
+          "PrimaryDepthNotEqual",
+          "PrimaryDepthNever",
+          "PrepassDepthAlways",
+          "PrepassDepthLess",
+          "PrepassDepthLessEqual",
+          "PrepassDepthEqual",
+          "PrepassDepthGreater",
+          "PrepassDepthNotEqual",
+          "PrepassDepthNever"
+        ],
+        "runtime_rejections": [
+          "PriorityTie",
+          "Unrouted",
+          "MissingInstance",
+          "MaximumMissingInstance",
+          "MissingPrepass",
+          "MissingCoverageShader"
+        ],
+        "int32_priority_boundaries": true,
+        "global_and_main_exclusions": true,
+        "auxiliary_selection_independent": true,
+        "nonempty_shader_defines": true,
+        "auxiliary_depth_not_primary_coverage": true,
+        "registered_zero_primary_coverage": true,
+        "compatible_depth_comparisons_only": true,
+        "required_primary_coverage_uav": true
+      }
+    },
+    "pipeline_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\pipeline_smoke-adapter-fidelity-final.log",
+      "log_sha256": "53271432821fb1a44957ec28605cd956529913a106c00e8279e5f0d770e3f0c4",
+      "result": {
+        "status": "passed",
+        "frozen_project_sources": true,
+        "input_identity_separate": true,
+        "native_project_shader_rollback": true,
+        "mixed_inputs_rejected": true,
+        "signed_node_filters": true,
+        "external_falcor_modules_immutable": false,
+        "initial_signature": "73375761d82c4ab7a0e6cac947ecc22e5bd3414fb8607bd90e2d2c329dfa23fe"
+      }
+    },
+    "rdc_gbuffer_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\rdc_gbuffer_smoke-adapter-fidelity-final.log",
+      "log_sha256": "451d73bd77c9bdfb60ba226cca11ace6d430b302778365d8eef50c1cb2a94d3b",
+      "result": {
+        "capture_covered": 866712,
+        "falcor_covered": 866712,
+        "coverage_mismatch": 0,
+        "depth_p99": 0.0,
+        "depth_max": 0.0,
+        "depth_over_1e_6": 0,
+        "draw_count": 4,
+        "final_image_equivalence": false,
+        "source_geometry": true,
+        "source_normal_exact_fraction": 0.999998846214198,
+        "source_checksum_rejected": true,
+        "baked_translation_rejected": true,
+        "baked_normal_reflection_rejected": true,
+        "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140"
+      }
+    },
+    "adapter_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\adapter_smoke-adapter-fidelity-final.log",
+      "log_sha256": "1fde26a8685ed0abe6366d20e9bd887fff52a1d36dfa84b7fd9c1d441b33b95b",
+      "result": {
+        "status": "passed",
+        "actual_stock_gbuffer_raster": true,
+        "explicit_ue_material_mapping": true,
+        "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140",
+        "schema_only_relocation": true,
+        "zero_model_alias_dispatch": true,
+        "compile_failure_rollback": true,
+        "mixed_generation_rejected": true,
+        "independent_adapter_pass": true,
+        "same_packed_contract": true,
+        "native_world_position_error_m": 2.250075340270996e-05,
+        "normal_max_error": 0.0,
+        "base_color_max_error": 0.0,
+        "covered_pixels": 120374,
+        "interior_pixels": 118925,
+        "primitive_flags_from_vbuffer": true,
+        "real_depth_and_depth_copy": true,
+        "missing_mapping_model_and_input_rejected": true,
+        "arbitrary_stock_bsdf_losslessly_inverted": false
+      }
+    },
+    "adapter_view_smoke": {
+      "process_exit_code": 0,
+      "log": "build\\m1-evidence\\adapter_view_smoke-adapter-fidelity-final.log",
+      "log_sha256": "8799406e5d52ef0e169745ef2729470eefe2996a810c2627e5b480abb1331965",
+      "result": {
+        "status": "passed",
+        "captured_viewrect_origin_and_inset": true,
+        "native_extent": [
+          1421,
+          1035
+        ],
+        "packed_and_decoded_shift_bitwise_equal": true,
+        "padding_clear": true,
+        "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140"
+      }
+    }
+  },
+  "raw_rdc_output_sha256": "91b7252c480f1c3262e5032c43bd29db7942df5f55e4093d125e249a1730e8c3",
+  "remaining": [
+    "Last packed sphere normal code",
+    "Floor sampling/material differences",
+    "Native stencil-plane comparison",
+    "Dedicated two-sided/negative-scale/mixed-index mesh acceptance",
+    "External Scene/texture identity",
+    "Actual UE model extension,Lighting,SSR,TSR,Web and captured SSGI/DFAO/sky/exposure/postprocess"
+  ]
+}

@@ -1,0 +1,8 @@
+#ifndef UE_SKYLIGHT_CUBE_COMMON_ADAPTER
+#define UE_SKYLIGHT_CUBE_COMMON_ADAPTER
+#include "Platform.slangh"
+// UE's implicit float4 resource type becomes explicit for Slang.
+#define TextureCube TextureCube<float4>
+#include "../UESkyLightCubeCommon.ush"
+#undef TextureCube
+#endif

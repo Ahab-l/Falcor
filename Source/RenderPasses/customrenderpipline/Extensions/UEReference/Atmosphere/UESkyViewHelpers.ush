@@ -1,0 +1,121 @@
+// Original source bodies; see UESkyViewLutSource.json.
+// Copyright and third-party notices are retained alongside this file.
+
+float acosFast4(float inX)
+{
+	float x1 = abs(inX);
+	float x2 = x1 * x1;
+	float x3 = x2 * x1;
+	float s;
+
+	s = -0.2121144f * x1 + 1.5707288f;
+	s = 0.0742610f * x2 + s;
+	s = -0.0187293f * x3 + s;
+	s = sqrt(1.0f - x1) * s;
+
+	// acos function mirroring
+	// check per platform if compiles to a selector - no branch neeeded
+	return inX >= 0.0f ? s : PI - s;
+}
+
+float2 FromSubUvsToUnit(float2 uv, float4 SizeAndInvSize) { return (uv - 0.5f * SizeAndInvSize.zw) * (SizeAndInvSize.xy / (SizeAndInvSize.xy - 1.0f)); }
+
+float3x3 GetSkyViewLutReferential(in float4x4 ViewSkyViewLutReferential)
+{
+	float3x3 SkyViewLutReferential = (float3x3) ViewSkyViewLutReferential;
+	return SkyViewLutReferential;
+}
+
+float3x3 GetSkyViewLutReferentialParameter()
+{
+	return GetSkyViewLutReferential(View.SkyViewLutReferential);
+}
+
+float3 GetSkyPlanetTranslatedWorldCenterAndViewHeightParameter()
+{
+	return View.SkyPlanetTranslatedWorldCenterAndViewHeight.xyz;
+}
+
+float3 GetSkyCameraTranslatedWorldOriginParameter()
+{
+	return View.SkyCameraTranslatedWorldOrigin;
+}
+
+float3 GetCameraTranslatedWorldPos()
+{
+	return GetSkyCameraTranslatedWorldOriginParameter();
+}
+
+float3 GetTranslatedCameraPlanetPos()
+{
+	return (GetCameraTranslatedWorldPos() - GetSkyPlanetTranslatedWorldCenterAndViewHeightParameter()) * CM_TO_SKY_UNIT;
+}
+
+bool MoveToTopAtmosphere(inout float3 WorldPos, in float3 WorldDir, in float AtmosphereTopRadius)
+{
+	float ViewHeight = length(WorldPos);
+	if (ViewHeight > AtmosphereTopRadius)
+	{
+		float TTop = RaySphereIntersectNearest(WorldPos, WorldDir, float3(0.0f, 0.0f, 0.0f), AtmosphereTopRadius);
+		if (TTop >= 0.0f)
+		{
+			float3 UpVector = WorldPos / ViewHeight;
+			float3 UpOffset = UpVector * -PLANET_RADIUS_OFFSET;
+			WorldPos = WorldPos + WorldDir * TTop + UpOffset;
+		}
+		else
+		{
+			// Ray is not intersecting the atmosphere
+			return false;
+		}
+	}
+	return true; // ok to start tracing
+}
+
+void UvToSkyViewLutParams(out float3 ViewDir, in float ViewHeight, in float2 UV)
+{
+	// Constrain uvs to valid sub texel range (avoid zenith derivative issue making LUT usage visible)
+	UV = FromSubUvsToUnit(UV, SkyAtmosphere.SkyViewLutSizeAndInvSize);
+
+	float Vhorizon = sqrt(ViewHeight * ViewHeight - Atmosphere.BottomRadiusKm * Atmosphere.BottomRadiusKm);
+	float CosBeta = Vhorizon / ViewHeight;				// cos of zenith angle from horizon to zeniht
+	float Beta = acosFast4(CosBeta);
+	float ZenithHorizonAngle = PI - Beta;
+
+	float ViewZenithAngle;
+	if (UV.y < 0.5f)
+	{
+		float Coord = 2.0f * UV.y;
+		Coord = 1.0f - Coord;
+		Coord *= Coord;
+		Coord = 1.0f - Coord;
+		ViewZenithAngle = ZenithHorizonAngle * Coord;
+	}
+	else
+	{
+		float Coord = UV.y * 2.0f - 1.0f;
+		Coord *= Coord;
+		ViewZenithAngle = ZenithHorizonAngle + Beta * Coord;
+	}
+	float CosViewZenithAngle = cos(ViewZenithAngle);
+	float SinViewZenithAngle = sqrt(1.0 - CosViewZenithAngle * CosViewZenithAngle) * (ViewZenithAngle > 0.0f ? 1.0f : -1.0f); // Equivalent to sin(ViewZenithAngle)
+
+	float LongitudeViewCosAngle = UV.x * 2.0f * PI;
+
+	// Make sure those values are in range as it could disrupt other math done later such as sqrt(1.0-c*c)
+	float CosLongitudeViewCosAngle = cos(LongitudeViewCosAngle);
+	float SinLongitudeViewCosAngle = sqrt(1.0 - CosLongitudeViewCosAngle * CosLongitudeViewCosAngle) * (LongitudeViewCosAngle <= PI ? 1.0f : -1.0f); // Equivalent to sin(LongitudeViewCosAngle)
+	ViewDir = float3(
+		SinViewZenithAngle * CosLongitudeViewCosAngle,
+		SinViewZenithAngle * SinLongitudeViewCosAngle,
+		CosViewZenithAngle
+		);
+}
+
+float3 GetMultipleScattering(float3 WorlPos, float ViewZenithCosAngle)
+{
+	float2 UV = saturate(float2(ViewZenithCosAngle*0.5f + 0.5f, (length(WorlPos) - Atmosphere.BottomRadiusKm) / (Atmosphere.TopRadiusKm - Atmosphere.BottomRadiusKm)));
+	// We do no apply UV transform to sub range here as it has minimal impact.
+	float3 MultiScatteredLuminance = MultiScatteredLuminanceLutTexture.SampleLevel(MultiScatteredLuminanceLutTextureSampler, UV, 0).rgb;
+	return MultiScatteredLuminance;
+}

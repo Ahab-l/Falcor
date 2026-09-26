@@ -28,6 +28,7 @@
 #include "RenderGraphCompiler.h"
 #include "RenderGraph.h"
 #include "RenderPasses/ResolvePass.h"
+#include "Core/API/Buffer.h"
 #include "Core/Error.h"
 #include "Utils/Algorithm/DirectedGraphTraversal.h"
 #include "Utils/StringUtils.h"
@@ -393,11 +394,19 @@ RenderPass::CompileData RenderGraphCompiler::prepPassCompilationData(const PassD
     {
         if (hasPrefix(name, passData.name + "."))
         {
-            auto pTex = pRes->asTexture();
             std::string resName = name.substr((passData.name + ".").size());
-            compileData.connectedResources.addInput(resName, "External input resource")
-                .format(pTex->getFormat())
-                .resourceType(
+            auto& field = compileData.connectedResources.addInput(resName, "External input resource");
+            if (const auto pBuffer = pRes->asBuffer())
+            {
+                FALCOR_CHECK(pBuffer->getSize() <= UINT32_MAX && pBuffer->getFormat() == ResourceFormat::Unknown,
+                    "External render graph buffers require a uint32 byte size and raw or structured layout");
+                if (pBuffer->isStructured()) field.structuredBuffer(pBuffer->getStructSize(), pBuffer->getElementCount());
+                else field.rawBuffer(uint32_t(pBuffer->getSize()));
+                FALCOR_CHECK(field.getWidth() == pBuffer->getSize(), "External structured buffer byte size must contain whole elements");
+            }
+            else if (const auto pTex = pRes->asTexture())
+            {
+                field.format(pTex->getFormat()).resourceType(
                     resourceTypeToFieldType(pTex->getType()),
                     pTex->getWidth(),
                     pTex->getHeight(),
@@ -406,6 +415,18 @@ RenderPass::CompileData RenderGraphCompiler::prepPassCompilationData(const PassD
                     pTex->getMipCount(),
                     pTex->getArraySize()
                 );
+            }
+            else FALCOR_THROW("Unsupported external render graph resource '{}'", name);
+
+            const auto* declared = passData.reflector.getField(resName);
+            if (declared && (field.isBuffer() || declared->isBuffer()))
+            {
+                // External inputs bypass ResourceCache's alias merge, so enforce
+                // buffer kind/stride/size here before any pass allocates or runs.
+                field.merge(*declared);
+                FALCOR_CHECK((pRes->getBindFlags() & declared->getBindFlags()) == declared->getBindFlags(),
+                    "External render graph buffer '{}' bind flags mismatch", name);
+            }
         }
     }
 

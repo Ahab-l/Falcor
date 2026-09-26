@@ -1,0 +1,33 @@
+// Authored codec: square-root roughness quantization and octahedral normals.
+// Both are independent of any engine's material ID or depth convention.
+float2 surfaceSignNotZero(float2 v)
+{
+    return float2(v.x >= 0.f ? 1.f : -1.f, v.y >= 0.f ? 1.f : -1.f);
+}
+
+bool encodeSurface(SchemaMaterial_surfaceInput value, out SchemaMaterial_surfaceStorage storage)
+{
+    storage = (SchemaMaterial_surfaceStorage)0;
+    if (!isfinite(value.roughness) || !all(isfinite(value.normalW))) return false;
+    float lengthSquared = dot(value.normalW, value.normalW);
+    if (!isfinite(lengthSquared) || lengthSquared <= 1e-20f) return false;
+    float3 n = value.normalW * rsqrt(lengthSquared);
+    n /= abs(n.x) + abs(n.y) + abs(n.z);
+    float2 oct = n.z < 0.f ? (1.f - abs(n.yx)) * surfaceSignNotZero(n.xy) : n.xy;
+    storage.oct = oct * 0.5f + 0.5f;
+    storage.roughnessCode = uint(round(sqrt(saturate(value.roughness)) * 255.f));
+    return true;
+}
+
+SchemaMaterial_surfaceInput decodeSurface(SchemaMaterial_surfaceStorage storage)
+{
+    SchemaMaterial_surfaceInput value;
+    float roughnessRoot = float(storage.roughnessCode) / 255.f;
+    value.roughness = roughnessRoot * roughnessRoot;
+    float2 oct = storage.oct * 2.f - 1.f;
+    float3 n = float3(oct, 1.f - abs(oct.x) - abs(oct.y));
+    float t = saturate(-n.z);
+    n.xy += float2(n.x >= 0.f ? -t : t, n.y >= 0.f ? -t : t);
+    value.normalW = normalize(n);
+    return value;
+}

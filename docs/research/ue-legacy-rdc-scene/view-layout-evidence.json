@@ -1,0 +1,679 @@
+{
+  "source": "E:\\ue\\project\\shadingmodeltest\\shadingmodel\\Saved\\ShaderDebugInfo\\PCD3D_SM6\\NewMaterial_56cd8527f8560838\\Default\\FLocalVertexFactory\\TBasePassPSFNoLightMapPolicyCharacterToon\\0\\BasePassPixelShader.usf",
+  "sourceSha256": "20d0119090fb197fabcd2b2d156549c367ee96a717a3a56bf1c1670a1d4706cb",
+  "sourceIsDifferentMaterial": true,
+  "exactCapturedSourceProvenance": false,
+  "method": "HLSL cbuffer packing; explicit padding offsets checked; normalized type prefix matches captured DXIL (uint normalized to int).",
+  "matchedFields": 103,
+  "prefixBytes": 2576,
+  "fields": [
+    {
+      "name": "View_TranslatedWorldToClip",
+      "type": "float4x4",
+      "offset": 0,
+      "bytes": 64
+    },
+    {
+      "name": "View_RelativeWorldToClip",
+      "type": "float4x4",
+      "offset": 64,
+      "bytes": 64
+    },
+    {
+      "name": "View_ClipToRelativeWorld",
+      "type": "float4x4",
+      "offset": 128,
+      "bytes": 64
+    },
+    {
+      "name": "View_TranslatedWorldToView",
+      "type": "float4x4",
+      "offset": 192,
+      "bytes": 64
+    },
+    {
+      "name": "View_ViewToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 256,
+      "bytes": 64
+    },
+    {
+      "name": "View_TranslatedWorldToCameraView",
+      "type": "float4x4",
+      "offset": 320,
+      "bytes": 64
+    },
+    {
+      "name": "View_CameraViewToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 384,
+      "bytes": 64
+    },
+    {
+      "name": "View_ViewToClip",
+      "type": "float4x4",
+      "offset": 448,
+      "bytes": 64
+    },
+    {
+      "name": "View_ViewToClipNoAA",
+      "type": "float4x4",
+      "offset": 512,
+      "bytes": 64
+    },
+    {
+      "name": "View_ClipToView",
+      "type": "float4x4",
+      "offset": 576,
+      "bytes": 64
+    },
+    {
+      "name": "View_ClipToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 640,
+      "bytes": 64
+    },
+    {
+      "name": "View_SVPositionToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 704,
+      "bytes": 64
+    },
+    {
+      "name": "View_ScreenToRelativeWorld",
+      "type": "float4x4",
+      "offset": 768,
+      "bytes": 64
+    },
+    {
+      "name": "View_ScreenToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 832,
+      "bytes": 64
+    },
+    {
+      "name": "View_MobileMultiviewShadowTransform",
+      "type": "float4x4",
+      "offset": 896,
+      "bytes": 64
+    },
+    {
+      "name": "View_MobileMultiviewDecalTransform",
+      "type": "float4x4",
+      "offset": 960,
+      "bytes": 64
+    },
+    {
+      "name": "View_FirstPersonTransform",
+      "type": "float4x4",
+      "offset": 1024,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevFirstPersonTransform",
+      "type": "float4x4",
+      "offset": 1088,
+      "bytes": 64
+    },
+    {
+      "name": "View_InvFirstPersonTransform",
+      "type": "float4x4",
+      "offset": 1152,
+      "bytes": 64
+    },
+    {
+      "name": "View_ViewOriginHigh",
+      "type": "float3",
+      "offset": 1216,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1228",
+      "type": "float",
+      "offset": 1228,
+      "bytes": 4
+    },
+    {
+      "name": "View_ViewForward",
+      "type": "float3",
+      "offset": 1232,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1244",
+      "type": "float",
+      "offset": 1244,
+      "bytes": 4
+    },
+    {
+      "name": "View_ViewUp",
+      "type": "float3",
+      "offset": 1248,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1260",
+      "type": "float",
+      "offset": 1260,
+      "bytes": 4
+    },
+    {
+      "name": "View_ViewRight",
+      "type": "float3",
+      "offset": 1264,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1276",
+      "type": "float",
+      "offset": 1276,
+      "bytes": 4
+    },
+    {
+      "name": "View_HMDViewNoRollUp",
+      "type": "float3",
+      "offset": 1280,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1292",
+      "type": "float",
+      "offset": 1292,
+      "bytes": 4
+    },
+    {
+      "name": "View_HMDViewNoRollRight",
+      "type": "float3",
+      "offset": 1296,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1308",
+      "type": "float",
+      "offset": 1308,
+      "bytes": 4
+    },
+    {
+      "name": "View_InvDeviceZToWorldZTransform",
+      "type": "float4",
+      "offset": 1312,
+      "bytes": 16
+    },
+    {
+      "name": "View_ScreenPositionScaleBias",
+      "type": "float4",
+      "offset": 1328,
+      "bytes": 16
+    },
+    {
+      "name": "View_ViewOriginLow",
+      "type": "float3",
+      "offset": 1344,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1356",
+      "type": "float",
+      "offset": 1356,
+      "bytes": 4
+    },
+    {
+      "name": "View_TranslatedWorldCameraOrigin",
+      "type": "float3",
+      "offset": 1360,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1372",
+      "type": "float",
+      "offset": 1372,
+      "bytes": 4
+    },
+    {
+      "name": "View_WorldViewOriginHigh",
+      "type": "float3",
+      "offset": 1376,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1388",
+      "type": "float",
+      "offset": 1388,
+      "bytes": 4
+    },
+    {
+      "name": "View_WorldViewOriginLow",
+      "type": "float3",
+      "offset": 1392,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1404",
+      "type": "float",
+      "offset": 1404,
+      "bytes": 4
+    },
+    {
+      "name": "View_PreViewTranslationHigh",
+      "type": "float3",
+      "offset": 1408,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1420",
+      "type": "float",
+      "offset": 1420,
+      "bytes": 4
+    },
+    {
+      "name": "View_PreViewTranslationLow",
+      "type": "float3",
+      "offset": 1424,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1436",
+      "type": "float",
+      "offset": 1436,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevViewToClip",
+      "type": "float4x4",
+      "offset": 1440,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevClipToView",
+      "type": "float4x4",
+      "offset": 1504,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevTranslatedWorldToClip",
+      "type": "float4x4",
+      "offset": 1568,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevTranslatedWorldToView",
+      "type": "float4x4",
+      "offset": 1632,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevViewToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 1696,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevTranslatedWorldToCameraView",
+      "type": "float4x4",
+      "offset": 1760,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevCameraViewToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 1824,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevTranslatedWorldCameraOrigin",
+      "type": "float3",
+      "offset": 1888,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1900",
+      "type": "float",
+      "offset": 1900,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevWorldCameraOriginHigh",
+      "type": "float3",
+      "offset": 1904,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1916",
+      "type": "float",
+      "offset": 1916,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevWorldCameraOriginLow",
+      "type": "float3",
+      "offset": 1920,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1932",
+      "type": "float",
+      "offset": 1932,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevWorldViewOriginHigh",
+      "type": "float3",
+      "offset": 1936,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1948",
+      "type": "float",
+      "offset": 1948,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevWorldViewOriginLow",
+      "type": "float3",
+      "offset": 1952,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1964",
+      "type": "float",
+      "offset": 1964,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevPreViewTranslationHigh",
+      "type": "float3",
+      "offset": 1968,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1980",
+      "type": "float",
+      "offset": 1980,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevPreViewTranslationLow",
+      "type": "float3",
+      "offset": 1984,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding1996",
+      "type": "float",
+      "offset": 1996,
+      "bytes": 4
+    },
+    {
+      "name": "View_ViewTilePosition",
+      "type": "float3",
+      "offset": 2000,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2012",
+      "type": "float",
+      "offset": 2012,
+      "bytes": 4
+    },
+    {
+      "name": "View_RelativeWorldCameraOriginTO",
+      "type": "float3",
+      "offset": 2016,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2028",
+      "type": "float",
+      "offset": 2028,
+      "bytes": 4
+    },
+    {
+      "name": "View_RelativeWorldViewOriginTO",
+      "type": "float3",
+      "offset": 2032,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2044",
+      "type": "float",
+      "offset": 2044,
+      "bytes": 4
+    },
+    {
+      "name": "View_RelativePreViewTranslationTO",
+      "type": "float3",
+      "offset": 2048,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2060",
+      "type": "float",
+      "offset": 2060,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevRelativeWorldCameraOriginTO",
+      "type": "float3",
+      "offset": 2064,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2076",
+      "type": "float",
+      "offset": 2076,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevRelativeWorldViewOriginTO",
+      "type": "float3",
+      "offset": 2080,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2092",
+      "type": "float",
+      "offset": 2092,
+      "bytes": 4
+    },
+    {
+      "name": "View_RelativePrevPreViewTranslationTO",
+      "type": "float3",
+      "offset": 2096,
+      "bytes": 12
+    },
+    {
+      "name": "View_Padding2108",
+      "type": "float",
+      "offset": 2108,
+      "bytes": 4
+    },
+    {
+      "name": "View_PrevClipToRelativeWorld",
+      "type": "float4x4",
+      "offset": 2112,
+      "bytes": 64
+    },
+    {
+      "name": "View_PrevScreenToTranslatedWorld",
+      "type": "float4x4",
+      "offset": 2176,
+      "bytes": 64
+    },
+    {
+      "name": "View_ClipToPrevClip",
+      "type": "float4x4",
+      "offset": 2240,
+      "bytes": 64
+    },
+    {
+      "name": "View_ClipToPrevClipWithAA",
+      "type": "float4x4",
+      "offset": 2304,
+      "bytes": 64
+    },
+    {
+      "name": "View_TemporalAAJitter",
+      "type": "float4",
+      "offset": 2368,
+      "bytes": 16
+    },
+    {
+      "name": "View_GlobalClippingPlane",
+      "type": "float4",
+      "offset": 2384,
+      "bytes": 16
+    },
+    {
+      "name": "View_FieldOfViewWideAngles",
+      "type": "float2",
+      "offset": 2400,
+      "bytes": 8
+    },
+    {
+      "name": "View_PrevFieldOfViewWideAngles",
+      "type": "float2",
+      "offset": 2408,
+      "bytes": 8
+    },
+    {
+      "name": "View_FirstPersonFieldOfViewWideAngles",
+      "type": "float2",
+      "offset": 2416,
+      "bytes": 8
+    },
+    {
+      "name": "View_PrevFirstPersonFieldOfViewWideAngles",
+      "type": "float2",
+      "offset": 2424,
+      "bytes": 8
+    },
+    {
+      "name": "View_ViewRectMin",
+      "type": "float4",
+      "offset": 2432,
+      "bytes": 16
+    },
+    {
+      "name": "View_ViewSizeAndInvSize",
+      "type": "float4",
+      "offset": 2448,
+      "bytes": 16
+    },
+    {
+      "name": "View_ViewRectMinAndSize",
+      "type": "uint4",
+      "offset": 2464,
+      "bytes": 16
+    },
+    {
+      "name": "View_LightProbeSizeRatioAndInvSizeRatio",
+      "type": "float4",
+      "offset": 2480,
+      "bytes": 16
+    },
+    {
+      "name": "View_BufferSizeAndInvSize",
+      "type": "float4",
+      "offset": 2496,
+      "bytes": 16
+    },
+    {
+      "name": "View_BufferBilinearUVMinMax",
+      "type": "float4",
+      "offset": 2512,
+      "bytes": 16
+    },
+    {
+      "name": "View_ScreenToViewSpace",
+      "type": "float4",
+      "offset": 2528,
+      "bytes": 16
+    },
+    {
+      "name": "View_BufferToSceneTextureScale",
+      "type": "float2",
+      "offset": 2544,
+      "bytes": 8
+    },
+    {
+      "name": "View_ResolutionFractionAndInv",
+      "type": "float2",
+      "offset": 2552,
+      "bytes": 8
+    },
+    {
+      "name": "View_NumSceneColorMSAASamples",
+      "type": "int",
+      "offset": 2560,
+      "bytes": 4
+    },
+    {
+      "name": "View_ProjectionDepthThicknessScale",
+      "type": "float",
+      "offset": 2564,
+      "bytes": 4
+    },
+    {
+      "name": "View_PreExposure",
+      "type": "float",
+      "offset": 2568,
+      "bytes": 4
+    },
+    {
+      "name": "View_OneOverPreExposure",
+      "type": "float",
+      "offset": 2572,
+      "bytes": 4
+    }
+  ],
+  "capturedValues": {
+    "View_TemporalAAJitter": {
+      "offset": 2368,
+      "value": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "View_ViewSizeAndInvSize": {
+      "offset": 2448,
+      "value": [
+        1421.0,
+        1035.0,
+        0.0007037297473289073,
+        0.0009661835501901805
+      ]
+    },
+    "View_ViewRectMinAndSize": {
+      "offset": 2464,
+      "value": [
+        0,
+        0,
+        1421,
+        1035
+      ]
+    },
+    "View_BufferSizeAndInvSize": {
+      "offset": 2496,
+      "value": [
+        1424.0,
+        1040.0,
+        0.0007022471982054412,
+        0.000961538462433964
+      ]
+    },
+    "View_PreExposure": {
+      "offset": 2568,
+      "value": [
+        1.0749151706695557
+      ]
+    },
+    "View_OneOverPreExposure": {
+      "offset": 2572,
+      "value": [
+        0.9303059577941895
+      ]
+    }
+  }
+}

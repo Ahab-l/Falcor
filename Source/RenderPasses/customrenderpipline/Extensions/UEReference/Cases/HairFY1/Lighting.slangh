@@ -1,0 +1,168 @@
+#ifndef UE_LEGACY_FY1_HAIR_LIGHTING_SLANGH
+#define UE_LEGACY_FY1_HAIR_LIGHTING_SLANGH
+
+struct FY1HairMaterial
+{
+    float3 baseColor;
+    float3 axis;
+    float roughness;
+    float specular;
+    float diffuseScatter;
+    float3 additionalRGB;
+    float additionalRoughness;
+    bool enableAdditionalR;
+};
+
+struct FY1HairVisibility
+{
+    float surfaceShadow;
+    float diffuseBlend;
+    float outerVisibility;
+    float areaFalloff;
+};
+
+struct FY1HairLobes
+{
+    float3 R;
+    float3 TT;
+    float3 TRT;
+    float3 diffuse;
+    float3 additionalR;
+};
+
+struct FY1PointLight
+{
+    float3 position;
+    float invRadius;
+    float3 color;
+    float falloffExponent;
+    float3 spotDirection;
+    float spotCosOuter;
+    float spotInvCosDifference;
+    bool spotEnabled;
+};
+
+struct FY1PointLightSample
+{
+    float3 direction;
+    float3 color;
+    float radialAttenuation;
+    float spotAttenuation;
+};
+
+float fy1AsinFast(float x)
+{
+    float a = abs(x);
+    float r = (1.57080f - a * 0.156583f) * sqrt(1.f - a);
+    return x >= 0.f ? r : 3.14159f - r;
+}
+
+float fy1Gaussian(float angle, float beta)
+{
+    float numerator = exp2((-0.5f * angle * angle / (beta * beta)) * 1.44270f);
+    return numerator / (max(beta, 0.01f) * 2.50663f);
+}
+
+float fy1Pow5(float x)
+{
+    float x2 = x * x;
+    return x2 * x2 * x;
+}
+
+FY1HairLobes fy1EvaluateHairLobes(FY1HairMaterial material, float3 V, float3 L, float diffuseBlend)
+{
+    FY1HairLobes h = (FY1HairLobes)0;
+    float3 N = material.axis;
+    float roughness = min(max(material.roughness, 0.00392157f), 1.f);
+    float LoV = dot(V, L);
+    float NoL = min(max(dot(N, L), -1.f), 1.f);
+    float NoV = min(max(dot(N, V), -1.f), 1.f);
+    float thetaV = fy1AsinFast(NoV);
+    float thetaL = fy1AsinFast(NoL);
+    float cosThetaD = cos(abs(thetaL - thetaV) * 0.5f);
+
+    float3 projectedL = L - NoL * N;
+    float3 projectedV = V - NoV * N;
+    float projectedDot = dot(projectedL, projectedV);
+    float projectedLengthInverse = rsqrt(dot(projectedL, projectedL) * dot(projectedV, projectedV) + 0.0001f);
+    float cosPhi = projectedDot * projectedLengthInverse;
+    float cosHalfPhi = sqrt(saturate(cosPhi * 0.5f + 0.5f));
+    float etaPrime = 1.19f / cosThetaD + cosThetaD * 0.36f;
+    float roughness2 = roughness * roughness;
+
+    float sqrtOneMinusNoV2 = sqrt(1.f - NoV * NoV);
+    float rShift = (cosHalfPhi * 0.997551f * sqrtOneMinusNoV2 - NoV * 0.0699428f) * 0.139886f;
+    float rM = fy1Gaussian(NoV + NoL + rShift, roughness2 * 1.41421f * cosHalfPhi);
+    float fresnelBase = 1.f - sqrt(saturate(LoV * 0.5f + 0.5f));
+    float rF = fy1Pow5(fresnelBase) * 0.953479f + 0.0465206f;
+    float rScalar = material.specular * 0.5f * cosHalfPhi * rM * rF;
+    h.R = rScalar.xxx;
+
+    float ttM = fy1Gaussian(NoL - 0.035f + NoV, roughness2 * 0.5f);
+    float hh = cosHalfPhi * (1.f + (0.6f - cosPhi * 0.8f) / etaPrime);
+    float ttFresnelBase = 1.f - sqrt(saturate(1.f - hh * hh)) * cosThetaD;
+    float ttF = 0.953479f - fy1Pow5(ttFresnelBase) * 0.953479f;
+    float ttExponent = sqrt(1.f - (hh / etaPrime) * (hh / etaPrime)) * 0.5f / cosThetaD;
+    float3 baseLog = log2(abs(material.baseColor));
+    float3 ttTransmission = exp2(baseLog * ttExponent);
+    float ttScale = ttF * ttF * ttM * exp2(-5.74193f - cosPhi * 5.26584f);
+    h.TT = ttScale * ttTransmission;
+
+    float trtM = fy1Gaussian(NoL - 0.14f + NoV, roughness2 * 2.f);
+    float trtBase = 1.f - cosThetaD * 0.5f;
+    float trtBase2 = trtBase * trtBase;
+    float trtCore = trtBase2 * trtBase2 * (0.953479f - cosThetaD * 0.476740f);
+    float trtF = trtCore + 0.0465206f;
+    float trtTransmissionF = 0.953479f - trtCore;
+    float3 trtTransmission = exp2(baseLog * (0.8f / cosThetaD));
+    float trtScale = trtTransmissionF * trtTransmissionF * trtF * trtM * exp2(cosPhi * 24.5258f - 24.2084f);
+    h.TRT = trtScale * trtTransmission;
+
+    float3 tangentV = V - NoV * N;
+    tangentV *= rsqrt(dot(tangentV, tangentV));
+    float fakeNoL = saturate((dot(tangentV, L) + 1.f) * 0.25f);
+    float diffuseWeight = (1.f - abs(NoL) - fakeNoL) * 0.33f + fakeNoL;
+    float diffuseScale = material.diffuseScatter * 0.318310f * diffuseWeight;
+    float luminance = max(dot(material.baseColor, float3(0.212639f, 0.715169f, 0.0721923f)), 0.0001f);
+    float3 diffuseTint = 1.f;
+    if (diffuseBlend < 1.f)
+        diffuseTint = exp2(log2(abs(material.baseColor / luminance)) * (1.f - diffuseBlend));
+    h.diffuse = diffuseTint * diffuseScale * sqrt(abs(material.baseColor));
+
+    if (material.enableAdditionalR)
+    {
+        float extraRoughness = min(max(material.additionalRoughness, 0.00392157f), 1.f);
+        float extraCosHalfPhi = sqrt(saturate(projectedDot * 0.5f * projectedLengthInverse + 0.5f));
+        float extraShift = (extraCosHalfPhi * 0.997551f * sqrtOneMinusNoV2 - NoV * 0.0699428f) * 0.139886f;
+        float extraM = fy1Gaussian(NoV + NoL + extraShift,
+            extraRoughness * extraRoughness * 1.41421f * extraCosHalfPhi);
+        float extraScalar = material.specular * 0.5f * extraCosHalfPhi * extraM * rF;
+        h.additionalR = extraScalar * material.additionalRGB;
+    }
+    return h;
+}
+
+float3 fy1MergeHair(FY1HairLobes h, FY1HairVisibility visibility, float3 lightColor, float preExposure)
+{
+    float3 direct = max((h.R + h.TT + h.TRT) * visibility.surfaceShadow + h.diffuse, 0.f);
+    float3 areaResult = (h.additionalR + direct) * visibility.areaFalloff;
+    return areaResult * (visibility.outerVisibility * lightColor) * preExposure;
+}
+
+FY1PointLightSample fy1EvaluatePointLight(float3 P, FY1PointLight light)
+{
+    FY1PointLightSample result;
+    float3 delta = light.position - P;
+    float distance2 = dot(delta, delta);
+    result.direction = delta * rsqrt(distance2);
+    float3 scaled = delta * light.invRadius;
+    float radialBase = 1.f - saturate(dot(scaled, scaled));
+    result.radialAttenuation = exp2(log2(radialBase) * light.falloffExponent);
+    result.spotAttenuation = 1.f;
+    if (light.spotEnabled)
+        result.spotAttenuation = saturate((dot(result.direction, light.spotDirection) - light.spotCosOuter) * light.spotInvCosDifference);
+    result.color = light.color * (result.radialAttenuation * result.spotAttenuation * result.spotAttenuation);
+    return result;
+}
+
+#endif

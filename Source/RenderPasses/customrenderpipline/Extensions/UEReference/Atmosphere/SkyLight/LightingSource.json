@@ -1,0 +1,156 @@
+{
+  "capture_inputs": false,
+  "full_rendering_parity": false,
+  "excerpts": [
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "byte_offset": 24087,
+      "bytes": 302,
+      "line": 730,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "3c8ec467afa58408803a3e899980f2e1e30174c9208058e9e28847e75a14805d",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 103
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "byte_offset": 24391,
+      "bytes": 120,
+      "line": 743,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "c5fcdb24785b2933b29e0b25a32f0f9fad8b7747e20d8fabe8d34e8191c69052",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 407
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadingCommon.ush",
+      "byte_offset": 6382,
+      "bytes": 78,
+      "line": 141,
+      "source_sha256": "12e9d8e9989e7f6935f739f4c446e423358d9fab1ad56ef59a90ee2033050fd8",
+      "excerpt_sha256": "4fa410807329b7a3c01daad31899ddba1367129bf24a7b1dcb02e57b94bfca56",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 529
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadingCommon.ush",
+      "byte_offset": 7666,
+      "bytes": 143,
+      "line": 188,
+      "source_sha256": "12e9d8e9989e7f6935f739f4c446e423358d9fab1ad56ef59a90ee2033050fd8",
+      "excerpt_sha256": "a2d688beceb842c0ebe1cc1957602b021106ef37aa3b21d266d054818d0b5b81",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 609
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ShadingCommon.ush",
+      "byte_offset": 7923,
+      "bytes": 107,
+      "line": 198,
+      "source_sha256": "12e9d8e9989e7f6935f739f4c446e423358d9fab1ad56ef59a90ee2033050fd8",
+      "excerpt_sha256": "200eaba32978f2217e1faa65910b863a7cecd2bd4a0b36a071706fb7cea4f066",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 754
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 269,
+      "bytes": 157,
+      "line": 11,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "60f453e79d29156d54bc92b351097344b5a38a916285c3b8b09cfc6d48ad5412",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 863
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 951,
+      "bytes": 522,
+      "line": 26,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "c44dc3b9399327e5e7378b416a0731a84a0a770a132ab72956e5c4f059add8a8",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 1022
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 1885,
+      "bytes": 523,
+      "line": 43,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "9c49f87e6a7654aeb063386b5772bf1575ba6ba6348ca93b65fe71db224dd634",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 1546
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 3718,
+      "bytes": 821,
+      "line": 84,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "7ebca3ac8c4b00a5044fa53d3c4cf2e40f2a3c66980d192c281ba73440bdc9d5",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 2071
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 5235,
+      "bytes": 202,
+      "line": 125,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "b2e77c1b0b4569c1443b9ac19ef7ef1e85b80a233101ff36f96a6f5931c552af",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 2894
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "byte_offset": 5439,
+      "bytes": 125,
+      "line": 131,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "107b1f737afe9448eec5aba7694a98810045146994e03a1ffd3be1fcf1f47861",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 3098
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\BRDF.ush",
+      "byte_offset": 23378,
+      "bytes": 405,
+      "line": 592,
+      "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906",
+      "excerpt_sha256": "0152f99d796a471140d90f4127f822aa8964f5f5aba5f9c1a9998d0fd835b3d4",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 3225
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyLightingDiffuseShared.ush",
+      "byte_offset": 712,
+      "bytes": 2266,
+      "line": 25,
+      "source_sha256": "9a725c7f015c310ed250207889f31bc9d63af8a9296e5ffa7a12b0d733d1de7c",
+      "excerpt_sha256": "dad156dabc4cece8a8fcf0643713a3ece21c982032c33cfc000892f05c167029",
+      "output": "LightingHelpersOriginal.slangh",
+      "output_byte_offset": 3632
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyLightingDiffuseShared.ush",
+      "byte_offset": 4726,
+      "bytes": 528,
+      "line": 129,
+      "source_sha256": "9a725c7f015c310ed250207889f31bc9d63af8a9296e5ffa7a12b0d733d1de7c",
+      "excerpt_sha256": "2dbc862f8ff3d9cadee488b06d03bd071f0f9571f3b2353d5bc6996b64a4ddea",
+      "output": "LightingDiffuseSelected.ush",
+      "output_byte_offset": 103
+    }
+  ],
+  "specialization": [
+    "DefaultLit and Unlit only; USE_ENERGY_CONSERVATION=0, anisotropy disabled.",
+    "Dynamic sky contribution only; SSR, SSGI, DFAO, local captures and cloud AO remain unimplemented.",
+    "ScreenAO omitted selects explicit disabled branch; AO tint zero, pending component tint export.",
+    "Helper bodies unchanged; adapter macros isolate names and native resource bindings.",
+    "One source Cube sample redirects its symbolic texture argument to a top-level TextureCube; parameters live in an explicit cbuffer, avoiding a mixed implicit global block.",
+    "SkyLightDiffuse keeps exact selected accumulation lines, with DefaultLit normal and DiffuseWeight=1.",
+    "Reflection specialization retains offspecular direction, multiplicative AO, dynamic gather, exposure, EnvBRDF and nonnegative sanitization.",
+    "Main camera comes from live main-view row9 UE cm; position comes from native Decode world meters."
+  ]
+}

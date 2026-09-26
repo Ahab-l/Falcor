@@ -1,0 +1,574 @@
+{
+  "capture_inputs": false,
+  "runtime_support_established": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "extraction": "Verbatim reviewed line regions; no preprocessing, algorithm pruning, or token rewriting.",
+  "native_contract": {
+    "scope": "PC compute path in ReflectionEnvironmentRealTimeCapture.cpp",
+    "sampler": "SF_Point",
+    "mipgen": {
+      "source_view_mip": "MipIndex - 1",
+      "shader_lod": 0,
+      "destination_view": "same cube, selected mip as Texture2DArray UAV",
+      "tap_count": 9
+    },
+    "filter": {
+      "source_view": "full source cubemap mip chain",
+      "destination_view": "separate convolved cubemap, selected mip as Texture2DArray UAV",
+      "sample_counts": [
+        32,
+        64
+      ],
+      "sharp_path": "Roughness < 0.01 copies source LOD 0"
+    },
+    "diffuse_sh": {
+      "source": "convolved cubemap",
+      "mip": "log2(capture_width) - 4",
+      "thread_group_size": [
+        8,
+        8,
+        1
+      ],
+      "dispatch_groups": [
+        1,
+        1,
+        1
+      ],
+      "sample_count": 64,
+      "uniform_sample_solid_angle": "4 * PI / 64",
+      "output_float4_count": 8,
+      "brightness_index": 7,
+      "output_binding": "RWStructuredBuffer<float4> OutIrradianceEnvMapSH"
+    },
+    "precision": {
+      "half_alias": "float",
+      "material_float_alias": "float",
+      "excerpt_tokens_rewritten": false,
+      "per_shader_allow_real_types": false,
+      "evidence": "The three native shader classes do not enable CFLAG_AllowRealTypes. D3D gates real types on that flag; Platform.ush retains the exact half-to-float branch and relaxed-precision/real-type defaults. Common.ush retains the MaterialFloat compute alias."
+    }
+  },
+  "integration_gaps": [
+    "RWStructuredBuffer<float4> UAV binding for OutIrradianceEnvMapSH needs runtime integration and validation.",
+    "Original SHCommon.ush and MonteCarlo.ush include directives remain unchanged; a source include adapter is needed.",
+    "A runtime wrapper must supply the evidenced PC precision aliases, shader macros, bindings, and dispatch state.",
+    "These excerpts are unregistered source evidence; they have not been compiled or GPU-validated by this exporter."
+  ],
+  "excerpts": [
+    {
+      "output": "UESkyLightCubeCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "#if defined(DXC_GROUPSHARED_ALIGNMENT_WORKAROUND) && DXC_GROUPSHARED_ALIGNMENT_WORKAROUND",
+      "byte_offset": 295,
+      "bytes": 260,
+      "line": 11,
+      "end_line": 15,
+      "output_byte_offset": 201,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "11b0a406c52c40ae04422242956f9abd40718478a0f9cf266686693d3b1108ea"
+    },
+    {
+      "output": "UESkyLightCubeCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "float3 GetCubemapVector(float2 ScaledUVs, int InCubeFace)",
+      "byte_offset": 3296,
+      "bytes": 685,
+      "line": 99,
+      "end_line": 130,
+      "output_byte_offset": 462,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "13ace237c2a9d02b9ed17683cad8ed9b7364c61f44a6eab1b182f46594062394"
+    },
+    {
+      "output": "UESkyLightCubeCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "TextureCube SourceCubemapTexture;",
+      "byte_offset": 4906,
+      "bytes": 69,
+      "line": 188,
+      "end_line": 189,
+      "output_byte_offset": 1148,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "53b6d5eb0cd853ae87fd2f19b3dc93cfa57758aba66f2830d790e16e3bf99f2b"
+    },
+    {
+      "output": "UESkyLightCubeCommon.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "uint MipIndex;",
+      "byte_offset": 7030,
+      "bytes": 557,
+      "line": 245,
+      "end_line": 267,
+      "output_byte_offset": 1218,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "a2de781d1a56e77081bd3e545f4011729259689c507ac04d678dc71525026f45"
+    },
+    {
+      "output": "UESkyLightDownsample.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "void DownsampleCS(uint3 ThreadId : SV_DispatchThreadID)",
+      "byte_offset": 7588,
+      "bytes": 1755,
+      "line": 269,
+      "end_line": 332,
+      "output_byte_offset": 201,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "cfce3af2d9c758b2d80844b57dce4fe86e4c51083651467fcb16c38e51263e52"
+    },
+    {
+      "output": "UESkyLightFilter.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "void FilterCS(uint3 ThreadId : SV_DispatchThreadID)",
+      "byte_offset": 15297,
+      "bytes": 4006,
+      "line": 501,
+      "end_line": 651,
+      "output_byte_offset": 201,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "d7ad606617bd5f974adecdffa465ddafea2ab0ca4159f29a16af7770187e9f01"
+    },
+    {
+      "output": "UESkyLightDiffuseSH.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "#ifdef SHADER_DIFFUSE_TO_SH",
+      "byte_offset": 26637,
+      "bytes": 7344,
+      "line": 857,
+      "end_line": 1014,
+      "output_byte_offset": 201,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "a4cf54361226983a3b67ecaefbc8ad0fbf34a3654b6ad8364cc9d6d87c3e8652"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "const static MaterialFloat PI = 3.1415926535897932f;",
+      "byte_offset": 3030,
+      "bytes": 53,
+      "line": 133,
+      "end_line": 133,
+      "output_byte_offset": 201,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "ad84982f41c0a7317849909a998f51466e9d499c2bf2f70e5df489a7b1974c29"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "float Pow2( float x )",
+      "byte_offset": 33108,
+      "bytes": 39,
+      "line": 1074,
+      "end_line": 1077,
+      "output_byte_offset": 255,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "1552a504b2e4f22601504f98305aed4f450daa9343601646021bbecd2500222e"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "float Pow4( float x )",
+      "byte_offset": 33448,
+      "bytes": 60,
+      "line": 1114,
+      "end_line": 1118,
+      "output_byte_offset": 295,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "6879209da860c704620e42fd2645622ccccf36d5d9b6e263f5d7d8ba0d0e6f8e"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "float3x3 GetTangentBasis( float3 TangentZ )",
+      "byte_offset": 308,
+      "bytes": 500,
+      "line": 11,
+      "end_line": 23,
+      "output_byte_offset": 356,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "fc39fc6094f6712a5043a2b82385ddff9dbc7dfd3784a89c9e03a8cd51b894ba"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "float2 Hammersley( uint Index, uint NumSamples, uint2 Random )",
+      "byte_offset": 1638,
+      "bytes": 256,
+      "line": 58,
+      "end_line": 63,
+      "output_byte_offset": 857,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "8d451ee642700d3366f379ca6d4d26a1d1641328e0c8f0402601f077e05d3584"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "float4 UniformSampleSphere( float2 E )",
+      "byte_offset": 7159,
+      "bytes": 320,
+      "line": 213,
+      "end_line": 228,
+      "output_byte_offset": 1114,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "50cb1adb9cf3b466ccd4caa6b00893f1054e41c352f5da19bd27681b1ea5c385"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "float4 CosineSampleHemisphere( float2 E )",
+      "byte_offset": 7797,
+      "bytes": 316,
+      "line": 247,
+      "end_line": 262,
+      "output_byte_offset": 1435,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "70cd536e9aad31a53450214e28110bd9447f59f76512aa1196fcea76e3c3bc43"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "float4 ImportanceSampleGGX( float2 E, float a2 )",
+      "byte_offset": 11249,
+      "bytes": 451,
+      "line": 367,
+      "end_line": 384,
+      "output_byte_offset": 1752,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "d8e8d6b3aa6add2deb72caae9bde2cc215631f97c173ddfb30dbeac8bce39fdd"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\BRDF.ush",
+      "signature": "float D_GGX( float a2, float NoH )",
+      "byte_offset": 12614,
+      "bytes": 243,
+      "line": 309,
+      "end_line": 315,
+      "output_byte_offset": 2204,
+      "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906",
+      "excerpt_sha256": "de347b30435e51e81d969ae2aef9cc560f6a11f468a0e3d28b0c20710bc857b5"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "signature": "#define REFLECTION_CAPTURE_ROUGHEST_MIP 1",
+      "byte_offset": 428,
+      "bytes": 93,
+      "line": 16,
+      "end_line": 17,
+      "output_byte_offset": 2448,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "45cf84e36f7b366be1c50c4ecaa570ae44bcb137d2fe285ffb1923efb6fa1d21"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "signature": "float ComputeReflectionCaptureRoughnessFromMip(float Mip, half CubemapMaxMip)",
+      "byte_offset": 1475,
+      "bytes": 238,
+      "line": 35,
+      "end_line": 39,
+      "output_byte_offset": 2542,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "92297a0b02975fbafad191e2b93fbae76ae31d8df5c2b7f4dc1b07cb9e12561c"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "struct FThreeBandSHVector",
+      "byte_offset": 936,
+      "bytes": 441,
+      "line": 37,
+      "end_line": 54,
+      "output_byte_offset": 2781,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "227e102f87723083f2af08a761c3e4176def9ee5d07a5f2c4ebde22e18a9ed52"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "FThreeBandSHVector MulSH3(FThreeBandSHVector A, half Scalar)",
+      "byte_offset": 2300,
+      "bytes": 193,
+      "line": 96,
+      "end_line": 103,
+      "output_byte_offset": 3223,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "76b0344c14850f495dc6fb267db747b58f8328f370f804224ff0eaf029ff4b58"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "FThreeBandSHVector AddSH3(FThreeBandSHVector A, FThreeBandSHVector B)",
+      "byte_offset": 2835,
+      "bytes": 182,
+      "line": 121,
+      "end_line": 128,
+      "output_byte_offset": 3417,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "bbe93076bb10ada8b68af230c0b4db205b86398ada123114d54b44635459ef35"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "FThreeBandSHVectorRGB AddSH3(FThreeBandSHVectorRGB A, FThreeBandSHVectorRGB B)",
+      "byte_offset": 3018,
+      "bytes": 220,
+      "line": 130,
+      "end_line": 137,
+      "output_byte_offset": 3600,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "1d62fa1fac7b13cbe4153e766b4a94adc8caacf4a38b7763959b7efab42e23d4"
+    },
+    {
+      "output": "UESkyLightHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "FThreeBandSHVector SHBasisFunction3(half3 InputVector)",
+      "byte_offset": 5675,
+      "bytes": 670,
+      "line": 232,
+      "end_line": 249,
+      "output_byte_offset": 3821,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "1a5b48b5966a38d52ed3bb48fd42a1f01b2f4ae48c688bbe7670c38f5554c34a"
+    },
+    {
+      "output": "UESkyLightNativeSetupOriginal.inl",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\ReflectionEnvironmentRealTimeCapture.cpp",
+      "signature": "class FDownsampleCubeFaceCS : public FGlobalShader",
+      "byte_offset": 4631,
+      "bytes": 4640,
+      "line": 82,
+      "end_line": 179,
+      "output_byte_offset": 201,
+      "source_sha256": "d88be70fceaddfab68f689572dd9f9d4759a880de5d0c20a9929ed9493cef3da",
+      "excerpt_sha256": "d0fc0ebe0ae824a262b1905ad9334e5d0a7ed90f537c9f56d8898e9dd687c86a"
+    },
+    {
+      "output": "UESkyLightNativeSetupOriginal.inl",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\ReflectionEnvironmentRealTimeCapture.cpp",
+      "signature": "auto RenderCubeFaces_GenCubeMips = [&](uint32 CubeMipStart, uint32 CubeMipEnd, TRefCountPtr<IPooledRenderTarget>& SkyRenderTarget)",
+      "byte_offset": 53671,
+      "bytes": 8575,
+      "line": 1038,
+      "end_line": 1186,
+      "output_byte_offset": 4842,
+      "source_sha256": "d88be70fceaddfab68f689572dd9f9d4759a880de5d0c20a9929ed9493cef3da",
+      "excerpt_sha256": "7ffe637b0d3e0a224ab6479fbb75ec23b911f645e06ee334aeccd19956d7ac06"
+    },
+    {
+      "output": "UESkyLightNativeSetupOriginal.inl",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\ReflectionEnvironmentRealTimeCapture.cpp",
+      "signature": "RenderCubeFaces_SkyCloud(true, true, CapturedSkyRenderTarget, 0, CubeFace_MAX);",
+      "byte_offset": 65549,
+      "bytes": 513,
+      "line": 1274,
+      "end_line": 1283,
+      "output_byte_offset": 13418,
+      "source_sha256": "d88be70fceaddfab68f689572dd9f9d4759a880de5d0c20a9929ed9493cef3da",
+      "excerpt_sha256": "ab7e9be57d0698ff8253c12f6ec26155dc8e8f1ee1f01c9f914db93cd7ea5378"
+    },
+    {
+      "output": "UESkyLightPlatformOriginal.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Public\\Platform.ush",
+      "signature": "#ifndef PLATFORM_SUPPORTS_REAL_TYPES",
+      "byte_offset": 6512,
+      "bytes": 181,
+      "line": 257,
+      "end_line": 263,
+      "output_byte_offset": 201,
+      "source_sha256": "8e925a2c95ae2c260c5bfce756a096ba666bfbc52920c3562a2b4779b31add94",
+      "excerpt_sha256": "2eafc9e8be57aec926ef5a12b08cc4231d76a90561c54c8dadecfc48dbdc3f3a"
+    },
+    {
+      "output": "UESkyLightPlatformOriginal.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Public\\Platform.ush",
+      "signature": "// ---------------------------------------------------- Alternative floating point types",
+      "byte_offset": 8721,
+      "bytes": 1019,
+      "line": 338,
+      "end_line": 374,
+      "output_byte_offset": 383,
+      "source_sha256": "8e925a2c95ae2c260c5bfce756a096ba666bfbc52920c3562a2b4779b31add94",
+      "excerpt_sha256": "fc91aff3c206e043d01049657a8ca737d3fd2bbe564189cb13aa384f21615232"
+    },
+    {
+      "output": "UESkyLightPlatformOriginal.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "// These types are used for material translator generated code, or any functions the translated code can call",
+      "byte_offset": 334,
+      "bytes": 755,
+      "line": 13,
+      "end_line": 32,
+      "output_byte_offset": 1403,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "eca629b53116a38d4d4931f8ec76fc61c0f0e202328f4220ac5acdccce1e022f"
+    },
+    {
+      "output": "UESkyLightCompilerOriginal.inl",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Developer\\Windows\\ShaderFormatD3D\\Private\\ShaderFormatD3D.cpp",
+      "signature": "void ModifyShaderCompilerInput(FShaderCompilerInput& Input) const final",
+      "byte_offset": 6448,
+      "bytes": 3183,
+      "line": 204,
+      "end_line": 274,
+      "output_byte_offset": 201,
+      "source_sha256": "7cff8a2a6f77333d1d5403e08347860a593610c924c480639a18be51cabd1196",
+      "excerpt_sha256": "d4ff0885252b9985aa780fd8548ae477308e779023a414c9fcb11b12ad31ccb8"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\BRDF.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 522,
+      "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\Common.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 574,
+      "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\MonteCarlo.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 626,
+      "source_sha256": "bc3f7964c77276880752abf0c13cc3f8edeee4a173a4fa2fb39125330536a3d8",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShaders.usf",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 678,
+      "source_sha256": "395aa69b03d79a134b1e54f3e8419db80a10a2d0a46d9fc3fc0d519d487e8036",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\ReflectionEnvironmentShared.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 730,
+      "source_sha256": "c616a28bd0016a49698685fc901b929feaf357d0e039918d527e5af7cca6e677",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SHCommon.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 782,
+      "source_sha256": "c5684fb541a15e589982dc48a3f2b503da83822a2e039087e922fb7a433cf72d",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Public\\Platform.ush",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 834,
+      "source_sha256": "8e925a2c95ae2c260c5bfce756a096ba666bfbc52920c3562a2b4779b31add94",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Developer\\Windows\\ShaderFormatD3D\\Private\\ShaderFormatD3D.cpp",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 886,
+      "source_sha256": "7cff8a2a6f77333d1d5403e08347860a593610c924c480639a18be51cabd1196",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    },
+    {
+      "output": "UESkyLightSourceNotice.txt",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\ReflectionEnvironmentRealTimeCapture.cpp",
+      "signature": "// Copyright Epic Games, Inc. All Rights Reserved.",
+      "byte_offset": 0,
+      "bytes": 51,
+      "line": 1,
+      "end_line": 1,
+      "output_byte_offset": 938,
+      "source_sha256": "d88be70fceaddfab68f689572dd9f9d4759a880de5d0c20a9929ed9493cef3da",
+      "excerpt_sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "UESkyLightCubeCommon.ush",
+      "purpose": "shader source excerpts",
+      "sha256": "e3dd6d99ce51d23fbad009cdb358aaa09515e08612fe0c1d88447a4cfb01ec1c"
+    },
+    {
+      "path": "UESkyLightDownsample.ush",
+      "purpose": "shader source excerpts",
+      "sha256": "8fd8aec5a231f6b0c2bcfdadff0ae6cb182a242d6f969fa99805eb7d47e953c3"
+    },
+    {
+      "path": "UESkyLightFilter.ush",
+      "purpose": "shader source excerpts",
+      "sha256": "3a8bf79f2c61aeebacf627c0c3ce67db1d2335e26ee1f4f68e8f3a69b85ab8ea"
+    },
+    {
+      "path": "UESkyLightDiffuseSH.ush",
+      "purpose": "shader source excerpts",
+      "sha256": "70437ba7c8e1417cadbe3c324503c5598b5b6b157ba043f3ebe113f8f3c7f314"
+    },
+    {
+      "path": "UESkyLightHelpers.ush",
+      "purpose": "shader source excerpts",
+      "sha256": "703844b99a3c580ab7a5a749154cb11e4b874688277bd4553aeee55215df50cd"
+    },
+    {
+      "path": "UESkyLightNativeSetupOriginal.inl",
+      "purpose": "read-only native shader classes, complete setup lambdas, and source/destination call statements",
+      "sha256": "6d67a833ad1515ab8da557237321c80cc2eb62c0f401911d811f61baca452bd8"
+    },
+    {
+      "path": "UESkyLightPlatformOriginal.ush",
+      "purpose": "read-only original precision alias conditionals",
+      "sha256": "ed1a0801aaa00fd946d22f4dc7b2743b9dfd7358a03ad5de91b3b7f029a184fa"
+    },
+    {
+      "path": "UESkyLightCompilerOriginal.inl",
+      "purpose": "read-only complete D3D compiler input method documenting real-type opt-in",
+      "sha256": "bdfb334cc375c9eef2a0bd416167ea0013fc49e5d108b4bc03f55fea15bd9d11"
+    },
+    {
+      "path": "UESkyLightSourceNotice.txt",
+      "purpose": "exact source-header copyright notices",
+      "sha256": "b03859351101b7ef0354bf7cf7578fb023a5c54edd28e98c4c7fc6e011b273e0"
+    }
+  ]
+}

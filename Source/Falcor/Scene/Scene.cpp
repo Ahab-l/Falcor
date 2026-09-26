@@ -52,6 +52,7 @@
 #include <fstream>
 #include <numeric>
 #include <sstream>
+#include <set>
 #include <algorithm>
 #include <execution>
 
@@ -370,6 +371,75 @@ namespace Falcor
 
     void Scene::rasterize(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars, const ref<RasterizerState>& pRasterizerStateCW, const ref<RasterizerState>& pRasterizerStateCCW)
     {
+        if (mDefaultDrawRevision != mRasterDrawRevision) createDrawList();
+        rasterizeDrawArgs(pRenderContext, pState, pVars, mDrawArgs, pRasterizerStateCW, pRasterizerStateCCW);
+    }
+
+    Scene::RasterDrawList::~RasterDrawList() = default;
+
+    uint32_t Scene::RasterDrawList::getBatchCount() const { return (uint32_t)mDrawArgs.size(); }
+
+    ref<Scene::RasterDrawList> Scene::createRasterDrawList(const std::vector<uint32_t>& instanceIDs)
+    {
+        auto list = ref<RasterDrawList>(new RasterDrawList(ref<Scene>(this)));
+        list->mInstanceIDs = instanceIDs;
+        std::sort(list->mInstanceIDs.begin(), list->mInstanceIDs.end());
+        list->mInstanceIDs.erase(std::unique(list->mInstanceIDs.begin(), list->mInstanceIDs.end()), list->mInstanceIDs.end());
+        for (uint32_t id : list->mInstanceIDs)
+        {
+            FALCOR_CHECK(id < mGeometryInstanceData.size(), "Raster draw list instance ID {} is out of range", id);
+            FALCOR_CHECK(mGeometryInstanceData[id].getType() == GeometryType::TriangleMesh,
+                "Raster draw list instance {} is not triangle geometry", id);
+        }
+        list->mDrawArgs = createDrawArgs(list->mInstanceIDs);
+        list->mRevision = mRasterDrawRevision;
+        list->mBuildCount = 1;
+        return list;
+    }
+
+    std::vector<uint32_t> Scene::getRasterInstanceIDs(const std::optional<std::vector<std::string>>& materialNames) const
+    {
+        std::set<std::string> names;
+        if (materialNames)
+        {
+            names.insert(materialNames->begin(), materialNames->end());
+            for (const auto& name : names)
+                FALCOR_CHECK(getMaterialByName(name), "Unknown raster selection material '{}'", name);
+        }
+        std::vector<uint32_t> ids;
+        for (uint32_t id = 0; id < mGeometryInstanceData.size(); ++id)
+        {
+            const auto& instance = mGeometryInstanceData[id];
+            if (instance.getType() != GeometryType::TriangleMesh) continue;
+            if (!materialNames || names.count(getMaterial(MaterialID::fromSlang(instance.materialID))->getName())) ids.push_back(id);
+        }
+        return ids;
+    }
+
+    void Scene::rasterize(RenderContext* context, GraphicsState* state, ProgramVars* vars,
+        const ref<RasterDrawList>& list, RasterizerState::CullMode cullMode)
+    {
+        rasterize(context, state, vars, list, mFrontClockwiseRS[cullMode], mFrontCounterClockwiseRS[cullMode]);
+    }
+
+    void Scene::rasterize(RenderContext* context, GraphicsState* state, ProgramVars* vars,
+        const ref<RasterDrawList>& list, const ref<RasterizerState>& clockwise, const ref<RasterizerState>& counterClockwise)
+    {
+        if (!list) return rasterize(context, state, vars, clockwise, counterClockwise);
+        FALCOR_CHECK(list->mpScene.get() == this, "Raster draw list belongs to a different Scene");
+        if (list->mRevision != mRasterDrawRevision)
+        {
+            list->mDrawArgs = createDrawArgs(list->mInstanceIDs);
+            list->mRevision = mRasterDrawRevision;
+            ++list->mBuildCount;
+        }
+        rasterizeDrawArgs(context, state, vars, list->mDrawArgs, clockwise, counterClockwise);
+    }
+
+    void Scene::rasterizeDrawArgs(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars,
+        const std::vector<DrawArgs>& drawArgs, const ref<RasterizerState>& pRasterizerStateCW,
+        const ref<RasterizerState>& pRasterizerStateCCW)
+    {
         FALCOR_PROFILE(pRenderContext, "rasterizeScene");
 
         pVars->setParameterBlock(kParameterBlockName, mpSceneBlock);
@@ -377,7 +447,7 @@ namespace Falcor
         auto pCurrentRS = pState->getRasterizerState();
         bool isIndexed = hasIndexBuffer();
 
-        for (const auto& draw : mDrawArgs)
+        for (const auto& draw : drawArgs)
         {
             FALCOR_ASSERT(draw.count > 0);
 
@@ -936,6 +1006,7 @@ namespace Falcor
 
         if (forceUpdate || dataChanged)
         {
+            ++mRasterDrawRevision;
             uint32_t byteSize = (uint32_t)(mGeometryInstanceData.size() * sizeof(GeometryInstanceData));
             mpGeometryInstancesBuffer->setBlob(mGeometryInstanceData.data(), 0, byteSize);
         }
@@ -2691,22 +2762,19 @@ namespace Falcor
 
     void Scene::createDrawList()
     {
-        if (!mpMeshVao)
-            return;
+        mDrawArgs = createDrawArgs(getRasterInstanceIDs());
+        mDefaultDrawRevision = mRasterDrawRevision;
+    }
 
-        // This function creates argument buffers for draw indirect calls to rasterize the scene.
-        // The updateGeometryInstances() function must have been called before so that the flags are accurate.
-        //
-        // Note that we create four draw buffers to handle all combinations of:
-        // 1) mesh is using 16- or 32-bit indices,
-        // 2) mesh triangle winding is CW or CCW after transformation.
-        //
-        // TODO: Update the draw args if a mesh undergoes animation that flips the winding.
+    std::vector<Scene::DrawArgs> Scene::createDrawArgs(const std::vector<uint32_t>& instanceIDs)
+    {
+        std::vector<DrawArgs> result;
+        if (!mpMeshVao || instanceIDs.empty()) return result;
 
-        mDrawArgs.clear();
+        // Share the native winding/index-format batches between full-scene and selected draws.
 
         // Helper to create the draw-indirect buffer.
-        auto createDrawBuffer = [this](const auto& drawMeshes, bool ccw, ResourceFormat ibFormat = ResourceFormat::Unknown)
+        auto createDrawBuffer = [this, &result](const auto& drawMeshes, bool ccw, ResourceFormat ibFormat = ResourceFormat::Unknown)
         {
             if (drawMeshes.size() > 0)
             {
@@ -2717,7 +2785,7 @@ namespace Falcor
                 draw.count = (uint32_t)drawMeshes.size();
                 draw.ccw = ccw;
                 draw.ibFormat = ibFormat;
-                mDrawArgs.push_back(draw);
+                result.push_back(draw);
             }
         };
 
@@ -2725,10 +2793,9 @@ namespace Falcor
         {
             std::vector<DrawIndexedArguments> drawClockwiseMeshes[2], drawCounterClockwiseMeshes[2];
 
-            uint32_t instanceID = 0;
-            for (const auto& instance : mGeometryInstanceData)
+            for (uint32_t instanceID : instanceIDs)
             {
-                if (instance.getType() != GeometryType::TriangleMesh) continue;
+                const auto& instance = mGeometryInstanceData[instanceID];
 
                 const auto& mesh = mMeshDesc[instance.geometryID];
                 bool use16Bit = mesh.use16BitIndices();
@@ -2738,7 +2805,7 @@ namespace Falcor
                 draw.InstanceCount = 1;
                 draw.StartIndexLocation = mesh.ibOffset * (use16Bit ? 2 : 1);
                 draw.BaseVertexLocation = mesh.vbOffset;
-                draw.StartInstanceLocation = instanceID++;
+                draw.StartInstanceLocation = instanceID;
 
                 int i = use16Bit ? 0 : 1;
                 (instance.isWorldFrontFaceCW()) ? drawClockwiseMeshes[i].push_back(draw) : drawCounterClockwiseMeshes[i].push_back(draw);
@@ -2753,10 +2820,9 @@ namespace Falcor
         {
             std::vector<DrawArguments> drawClockwiseMeshes, drawCounterClockwiseMeshes;
 
-            uint32_t instanceID = 0;
-            for (const auto& instance : mGeometryInstanceData)
+            for (uint32_t instanceID : instanceIDs)
             {
-                if (instance.getType() != GeometryType::TriangleMesh) continue;
+                const auto& instance = mGeometryInstanceData[instanceID];
 
                 const auto& mesh = mMeshDesc[instance.geometryID];
                 FALCOR_ASSERT(mesh.indexCount == 0);
@@ -2765,7 +2831,7 @@ namespace Falcor
                 draw.VertexCountPerInstance = mesh.vertexCount;
                 draw.InstanceCount = 1;
                 draw.StartVertexLocation = mesh.vbOffset;
-                draw.StartInstanceLocation = instanceID++;
+                draw.StartInstanceLocation = instanceID;
 
                 (instance.isWorldFrontFaceCW()) ? drawClockwiseMeshes.push_back(draw) : drawCounterClockwiseMeshes.push_back(draw);
             }
@@ -2773,6 +2839,7 @@ namespace Falcor
             createDrawBuffer(drawClockwiseMeshes, false);
             createDrawBuffer(drawCounterClockwiseMeshes, true);
         }
+        return result;
     }
 
     void Scene::initGeomDesc(RenderContext* pRenderContext)
@@ -4316,6 +4383,14 @@ namespace Falcor
 
         // Scene
         pybind11::class_<Scene, ref<Scene>> scene(m, "Scene");
+
+        pybind11::class_<Scene::RasterDrawList, ref<Scene::RasterDrawList>> rasterDrawList(m, "RasterDrawList");
+        rasterDrawList.def_property_readonly("instance_ids", &Scene::RasterDrawList::getInstanceIDs);
+        rasterDrawList.def_property_readonly("draw_count", &Scene::RasterDrawList::getDrawCount);
+        rasterDrawList.def_property_readonly("batch_count", &Scene::RasterDrawList::getBatchCount);
+        rasterDrawList.def_property_readonly("build_count", &Scene::RasterDrawList::getBuildCount);
+        scene.def("get_raster_instance_ids", &Scene::getRasterInstanceIDs, "material_names"_a = pybind11::none());
+        scene.def("create_raster_draw_list", &Scene::createRasterDrawList, "instance_ids"_a);
 
         scene.def_property_readonly(kStats.c_str(), [](const Scene* pScene) { return toPython(pScene->getSceneStats()); });
         scene.def_property_readonly(kBounds.c_str(), &Scene::getSceneBounds, pybind11::return_value_policy::copy);

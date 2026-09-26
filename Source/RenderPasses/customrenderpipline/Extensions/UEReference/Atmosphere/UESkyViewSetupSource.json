@@ -1,0 +1,47 @@
+{
+  "capture_inputs": false,
+  "native_graph_integration_pending": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "excerpts": [
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\Rendering\\SkyAtmosphereCommonData.cpp",
+      "signature": "const float FAtmosphereSetup::CmToSkyUnit",
+      "byte_offset": 449,
+      "bytes": 53,
+      "source_sha256": "658de39bc41b0cf8a67344cb52730fc757203f836a514416caf6d88da3861465",
+      "excerpt_sha256": "69c9510e2ab829b871b3b578f18e792f3763ba397929485a880ba9c009289b55",
+      "line": 15
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\Rendering\\SkyAtmosphereCommonData.cpp",
+      "signature": "const float FAtmosphereSetup::SkyUnitToCm",
+      "byte_offset": 534,
+      "bytes": 60,
+      "source_sha256": "658de39bc41b0cf8a67344cb52730fc757203f836a514416caf6d88da3861465",
+      "excerpt_sha256": "3ebcd30f09182816d99aa3a347685a2d0b8085687d9dfd8db1c5083978078d87",
+      "line": 16
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\Rendering\\SkyAtmosphereCommonData.cpp",
+      "signature": "void FAtmosphereSetup::UpdateTransform(",
+      "byte_offset": 6572,
+      "bytes": 701,
+      "source_sha256": "658de39bc41b0cf8a67344cb52730fc757203f836a514416caf6d88da3861465",
+      "excerpt_sha256": "e26378b198c3cbed1681f81adf5817f5009ab5f26ae0178bf09ad5235a11a9a6",
+      "line": 164
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\Rendering\\SkyAtmosphereCommonData.cpp",
+      "signature": "void FAtmosphereSetup::ComputeViewData(",
+      "byte_offset": 11329,
+      "bytes": 3523,
+      "source_sha256": "658de39bc41b0cf8a67344cb52730fc757203f836a514416caf6d88da3861465",
+      "excerpt_sha256": "7da4863fd7301b3cf06740656eeba4f32681d836368ed1ce47f56cc909cf7929",
+      "line": 271
+    }
+  ],
+  "output": {
+    "path": "UESkyViewSetupOriginal.inl",
+    "sha256": "9510a49c5d19974e5f2463aa5ca345322b32ef36da8365ff193bdbcbd606fc71"
+  }
+}

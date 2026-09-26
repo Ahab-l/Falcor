@@ -1,0 +1,471 @@
+{
+  "schema_version": 2,
+  "name": "UEOpaqueModels",
+  "attachments": [
+    {
+      "resource": "sceneColor",
+      "slot": 0,
+      "falcor_format": "RGBA16Float",
+      "clear": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "write_mask": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "resource": "gBufferA",
+      "slot": 1,
+      "falcor_format": "RGB10A2Unorm",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "write_mask": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "resource": "gBufferB",
+      "slot": 2,
+      "falcor_format": "BGRA8Unorm",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "write_mask": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "resource": "gBufferC",
+      "slot": 3,
+      "falcor_format": "BGRA8UnormSrgb",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "write_mask": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "resource": "gBufferD",
+      "slot": 4,
+      "falcor_format": "BGRA8Unorm",
+      "clear": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "write_mask": [
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "depth_stencil": {
+    "falcor_format": "D32FloatS8Uint",
+    "clear_depth": 0,
+    "clear_stencil": 0
+  },
+  "fields": [
+    {
+      "name": "sceneRadiance",
+      "type": "float3",
+      "resource": "sceneColor",
+      "channels": "rgb"
+    },
+    {
+      "name": "sceneAlpha",
+      "type": "float",
+      "resource": "sceneColor",
+      "channels": "a",
+      "value": 0
+    },
+    {
+      "name": "normalEncoded",
+      "type": "float3",
+      "resource": "gBufferA",
+      "channels": "rgb"
+    },
+    {
+      "name": "perObjectData",
+      "type": "float",
+      "resource": "gBufferA",
+      "channels": "a"
+    },
+    {
+      "name": "metallic",
+      "type": "float",
+      "resource": "gBufferB",
+      "channels": "r"
+    },
+    {
+      "name": "specular",
+      "type": "float",
+      "resource": "gBufferB",
+      "channels": "g"
+    },
+    {
+      "name": "roughness",
+      "type": "float",
+      "resource": "gBufferB",
+      "channels": "b"
+    },
+    {
+      "name": "modelID",
+      "type": "uint",
+      "resource": "gBufferB",
+      "channels": "a",
+      "bits": {
+        "offset": 0,
+        "width": 5
+      }
+    },
+    {
+      "name": "skipVelocity",
+      "type": "uint",
+      "resource": "gBufferB",
+      "channels": "a",
+      "bits": {
+        "offset": 7,
+        "width": 1
+      },
+      "value": 1
+    },
+    {
+      "name": "baseColor",
+      "type": "float3",
+      "resource": "gBufferC",
+      "channels": "rgb"
+    },
+    {
+      "name": "ao",
+      "type": "float",
+      "resource": "gBufferC",
+      "channels": "a"
+    },
+    {
+      "name": "customDataEncoded",
+      "type": "float4",
+      "resource": "gBufferD",
+      "channels": "rgba"
+    }
+  ],
+  "codecs": {
+    "DefaultLit": {
+      "file": "DefaultLit.slangh",
+      "contract": "DefaultLit.codec.json",
+      "encode": "ueEncodeDefaultLit",
+      "decode": "ueDecodeDefaultLit",
+      "required_fields": {
+        "sceneRadiance": "float3",
+        "normalEncoded": "float3",
+        "metallic": "float",
+        "specular": "float",
+        "roughness": "float",
+        "baseColor": "float3",
+        "ao": "float",
+        "perObjectData": "float"
+      }
+    },
+    "Unlit": {
+      "file": "Unlit.slangh",
+      "contract": "Unlit.codec.json",
+      "encode": "ueEncodeUnlit",
+      "decode": "ueDecodeUnlit",
+      "required_fields": {
+        "sceneRadiance": "float3"
+      }
+    },
+    "Subsurface": {
+      "file": "Subsurface.slangh",
+      "contract": "Subsurface.codec.json",
+      "encode": "ueEncodeSubsurface",
+      "decode": "ueDecodeSubsurface",
+      "required_fields": {
+        "sceneRadiance": "float3",
+        "normalEncoded": "float3",
+        "metallic": "float",
+        "specular": "float",
+        "roughness": "float",
+        "baseColor": "float3",
+        "ao": "float",
+        "perObjectData": "float",
+        "customDataEncoded": "float4"
+      }
+    },
+    "Cloth": {
+      "file": "Cloth.slangh",
+      "contract": "Cloth.codec.json",
+      "encode": "ueEncodeCloth",
+      "decode": "ueDecodeCloth",
+      "required_fields": {
+        "sceneRadiance": "float3",
+        "normalEncoded": "float3",
+        "metallic": "float",
+        "specular": "float",
+        "roughness": "float",
+        "baseColor": "float3",
+        "ao": "float",
+        "perObjectData": "float",
+        "customDataEncoded": "float4"
+      }
+    },
+    "ClearCoat": {
+      "file": "ClearCoat.slangh",
+      "contract": "ClearCoat.codec.json",
+      "encode": "ueEncodeClearCoat",
+      "decode": "ueDecodeClearCoat",
+      "required_fields": {
+        "sceneRadiance": "float3",
+        "normalEncoded": "float3",
+        "metallic": "float",
+        "specular": "float",
+        "roughness": "float",
+        "baseColor": "float3",
+        "ao": "float",
+        "perObjectData": "float",
+        "customDataEncoded": "float4"
+      }
+    }
+  },
+  "models": [
+    {
+      "name": "Unlit",
+      "id": 0,
+      "codec": "Unlit",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "modelID",
+        "skipVelocity"
+      ],
+      "material_constraints": {
+        "ao": 1
+      },
+      "constant_overrides": {
+        "skipVelocity": 0
+      }
+    },
+    {
+      "name": "DefaultLit",
+      "id": 1,
+      "codec": "DefaultLit",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    },
+    {
+      "name": "Subsurface",
+      "id": 2,
+      "codec": "Subsurface",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao",
+        "customDataEncoded"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    },
+    {
+      "name": "PreintegratedSkin",
+      "id": 3,
+      "codec": "Subsurface",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao",
+        "customDataEncoded"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    },
+    {
+      "name": "ClearCoat",
+      "id": 4,
+      "codec": "ClearCoat",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao",
+        "customDataEncoded"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    },
+    {
+      "name": "TwoSidedFoliage",
+      "id": 6,
+      "codec": "Subsurface",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao",
+        "customDataEncoded"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    },
+    {
+      "name": "Cloth",
+      "id": 8,
+      "codec": "Cloth",
+      "valid_fields": [
+        "sceneRadiance",
+        "sceneAlpha",
+        "normalEncoded",
+        "perObjectData",
+        "metallic",
+        "specular",
+        "roughness",
+        "modelID",
+        "skipVelocity",
+        "baseColor",
+        "ao",
+        "customDataEncoded"
+      ],
+      "material_constraints": {
+        "ao": 1
+      }
+    }
+  ],
+  "consumers": {
+    "Decode": {
+      "required_fields": [
+        "modelID",
+        "sceneRadiance"
+      ],
+      "required_fields_by_model": {
+        "DefaultLit": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao"
+        ],
+        "Subsurface": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao",
+          "customDataEncoded"
+        ],
+        "PreintegratedSkin": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao",
+          "customDataEncoded"
+        ],
+        "ClearCoat": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao",
+          "customDataEncoded"
+        ],
+        "TwoSidedFoliage": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao",
+          "customDataEncoded"
+        ],
+        "Cloth": [
+          "normalEncoded",
+          "metallic",
+          "specular",
+          "roughness",
+          "baseColor",
+          "ao",
+          "customDataEncoded"
+        ]
+      }
+    }
+  }
+}

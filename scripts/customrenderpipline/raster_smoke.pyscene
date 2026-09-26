@@ -1,0 +1,20 @@
+"""A small asset-free scene for the stock Falcor raster baseline (not UE shading)."""
+from falcor import *
+
+material = StandardMaterial("M0 stock Falcor material")
+material.baseColor = float4(0.18, 0.45, 0.8, 1.0)
+material.roughness = 0.5
+material.metallic = 0.0
+mesh = TriangleMesh.createCube(float3(1.5))
+node = sceneBuilder.addNode("M0 cube", Transform())
+sceneBuilder.addMeshInstance(node, sceneBuilder.addTriangleMesh(mesh, material))
+
+camera = Camera("M0 baseline")
+camera.position = float3(3, 2, 4)
+camera.target = float3(0, 0, 0)
+camera.up = float3(0, 1, 0)
+camera.nearPlane = 0.1
+camera.farPlane = 100.0
+camera.focalLength = 35.0
+camera.aspectRatio = 16.0 / 9.0
+sceneBuilder.addCamera(camera)

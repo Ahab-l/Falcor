@@ -25,6 +25,7 @@ target_sources(FalcorTest PRIVATE
     Tests/Core/ParamBlockDefinition.slang
     Tests/Core/ParamBlockReflection.cs.slang
     Tests/Core/PluginTests.cpp
+    Tests/Core/RenderGraphStructuredBuffers.cpp
     Tests/Core/ResourceAliasing.cpp
     Tests/Core/ResourceAliasing.cs.slang
     Tests/Core/RootBufferParamBlockTests.cpp
@@ -38,8 +39,27 @@ target_sources(FalcorTest PRIVATE
     Tests/Core/TextureLoadTests.cs.slang
     Tests/Core/TextureTests.cpp
     Tests/Core/TextureTests.cs.slang
+    Tests/Core/CustomRenderPiplineCapabilities.cpp
+    Tests/Core/CustomRenderPiplineCapabilities.slang
+    Tests/Core/CustomRenderPiplineSampler.cpp
+    Tests/Core/NativeTextureReadback.cpp
+    Tests/Core/NativeAsyncReadback.cpp
+    Tests/Core/NativeGpuWorkload.h
+    Tests/Core/NativeGpuWorkload.slang
+    Tests/Core/NativeGpuTimerResolveStates.cpp
+    Tests/Core/NativeReadbackTaskLifetime.cpp
+    Tests/Core/NativeReadbackDeviceLifetime.cpp
+    Tests/Core/NativeMixedResourceTransfers.cpp
+    Tests/Core/NativeAsyncDepthReadback.cpp
+    Tests/Core/NativeOnceReload.cpp
+    Tests/Core/NativeResourceBackendMatrix.cpp
+    Tests/Core/NativeResourceBackendMatrix.slang
+    Tests/Utils/PythonUIPathTests.cpp
+    Tests/Core/CustomRenderPiplineCubeSubresources.cpp
+    Tests/Core/CustomRenderPiplineCubeSubresources.slang
 
     Tests/DebugPasses/InvalidPixelDetectionTests.cpp
+    Tests/DebugPasses/ErrorMeasureAsyncTests.cpp
 
     Tests/DiffRendering/SceneGradientsTest.cpp
     Tests/DiffRendering/SceneGradientsTest.cs.slang
@@ -69,6 +89,8 @@ target_sources(FalcorTest PRIVATE
     Tests/Sampling/SampleGeneratorTests.cs.slang
 
     Tests/Scene/EnvMapTests.cpp
+    Tests/Scene/SceneRasterDrawList.cpp
+    Tests/Scene/SceneRasterDrawList.3d.slang
 
     Tests/Scene/Material/BSDFTests.cpp
     Tests/Scene/Material/BSDFTests.cs.slang
@@ -91,6 +113,7 @@ target_sources(FalcorTest PRIVATE
     Tests/Slang/NestedStructs.cpp
     Tests/Slang/NestedStructs.cs.slang
     Tests/Slang/ShaderModel.cpp
+    Tests/Slang/NativeWorkgroupLayout.cpp
     Tests/Slang/ShaderModel.cs.slang
     Tests/Slang/ShaderString.cpp
     Tests/Slang/ShaderStringDynamic.cs.slang
@@ -163,6 +186,7 @@ target_sources(FalcorTest PRIVATE
     Tests/Utils/PackedFormatsTests.cpp
     Tests/Utils/PackedFormatsTests.cs.slang
     Tests/Utils/ParallelReductionTests.cpp
+    Tests/Utils/ParallelReductionTypeTransitions.cpp
     Tests/Utils/PathResolvingTests.cpp
     Tests/Utils/PrefixSumTests.cpp
     Tests/Utils/PropertiesTests.cpp
@@ -183,3 +207,8 @@ target_link_libraries(FalcorTest PRIVATE args)
 target_copy_shaders(FalcorTest .)
 
 target_source_group(FalcorTest "Tools")
+
+# Retired SceneIdentity/FrameReadback/sealed-input/UE Config tests are preserved
+# as research sources, not compiled into the default native framework suite.
+# Independent Sun/Sky mathematics remain covered by Standalone/UESunSetupCompatSmoke.cpp
+# and Standalone/UESkyViewSetupSmoke.cpp (scripts/customrenderpipline/run_*_tests.py).

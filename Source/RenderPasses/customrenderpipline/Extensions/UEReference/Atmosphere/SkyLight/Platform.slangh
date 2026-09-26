@@ -1,0 +1,14 @@
+#ifndef UE_SKYLIGHT_PLATFORM_ADAPTER
+#define UE_SKYLIGHT_PLATFORM_ADAPTER
+// Source-evidenced PC route: these shaders do not request CFLAG_AllowRealTypes.
+// Keep UE's original aliases instead of Slang's native half storage/arithmetic.
+#define PLATFORM_SUPPORTS_REAL_TYPES 0
+#define PLATFORM_SUPPORTS_RELAXED_PRECISION 0
+#define PIXELSHADER 0
+#include "../UESkyLightPlatformOriginal.ush"
+#define UNROLL [unroll]
+#define LOOP [loop]
+#define BRANCH [branch]
+#define SHADING_PATH_MOBILE 0
+#define TextureCubeSampleLevel(Texture, Sampler, Coordinates, Level) Texture.SampleLevel(Sampler, Coordinates, Level)
+#endif

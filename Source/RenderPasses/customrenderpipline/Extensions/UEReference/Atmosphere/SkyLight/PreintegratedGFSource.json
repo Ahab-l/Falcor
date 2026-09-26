@@ -1,0 +1,68 @@
+{
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "implementation": "GPU port of the original CPU algorithm",
+  "capture_inputs": false,
+  "contract": {
+    "extent": [
+      128,
+      32
+    ],
+    "format": "RG16Unorm",
+    "sample_count": 128,
+    "coordinates": [
+      "pixel-center NoV along x",
+      "pixel-center Roughness along y"
+    ],
+    "sampler": "bilinear clamp",
+    "rounding": "floor(clamp(AB,0,1)*65535+0.5)",
+    "source_format_selection": "PF_G16R16 when supported and filterable, otherwise PF_R8G8"
+  },
+  "port_changes": [
+    "CPU nested texel loops become independent GPU threads; dimensions remain128x32.",
+    "FVector3f operations retain precise FP32 association; declaration explicitly selects floating_point_mode=precise.",
+    "SourceCPUFloatDivide/Sqrt correct hardware seeds through exact FP64 midpoint comparisons, then return one FP32 result per original source operation.",
+    "SourceCPUFloatCos uses range reduction and degree28 factorial Taylor coefficients in FP64, then returns FP32. All128 original phases match native UCRT cosf; broad mathematical accuracy is tested independently. It is not a general bit-identical replacement for UCRT at every argument.",
+    "ReverseBits double fraction maps to an exact FP32 fraction for all128 source samples.",
+    "Unused C integration and unused local CosPhi/SinPhi variables are omitted; neither affects A/B.",
+    "Source integer UNORM16 rounding is explicit; GPU UAV storage receives normalized exact codes.",
+    "Additional RG32Float diagnostic exposes prequantized A/B; it is not consumed by EnvBRDF.",
+    "GPU transcendentals are not presumed bit-identical to FMath; smoke records every quantized mismatch."
+  ],
+  "not_substituted": [
+    "AmbientCubemapComposite.usf::IntegrateBRDF (64 randomized samples)",
+    "BRDF.ush::EnvBRDFApprox",
+    "PreintegratedSkin LUT"
+  ],
+  "excerpts": [
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\SystemTextures.cpp",
+      "line": 534,
+      "end_line": 671,
+      "source_sha256": "977d6c267dfb8bf5435e72ed2e3bb1b7baeda4369461733bf54011872af1c3c6",
+      "excerpt_sha256": "0b5d6dcec57ecfaae4e00e37684c1363ca4f9bc988cc26c223777817fb91228b",
+      "byte_offset": 22634,
+      "bytes": 4572,
+      "output": "PreintegratedGFCPUOriginal.inl",
+      "output_byte_offset": 124
+    },
+    {
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Source\\Runtime\\Renderer\\Private\\IndirectLightRendering.cpp",
+      "line": 756,
+      "end_line": 757,
+      "source_sha256": "93409bae23eb3773da100d609e2a7bf41f8e10a5c881d7997c52894d77c40a8e",
+      "excerpt_sha256": "b5e448904e3df00ea51055aa5f83149a71a79a0101295d1817aa7f018fd78e80",
+      "byte_offset": 33463,
+      "bytes": 190,
+      "output": "PreintegratedGFCPUOriginal.inl",
+      "output_byte_offset": 4697
+    }
+  ],
+  "outputs": [
+    {
+      "path": "PreintegratedGFCPUOriginal.inl",
+      "sha256": "642dc8df5042b8d914a076076b63b7b01cedd00d6671b582f0b2731f67a44ab7"
+    }
+  ],
+  "port_sha256": "2a286a35fcc078bb531393f30985c71b2efab7a22582031e887d677f80b32572",
+  "math_adapter_sha256": "f64859430cda87d2969b2b71d087139af617f0731fb50c708298d08cd908e348"
+}

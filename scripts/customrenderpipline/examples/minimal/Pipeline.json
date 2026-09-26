@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "nodes": [
+    {"name": "Generate", "description": "passes/Pattern.json"},
+    {"name": "Grade", "description": "passes/Grade.json"}
+  ],
+  "edges": [["Generate.color", "Grade.source"]],
+  "outputs": ["Grade.color", "Generate.color"]
+}

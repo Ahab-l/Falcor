@@ -1,0 +1,5 @@
+float Pow2( float x )
+{
+	return x*x;
+}
+

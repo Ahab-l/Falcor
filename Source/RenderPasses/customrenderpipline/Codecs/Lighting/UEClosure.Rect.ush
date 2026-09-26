@@ -1,0 +1,10 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+struct FRect
+{
+	float3		Origin;
+	float3x3	Axis;
+	float2		Extent;
+	float2		FullExtent;
+	float2		Offset;
+};
+

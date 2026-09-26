@@ -1,0 +1,251 @@
+{
+  "status": "passed",
+  "selectors": [
+    {
+      "filter": {
+        "instances": [
+          0
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "meshes": [
+          1
+        ]
+      },
+      "instances": [
+        1
+      ]
+    },
+    {
+      "filter": {
+        "material_ids": [
+          0
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "materials": [
+          "blue"
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "model_ids": [
+          0
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "models": [
+          "AliasZero"
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "program_ids": [
+          1
+        ]
+      },
+      "instances": [
+        2
+      ]
+    },
+    {
+      "filter": {
+        "programs": [
+          "constant"
+        ]
+      },
+      "instances": [
+        0,
+        1
+      ]
+    },
+    {
+      "filter": {
+        "tags_any": [
+          "hero"
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "tags_all": [
+          "hero",
+          "opaque"
+        ]
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "tags_none": [
+          "hero"
+        ]
+      },
+      "instances": [
+        1,
+        2
+      ]
+    },
+    {
+      "filter": {
+        "pass_mask_all": 4
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "pass_mask_any": 4
+      },
+      "instances": [
+        0
+      ]
+    },
+    {
+      "filter": {
+        "instances": []
+      },
+      "instances": []
+    },
+    {
+      "filter": {
+        "instances": [
+          0,
+          1
+        ],
+        "tags_none": [
+          "hero"
+        ]
+      },
+      "instances": [
+        1
+      ]
+    }
+  ],
+  "sorted_draw_list_reused": true,
+  "primary_ownership_unique": true,
+  "priority_conflict_rejected": true,
+  "unrouted_rejected": true,
+  "independent_equal_depth_state": true,
+  "packed_outputs_bitwise_equal": true,
+  "native_rejections": [
+    "Priority0",
+    "Priority1",
+    "Priority2",
+    "Priority3",
+    "Priority4",
+    "Default0",
+    "Default1",
+    "Default2",
+    "Version0",
+    "Version1",
+    "InstanceFilter0",
+    "PassMask0",
+    "InstanceFilter1",
+    "PassMask1",
+    "InstanceFilter2",
+    "PassMask2",
+    "InstanceFilter3",
+    "PassMask3",
+    "InstanceFilter4",
+    "PassMask4",
+    "FilterObject",
+    "FilterUnknown",
+    "FilterArray",
+    "FilterDuplicate",
+    "FilterEmptyName",
+    "FilterDuplicateTag",
+    "DependencyDuplicate",
+    "DependencyUnknown",
+    "DependencySelf",
+    "DependencyArray",
+    "DependencyName",
+    "DependencyCycle",
+    "InstanceKey0",
+    "InstanceKey1",
+    "InstanceKey2",
+    "InstanceKey3",
+    "InstanceKey4",
+    "InstanceKey5",
+    "InstanceKey6",
+    "enabled0",
+    "enabled1",
+    "enabled2",
+    "main_enabled0",
+    "main_enabled1",
+    "main_enabled2",
+    "StateObject",
+    "ShaderObject",
+    "ShaderDefinesObject",
+    "WriteMasksObject",
+    "WriteMaskLength",
+    "WriteMaskBoolean",
+    "stencil_reference0",
+    "stencil_reference1",
+    "stencil_reference2",
+    "stencil_read_mask0",
+    "stencil_read_mask1",
+    "stencil_read_mask2",
+    "stencil_write_mask0",
+    "stencil_write_mask1",
+    "stencil_write_mask2",
+    "PrimaryDepthAlways",
+    "PrimaryDepthLess",
+    "PrimaryDepthLessEqual",
+    "PrimaryDepthGreater",
+    "PrimaryDepthNotEqual",
+    "PrimaryDepthNever",
+    "PrepassDepthAlways",
+    "PrepassDepthLess",
+    "PrepassDepthLessEqual",
+    "PrepassDepthEqual",
+    "PrepassDepthGreater",
+    "PrepassDepthNotEqual",
+    "PrepassDepthNever"
+  ],
+  "runtime_rejections": [
+    "PriorityTie",
+    "Unrouted",
+    "MissingInstance",
+    "MaximumMissingInstance",
+    "MissingPrepass",
+    "MissingCoverageShader"
+  ],
+  "int32_priority_boundaries": true,
+  "global_and_main_exclusions": true,
+  "auxiliary_selection_independent": true,
+  "nonempty_shader_defines": true,
+  "auxiliary_depth_not_primary_coverage": true,
+  "registered_zero_primary_coverage": true,
+  "compatible_depth_comparisons_only": true,
+  "required_primary_coverage_uav": true
+}

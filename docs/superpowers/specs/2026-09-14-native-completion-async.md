@@ -1,0 +1,9 @@
+# R4 asynchronous observation design
+
+Reuse Falcor CopyContext async texture read task, native ReadBack buffers and Fence completion queries. Do not put synchronous to_numpy on a worker, spin-wait the render thread, or build a new graphics scheduler. Preserve existing explicitly synchronous APIs for external compatibility; move rendering-loop UI and mailbox observation to asynchronous submission/collection.
+
+Native tasks expose nonblocking readiness and collect-only-when-ready. Buffer readback records GPU copy into staging; selected texture mip/layer preserves native byte semantics including compressed tails; exact depth/stencil plane copies receive the same completion discipline. Bound outstanding task count and staging bytes before issuing work. Cancellation detaches delivery but retains GPU-owned staging until completion; graph switch, resize, closure, invalid/removed outputs and owner-thread violations must not return mislabeled data or free in-flight resources.
+
+Schema decodes once into its GPU buffer and stages that generation's bytes before buffer reuse. A submitted request retains frame/layout/region/field identity; later results refer to submission, not collection frame. Raw observer, Schema inspect/compare/export, UI and CLI share a bounded ticket lifecycle (pending/ready/error/cancelled); no requests means no copies, dispatches or waits. Mailbox clients can wait for replies externally while frames continue. Old synchronous handle/inspect/read remain explicit compatibility functions, not defaults on the render callback.
+
+Acceptance: CPU fake-fence ordering/backpressure/cancel/closure tests; native GPU known-byte completion tests; schema/raw/depth compare exact against synchronous reference; actual external CLI and UI asynchronous lifecycle; stress/memory bounds and per-frame timing/no-wait instrumentation. Supported formats/backends and error boundaries must be recorded, not inferred from method names.

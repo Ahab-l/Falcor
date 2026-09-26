@@ -1,0 +1,84 @@
+"""Paired scene inputs; stock Falcor StandardMaterial, not UE shading."""
+import hashlib
+import json
+import math
+from pathlib import Path
+from falcor import *
+
+root = Path.cwd()
+definition = root / "scripts/customrenderpipline/reference_scene.json"
+data = json.loads(definition.read_text(encoding="utf-8"))
+def direction(v):
+    return float3(v[1], v[2], -v[0])
+def position(v):
+    return direction(v) / 100.0
+
+materials = {}
+actual_materials = {}
+for name, value in data["materials"].items():
+    material = StandardMaterial(name)
+    material.baseColor = float4(*value["base_color_linear"], 1.0)
+    material.roughness = value["roughness"]
+    material.metallic = value["metallic"]
+    # UE Specular 0.5 gives dielectric F0=0.04, corresponding to IOR=1.5.
+    if value["specular"] != 0.5 or any(value["emissive_linear"]):
+        raise ValueError("Stock M0 adapter supports only Specular=0.5 and zero emissive")
+    material.indexOfRefraction = 1.5
+    materials[name] = material
+    actual_materials[name] = {
+        "base_color_linear": [material.baseColor.x, material.baseColor.y, material.baseColor.z],
+        "roughness": material.roughness, "metallic": material.metallic,
+        "index_of_refraction": material.indexOfRefraction,
+    }
+
+for instance in data["instances"]:
+    mesh = TriangleMesh()
+    source = data["meshes"][instance["mesh"]]
+    for vertex in source["vertices"]:
+        translated = [a+b for a,b in zip(vertex["position"], instance["translation_cm"])]
+        mesh.addVertex(position(translated), direction(vertex["normal"]), float2(*vertex["uv"]))
+    for triangle in source["triangles"]:
+        mesh.addTriangle(*triangle)
+    mesh.frontFaceCW = False
+    node = sceneBuilder.addNode(instance["id"], Transform())
+    sceneBuilder.addMeshInstance(node, sceneBuilder.addTriangleMesh(mesh, materials[instance["material"]]))
+
+source = data["camera"]
+camera = Camera("M0ReferenceCamera")
+camera.position = position(source["position_cm"])
+camera.target = position(source["target_cm"])
+camera.up = direction(source["up"])
+camera.nearPlane = source["near_cm"] / 100.0
+camera.farPlane = source["falcor_stock_far_m"]
+camera.aspectRatio = source["resolution"][0] / source["resolution"][1]
+camera.frameHeight = 24.0
+camera.focalLength = 24.0 * camera.aspectRatio / (2 * math.tan(math.radians(source["horizontal_fov_degrees"]) / 2))
+sceneBuilder.addCamera(camera)
+actual_lights = []
+for source in data["lights"]:
+    light = DirectionalLight(source["id"])
+    light.direction = direction(source["ray_direction"])
+    light.intensity = float3(*source["color_linear"]) * source["illuminance_lux"]
+    sceneBuilder.addLight(light)
+    actual_lights.append({"id": source["id"],
+                          "direction": [light.direction.x, light.direction.y, light.direction.z],
+                          "intensity": [light.intensity.x, light.intensity.y, light.intensity.z]})
+
+out = root / "build/m0-evidence/reference-pair"
+out.mkdir(parents=True, exist_ok=True)
+(out / "falcor-inputs.json").write_text(json.dumps({
+    "source_sha256": hashlib.sha256(definition.read_bytes()).hexdigest(),
+    "adapter": "stock StandardMaterial, no UE light/BSDF equivalence claim",
+    "instances": len(data["instances"]),
+    "instance_mapping": [{"id": i["id"], "mesh": i["mesh"], "material": i["material"],
+                          "translation_m": [position(i["translation_cm"]).x,
+                                            position(i["translation_cm"]).y,
+                                            position(i["translation_cm"]).z]} for i in data["instances"]],
+    "materials": actual_materials, "lights": actual_lights,
+    "material_precision": "Stock getters include internal float16 quantization; future UE MaterialProgram uses raw definition.",
+    "triangles": sum(len(data["meshes"][i["mesh"]]["triangles"]) for i in data["instances"]),
+    "camera_position_m": [camera.position.x, camera.position.y, camera.position.z],
+    "camera_target_m": [camera.target.x, camera.target.y, camera.target.z],
+    "focal_length_mm": camera.focalLength, "frame_height_mm": camera.frameHeight,
+    "aspect_ratio": camera.aspectRatio,
+}, indent=2) + "\n", encoding="utf-8")

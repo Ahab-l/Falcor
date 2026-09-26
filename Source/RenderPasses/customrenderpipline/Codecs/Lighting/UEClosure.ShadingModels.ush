@@ -1,0 +1,56 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+float New_a2( float a2, float SinAlpha, float VoH )
+{
+	return a2 + 0.25 * SinAlpha * (3.0 * sqrtFast(a2) + SinAlpha) / ( VoH + 0.001 );
+	//return a2 + 0.25 * SinAlpha * ( saturate(12 * a2 + 0.125) + SinAlpha ) / ( VoH + 0.001 );
+	//return a2 + 0.25 * SinAlpha * ( a2 * 2 + 1 + SinAlpha ) / ( VoH + 0.001 );
+}
+
+float EnergyNormalization( inout float a2, float VoH, FAreaLight AreaLight )
+{
+	if( AreaLight.SphereSinAlphaSoft > 0 )
+	{
+		// Modify Roughness
+		a2 = saturate( a2 + Pow2( AreaLight.SphereSinAlphaSoft ) / ( VoH * 3.6 + 0.4 ) );
+	}
+
+	float Sphere_a2 = a2;
+	float Energy = 1;
+	if( AreaLight.SphereSinAlpha > 0 )
+	{
+		Sphere_a2 = New_a2( a2, AreaLight.SphereSinAlpha, VoH );
+		Energy = a2 / Sphere_a2;
+	}
+
+	if( AreaLight.LineCosSubtended < 1 )
+	{
+#if 1
+		float LineCosTwoAlpha = AreaLight.LineCosSubtended;
+		float LineTanAlpha = sqrt( ( 1.0001 - LineCosTwoAlpha ) / ( 1 + LineCosTwoAlpha ) );
+		float Line_a2 = New_a2( Sphere_a2, LineTanAlpha, VoH );
+		Energy *= sqrt( Sphere_a2 / max(Line_a2, 1e-5) );
+#else
+		float LineCosTwoAlpha = AreaLight.LineCosSubtended;
+		float LineSinAlpha = sqrt( 0.5 - 0.5 * LineCosTwoAlpha );
+		float Line_a2 = New_a2( Sphere_a2, LineSinAlpha, VoH );
+		Energy *= Sphere_a2 / max(Line_a2, 1e-5);
+#endif
+	}
+
+	return Energy;
+}
+
+// UE_DEPRECATED 5.7 - Deprecated by Substrate
+float3 SpecularGGX( float Roughness, float3 SpecularColor, BxDFContext Context, FAreaLight AreaLight )
+{
+	float a2 = Pow4( Roughness );
+	float Energy = EnergyNormalization( a2, Context.VoH, AreaLight );
+	
+	// Generalized microfacet specular
+	float D = D_GGX( a2, Context.NoH ) * Energy;
+	float Vis = Vis_SmithJointApprox( a2, Context.NoV, AreaLight.NoL );
+	float3 F = F_Schlick( SpecularColor, Context.VoH );
+
+	return (D * Vis) * F;
+}
+

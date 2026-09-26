@@ -1,0 +1,61 @@
+// Original source bodies; see UESkyViewLutSource.json.
+// Copyright and third-party notices are retained alongside this file.
+
+void RenderSkyViewLutCS(uint3 ThreadId : SV_DispatchThreadID)
+{
+	float2 PixPos = float2(ThreadId.xy) + 0.5f;
+	float2 UV = PixPos * SkyAtmosphere.SkyViewLutSizeAndInvSize.zw;
+
+	float3 WorldPos = GetTranslatedCameraPlanetPos();
+
+	// For the sky view lut to work, and not be distorted, we need to transform the view and light directions 
+	// into a referential with UP being perpendicular to the ground. And with origin at the planet center.
+
+	// This is the local referencial
+	float3x3 LocalReferencial = GetSkyViewLutReferentialParameter();
+
+	// This is the LUT camera height and position in the local referential
+	float ViewHeight = length(WorldPos);
+	WorldPos = float3(0.0, 0.0, ViewHeight);
+
+	// Get the view direction in this local referential
+	float3 WorldDir;
+	UvToSkyViewLutParams(WorldDir, ViewHeight, UV);
+	// And also both light source direction
+	float3 AtmosphereLightDirection0 = View.AtmosphereLightDirection[0].xyz;
+	AtmosphereLightDirection0 = mul(LocalReferencial, AtmosphereLightDirection0);
+	float3 AtmosphereLightDirection1 = View.AtmosphereLightDirection[1].xyz;
+	AtmosphereLightDirection1 = mul(LocalReferencial, AtmosphereLightDirection1);
+
+
+	// Move to top atmospehre
+	if (!MoveToTopAtmosphere(WorldPos, WorldDir, Atmosphere.TopRadiusKm))
+	{
+		// Ray is not intersecting the atmosphere
+		SkyViewLutUAV[int2(PixPos)] = 0.0f;
+		return;
+	}
+
+
+	SamplingSetup Sampling = (SamplingSetup)0;
+	{
+		Sampling.VariableSampleCount = true;
+		Sampling.MinSampleCount = SkyAtmosphere.FastSkySampleCountMin;
+		Sampling.MaxSampleCount = SkyAtmosphere.FastSkySampleCountMax;
+		Sampling.DistanceToSampleCountMaxInv = SkyAtmosphere.FastSkyDistanceToSampleCountMaxInv;
+	}
+	const bool Ground = false;
+	const float DeviceZ = FarDepthValue;
+	const bool MieRayPhase = true;
+	const float AerialPespectiveViewDistanceScale = 1.0f;
+	SingleScatteringResult ss = IntegrateSingleScatteredLuminance(
+		float4(PixPos, 0.0f, 1.0f), WorldPos, WorldDir,
+		Ground, Sampling, DeviceZ, MieRayPhase,
+		AtmosphereLightDirection0, AtmosphereLightDirection1,
+		View.AtmosphereLightIlluminanceOuterSpace[0].rgb * SkyAtmosphere.SkyAndAerialPerspectiveLuminanceFactor,
+		View.AtmosphereLightIlluminanceOuterSpace[1].rgb * SkyAtmosphere.SkyAndAerialPerspectiveLuminanceFactor,
+		AerialPespectiveViewDistanceScale);
+
+	const float Transmittance = dot(ss.Transmittance, float3(1.0f / 3.0f, 1.0f / 3.0f, 1.0f / 3.0f));
+	SkyViewLutUAV[int2(PixPos)] = float4(ss.L, Transmittance);
+}

@@ -1,0 +1,818 @@
+{
+  "date": "2026-09-09",
+  "status": "reference-resource-stage-verified",
+  "full_goal_complete": false,
+  "implementation_root": "E:\\Project\\falcor\\Falcor-m0",
+  "branch": "codex/ue-legacy-m0",
+  "baseline_head": "eb540f6748774680ce0039aaf3ac9279266ec521",
+  "offline_tests": 102,
+  "native_tests": {
+    "total": 18,
+    "gpu": 17,
+    "cpu": 1,
+    "skipped": 0
+  },
+  "schema_default_generation": "cee97e8b24948a570d3ce8398172fea557966a92040e27c1ee08e8c55d525ea1",
+  "runtime_sha256": {
+    "build/windows-vs2022/bin/Release/Falcor.dll": "f0f0fd228faf58b832ff4013e50432d44eacf05c440e78376fda22e68879e0e1",
+    "build/windows-vs2022/bin/Release/plugins/UELegacy.dll": "8fd87f82a77e2ba3abc821c19a5008454a0080160c1917ea21a4c3e82c44df80"
+  },
+  "scene_acceptance": {
+    "status": "passed",
+    "stable_live_identity": true,
+    "camera_drift_rejected_before_clear": true,
+    "live_material_drift_rejected": true,
+    "texture_transform_detected": true,
+    "gpu_texture_content_mips_rejected_before_clear": [
+      0,
+      9
+    ],
+    "actual_gpu_geometry_content_detected": true,
+    "independent_scene_reload_stable": true,
+    "preserved_raw_buffers": [
+      "depthCopy",
+      "gBufferA",
+      "gBufferB",
+      "gBufferC",
+      "gBufferD",
+      "nativeDepth",
+      "primaryCoverage",
+      "sceneColor",
+      "stencil"
+    ],
+    "restoration_reuses_existing_graph": true
+  },
+  "package": {
+    "package_id": "e5d84e8d0d040ac3985979f50df4841d4c753bf3b1209f3695ff1c371e205fb5",
+    "manifest": "E:\\Project\\falcor\\Falcor-m0\\build\\scene-package-evidence\\packages\\e5d84e8d0d040ac3985979f50df4841d4c753bf3b1209f3695ff1c371e205fb5\\ScenePackage.json",
+    "renders": [
+      {
+        "label": "first-load",
+        "native_planes": {
+          "width": 1424,
+          "height": 1040,
+          "depth_row_bytes": 5696,
+          "depth_native_format": 39,
+          "stencil_row_bytes": 1424,
+          "stencil_native_format": 60
+        },
+        "reference_comparisons": {
+          "gBufferA": {
+            "equal": true,
+            "actual_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "expected_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferB": {
+            "equal": true,
+            "actual_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "expected_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferC": {
+            "equal": true,
+            "actual_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "expected_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferD": {
+            "equal": true,
+            "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "depth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "nativeDepth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "stencil": {
+            "equal": true,
+            "actual_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "expected_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "actual_bytes": 1480960,
+            "expected_bytes": 1480960,
+            "mismatched_bytes": 0
+          },
+          "surfaceSceneColor": {
+            "equal": true,
+            "actual_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "expected_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "actual_bytes": 6933696,
+            "expected_bytes": 6933696,
+            "mismatched_bytes": 0
+          }
+        },
+        "output_sha256": {
+          "gBufferA": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+          "gBufferB": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+          "gBufferC": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+          "gBufferD": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+          "sceneColor": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+          "depth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "nativeDepth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "stencil": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4"
+        },
+        "surface_pixels": 866712,
+        "draw_count": 4,
+        "pipeline_signature": "bfaceb35571c1ab3b957a90e3fa10296ca1774fc9322ec3a7818e2dd7ffbde24",
+        "input_fingerprint": "086b56b35da626b5e9dc4f0cae4ea85d6e1ac844d4a1dac21c37fc5e2b2f103d",
+        "source_geometry_active": true,
+        "output_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\scene-package-evidence\\first-load.npz",
+        "output_snapshot_sha256": "0f3fc87c67665f92171f8f8623fd350dc59b935b32b39a1ddf30858537f1df06"
+      },
+      {
+        "label": "second-load-old-graph",
+        "native_planes": {
+          "width": 1424,
+          "height": 1040,
+          "depth_row_bytes": 5696,
+          "depth_native_format": 39,
+          "stencil_row_bytes": 1424,
+          "stencil_native_format": 60
+        },
+        "reference_comparisons": {
+          "gBufferA": {
+            "equal": true,
+            "actual_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "expected_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferB": {
+            "equal": true,
+            "actual_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "expected_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferC": {
+            "equal": true,
+            "actual_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "expected_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferD": {
+            "equal": true,
+            "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "depth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "nativeDepth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "stencil": {
+            "equal": true,
+            "actual_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "expected_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "actual_bytes": 1480960,
+            "expected_bytes": 1480960,
+            "mismatched_bytes": 0
+          },
+          "surfaceSceneColor": {
+            "equal": true,
+            "actual_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "expected_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "actual_bytes": 6933696,
+            "expected_bytes": 6933696,
+            "mismatched_bytes": 0
+          }
+        },
+        "output_sha256": {
+          "gBufferA": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+          "gBufferB": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+          "gBufferC": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+          "gBufferD": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+          "sceneColor": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+          "depth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "nativeDepth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "stencil": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4"
+        },
+        "surface_pixels": 866712,
+        "first_render_comparisons": {
+          "gBufferA": {
+            "equal": true,
+            "actual_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "expected_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferB": {
+            "equal": true,
+            "actual_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "expected_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferC": {
+            "equal": true,
+            "actual_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "expected_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferD": {
+            "equal": true,
+            "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "sceneColor": {
+            "equal": true,
+            "actual_sha256": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+            "expected_sha256": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+            "actual_bytes": 11847680,
+            "expected_bytes": 11847680,
+            "mismatched_bytes": 0
+          },
+          "depth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "nativeDepth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "stencil": {
+            "equal": true,
+            "actual_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "expected_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "actual_bytes": 1480960,
+            "expected_bytes": 1480960,
+            "mismatched_bytes": 0
+          }
+        },
+        "draw_count": 4,
+        "pipeline_signature": "bfaceb35571c1ab3b957a90e3fa10296ca1774fc9322ec3a7818e2dd7ffbde24",
+        "input_fingerprint": "086b56b35da626b5e9dc4f0cae4ea85d6e1ac844d4a1dac21c37fc5e2b2f103d",
+        "source_geometry_active": true,
+        "output_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\scene-package-evidence\\second-load-old-graph.npz",
+        "output_snapshot_sha256": "0f3fc87c67665f92171f8f8623fd350dc59b935b32b39a1ddf30858537f1df06"
+      },
+      {
+        "label": "second-load-frozen-pipeline",
+        "native_planes": {
+          "width": 1424,
+          "height": 1040,
+          "depth_row_bytes": 5696,
+          "depth_native_format": 39,
+          "stencil_row_bytes": 1424,
+          "stencil_native_format": 60
+        },
+        "reference_comparisons": {
+          "gBufferA": {
+            "equal": true,
+            "actual_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "expected_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferB": {
+            "equal": true,
+            "actual_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "expected_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferC": {
+            "equal": true,
+            "actual_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "expected_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferD": {
+            "equal": true,
+            "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "depth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "nativeDepth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "stencil": {
+            "equal": true,
+            "actual_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "expected_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "actual_bytes": 1480960,
+            "expected_bytes": 1480960,
+            "mismatched_bytes": 0
+          },
+          "surfaceSceneColor": {
+            "equal": true,
+            "actual_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "expected_sha256": "7310d7c975647d636c3cc6ac13cba7205334e18e1a978c3297fb153c6afa5dfc",
+            "actual_bytes": 6933696,
+            "expected_bytes": 6933696,
+            "mismatched_bytes": 0
+          }
+        },
+        "output_sha256": {
+          "gBufferA": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+          "gBufferB": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+          "gBufferC": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+          "gBufferD": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+          "sceneColor": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+          "depth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "nativeDepth": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+          "stencil": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4"
+        },
+        "surface_pixels": 866712,
+        "first_render_comparisons": {
+          "gBufferA": {
+            "equal": true,
+            "actual_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "expected_sha256": "428aa460f845587c5a3ebb6a9c52aa37713091a497a94f894553e4923a292afb",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferB": {
+            "equal": true,
+            "actual_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "expected_sha256": "a7a1b8ae790f4ce45351278351b7be7bd45650fde50b3434a5d7adfa37467cc4",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferC": {
+            "equal": true,
+            "actual_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "expected_sha256": "2f69a5403e6136ca0b4555a612173ea6bd31555075eb652875a60342f727cbb8",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "gBufferD": {
+            "equal": true,
+            "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "sceneColor": {
+            "equal": true,
+            "actual_sha256": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+            "expected_sha256": "e189c65fd267615b8be6b9cede9dd5f37a72e4f86c9580a467e0c2400e15f578",
+            "actual_bytes": 11847680,
+            "expected_bytes": 11847680,
+            "mismatched_bytes": 0
+          },
+          "depth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "nativeDepth": {
+            "equal": true,
+            "actual_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "expected_sha256": "4dc330d77d41450d27e89116e03b82b32724b1e467a5aec1c6b8b47fadf013dd",
+            "actual_bytes": 5923840,
+            "expected_bytes": 5923840,
+            "mismatched_bytes": 0
+          },
+          "stencil": {
+            "equal": true,
+            "actual_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "expected_sha256": "5efc0e77d98975a405ed630b20b134eb527e988d568aff697c14694bbe5b0cd4",
+            "actual_bytes": 1480960,
+            "expected_bytes": 1480960,
+            "mismatched_bytes": 0
+          }
+        },
+        "draw_count": 4,
+        "pipeline_signature": "bfaceb35571c1ab3b957a90e3fa10296ca1774fc9322ec3a7818e2dd7ffbde24",
+        "input_fingerprint": "086b56b35da626b5e9dc4f0cae4ea85d6e1ac844d4a1dac21c37fc5e2b2f103d",
+        "source_geometry_active": true,
+        "output_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\scene-package-evidence\\second-load-frozen-pipeline.npz",
+        "output_snapshot_sha256": "0f3fc87c67665f92171f8f8623fd350dc59b935b32b39a1ddf30858537f1df06"
+      }
+    ],
+    "events": [
+      "reference_verified",
+      "fixture_copied",
+      "package_published",
+      "fixture_inputs_changed",
+      "fixture_inputs_deleted",
+      "first_scene_loaded_and_bound",
+      "first_render_matches_reference",
+      "second_scene_loaded",
+      "original_graph_reused",
+      "frozen_pipeline_reconstructed"
+    ]
+  },
+  "adapter_retained_resources": {
+    "status": "passed",
+    "events": [
+      {
+        "stage": "grid_adapter_prepared",
+        "output_count": 18,
+        "redirected_resource_snapshots": 1
+      },
+      {
+        "stage": "private_dds_deleted"
+      },
+      {
+        "stage": "new_graph_rejected_missing_snapshot"
+      },
+      {
+        "stage": "stock_material_changed_and_restored",
+        "bound_identity_restored": true
+      },
+      {
+        "stage": "prepared_graph_survived_material_update",
+        "bitwise_equal": true,
+        "original_dds_unchanged": true
+      }
+    ],
+    "reference": "prepared Adapter output bytes",
+    "authoritative_resource_cas_modified": false,
+    "final_image_equivalence": false,
+    "scene_identity_sha256": "091cea17097cd0600fede7ee932b145f37366c3bc2ed594c9f03b67052e9d432",
+    "fixture_root": "E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\adapter-private-cas-4hbel63a",
+    "isolated_cas": "E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\adapter-private-cas-4hbel63a\\resources",
+    "source_dds_sha256": "73f03a677acf3b8b5803c9f9ebd4b6b9ee9a4216e5dadda5f3200de5f4f98aab",
+    "pipeline_properties": {
+      "schemaPath": "E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\generations\\cee97e8b24948a570d3ce8398172fea557966a92040e27c1ee08e8c55d525ea1\\GBuffer.json",
+      "sceneDefinition": "E:\\Project\\falcor\\Falcor-m0\\build\\pipeline-generations\\d988a548faecf0d53dbf4d6f1e1ccc6687585c12c203f552c6bc419cf8b049b1\\d8ce48e22e9d00b244f031edb159a3434e9c445878921be530a8a8e1bef4fb94\\Scene.json",
+      "preExposure": 1.0749151706695557,
+      "pipelinePath": "E:\\Project\\falcor\\Falcor-m0\\build\\pipeline-generations\\d988a548faecf0d53dbf4d6f1e1ccc6687585c12c203f552c6bc419cf8b049b1\\d8ce48e22e9d00b244f031edb159a3434e9c445878921be530a8a8e1bef4fb94\\Pipeline.json"
+    },
+    "owned_dds": "E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\adapter-private-cas-4hbel63a\\resources\\73f03a677acf3b8b5803c9f9ebd4b6b9ee9a4216e5dadda5f3200de5f4f98aab.dds\\asset.dds",
+    "baseline_sha256": {
+      "Adapter.sceneColor": "4937d9307e02975810226d411e3d62281a6e2506fbb948691880722ca376ddb4",
+      "Adapter.gBufferA": "e4b35d62476c8371ca0687aac2e6a68ffcaf67616972e1192be78955c0c5139c",
+      "Adapter.gBufferB": "73e5a9b9451516127c72593b55eacbec8482456b1b8819fa5d954c0833bcaec2",
+      "Adapter.gBufferC": "4d44a611af021ee7147967303671909dc613b7fc2f3b15da263fdc4ce44ecb73",
+      "Adapter.gBufferD": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+      "Adapter.depthCopy": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+      "Adapter.primaryCoverage": "2ec8f40724140bc9b25420c276451ea68fc6b61efc04cefbb37f4aafe0f38dc0",
+      "Decode.normalUE": "631585c6f416f4f2c6c8b88f7f49d9d3fd3008a662b8c28fae18a012604dd7c6",
+      "Decode.baseColor": "41ecdabf57b97e33294a05ddfb14d49a32ac59a9ee38702e2b37e06a647ccd73",
+      "Decode.material": "12163a67097df991b50f9f148f34fae6a7eaa5f555da14b951a7868b9c50244b",
+      "Decode.positionW": "56d7987acbb63cb0b60980e8bc288b4b0bafa77e58c7a89c3cb0306719c6c5e1",
+      "Native.posW": "8f46271ab936dc3653578f3921f29e06f949b9fcdba92f84c7648e8d3bb391cb",
+      "Native.normW": "9971a80a89f126489d4056f40c5c0d0de0eee840c1a98ca70c069ce3f13b8af0",
+      "Native.texC": "fca14aaf19938cdafa9dd69cf64f2401554bfc91ace7860bd45e49f1a933c65c",
+      "Native.mtlData": "1bbede88970201e7172d484967cc1d65cc977b781306dbf697920642099ccbbb",
+      "Native.vbuffer": "dc498a99240781ea051b2e51835bdecdb89d9bc73138690109ff975ca42298c0",
+      "Adapter.nativeDepth": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+      "Adapter.nativeStencil": "f28912c8211f82195ff70b2ed98d3896fd8c37a1d44446909038f459911bc88b"
+    },
+    "baseline_snapshot_sha256": "755633270fb581015dce1c929a613eae61cc3e64d670e181302948227a3ec4ca",
+    "new_graph_rejection": "Immutable resource missing: E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\adapter-private-cas-4hbel63a\\resources\\73f03a677acf3b8b5803c9f9ebd4b6b9ee9a4216e5dadda5f3200de5f4f98aab.dds\\asset.dds",
+    "output_comparison": {
+      "Adapter.sceneColor": {
+        "equal": true,
+        "actual_sha256": "4937d9307e02975810226d411e3d62281a6e2506fbb948691880722ca376ddb4",
+        "expected_sha256": "4937d9307e02975810226d411e3d62281a6e2506fbb948691880722ca376ddb4",
+        "actual_bytes": 11847680,
+        "expected_bytes": 11847680,
+        "mismatched_bytes": 0
+      },
+      "Adapter.gBufferA": {
+        "equal": true,
+        "actual_sha256": "e4b35d62476c8371ca0687aac2e6a68ffcaf67616972e1192be78955c0c5139c",
+        "expected_sha256": "e4b35d62476c8371ca0687aac2e6a68ffcaf67616972e1192be78955c0c5139c",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.gBufferB": {
+        "equal": true,
+        "actual_sha256": "73e5a9b9451516127c72593b55eacbec8482456b1b8819fa5d954c0833bcaec2",
+        "expected_sha256": "73e5a9b9451516127c72593b55eacbec8482456b1b8819fa5d954c0833bcaec2",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.gBufferC": {
+        "equal": true,
+        "actual_sha256": "4d44a611af021ee7147967303671909dc613b7fc2f3b15da263fdc4ce44ecb73",
+        "expected_sha256": "4d44a611af021ee7147967303671909dc613b7fc2f3b15da263fdc4ce44ecb73",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.gBufferD": {
+        "equal": true,
+        "actual_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+        "expected_sha256": "24b82f0ff4b53346680707a84f691c7c46d73f8a7c74b960e228a7e86b1be6ae",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.depthCopy": {
+        "equal": true,
+        "actual_sha256": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+        "expected_sha256": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.primaryCoverage": {
+        "equal": true,
+        "actual_sha256": "2ec8f40724140bc9b25420c276451ea68fc6b61efc04cefbb37f4aafe0f38dc0",
+        "expected_sha256": "2ec8f40724140bc9b25420c276451ea68fc6b61efc04cefbb37f4aafe0f38dc0",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Decode.normalUE": {
+        "equal": true,
+        "actual_sha256": "631585c6f416f4f2c6c8b88f7f49d9d3fd3008a662b8c28fae18a012604dd7c6",
+        "expected_sha256": "631585c6f416f4f2c6c8b88f7f49d9d3fd3008a662b8c28fae18a012604dd7c6",
+        "actual_bytes": 23695360,
+        "expected_bytes": 23695360,
+        "mismatched_bytes": 0
+      },
+      "Decode.baseColor": {
+        "equal": true,
+        "actual_sha256": "41ecdabf57b97e33294a05ddfb14d49a32ac59a9ee38702e2b37e06a647ccd73",
+        "expected_sha256": "41ecdabf57b97e33294a05ddfb14d49a32ac59a9ee38702e2b37e06a647ccd73",
+        "actual_bytes": 23695360,
+        "expected_bytes": 23695360,
+        "mismatched_bytes": 0
+      },
+      "Decode.material": {
+        "equal": true,
+        "actual_sha256": "12163a67097df991b50f9f148f34fae6a7eaa5f555da14b951a7868b9c50244b",
+        "expected_sha256": "12163a67097df991b50f9f148f34fae6a7eaa5f555da14b951a7868b9c50244b",
+        "actual_bytes": 23695360,
+        "expected_bytes": 23695360,
+        "mismatched_bytes": 0
+      },
+      "Decode.positionW": {
+        "equal": true,
+        "actual_sha256": "56d7987acbb63cb0b60980e8bc288b4b0bafa77e58c7a89c3cb0306719c6c5e1",
+        "expected_sha256": "56d7987acbb63cb0b60980e8bc288b4b0bafa77e58c7a89c3cb0306719c6c5e1",
+        "actual_bytes": 23695360,
+        "expected_bytes": 23695360,
+        "mismatched_bytes": 0
+      },
+      "Native.posW": {
+        "equal": true,
+        "actual_sha256": "8f46271ab936dc3653578f3921f29e06f949b9fcdba92f84c7648e8d3bb391cb",
+        "expected_sha256": "8f46271ab936dc3653578f3921f29e06f949b9fcdba92f84c7648e8d3bb391cb",
+        "actual_bytes": 23531760,
+        "expected_bytes": 23531760,
+        "mismatched_bytes": 0
+      },
+      "Native.normW": {
+        "equal": true,
+        "actual_sha256": "9971a80a89f126489d4056f40c5c0d0de0eee840c1a98ca70c069ce3f13b8af0",
+        "expected_sha256": "9971a80a89f126489d4056f40c5c0d0de0eee840c1a98ca70c069ce3f13b8af0",
+        "actual_bytes": 23531760,
+        "expected_bytes": 23531760,
+        "mismatched_bytes": 0
+      },
+      "Native.texC": {
+        "equal": true,
+        "actual_sha256": "fca14aaf19938cdafa9dd69cf64f2401554bfc91ace7860bd45e49f1a933c65c",
+        "expected_sha256": "fca14aaf19938cdafa9dd69cf64f2401554bfc91ace7860bd45e49f1a933c65c",
+        "actual_bytes": 11765880,
+        "expected_bytes": 11765880,
+        "mismatched_bytes": 0
+      },
+      "Native.mtlData": {
+        "equal": true,
+        "actual_sha256": "1bbede88970201e7172d484967cc1d65cc977b781306dbf697920642099ccbbb",
+        "expected_sha256": "1bbede88970201e7172d484967cc1d65cc977b781306dbf697920642099ccbbb",
+        "actual_bytes": 23531760,
+        "expected_bytes": 23531760,
+        "mismatched_bytes": 0
+      },
+      "Native.vbuffer": {
+        "equal": true,
+        "actual_sha256": "dc498a99240781ea051b2e51835bdecdb89d9bc73138690109ff975ca42298c0",
+        "expected_sha256": "dc498a99240781ea051b2e51835bdecdb89d9bc73138690109ff975ca42298c0",
+        "actual_bytes": 23531760,
+        "expected_bytes": 23531760,
+        "mismatched_bytes": 0
+      },
+      "Adapter.nativeDepth": {
+        "equal": true,
+        "actual_sha256": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+        "expected_sha256": "7a0b778109e81a2c82357e0906ecbd59e1c80514ebfcdc53465a80bbbf7d6da3",
+        "actual_bytes": 5923840,
+        "expected_bytes": 5923840,
+        "mismatched_bytes": 0
+      },
+      "Adapter.nativeStencil": {
+        "equal": true,
+        "actual_sha256": "f28912c8211f82195ff70b2ed98d3896fd8c37a1d44446909038f459911bc88b",
+        "expected_sha256": "f28912c8211f82195ff70b2ed98d3896fd8c37a1d44446909038f459911bc88b",
+        "actual_bytes": 1480960,
+        "expected_bytes": 1480960,
+        "mismatched_bytes": 0
+      }
+    },
+    "bound_scene_identity_restored": true,
+    "materials_changed_roundtrip": true,
+    "prepared_grid_resource_survived": true,
+    "all_outputs_bitwise_equal": true,
+    "new_graph_rejected_corrupt_snapshot": true,
+    "original_dds_unchanged": true
+  },
+  "rdc": {
+    "capture_covered": 866712,
+    "falcor_covered": 866712,
+    "coverage_mismatch": 0,
+    "depth_p99": 0.0,
+    "depth_max": 0.0,
+    "depth_over_1e_6": 0,
+    "draw_count": 4,
+    "native_npz_sha256": "9bf1802691adbf0e4cbb0aaae86a49dbdb9eb556483c303d482b6f5499878841",
+    "native_npz_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-render\\snapshots\\9bf1802691adbf0e4cbb0aaae86a49dbdb9eb556483c303d482b6f5499878841.npz",
+    "final_image_equivalence": false,
+    "native_planes": {
+      "width": 1424,
+      "height": 1040,
+      "depth_row_bytes": 5696,
+      "depth_native_format": 39,
+      "stencil_row_bytes": 1424,
+      "stencil_native_format": 60
+    },
+    "native_depth_copy_bitwise_equal": true,
+    "native_depth_capture_bitwise_equal": true,
+    "native_stencil_mismatch": 0,
+    "native_stencil_values": {
+      "0": 614248,
+      "134": 866712
+    },
+    "capture_stencil_values": {
+      "0": 614248,
+      "134": 866712
+    },
+    "roughness_metallic_model_bits_exact": true,
+    "basecolor_ao_exact": true,
+    "specular_mismatch": 0,
+    "packed_gbuffer_full_extent_bitwise_equal": true,
+    "surface_scene_color_bitwise_equal": true,
+    "normal_mismatch": 0,
+    "source_geometry": true,
+    "source_normal_exact_fraction": 1.0,
+    "source_checksum_rejected": true,
+    "baked_translation_rejected": true,
+    "baked_normal_reflection_rejected": true,
+    "plugin_sha256": "8fd87f82a77e2ba3abc821c19a5008454a0080160c1917ea21a4c3e82c44df80"
+  },
+  "schema": {
+    "status": "passed",
+    "default_generation": "cee97e8b24948a570d3ce8398172fea557966a92040e27c1ee08e8c55d525ea1",
+    "active_generation": "1bf0cb1cfe2d8583d5bbde46fc53eb14bfe9a39d795a5794db3585405c069cf2",
+    "plugin_sha256": "8fd87f82a77e2ba3abc821c19a5008454a0080160c1917ea21a4c3e82c44df80",
+    "schema_only_without_cpp_rebuild": true,
+    "logical_outputs_bitwise_equal": true,
+    "physical_slot_channel_and_bit_relocation": true,
+    "alias_model_dispatch": true,
+    "alias_is_test_fixture_not_new_ue_algorithm": true,
+    "zero_model_id_coverage": true,
+    "compile_failure_rollback": true,
+    "mixed_generation_rejected": true,
+    "invalid_edit_clears_pending": true,
+    "history_epoch": 3,
+    "covered_pixels": 117087
+  },
+  "adapter_contract": {
+    "status": "passed",
+    "actual_stock_gbuffer_raster": true,
+    "explicit_ue_material_mapping": true,
+    "plugin_sha256": "8fd87f82a77e2ba3abc821c19a5008454a0080160c1917ea21a4c3e82c44df80",
+    "schema_only_relocation": true,
+    "zero_model_alias_dispatch": true,
+    "compile_failure_rollback": true,
+    "mixed_generation_rejected": true,
+    "independent_adapter_pass": true,
+    "same_packed_contract": true,
+    "native_world_position_error_m": 2.250075340270996e-05,
+    "normal_max_error": 0.0,
+    "base_color_max_error": 0.0,
+    "covered_pixels": 120374,
+    "interior_pixels": 118925,
+    "primitive_flags_from_vbuffer": true,
+    "real_depth_and_depth_copy": true,
+    "missing_mapping_model_and_input_rejected": true,
+    "arbitrary_stock_bsdf_losslessly_inverted": false
+  },
+  "source_sha256": {
+    "Source/RenderPasses/UELegacy/UELegacyAdapter.cpp": "14f5b32cc6492474fb23d8c11f5d2527a2d91fff5856d5315e50df4ec68f5aba",
+    "Source/RenderPasses/UELegacy/UELegacyAdapter.h": "e1280f4ebe081a029b8ba369f9555f92245fd584898eeaa56ed964f685b62776",
+    "Source/RenderPasses/UELegacy/UELegacyConfig.cpp": "0aa2bd3186b4223c6d9921d514c138b486b492967e3f743b754dc1ff20b6d094",
+    "Source/RenderPasses/UELegacy/UELegacyConfig.h": "cf978f6190e858844ea2885ea7d39f2f86a0fa4cff18c5736893f0668f3c4511",
+    "Source/RenderPasses/UELegacy/UELegacyGeometry.cpp": "e74ba9817db11307f62a1e58c2eb367144c8f751f9fe5eebb4dc37adbb55ec33",
+    "Source/RenderPasses/UELegacy/UELegacyGeometry.h": "d3a7145fd45fde817314be75ac019a1a93735697cbb5fd13a4e2b5f37833aaf4",
+    "Source/RenderPasses/UELegacy/UELegacyPasses.cpp": "aa3d2fce0a132dc8042b5b136cd5e925964b0ac40a253e1903ab0324328b50c5",
+    "Source/RenderPasses/UELegacy/UELegacyPasses.h": "b4eff8e0a74ed17fa9cb9255d220de9c2bf9cae28032b6cf6b78270b07f0fac4",
+    "Source/RenderPasses/UELegacy/UELegacyReadback.h": "fb1bb48bc8f1a83a758917d7a52a48a22da7cd09a229c7f34c797d9091287513",
+    "Source/RenderPasses/UELegacy/UELegacyRouting.cpp": "6de0172f9f874bb5456791df10a25b53a12bd3701c39d813dc580604154bab0f",
+    "Source/RenderPasses/UELegacy/UELegacyRouting.h": "da3b8f090ec7e411c5a65e59f58e996b3932183c572bbc942dc68967c5ad60cd",
+    "Source/RenderPasses/UELegacy/UELegacySceneIdentity.cpp": "1cf5a23406dfd24415528cc679ecd80d8cf47ea950c596c537f0509ef2e98bf2",
+    "Source/RenderPasses/UELegacy/UELegacySceneIdentity.h": "d4e4bee3d15ba9b89947cddafbf0bc20672b97823d72eccec190a04b8338495a",
+    "Source/Falcor/Core/API/CopyContext.cpp": "7c0392fdfc29ebf889a42b1ff911509f53226f4d7da8b596c56ff85783351752",
+    "Source/Tools/FalcorTest/CMakeLists.txt": "03ddb67a511be8337fccfe08addab7c6e9f01fc320c9bb585d13b61df7df1bac",
+    "Source/RenderPasses/UELegacy/CMakeLists.txt": "d286f19fb517de12a6be9b224970a6f2d42f4deacb3c76aba7c2859e6fa83a12",
+    "Source/Tools/FalcorTest/Tests/Core/UELegacySceneIdentity.cpp": "0dac3bb05811f358c80a87c5f16a8e706b9fb5979983501bc7330f16c04222a6",
+    "scripts/ue_legacy/resource_snapshot.py": "e4a1cc6b8a326cc40484b15d40a372881e7218a7cc6ca260d6d89817d11ffde4",
+    "scripts/ue_legacy/test_resource_snapshot.py": "969413be197d7c51dd26c2db466db0e44061f7c9be1e67c0dfd0829b091c048a",
+    "scripts/ue_legacy/pipeline_snapshot.py": "0e032d2ff9b361098553909d93eda39e92a28fc2d2a5f00ad77463a519d6bd3a",
+    "scripts/ue_legacy/test_pipeline_snapshot.py": "7cd64bafe11ce453cf62821d546c0b658421303faa8f1300366364b5613f19af",
+    "scripts/ue_legacy/scene_package.py": "233343d8f24a6d3dd4472f30803e5479fd70d1187942f2352e2e7eba72db63f6",
+    "scripts/ue_legacy/test_scene_package.py": "66f1b455026b910f46c81c0ece0f2354549640184ac6f8766bb3edf80d86b8bf",
+    "scripts/ue_legacy/scene_identity_smoke.py": "b31d7053d50021c0d02952e657f7b605ee1ae36f0b68bafc393cca585b7faa38",
+    "scripts/ue_legacy/scene_package_smoke.py": "667d30d86e5af63bf20ce731af5317f0ec90c41e66797cf47acd2ef1a847d04d",
+    "scripts/ue_legacy/adapter_resource_identity_smoke.py": "4a427b936e089329b5e5f1a0391b78ae5e47b23382727c64d3711f8cc0815984"
+  },
+  "evidence_sha256": {
+    "build/scene-identity-evidence/result.json": "0850836cfcd65db43fa7cdf21fd2211cec01247d68a27c64602bc80726420465",
+    "build/scene-package-evidence/result.json": "9fd4b00e1a0baadbd3f712f5268017339f690afbdf120e2b1817554a54298aa6",
+    "build/adapter-resource-identity-evidence/result.json": "d3ea6fb6ccbde77d8b701380b3985a612596c74928509fdb391524ab5a016ca3",
+    "build/rdc-render/depth-result.json": "b2c8513bb6099a7de43dcbf1a949103fa9de10f29da1a8a6d6054d67bd73d152",
+    "build/schema-evidence/result.json": "16ab5d498168bb03023280d40b342d8ec7ab2bc90ea4b3e46ead6fe3f718d155",
+    "build/adapter-evidence/result.json": "22adb74a54890e5c34ba3f812eb079a03ed30b77c2e04f62874a8b81311f168e",
+    "build/ue-legacy-resource-final-native.xml": "2cb9051cf73eb37961908fafa1f63fd48f85ad36bf5655be282dc3677cceed00",
+    "build/scene-identity-offline-reviewed.log": "f4de3fa5412320f202dd1598858ea089cf19223c58c178a2edb241b5e9517306",
+    "build/ue-legacy-resource-final-native.log": "b0185b7deb3f419b435ca2bf1114400fe06d3bc296d6eb361931579935f41cdb",
+    "build/scene-identity-final-build.log": "838b0df5d9a14963f65b06eeb73958288cd11c0e8f79299be89101430fc62d1e",
+    "build/scene-identity-final-verified.log": "de1d5e60856c350f2faa0d116f34f387c6f7a7f78bf259530d5af66f0ff9636a",
+    "build/scene-package-final-verified.log": "0cf043d4194756002c62071b4b5831566c334992c16e442f71e665a070a78def",
+    "build/adapter-resource-identity-final.log": "925f184ca0a5b02b9f1c030e2939257f1cd90565a0efdca39febf2cf0b4d11cc",
+    "build/resource-final-rdc.log": "460cbb021871e637d6335f1b31f905a4e724d7e927ebf774653650ef27cc0c5d",
+    "build/resource-final-schema.log": "ed1e80b18a691f44d7d2c982ce1ae118689c16c8a9ab74fde14b80af74fd69f9",
+    "build/resource-final-adapter.log": "52502026a7193688678ac8718e3c41962dca1bda225df608d2fcd47690bf6190"
+  },
+  "scope": "Synchronized static undisplaced triangle Scene with StandardMaterial carriers; actual vertex/index and texture mip/array/cube-face bytes plus semantic parameters. No animation/history/concurrent-write atomic snapshot guarantee; unsupported sideband materials, UDIM/profile and dynamic geometry are rejected."
+}

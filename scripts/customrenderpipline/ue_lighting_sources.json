@@ -1,0 +1,495 @@
+{
+  "schema_version": 1,
+  "engine_head": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "scope": "Exact source excerpts for the PC legacy isotropic Lighting Codec; source identity does not prove capture compilation provenance.",
+  "outputs": {
+    "UEClosure.Common.ush": {
+      "sha256": "18f56fec292c122686f8ccb72e413b6decf9024366359a8d58740254f6abc23d",
+      "bytes": 272,
+      "segments": [
+        {
+          "source": "Private/Common.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b"
+        },
+        {
+          "source": "Private/Common.ush",
+          "input_start": 3030,
+          "input_end": 3083,
+          "output_start": 51,
+          "output_end": 104,
+          "bytes": 53,
+          "sha256": "ad84982f41c0a7317849909a998f51466e9d499c2bf2f70e5df489a7b1974c29",
+          "label": "PI",
+          "line_start_1based": 133,
+          "line_end_inclusive_1based": 133,
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b"
+        },
+        {
+          "source": "Private/Common.ush",
+          "input_start": 32934,
+          "input_end": 32976,
+          "output_start": 104,
+          "output_end": 146,
+          "bytes": 42,
+          "sha256": "b188c3cf5e0ded537d282f773225e04778a344833be2a8c0157928a8f0630d88",
+          "label": "float Square( float x )",
+          "line_start_1based": 1054,
+          "line_end_inclusive_1based": 1058,
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b"
+        },
+        {
+          "source": "Private/Common.ush",
+          "input_start": 33448,
+          "input_end": 33509,
+          "output_start": 146,
+          "output_end": 207,
+          "bytes": 61,
+          "sha256": "141e8bb4dd0adbe795c5fe8c4be6caf9fc23d1cc1f87f3bb95b0cd1ad5b205d6",
+          "label": "float Pow4( float x )",
+          "line_start_1based": 1114,
+          "line_end_inclusive_1based": 1119,
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b"
+        },
+        {
+          "source": "Private/Common.ush",
+          "input_start": 33701,
+          "input_end": 33766,
+          "output_start": 207,
+          "output_end": 272,
+          "bytes": 65,
+          "sha256": "ded99882aea66469c1eed8935c13343594daea84cb2b14e6e4b84e0acb44752e",
+          "label": "float Pow5( float x )",
+          "line_start_1based": 1138,
+          "line_end_inclusive_1based": 1143,
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b"
+        }
+      ]
+    },
+    "UEClosure.FastMath.ush": {
+      "sha256": "e6b484b4367cdfa4964b203bb315e40dc4f8c559406c690595d0ac0e42f9ff83",
+      "bytes": 1879,
+      "segments": [
+        {
+          "source": "Private/FastMathThirdParty.ush",
+          "input_start": 0,
+          "input_end": 1702,
+          "output_start": 0,
+          "output_end": 1702,
+          "bytes": 1702,
+          "sha256": "4b8bd20ecde3857f520c8c8d7d2da8ecd5af0eb8dbc9645ad0058a8cfea4a77e",
+          "label": "copyright_and_MIT_license",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 30,
+          "source_sha256": "4f0a38c0d37d1c5ba0d2b9a7cac89e6596a9403ba637088bc450910f1b0f03bc"
+        },
+        {
+          "source": "Private/FastMathThirdParty.ush",
+          "input_start": 2088,
+          "input_end": 2265,
+          "output_start": 1702,
+          "output_end": 1879,
+          "bytes": 177,
+          "sha256": "dfacb1d5f9947778ba005d465ff3cd4f5383a6d2a7e7b7478d5aed77f3a18a5c",
+          "label": "float sqrtFast( float x )",
+          "line_start_1based": 49,
+          "line_end_inclusive_1based": 58,
+          "source_sha256": "4f0a38c0d37d1c5ba0d2b9a7cac89e6596a9403ba637088bc450910f1b0f03bc"
+        }
+      ]
+    },
+    "UEClosure.BRDF.ush": {
+      "sha256": "c123589ce31f4a4cff7cd92274f23d28b6e082f92e65032b224d96041a70c442",
+      "bytes": 1159,
+      "segments": [
+        {
+          "source": "Private/BRDF.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906"
+        },
+        {
+          "source": "Private/BRDF.ush",
+          "input_start": 5008,
+          "input_end": 5090,
+          "output_start": 51,
+          "output_end": 133,
+          "bytes": 82,
+          "sha256": "94c58af7998fc04d9961e427e08fea9756c8966bd30fe1cdda8875af990497f1",
+          "label": "half3 Diffuse_Lambert( half3 DiffuseColor )",
+          "line_start_1based": 157,
+          "line_end_inclusive_1based": 161,
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906"
+        },
+        {
+          "source": "Private/BRDF.ush",
+          "input_start": 12614,
+          "input_end": 12858,
+          "output_start": 133,
+          "output_end": 377,
+          "bytes": 244,
+          "sha256": "71fbcb8ba608f861aa5c5086b1a66b80cacf526ad520e97ea9289e049ebeca20",
+          "label": "float D_GGX( float a2, float NoH )",
+          "line_start_1based": 309,
+          "line_end_inclusive_1based": 316,
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906"
+        },
+        {
+          "source": "Private/BRDF.ush",
+          "input_start": 14345,
+          "input_end": 14714,
+          "output_start": 377,
+          "output_end": 746,
+          "bytes": 369,
+          "sha256": "dc5f040854c604736d8a685b526f6b1d56c6be19e3a79b945429ecc1e83c39a5",
+          "label": "float Vis_SmithJointApprox( float a2, float NoV, float NoL )",
+          "line_start_1based": 371,
+          "line_end_inclusive_1based": 380,
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906"
+        },
+        {
+          "source": "Private/BRDF.ush",
+          "input_start": 15480,
+          "input_end": 15893,
+          "output_start": 746,
+          "output_end": 1159,
+          "bytes": 413,
+          "sha256": "556cbb55514cde263115c48802f8f44c5d3a256a059ca5ce7df6d6fe05181ab9",
+          "label": "float3 F_Schlick( float3 SpecularColor, float VoH )",
+          "line_start_1based": 402,
+          "line_end_inclusive_1based": 411,
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906"
+        }
+      ]
+    },
+    "UEClosure.ShadingModels.ush": {
+      "sha256": "169b37b939a5da95c7a0ee285fe45afa73850cd952d639b061b13f5369184d82",
+      "bytes": 1797,
+      "segments": [
+        {
+          "source": "Private/ShadingModels.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "74fa44bc4633e695db936b25909c1cbab3d2a85cb768f184c92862eb136e810a"
+        },
+        {
+          "source": "Private/ShadingModels.ush",
+          "input_start": 3551,
+          "input_end": 4814,
+          "output_start": 51,
+          "output_end": 1314,
+          "bytes": 1263,
+          "sha256": "19ffb5a8a48db0aa628e16f294926601b90e0651ae569fad7ac0bc4db66206e1",
+          "label": "New_a2_and_EnergyNormalization",
+          "line_start_1based": 122,
+          "line_end_inclusive_1based": 162,
+          "source_sha256": "74fa44bc4633e695db936b25909c1cbab3d2a85cb768f184c92862eb136e810a"
+        },
+        {
+          "source": "Private/ShadingModels.ush",
+          "input_start": 5414,
+          "input_end": 5897,
+          "output_start": 1314,
+          "output_end": 1797,
+          "bytes": 483,
+          "sha256": "4dda52adc4240bcd9ce60e2b29f2ead126e6eb398ed09ccf307fc2e456d5dc53",
+          "label": "float3 SpecularGGX( float Roughness, float3 SpecularColor, BxDFContext Context, FAreaLight AreaLight )",
+          "line_start_1based": 179,
+          "line_end_inclusive_1based": 192,
+          "source_sha256": "74fa44bc4633e695db936b25909c1cbab3d2a85cb768f184c92862eb136e810a"
+        }
+      ]
+    },
+    "UEClosure.Capsule.ush": {
+      "sha256": "707055ac0395142ca9cff7df4e183658c6db2a8830d72cd79fe4278cee8960fe",
+      "bytes": 2866,
+      "segments": [
+        {
+          "source": "Private/CapsuleLight.ush",
+          "input_start": 0,
+          "input_end": 2866,
+          "output_start": 0,
+          "output_end": 2866,
+          "bytes": 2866,
+          "sha256": "707055ac0395142ca9cff7df4e183658c6db2a8830d72cd79fe4278cee8960fe",
+          "label": "entire_original_file",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 107,
+          "source_sha256": "707055ac0395142ca9cff7df4e183658c6db2a8830d72cd79fe4278cee8960fe"
+        }
+      ]
+    },
+    "UEClosure.Rect.ush": {
+      "sha256": "97ccbfdb28981f778031b9bfec8155c466392f357330d2045d59aeaf5b187f95",
+      "bytes": 158,
+      "segments": [
+        {
+          "source": "Private/RectLight.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "b2ce43c186e92877b6bed31c551143066b0bf865394b71d741d5bcac5e8dfb02"
+        },
+        {
+          "source": "Private/RectLight.ush",
+          "input_start": 509,
+          "input_end": 616,
+          "output_start": 51,
+          "output_end": 158,
+          "bytes": 107,
+          "sha256": "add0e191ad2ee12c9d950ea1a8dd4b64677217aeef7b21a1f54f35a536c4222e",
+          "label": "struct FRect\n",
+          "line_start_1based": 22,
+          "line_end_inclusive_1based": 30,
+          "source_sha256": "b2ce43c186e92877b6bed31c551143066b0bf865394b71d741d5bcac5e8dfb02"
+        }
+      ]
+    },
+    "UEClosure.LightData.ush": {
+      "sha256": "534f08b38f48a03605b90ed015aba803ca111049401bf9d5dc667b1ddc6377fa",
+      "bytes": 331,
+      "segments": [
+        {
+          "source": "Private/LightData.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "76367aca82c21efe8aa9fb1c56dfccf77469d32081679bd26d5cb0699f98512a"
+        },
+        {
+          "source": "Private/LightData.ush",
+          "input_start": 392,
+          "input_end": 424,
+          "output_start": 51,
+          "output_end": 83,
+          "bytes": 32,
+          "sha256": "9bfce04b7c1841cfd7c30c7741369d00041c400f1dd3d57fefd2c1c33db620d1",
+          "label": "MAX_RECT_ATLAS_MIP",
+          "line_start_1based": 15,
+          "line_end_inclusive_1based": 15,
+          "source_sha256": "76367aca82c21efe8aa9fb1c56dfccf77469d32081679bd26d5cb0699f98512a"
+        },
+        {
+          "source": "Private/LightData.ush",
+          "input_start": 815,
+          "input_end": 906,
+          "output_start": 83,
+          "output_end": 174,
+          "bytes": 91,
+          "sha256": "e783f42ff5020a6dbe6a52f6ff58912279f0a4ca017a1875a59b5b048594a665",
+          "label": "struct FRectTexture\n",
+          "line_start_1based": 24,
+          "line_end_inclusive_1based": 30,
+          "source_sha256": "76367aca82c21efe8aa9fb1c56dfccf77469d32081679bd26d5cb0699f98512a"
+        },
+        {
+          "source": "Private/LightData.ush",
+          "input_start": 906,
+          "input_end": 1063,
+          "output_start": 174,
+          "output_end": 331,
+          "bytes": 157,
+          "sha256": "13a6a56950f2deb0068c7024150c5781c0c6df4ce7cacd766c6d57013f238b91",
+          "label": "FRectTexture InitRectTexture()",
+          "line_start_1based": 31,
+          "line_end_inclusive_1based": 39,
+          "source_sha256": "76367aca82c21efe8aa9fb1c56dfccf77469d32081679bd26d5cb0699f98512a"
+        }
+      ]
+    },
+    "UEClosure.Area.ush": {
+      "sha256": "a6b6778f441d70cec8784e103762e066c5610755b2c51c220c4b78f358ece6b0",
+      "bytes": 1653,
+      "segments": [
+        {
+          "source": "Private/AreaLightCommon.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "259c3f81da7c5b2c22176949d838113b74059d310fa4dcce56995955227f08a7"
+        },
+        {
+          "source": "Private/AreaLightCommon.ush",
+          "input_start": 92,
+          "input_end": 1694,
+          "output_start": 51,
+          "output_end": 1653,
+          "bytes": 1602,
+          "sha256": "87734aead2a0fc9142db6cd6d16efbd55a93ad1a9be18603bb1356cd163db28d",
+          "label": "FAreaLight_and_all_original_helpers",
+          "line_start_1based": 7,
+          "line_end_inclusive_1based": 66,
+          "source_sha256": "259c3f81da7c5b2c22176949d838113b74059d310fa4dcce56995955227f08a7"
+        }
+      ]
+    },
+    "UEClosure.GetCapsule.ush": {
+      "sha256": "ef3a67f37f23e248d341689b0e217ae1022578c050371a43a5d5491843508f88",
+      "bytes": 480,
+      "segments": [
+        {
+          "source": "Private/DeferredLightingCommon.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "d3bcd5cf9c36cab57c281f6cad447816891836e3c05a67c8808cbb9ad83e2c46"
+        },
+        {
+          "source": "Private/DeferredLightingCommon.ush",
+          "input_start": 11561,
+          "input_end": 11990,
+          "output_start": 51,
+          "output_end": 480,
+          "bytes": 429,
+          "sha256": "3532487f8c2b3798f01b28ea65660d3c69d3487f74835f47de84ffe506b1264d",
+          "label": "FCapsuleLight GetCapsule( float3 ToLight, FDeferredLightData LightData )",
+          "line_start_1based": 303,
+          "line_end_inclusive_1based": 314,
+          "source_sha256": "d3bcd5cf9c36cab57c281f6cad447816891836e3c05a67c8808cbb9ad83e2c46"
+        }
+      ]
+    },
+    "UEClosure.CreateArea.ush": {
+      "sha256": "d39d87adae5e8a1e861135cfcb4079d50694aad045cba950af9706dbd1ef7bca",
+      "bytes": 2643,
+      "segments": [
+        {
+          "source": "Private/CapsuleLightIntegrate.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "ab9b14123ead4faec6604000a05abbcb3ea1ab832b9cdea2dab6772a2ca5a591"
+        },
+        {
+          "source": "Private/CapsuleLightIntegrate.ush",
+          "input_start": 771,
+          "input_end": 3363,
+          "output_start": 51,
+          "output_end": 2643,
+          "bytes": 2592,
+          "sha256": "2459d31f3d3b8363f0245f2e1558eedb73b063279bb5fe5531d378b8e68bb84e",
+          "label": "FAreaLight CreateAreaLight(float Roughness, half3 N, half3 V, FCapsuleLight Capsule, bool bInverseSquared )",
+          "line_start_1based": 36,
+          "line_end_inclusive_1based": 106,
+          "source_sha256": "ab9b14123ead4faec6604000a05abbcb3ea1ab832b9cdea2dab6772a2ca5a591"
+        }
+      ]
+    },
+    "UEClosure.Platform.ush": {
+      "sha256": "931a644bff68e0964b7fb0a0a09759832f8b820d02ea5e316ba0ccbe7a6be1de",
+      "bytes": 75,
+      "segments": [
+        {
+          "source": "Public/Platform.ush",
+          "input_start": 0,
+          "input_end": 51,
+          "output_start": 0,
+          "output_end": 51,
+          "bytes": 51,
+          "sha256": "be77533a55f3998bb3bf9bfd7815e908098f33022dc8f7035caa6efad8273b9d",
+          "label": "copyright",
+          "line_start_1based": 1,
+          "line_end_inclusive_1based": 1,
+          "source_sha256": "8e925a2c95ae2c260c5bfce756a096ba666bfbc52920c3562a2b4779b31add94"
+        },
+        {
+          "source": "Public/Platform.ush",
+          "input_start": 24823,
+          "input_end": 24847,
+          "output_start": 51,
+          "output_end": 75,
+          "bytes": 24,
+          "sha256": "3b937d5baf31f2ae94c48c461a2553a5a35f396633ce1ea62f76f7edfec20188",
+          "label": "PC_BRANCH_attribute",
+          "line_start_1based": 788,
+          "line_end_inclusive_1based": 788,
+          "source_sha256": "8e925a2c95ae2c260c5bfce756a096ba666bfbc52920c3562a2b4779b31add94"
+        }
+      ]
+    },
+    "UEBRDF.prefix.ush": {
+      "sha256": "7ddeb1bc1a0c143f754ef7019c11ba5af0250f6ad8b7161e34ee0f9e294510f7",
+      "bytes": 4506,
+      "segments": [
+        {
+          "source": "Private/BRDF.ush",
+          "source_sha256": "0de81cc25c9b035a77aeb0e2f1be3e730c0f117f9250fe365104f30119b5e906",
+          "input_start": 0,
+          "input_end": 4506,
+          "output_start": 0,
+          "output_end": 4506,
+          "bytes": 4506,
+          "sha256": "7ddeb1bc1a0c143f754ef7019c11ba5af0250f6ad8b7161e34ee0f9e294510f7"
+        }
+      ]
+    },
+    "UEPow2.scalar.ush": {
+      "sha256": "1fecb8d3b05f05cb732464d87fadcd672ffc5f6adc483e86bb710f6366f1e996",
+      "bytes": 40,
+      "segments": [
+        {
+          "source": "Private/Common.ush",
+          "source_sha256": "11184bf6e39a0065e66acd174e2b8407c89791a184a2ad9552a1f1d83669c84b",
+          "input_start": 33108,
+          "input_end": 33148,
+          "output_start": 0,
+          "output_end": 40,
+          "bytes": 40,
+          "sha256": "1fecb8d3b05f05cb732464d87fadcd672ffc5f6adc483e86bb710f6366f1e996"
+        }
+      ]
+    }
+  }
+}

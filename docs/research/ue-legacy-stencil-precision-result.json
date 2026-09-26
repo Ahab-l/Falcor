@@ -1,0 +1,282 @@
+{
+  "status": "passed_for_native_planes_and_position_precision",
+  "date": "2026-09-09",
+  "full_goal_complete": false,
+  "defaultlit_bitwise_closure_complete": false,
+  "final_image_equivalence": false,
+  "capture": {
+    "path": "E:\\rdc\\ue\\1.rdc",
+    "sha256": "822d41ea6ecb12633f42b18ed5ae1a3e7cea02653c9a72724f6e55e127d85fc9"
+  },
+  "native_npz_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-render\\snapshots\\7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626.npz",
+  "native_npz_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+  "plugin_sha256": "9ed584df95b6d51a914c86abbe2e86e161dc9de366a062b48710b2c4bf5ff2d8",
+  "falcor_sha256": "68ddc1613c296091d1a478269156989432c501a92d2c255b81fe1f0ef705a71b",
+  "default_schema_generation": "803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34",
+  "schema_layout_and_codec_math_changed_in_this_stage": false,
+  "rdc": {
+    "capture_covered": 866712,
+    "falcor_covered": 866712,
+    "coverage_mismatch": 0,
+    "depth_p99": 0.0,
+    "depth_max": 0.0,
+    "depth_over_1e_6": 0,
+    "draw_count": 4,
+    "native_npz_sha256": "7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626",
+    "native_npz_snapshot": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-render\\snapshots\\7ebee38e1c79995a8292517627c917d32a26baf9539983b46e57a1f7bdb8c626.npz",
+    "final_image_equivalence": false,
+    "native_planes": {
+      "width": 1424,
+      "height": 1040,
+      "depth_row_bytes": 5696,
+      "depth_native_format": 39,
+      "stencil_row_bytes": 1424,
+      "stencil_native_format": 60
+    },
+    "native_depth_copy_bitwise_equal": true,
+    "native_stencil_mismatch": 0,
+    "native_stencil_values": {
+      "0": 614248,
+      "134": 866712
+    },
+    "capture_stencil_values": {
+      "0": 614248,
+      "134": 866712
+    },
+    "roughness_metallic_model_bits_exact": true,
+    "basecolor_ao_exact": true,
+    "specular_mismatch": 5,
+    "normal_mismatch": 1,
+    "source_geometry": true,
+    "source_normal_exact_fraction": 0.999998846214198,
+    "source_checksum_rejected": true,
+    "baked_translation_rejected": true,
+    "baked_normal_reflection_rejected": true,
+    "plugin_sha256": "9ed584df95b6d51a914c86abbe2e86e161dc9de366a062b48710b2c4bf5ff2d8"
+  },
+  "comparison_summary": {
+    "normal_rgb_exact_pixels": 866711,
+    "per_object_alpha_exact_pixels": 866712,
+    "model_bits_exact_pixels": 866712,
+    "gbufferB_exact_pixels": 866707,
+    "gbufferC_exact_pixels": 866712,
+    "gbufferD_exact_full_extent": true,
+    "sceneColor_half_bits_exact_full_extent": false
+  },
+  "comparison_depth_summary": {
+    "captured_covered": 866712,
+    "native_covered": 866712,
+    "coverage_mismatch": 0,
+    "outlier_threshold": 1e-06,
+    "outliers": [],
+    "coverage_mismatch_locations": [],
+    "stencil": {
+      "compared": true,
+      "mismatch_pixels": 0,
+      "captured_values": {
+        "0": 614248,
+        "134": 866712
+      },
+      "native_values": {
+        "0": 614248,
+        "134": 866712
+      },
+      "mismatches": []
+    },
+    "native_depth_plane_bits_exact": true,
+    "native_depth_vs_copy_bits_exact": true
+  },
+  "adapter": {
+    "status": "passed",
+    "actual_stock_gbuffer_raster": true,
+    "explicit_ue_material_mapping": true,
+    "plugin_sha256": "9ed584df95b6d51a914c86abbe2e86e161dc9de366a062b48710b2c4bf5ff2d8",
+    "schema_only_relocation": true,
+    "zero_model_alias_dispatch": true,
+    "compile_failure_rollback": true,
+    "mixed_generation_rejected": true,
+    "independent_adapter_pass": true,
+    "same_packed_contract": true,
+    "native_world_position_error_m": 2.250075340270996e-05,
+    "normal_max_error": 0.0,
+    "base_color_max_error": 0.0,
+    "covered_pixels": 120374,
+    "interior_pixels": 118925,
+    "primitive_flags_from_vbuffer": true,
+    "real_depth_and_depth_copy": true,
+    "missing_mapping_model_and_input_rejected": true,
+    "arbitrary_stock_bsdf_losslessly_inverted": false
+  },
+  "adapter_view": {
+    "status": "passed",
+    "captured_viewrect_origin_and_inset": true,
+    "native_extent": [
+      1421,
+      1035
+    ],
+    "packed_and_decoded_shift_bitwise_equal": true,
+    "padding_clear": true,
+    "captured_grid_program_executed": true,
+    "grid_geometry_preserved": true,
+    "plugin_sha256": "9ed584df95b6d51a914c86abbe2e86e161dc9de366a062b48710b2c4bf5ff2d8"
+  },
+  "adapter_grid_geometry": {
+    "nativePosW": {
+      "different_values": 0,
+      "max_abs_error": 0.0
+    },
+    "Adapter.depthCopy": {
+      "different_values": 0,
+      "max_abs_error": 0.0
+    },
+    "Adapter.primaryCoverage": {
+      "different_values": 0,
+      "max_abs_error": 0.0
+    },
+    "Adapter.gBufferA": {
+      "different_values": 0,
+      "max_abs_error": 0.0
+    }
+  },
+  "validation": {
+    "offline_tests": 79,
+    "gpu_capability_tests": [
+      "UELegacyDepthStencilSemantics (D3D12)",
+      "UELegacyMRTFormatsAndPreservation (D3D12)",
+      "UELegacyNativeDepthStencilReadback (D3D12)",
+      "UELegacySharedIABufferReadStates (D3D12)"
+    ],
+    "smoke_exit_codes": {
+      "rdc_gbuffer_smoke": 0,
+      "adapter_smoke": 0,
+      "adapter_view_smoke": 0
+    }
+  },
+  "remaining_pixels": {
+    "normal_xy": [
+      [
+        341,
+        534
+      ]
+    ],
+    "specular_xy": [
+      [
+        4,
+        567
+      ],
+      [
+        280,
+        610
+      ],
+      [
+        1060,
+        722
+      ],
+      [
+        1359,
+        882
+      ],
+      [
+        878,
+        930
+      ]
+    ]
+  },
+  "limitations": [
+    "Readback is diagnostic D3D12 single-layer/mip/sample D32S8 only; no depth-plane SRV or readonly DSV API.",
+    "One normal and five specular pixels still differ by one stored code.",
+    "Precise sampling matches rendered material outputs, not every RenderDoc debugger intermediate.",
+    "External live scene and textures are not completely frozen.",
+    "Actual model extension, Lighting, SSR, TSR, and Web are pending. Final capture also requires SSGI/DFAO/sky/cloud/fog/exposure/ToneMap."
+  ],
+  "source_sha256": {
+    "Source\\RenderPasses\\UELegacy\\CMakeLists.txt": "a9306857e310852f81ff3b6c7fb682872910bd7eacf87c184d46d41deff301ed",
+    "Source\\RenderPasses\\UELegacy\\UELegacyAdapter.3d.slang": "032edb02448dacc5f88fc84b7fd90e83ccdac05884b42e424b59b0cd418cf217",
+    "Source\\RenderPasses\\UELegacy\\UELegacyAdapter.cpp": "1423b50e8ad47e7f15b575e16cdb3c084b2b444c436fce4aad37c275f3cdccdf",
+    "Source\\RenderPasses\\UELegacy\\UELegacyAdapter.h": "e1280f4ebe081a029b8ba369f9555f92245fd584898eeaa56ed964f685b62776",
+    "Source\\RenderPasses\\UELegacy\\UELegacyConfig.cpp": "f6544fa635db73e2720160221dfa4c91c71cd83336d0b7cdcdd9312b9e6f9816",
+    "Source\\RenderPasses\\UELegacy\\UELegacyConfig.h": "84b86a774e8db94f02d11db1ddc530c316d86f6d63835e6892cabefcf5161c7b",
+    "Source\\RenderPasses\\UELegacy\\UELegacyDecode.cs.slang": "535edb33f667f3a0ff87de21ec8cd7bf3a040c765d7b2dfd1165eb631a980ea3",
+    "Source\\RenderPasses\\UELegacy\\UELegacyGeometry.cpp": "e74ba9817db11307f62a1e58c2eb367144c8f751f9fe5eebb4dc37adbb55ec33",
+    "Source\\RenderPasses\\UELegacy\\UELegacyGeometry.h": "d3a7145fd45fde817314be75ac019a1a93735697cbb5fd13a4e2b5f37833aaf4",
+    "Source\\RenderPasses\\UELegacy\\UELegacyGeometry.slangh": "a594ed34ebcffd6fae24602b8f09eaca754d15ee8804f24c611ef881e738acfa",
+    "Source\\RenderPasses\\UELegacy\\UELegacyMaterial.slangh": "7f9e987050f85ae86ae2ce474122fe95dc070643619556cd8c32a969f7533f02",
+    "Source\\RenderPasses\\UELegacy\\UELegacyPasses.cpp": "9c6d859bb791b12dd0010edb4b86593d17c15ffad5da6eb1718081cf38cce10a",
+    "Source\\RenderPasses\\UELegacy\\UELegacyPasses.h": "835e48e204b0b13898690b2981cfb6e720704d3bb03d91979e91414239f84bf2",
+    "Source\\RenderPasses\\UELegacy\\UELegacyRaster.3d.slang": "73de95411e9a9f4fd7c4a085577dcb2c446112cc2f5e706b5cf14b05263473e6",
+    "Source\\RenderPasses\\UELegacy\\UELegacyReadback.h": "fb1bb48bc8f1a83a758917d7a52a48a22da7cd09a229c7f34c797d9091287513",
+    "Source\\RenderPasses\\UELegacy\\UELegacyRouting.cpp": "6de0172f9f874bb5456791df10a25b53a12bd3701c39d813dc580604154bab0f",
+    "Source\\RenderPasses\\UELegacy\\UELegacyRouting.h": "da3b8f090ec7e411c5a65e59f58e996b3932183c572bbc942dc68967c5ad60cd",
+    "Source\\RenderPasses\\UELegacy\\UELegacyView.slangh": "46cff18ef70c901105ae2352f5b23c2d378e27a83b88c2cc6d6dcc20cdd3aa20",
+    "Source\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.codec.json": "8002f8cbdb9fcb85fd94dc894ad36d1f2c5f1e880ec9d3ac980fb98106fbdb50",
+    "Source\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.slangh": "ef49f95245ae7f7191cb9cc8eed7e1bb5c48ba2d67d87346727c2c70581c84ee",
+    "Source\\RenderPasses\\UELegacy\\Codecs\\Surface.slangh": "60c3970dd7208245b48d298771ab397c11daeaadf578ccae19710dc7a15e96f7",
+    "Source\\RenderPasses\\UELegacy\\Generated\\803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34\\GBuffer.json": "cd0b006df3f778deb6732ded0ebfcbdac5326f6495c72fae5761def4ed66c1c2",
+    "Source\\RenderPasses\\UELegacy\\Generated\\803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34\\GBuffer.slangh": "a385773c57610726aa8e17c2d0963ad731cbfa7bf79720c6c8819dde22dd4719",
+    "Source\\RenderPasses\\UELegacy\\Generated\\940b1c6bc65479c3798467c62081fd3fb08292e37b456c71b035c4c79d2a29c9\\GBuffer.json": "efe7caef098f4c17b250df381e9b29ed6069565869479b344994d725b5db4786",
+    "Source\\RenderPasses\\UELegacy\\Generated\\940b1c6bc65479c3798467c62081fd3fb08292e37b456c71b035c4c79d2a29c9\\GBuffer.slangh": "712ee0ea8e191096c410f3a1bbbf9cc8a40bfa921228454898ce2876453bcccc",
+    "Source\\RenderPasses\\UELegacy\\Materials\\RDCGrid.slangh": "634268568ca642833072f5a738ce326b7a195521f9a98fd604c88b902fe64b13",
+    "Source\\RenderPasses\\UELegacy\\Schemas\\DefaultLit.json": "405724628451ab9afd4b8353d498f3b8b3cef085cef7afa97bfd3dff6a4a7fdb",
+    "Source\\RenderPasses\\UELegacy\\Schemas\\README.md": "05b46afe547d0d5fb191646a1a908b189e2c1fb0c671c62f0981fd71c38d3c8d",
+    "Source\\Tools\\FalcorTest\\Tests\\Core\\UELegacyCapabilities.cpp": "9f55af8ef0b2e05857908af19f1c4e1c2211351f79a8084f2e77c66953475ef9",
+    "Source\\Tools\\FalcorTest\\Tests\\Core\\UELegacyCapabilities.slang": "951e747c3f038ec79a1d203cb4fb62f07d79d1dd440ba20bc3d65de61ed8c222",
+    "scripts\\ue_legacy\\adapter_smoke.py": "163d08b85f1beb6d63d5f864384cc8ea716c1ffca0ecf7bc831757eb64c8414f",
+    "scripts\\ue_legacy\\adapter_view_smoke.py": "b88953eb07a83cbf07b9ac84be47a97cbdb896869dd368e4dbcf18266125e20e",
+    "scripts\\ue_legacy\\analyze_pixel_trace.py": "a0659cf6f1f63c93da54f5821452ba281c0a022f30e886cad0cbec2fe5d298b8",
+    "scripts\\ue_legacy\\analyze_vertex_fidelity.py": "2f948b4e7d5accdbb0aaefecc4bcf1ba6400167cdcb76cc9a0ed2a408a543b94",
+    "scripts\\ue_legacy\\build_ue_reference.py": "cee95815da393ead95cfa56f1bc6764ee06c63f4c78da81005c32fbe1fb9af68",
+    "scripts\\ue_legacy\\compare_rdc_gbuffer.py": "7b1d0d16422608c59c13d3779bbfec43b42f0eaca340e13d6a77874589e412fb",
+    "scripts\\ue_legacy\\extract_rdc_scene.py": "0fcc62f5652b2ca9d3cef2b270996c77b17d02efb235a8c2e8d9bb737a688d71",
+    "scripts\\ue_legacy\\generate_schema.py": "ac79c30ef75b907b45c039e795b3fbbb15f3f7a32d084cf15b4e9ecb31bb6988",
+    "scripts\\ue_legacy\\m1_smoke.py": "c7b6cde9509b88d7a9018d8a16dcc7b51ff235020febf72d89169465a78c974b",
+    "scripts\\ue_legacy\\mesh_acceptance_smoke.py": "eaef8de052706db3ba5d0ea42e04fe058e5d83f1fea7f3364d3060552af88c68",
+    "scripts\\ue_legacy\\pipeline.py": "610929fa2ba4829f85300343a3f050e2aac0f20f7469665708d4d00790d211f7",
+    "scripts\\ue_legacy\\pipeline_smoke.py": "59289dc760bfb679f8c22910a26025aa2954354f151ba2774977e5a64cd60309",
+    "scripts\\ue_legacy\\pipeline_snapshot.py": "02332b7cf8b0c68a4e497250a01dbe69bc8c6ccff7ff78988d2f1d93955f3d65",
+    "scripts\\ue_legacy\\pixel_probe_smoke.py": "ef5d2857ebd84eb6e5539d1d546d7859ce065f2386d51fc7eb4dd3a501702f48",
+    "scripts\\ue_legacy\\prepare_reference.py": "d4e4bf393b118b37845288ef300b75c398eda877f9093cfc4fa4eab7511af0c8",
+    "scripts\\ue_legacy\\raster_smoke.py": "512f6177b3f731323ad3a37b8128979679c98b3db946c50b9bfc5533bef69e66",
+    "scripts\\ue_legacy\\rdc_gbuffer_smoke.py": "59863547ff7b5b34dbd8dfdc91eac6ee505270e2e15e5fa8628e9913de6a0141",
+    "scripts\\ue_legacy\\reference_raster.py": "609c923b1c3f097cff57c86a546971bd1a76240a68a8bff424d83b563129a157",
+    "scripts\\ue_legacy\\routing_smoke.py": "ea27928002e35fac10a0ce88f1522c760c74ab08b93fd0875ca34cf8f509d22c",
+    "scripts\\ue_legacy\\schema_smoke.py": "93fd0eb5b4e50625534790a6ab10fb2dfa6df040243e35cd08398fda5bf87d3b",
+    "scripts\\ue_legacy\\source_geometry.py": "df15464f86a3cc86e1d52adcae8aab3037594edda7e4ddb2ff37683aa46f2244",
+    "scripts\\ue_legacy\\test_pipeline_snapshot.py": "67f829c1157c2a7d3df11af7e778a545efdc9b33f534eadbf50959b7c61830ec",
+    "scripts\\ue_legacy\\test_reference_profile.py": "05f99e54282b25100a64967265d896c51e66ec15ce8b3024a450b34b2854f326",
+    "scripts\\ue_legacy\\test_schema.py": "56ac8766d64e0d87ae631f8ed32e19251521fd7051aea151f5878eda51124427",
+    "scripts\\ue_legacy\\validate_reference.py": "08c44935e1ab7c46bcc8bdae786a3599d6a8159843876cb043c9b898bf4a2fe1",
+    "scripts\\ue_legacy\\verify_ue_reference.py": "3ac67ec56493de2b0583bf5bcc5566f0561a1d8791fcb257b7f33b4f5a328380",
+    "scripts\\ue_legacy\\_extract_rdc_scene_replay.py": "f7aa93c6da16a787380b371a5b6645bec7de02e690fb2bdb0e347d7baae5f688",
+    "scripts\\ue_legacy\\_probe_rdc_pixel_replay.py": "420f7b808ca6d8d5428345c2b37f2ad0e0ebf41029bc82298d078ee4de14b26e"
+  },
+  "runtime_shader_sha256": {
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyAdapter.3d.slang": "032edb02448dacc5f88fc84b7fd90e83ccdac05884b42e424b59b0cd418cf217",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyDecode.cs.slang": "535edb33f667f3a0ff87de21ec8cd7bf3a040c765d7b2dfd1165eb631a980ea3",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyGeometry.slangh": "a594ed34ebcffd6fae24602b8f09eaca754d15ee8804f24c611ef881e738acfa",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyMaterial.slangh": "7f9e987050f85ae86ae2ce474122fe95dc070643619556cd8c32a969f7533f02",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyRaster.3d.slang": "73de95411e9a9f4fd7c4a085577dcb2c446112cc2f5e706b5cf14b05263473e6",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\UELegacyView.slangh": "46cff18ef70c901105ae2352f5b23c2d378e27a83b88c2cc6d6dcc20cdd3aa20",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.slangh": "ef49f95245ae7f7191cb9cc8eed7e1bb5c48ba2d67d87346727c2c70581c84ee",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\Codecs\\Surface.slangh": "60c3970dd7208245b48d298771ab397c11daeaadf578ccae19710dc7a15e96f7",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\Generated\\GBuffer.slangh": "7a2313a266843e24176ef13abf9461e57d72bc2561eb6018d18968743638806b",
+    "build\\windows-vs2022\\bin\\Release\\shaders\\RenderPasses\\UELegacy\\Materials\\RDCGrid.slangh": "634268568ca642833072f5a738ce326b7a195521f9a98fd604c88b902fe64b13"
+  },
+  "log_sha256": {
+    "build/stencil-precision-rdc-final.log": "05bb155becd05672bb885684916acd24334db80c0f678d6b80ea8aeea20cf2e4",
+    "build/stencil-precision-adapter-final.log": "163eef5698ae66260a72c542c4d8d6f86e87fa42aeaa64562f157d5c7ce7c05c",
+    "build/precision-adapter-view-final.log": "266f7b58b0ffb42e9cf0408f4e781a25afe8ca3a24b02ca02d0a27132b61ec2b",
+    "build/stencil-precision-capabilities-final.log": "bdfde4bc5dc3f28382a5f98a9f0cedb7508704370237b9b70949a4cc4643ee40",
+    "build/stencil-precision-capabilities-final.xml": "3bb240438fada46856c6a812445b2382e8dfb3b42380260a81e45c52fbc639b9",
+    "build/stencil-precision-offline.log": "c48091adc5d161b1f0fc622f0b552fb32661b770b223dde8f5118489d78a18f3",
+    "build/stencil-precision-compare-final.log": "25fa9b3ff754b7fff0d386599301b1bac961b7e00be06d3d791ee102af5f66d2",
+    "build/adapter-depth-precision-build.log": "fdc2605b65f66119b5ffcaca19cb3dd6188d09075e1ec9df6128d3857df464fa"
+  },
+  "evidence_sha256": {
+    "docs/research/ue-legacy-rdc-scene/native-stencil-precision-final.json": "80ff8a3bf18efd644f8f3c7da5861d6d672380e289903ff19ae38560caaf5793",
+    "docs/research/ue-legacy-rdc-scene/grid-pixel-trace.json": "3bcdb06e8f6066463833087540aaed298ca7eaeec7c9dd0eea502c645eb22268",
+    "build/adapter-evidence/grid-geometry-before-stable-depth.json": "e8a04ddf6353860375b6059afb8c8bb5c9327d797ee751ad67ee5f9de929e089",
+    "build/adapter-evidence/grid-geometry-before-stable-depth.npz": "3c2797aaabb4aa5bb9cf3a97a4aaa1dcc46ce967d1dab0cc854791902838a9aa",
+    "build/adapter-evidence/grid-geometry-comparison.json": "f7594093435e7e1af97e0669826f26f051bfc8ff445cc39bdab584a3a516567d",
+    "build/adapter-evidence/grid-geometry-comparison.npz": "71fdfa018868a310285a11414bb014d806fa3d4e439ab9d33b6e709732eab307"
+  }
+}

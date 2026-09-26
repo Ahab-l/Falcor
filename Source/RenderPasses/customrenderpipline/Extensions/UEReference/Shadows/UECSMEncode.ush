@@ -1,0 +1,15 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Unchanged source excerpts; see UECSMSource.json.
+
+
+float ApplyPCFOverBlurCorrection(float Shadow)
+{
+	return Square(Shadow);
+}
+
+MaterialFloat EncodeLightAttenuation(MaterialFloat InColor)
+{
+	// Apply a 1/2 power to the input, which allocates more bits for the darks and prevents banding
+	// Similar to storing colors in gamma space, except this uses less instructions than a pow(x, 1/2.2)
+	return sqrt(InColor);
+}

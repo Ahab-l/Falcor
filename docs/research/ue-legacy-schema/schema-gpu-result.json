@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "default_generation": "803c111d2a7bf0ca417006e8d20417e7204f0c4e4f75967848e71851f33c6d34",
+  "active_generation": "7de8acaec7a993479127cce439afce7f6195365007f64ed91c5d5119a4a8ce0d",
+  "plugin_sha256": "b9570e6a94cd48435883b1bc1194e77a9e5d5bb8f6559890c1aad2af9756d140",
+  "schema_only_without_cpp_rebuild": true,
+  "logical_outputs_bitwise_equal": true,
+  "physical_slot_channel_and_bit_relocation": true,
+  "alias_model_dispatch": true,
+  "alias_is_test_fixture_not_new_ue_algorithm": true,
+  "zero_model_id_coverage": true,
+  "compile_failure_rollback": true,
+  "mixed_generation_rejected": true,
+  "invalid_edit_clears_pending": true,
+  "history_epoch": 3,
+  "covered_pixels": 117087
+}

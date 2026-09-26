@@ -1,0 +1,13 @@
+{
+  "type": "CustomRenderPiplineComputePass",
+  "file_inputs": ["shader.file"],
+  "properties": {
+    "shader": {"file": "Grade.slang"},
+    "resources": [
+      {"name": "source", "direction": "input", "binding": "gSource", "format": "RGBA32Float", "size": [64, 32]},
+      {"name": "color", "direction": "output", "binding": "gColor", "format": "RGBA32Float", "size": [64, 32]}
+    ],
+    "uniforms": {"Settings.gain": {"type": "float", "value": 0.5}},
+    "dispatch": {"extent": "color"}
+  }
+}

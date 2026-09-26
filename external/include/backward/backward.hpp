@@ -3588,19 +3588,25 @@ public:
   module_data operator()(HMODULE module) {
     module_data ret;
     char temp[buffer_length];
-    MODULEINFO mi;
+    MODULEINFO mi = {};
+    ret.base_address = NULL;
+    ret.load_size = 0;
 
-    GetModuleInformation(process, module, &mi, sizeof(mi));
+    if (!GetModuleInformation(process, module, &mi, sizeof(mi)))
+      return ret;
     ret.base_address = mi.lpBaseOfDll;
     ret.load_size = mi.SizeOfImage;
 
-    GetModuleFileNameExA(process, module, temp, sizeof(temp));
-    ret.image_name = temp;
-    GetModuleBaseNameA(process, module, temp, sizeof(temp));
-    ret.module_name = temp;
-    std::vector<char> img(ret.image_name.begin(), ret.image_name.end());
-    std::vector<char> mod(ret.module_name.begin(), ret.module_name.end());
-    SymLoadModule64(process, 0, &img[0], &mod[0], (DWORD64)ret.base_address,
+    DWORD length = GetModuleFileNameExA(process, module, temp, sizeof(temp));
+    if (!length || length >= sizeof(temp))
+      return ret;
+    ret.image_name.assign(temp, length);
+    length = GetModuleBaseNameA(process, module, temp, sizeof(temp));
+    if (!length || length >= sizeof(temp))
+      return ret;
+    ret.module_name.assign(temp, length);
+    // DbgHelp consumes NUL-terminated PCSTR strings, not character ranges.
+    SymLoadModule64(process, 0, ret.image_name.c_str(), ret.module_name.c_str(), (DWORD64)ret.base_address,
                     ret.load_size);
     return ret;
   }
@@ -3609,7 +3615,15 @@ public:
 template <> class TraceResolverImpl<system_tag::windows_tag>
     : public TraceResolverImplBase {
 public:
-  TraceResolverImpl() {
+  TraceResolverImpl() : image_type(0) {
+
+#if defined(_M_X64) || defined(__x86_64__)
+    image_type = IMAGE_FILE_MACHINE_AMD64;
+#elif defined(_M_IX86) || defined(__i386__)
+    image_type = IMAGE_FILE_MACHINE_I386;
+#elif defined(_M_ARM64) || defined(__aarch64__)
+    image_type = IMAGE_FILE_MACHINE_ARM64;
+#endif
 
     HANDLE process = GetCurrentProcess();
 
@@ -3627,9 +3641,11 @@ public:
                        module_handles.size() * sizeof(HMODULE), &cbNeeded);
     std::transform(module_handles.begin(), module_handles.end(),
                    std::back_inserter(modules), get_mod_info(process));
-    void *base = modules[0].base_address;
-    IMAGE_NT_HEADERS *h = ImageNtHeader(base);
-    image_type = h->FileHeader.Machine;
+    if (!modules.empty() && modules[0].base_address) {
+      IMAGE_NT_HEADERS *h = ImageNtHeader(modules[0].base_address);
+      if (h)
+        image_type = h->FileHeader.Machine;
+    }
   }
 
   static const int max_sym_len = 255;
@@ -3643,13 +3659,14 @@ public:
   ResolvedTrace resolve(ResolvedTrace t) override {
     HANDLE process = GetCurrentProcess();
 
-    char name[256];
+    char name[256] = {};
 
     memset(&sym, 0, sizeof(sym));
     sym.sym.SizeOfStruct = sizeof(SYMBOL_INFO);
     sym.sym.MaxNameLen = max_sym_len;
 
-    if (!SymFromAddr(process, (ULONG64)t.addr, &displacement, &sym.sym)) {
+    const bool has_symbol = SymFromAddr(process, (ULONG64)t.addr, &displacement, &sym.sym) != FALSE;
+    if (!has_symbol) {
       // TODO:  error handling everywhere
       char* lpMsgBuf;
       DWORD dw = GetLastError();
@@ -3665,10 +3682,17 @@ public:
 
       // abort();
     }
-    UnDecorateSymbolName(sym.sym.Name, (PSTR)name, 256, UNDNAME_COMPLETE);
+    std::string resolved_name;
+    if (has_symbol) {
+      if (UnDecorateSymbolName(sym.sym.Name, (PSTR)name, 256, UNDNAME_COMPLETE))
+        resolved_name = name;
+      else
+        resolved_name.assign(sym.sym.Name, sym.sym.NameLen);
+    }
 
     DWORD offset = 0;
-    IMAGEHLP_LINE line;
+    IMAGEHLP_LINE line = {};
+    line.SizeOfStruct = sizeof(line);
     if (SymGetLineFromAddr(process, (ULONG64)t.addr, &offset, &line)) {
       t.object_filename = line.FileName;
       t.source.filename = line.FileName;
@@ -3676,9 +3700,9 @@ public:
       t.source.col = offset;
     }
 
-    t.source.function = name;
+    t.source.function = resolved_name;
     t.object_filename = "";
-    t.object_function = name;
+    t.object_function = resolved_name;
 
     return t;
   }

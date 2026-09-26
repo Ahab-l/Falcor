@@ -1,0 +1,162 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+// Exact source excerpts; see LightingSource.json.
+
+float3 LuminanceFactors()
+{
+#if UE_LEGACY_LUMINANCE_FACTORS
+	return float3(0.3, 0.59, 0.11);
+#else
+	#if WORKING_COLOR_SPACE_IS_SRGB || MATERIAL_DOMAIN_UI
+		return float3(0.2126390059, 0.7151686788, 0.0721923154);
+	#else
+		return float3(WORKING_COLOR_SPACE_RGB_TO_XYZ_MAT._m10_m11_m12);
+	#endif
+#endif
+}
+
+MaterialFloat Luminance( MaterialFloat3 LinearColor )
+{
+	return dot( LinearColor, MaterialFloat3(LuminanceFactors()));
+}
+
+half DielectricSpecularToF0(half Specular)
+{
+	return half(0.08f * Specular);
+}
+
+half3 ComputeF0(half Specular, half3 BaseColor, half Metallic)
+{
+	return lerp(DielectricSpecularToF0(Specular).xxx, BaseColor, Metallic.xxx);
+}
+
+float3 ComputeDiffuseAlbedo(float3 BaseColor, float Metallic)
+{
+	return BaseColor - BaseColor * Metallic;
+}
+
+float GetSkyLightCubemapBrightness()
+{
+	return SkyIrradianceEnvironmentMap[7].x; // Refer to FSceneRenderer::UpdateSkyIrradianceGpuBuffer for more details.
+}
+
+half ComputeReflectionCaptureMipFromRoughness(half Roughness, half CubemapMaxMip)
+{
+	// Heuristic that maps roughness to mip level
+	// This is done in a way such that a certain mip level will always have the same roughness, regardless of how many mips are in the texture
+	// Using more mips in the cubemap just allows sharper reflections to be supported
+	half LevelFrom1x1 = REFLECTION_CAPTURE_ROUGHEST_MIP - REFLECTION_CAPTURE_ROUGHNESS_MIP_SCALE * log2(max(Roughness, 0.001));
+	return CubemapMaxMip - 1 - LevelFrom1x1;
+}
+
+float3 GetSkyLightReflection(float3 ReflectionVector, float Roughness, out float OutSkyAverageBrightness)
+{
+	float AbsoluteSpecularMip = ComputeReflectionCaptureMipFromRoughness(Roughness, ReflectionStruct.SkyLightParameters.x);
+	float3 Reflection = TextureCubeSampleLevel(ReflectionStruct.SkyLightCubemap, SharedSkyLightCubemapSampler, ReflectionVector, AbsoluteSpecularMip).rgb;
+
+	OutSkyAverageBrightness = GetSkyLightCubemapBrightness() * Luminance(View.SkyLightColor.rgb);
+	return Reflection * View.SkyLightColor.rgb;
+}
+
+float3 GetSkySHDiffuse(float3 Normal)
+{
+	float4 NormalVector = float4(Normal, 1.0f); 
+
+	float3 Intermediate0, Intermediate1, Intermediate2;
+	Intermediate0.x = dot(SkyIrradianceEnvironmentMap[0], NormalVector);
+	Intermediate0.y = dot(SkyIrradianceEnvironmentMap[1], NormalVector);
+	Intermediate0.z = dot(SkyIrradianceEnvironmentMap[2], NormalVector);
+
+	float4 vB = NormalVector.xyzz * NormalVector.yzzx;
+	Intermediate1.x = dot(SkyIrradianceEnvironmentMap[3], vB);
+	Intermediate1.y = dot(SkyIrradianceEnvironmentMap[4], vB);
+	Intermediate1.z = dot(SkyIrradianceEnvironmentMap[5], vB);
+
+	float vC = NormalVector.x * NormalVector.x - NormalVector.y * NormalVector.y;
+	Intermediate2 = SkyIrradianceEnvironmentMap[6].xyz * vC;
+
+	// max to not get negative colors
+	return max(0, Intermediate0 + Intermediate1 + Intermediate2);
+}
+
+half3 GetOffSpecularPeakReflectionDir(half3 Normal, half3 ReflectionVector, half Roughness)
+{
+	half a = Roughness * Roughness;
+	return lerp( Normal, ReflectionVector, (1 - a) * ( sqrt(1 - a) + a ) );	
+}
+
+half GetSpecularOcclusion(half NoV, half RoughnessSq, half AO)
+{
+	return saturate( pow( NoV + AO, RoughnessSq ) - 1 + AO );
+}
+
+half3 EnvBRDF( half3 SpecularColor, half Roughness, half NoV )
+{
+	// Importance sampled preintegrated G * F
+	float2 AB = Texture2DSampleLevel( PreIntegratedGF, PreIntegratedGFSampler, float2( NoV, Roughness ), 0 ).rg;
+
+	// Anything less than 2% is physically impossible and is instead considered to be shadowing 
+	float3 GF = SpecularColor * AB.x + saturate( 50.0 * SpecularColor.g ) * AB.y;
+	return GF;
+}
+
+struct FSkyLightVisibilityData
+{
+	float  SkyDiffuseLookUpMul;
+	float3 SkyDiffuseLookUpAdd;
+	float3 SkyDiffuseLookUpNormal;
+};
+
+FSkyLightVisibilityData GetSkyLightVisibilityData(float3 SkyLightingNormal, const float3 WorldNormal, const float GBufferAO, float ScreenAO, const float3 BentNormal)
+{
+	float SkyVisibility = 1;
+	float DotProductFactor = 1;
+
+#if APPLY_SKY_SHADOWING
+	#define USE_DIRECTIONAL_OCCLUSION_ON_SKY_DIFFUSE 1
+	#if USE_DIRECTIONAL_OCCLUSION_ON_SKY_DIFFUSE
+	{
+		SkyVisibility = length(BentNormal);
+		float3 NormalizedBentNormal = BentNormal / (max(SkyVisibility, .00001f));
+
+		// Use more bent normal in corners
+		float BentNormalWeightFactor = SkyVisibility;
+
+		SkyLightingNormal = lerp(NormalizedBentNormal, WorldNormal, BentNormalWeightFactor);
+		DotProductFactor = lerp(dot(NormalizedBentNormal, WorldNormal), 1, BentNormalWeightFactor);
+	}
+	#else
+	{
+		SkyVisibility = length(BentNormal);
+	}
+	#endif
+
+	float ContrastCurve = 1 / (1 + exp(-ContrastAndNormalizeMulAdd.x * (SkyVisibility * 10 - 5)));
+	SkyVisibility = saturate(ContrastCurve * ContrastAndNormalizeMulAdd.y + ContrastAndNormalizeMulAdd.z);
+
+	// Apply DFAO controls
+	SkyVisibility = pow(SkyVisibility, OcclusionExponent);
+	SkyVisibility = lerp(SkyVisibility, 1, OcclusionTintAndMinOcclusion.w);
+#endif
+
+	// Combine with other AO sources
+	if (OcclusionCombineMode == 0)
+	{
+		// Combine with min which nicely avoids over-occlusion in cases where strong DFAO is present along with strong SSAO (distant trees)
+		SkyVisibility = min(SkyVisibility, min(GBufferAO, ScreenAO));
+	}
+	else
+	{
+		// Combine with mul, which continues to add SSAO depth even indoors.  SSAO will need to be tweaked to be less strong.
+		SkyVisibility = SkyVisibility * min(GBufferAO, ScreenAO);
+	}
+
+	// Apply AO to the sky diffuse and account for darkening due to the geometry term
+	// apply the Diffuse color to the lighting (including OcclusionTintAndMinOcclusion as it's considered another light, that fixes SubsurfaceProfile being too dark)
+	FSkyLightVisibilityData SkyVisData;
+	SkyVisData.SkyDiffuseLookUpMul = SkyVisibility * DotProductFactor;
+	SkyVisData.SkyDiffuseLookUpAdd = (1 - SkyVisibility) * OcclusionTintAndMinOcclusion.xyz;
+	SkyVisData.SkyDiffuseLookUpNormal = SkyLightingNormal;
+	return SkyVisData;
+}
+
+

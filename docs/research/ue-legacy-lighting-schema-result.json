@@ -1,0 +1,653 @@
+{
+  "date": "2026-09-09",
+  "status": "lighting-schema-and-input-contract-verified",
+  "full_goal_complete": false,
+  "native_lighting_pass_complete": false,
+  "offline_tests": 159,
+  "native_resource_cpu_tests": 1,
+  "gpu_contract": {
+    "status": "passed",
+    "scope": "real Lighting Shader compile, dispatch, and analytic normal-incidence point-source limit",
+    "capture_equivalence": false,
+    "native_lighting_pass_complete": false,
+    "cases": [
+      {
+        "generation": "20c7e1e492e8c6d2fd4c6d20b3b5032554814f33b04b7701e9783698f7397804",
+        "schema_path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\20c7e1e492e8c6d2fd4c6d20b3b5032554814f33b04b7701e9783698f7397804\\GBuffer.json",
+        "lighting_hash": "f9958117eda4a70a7c1759aa629d840c5602527a46b1c5f7e24df6ec53c06631",
+        "model_ids": {
+          "Unlit": 0,
+          "DefaultLit": 1
+        },
+        "samples": 12,
+        "max_absolute_error": 1.093218436665211e-06
+      },
+      {
+        "generation": "87a88bd11022aae0abe266de878edafcaf996c66e5f3d138878f438f54507ae1",
+        "schema_path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\87a88bd11022aae0abe266de878edafcaf996c66e5f3d138878f438f54507ae1\\GBuffer.json",
+        "lighting_hash": "f9958117eda4a70a7c1759aa629d840c5602527a46b1c5f7e24df6ec53c06631",
+        "model_ids": {
+          "Unlit": 7,
+          "DefaultLit": 13
+        },
+        "samples": 12,
+        "max_absolute_error": 1.093218436665211e-06
+      }
+    ],
+    "model_id_relocation_bitwise_equal": true,
+    "falcor_dll_sha256": "f0f0fd228faf58b832ff4013e50432d44eacf05c440e78376fda22e68879e0e1"
+  },
+  "regressions": [
+    "Schema migration and rollback",
+    "Adapter resource identity"
+  ],
+  "capture_reference_resources": {
+    "lighting": {
+      "resources": {
+        "scene_color_before": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445.dds\\asset.dds",
+        "shadow_mask": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c.dds\\asset.dds",
+        "preintegrated_skin_brdf": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e.dds\\asset.dds",
+        "scene_ao": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52.dds\\asset.dds"
+      }
+    },
+    "resource_files": {
+      "/lighting/resources/scene_color_before": {
+        "path": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445.dds\\asset.dds",
+        "bytes": 11847828,
+        "sha1": "6787a19057e6567e1bc0fdf76049e1eff25835c1",
+        "sha256": "e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445"
+      },
+      "/lighting/resources/shadow_mask": {
+        "path": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c.dds\\asset.dds",
+        "bytes": 5923988,
+        "sha1": "2a94745ba7451359fd50c512a36823ff2b6f298c",
+        "sha256": "1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c"
+      },
+      "/lighting/resources/preintegrated_skin_brdf": {
+        "path": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e.dds\\asset.dds",
+        "bytes": 262292,
+        "sha1": "7695334b468d4eb936ea848a41fdf9ce7092f745",
+        "sha256": "7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e"
+      },
+      "/lighting/resources/scene_ao": {
+        "path": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52.dds\\asset.dds",
+        "bytes": 152,
+        "sha1": "fd0e56ff64e576f3fb0f89dbdb3a85038c825c56",
+        "sha256": "0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52"
+      }
+    }
+  },
+  "source_files": [
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\generate_schema.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\1a9b357209d5623baff05b54516193d5d9d49623aa2a4828a8c15fea8fa143b5\\generate_schema.py",
+      "bytes": 37700,
+      "sha256": "1a9b357209d5623baff05b54516193d5d9d49623aa2a4828a8c15fea8fa143b5"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\test_schema.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7c2f3bb2ef16a3b72160d8dd36c3fc90cb9774ed0c5352f49412ab9527af0834\\test_schema.py",
+      "bytes": 36227,
+      "sha256": "7c2f3bb2ef16a3b72160d8dd36c3fc90cb9774ed0c5352f49412ab9527af0834"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\test_lighting_schema.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\2e3c97494d7b7c76e49a8c492506f258623b46dfdedcddba9cde481ac40cb163\\test_lighting_schema.py",
+      "bytes": 17435,
+      "sha256": "2e3c97494d7b7c76e49a8c492506f258623b46dfdedcddba9cde481ac40cb163"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\pipeline_snapshot.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\3257351667b0e5ed3e5273510e60b7daeee0121db59b2851f4483e29a5915106\\pipeline_snapshot.py",
+      "bytes": 19802,
+      "sha256": "3257351667b0e5ed3e5273510e60b7daeee0121db59b2851f4483e29a5915106"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\test_pipeline_snapshot.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\21caf1ad399e64f77e72000a168265244038938da3017a42f4f59f3d1115e2d3\\test_pipeline_snapshot.py",
+      "bytes": 21905,
+      "sha256": "21caf1ad399e64f77e72000a168265244038938da3017a42f4f59f3d1115e2d3"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\resource_snapshot.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\04cae1fee2601e6956ea0c1dd6ada3af5946d98f4aa96cdac1b67cd64dc79711\\resource_snapshot.py",
+      "bytes": 4940,
+      "sha256": "04cae1fee2601e6956ea0c1dd6ada3af5946d98f4aa96cdac1b67cd64dc79711"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\test_resource_snapshot.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\62038465e3ff8a5c6ba3f319b32556b6052d9fc014bf9d3ba67752b5bb3d17ed\\test_resource_snapshot.py",
+      "bytes": 6061,
+      "sha256": "62038465e3ff8a5c6ba3f319b32556b6052d9fc014bf9d3ba67752b5bb3d17ed"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\scripts\\ue_legacy\\lighting_contract_smoke.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e11a064bdebe9abdfa7cb7dbfb7c72c51dbc45d8a7b90cd88c4ff7c9aebfd283\\lighting_contract_smoke.py",
+      "bytes": 7060,
+      "sha256": "e11a064bdebe9abdfa7cb7dbfb7c72c51dbc45d8a7b90cd88c4ff7c9aebfd283"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\CMakeLists.txt",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7ffbaca6707e61b516c439699683780fad1630ecd2bf7e4c81af954f67cb62ae\\CMakeLists.txt",
+      "bytes": 1294,
+      "sha256": "7ffbaca6707e61b516c439699683780fad1630ecd2bf7e4c81af954f67cb62ae"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\UELegacySceneIdentity.cpp",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\a095da0dd28a4063fd343b52f7d0e43d98751b3a6607e570bc78f553dd668426\\UELegacySceneIdentity.cpp",
+      "bytes": 14791,
+      "sha256": "a095da0dd28a4063fd343b52f7d0e43d98751b3a6607e570bc78f553dd668426"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\Tools\\FalcorTest\\Tests\\Core\\UELegacySceneIdentity.cpp",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\2d3ff68d4790c85e52e1dc325e66313ad8590ae8af4509171b4b94f74e7f51cb\\UELegacySceneIdentity.cpp",
+      "bytes": 21918,
+      "sha256": "2d3ff68d4790c85e52e1dc325e66313ad8590ae8af4509171b4b94f74e7f51cb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\docs\\research\\ue-legacy-lighting-schema.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e93cab5b1b35d801405a6373495c479da710b45e9960a8e01cd028171d209afc\\ue-legacy-lighting-schema.md",
+      "bytes": 5186,
+      "sha256": "e93cab5b1b35d801405a6373495c479da710b45e9960a8e01cd028171d209afc"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\docs\\research\\ue-legacy-lighting-capture.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\29ff7d1335edceff2db7a4731afdade10d96f07dc78ff24dc45b723873963bce\\ue-legacy-lighting-capture.md",
+      "bytes": 18978,
+      "sha256": "29ff7d1335edceff2db7a4731afdade10d96f07dc78ff24dc45b723873963bce"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\docs\\research\\ue-legacy-direct-lighting-source.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7fc3efe4a6721f9960094af0a0bbb346371c5b9739f017c161b0c67c800e4556\\ue-legacy-direct-lighting-source.md",
+      "bytes": 28697,
+      "sha256": "7fc3efe4a6721f9960094af0a0bbb346371c5b9739f017c161b0c67c800e4556"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\docs\\research\\ue-legacy-model-lighting-source.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\26a8597f92b2fef10561f6003e9f0d369c2f36ad9577901b73318232216730df\\ue-legacy-model-lighting-source.md",
+      "bytes": 31596,
+      "sha256": "26a8597f92b2fef10561f6003e9f0d369c2f36ad9577901b73318232216730df"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\docs\\superpowers\\plans\\2026-09-09-ue-legacy-direct-lighting.md",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\308e247f8142bb73b8a5b29158008ac690c186ddfcf9b5a4c8026aad5d18c9f4\\2026-09-09-ue-legacy-direct-lighting.md",
+      "bytes": 5185,
+      "sha256": "308e247f8142bb73b8a5b29158008ac690c186ddfcf9b5a4c8026aad5d18c9f4"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\ClearCoat.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\ecb689914c1175fe18c8ac84d3de6bd7a585846f1c8e1b1f12beaaf5f1e468f9\\ClearCoat.slangh",
+      "bytes": 2282,
+      "sha256": "ecb689914c1175fe18c8ac84d3de6bd7a585846f1c8e1b1f12beaaf5f1e468f9"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Cloth.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\0ef6d7ace12846400799de2d21813aac85283edb447fbd7c3dbad4e1b40a1644\\Cloth.slangh",
+      "bytes": 789,
+      "sha256": "0ef6d7ace12846400799de2d21813aac85283edb447fbd7c3dbad4e1b40a1644"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\ef9dc3299bff52caf86d9ebb6dcab970cf13eb74c0892bd0d743a1d731c17aa7\\DefaultLit.slangh",
+      "bytes": 3009,
+      "sha256": "ef9dc3299bff52caf86d9ebb6dcab970cf13eb74c0892bd0d743a1d731c17aa7"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\DefaultLit.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\95fa47bda7871e30165074b16fbd9b033b3bb1a5bfcfeecf0939a717588b1480\\DefaultLit.slangh",
+      "bytes": 1679,
+      "sha256": "95fa47bda7871e30165074b16fbd9b033b3bb1a5bfcfeecf0939a717588b1480"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\LightingCommon.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\80fdab0392fa317fea03bab18396085ff25061bb853b35c5d7c531b1b9c3e316\\LightingCommon.slangh",
+      "bytes": 10149,
+      "sha256": "80fdab0392fa317fea03bab18396085ff25061bb853b35c5d7c531b1b9c3e316"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Unlit.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\c3c8ec02cb212a3f21fa8dffa720da29a295b2800e54e59f3cbb8a87850f95c6\\Unlit.slangh",
+      "bytes": 492,
+      "sha256": "c3c8ec02cb212a3f21fa8dffa720da29a295b2800e54e59f3cbb8a87850f95c6"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Subsurface.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\19b315a2dd4733db3a17469b00bc430b232e6829780203336f00df0dce1c048b\\Subsurface.slangh",
+      "bytes": 791,
+      "sha256": "19b315a2dd4733db3a17469b00bc430b232e6829780203336f00df0dce1c048b"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Surface.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\8592dd5c26ecb19f63b82519174866822f698f9e189f80d04a829c07b53704dd\\Surface.slangh",
+      "bytes": 911,
+      "sha256": "8592dd5c26ecb19f63b82519174866822f698f9e189f80d04a829c07b53704dd"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Unlit.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\701e119c400da1f32cfb0488f54e8f0cd9ba415b6f2c6739dac38ffb0dd6ab1e\\Unlit.slangh",
+      "bytes": 593,
+      "sha256": "701e119c400da1f32cfb0488f54e8f0cd9ba415b6f2c6739dac38ffb0dd6ab1e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\ClearCoat.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\eca82c0fabdf4dd664ab6ed2b57a725fbb4a14d11b508fd39aee84231c27ad09\\ClearCoat.codec.json",
+      "bytes": 415,
+      "sha256": "eca82c0fabdf4dd664ab6ed2b57a725fbb4a14d11b508fd39aee84231c27ad09"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\ClearCoatBottomNormal.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\415ea27b4a682cc17cfe01b53f25da9aed821854692e923a77393517af2e1deb\\ClearCoatBottomNormal.codec.json",
+      "bytes": 474,
+      "sha256": "415ea27b4a682cc17cfe01b53f25da9aed821854692e923a77393517af2e1deb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Cloth.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\a82014d349bc72dace00b804f06388ec602f5fe87bbeb5ba4b246917c2c9f869\\Cloth.codec.json",
+      "bytes": 407,
+      "sha256": "a82014d349bc72dace00b804f06388ec602f5fe87bbeb5ba4b246917c2c9f869"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\DefaultLit.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\8002f8cbdb9fcb85fd94dc894ad36d1f2c5f1e880ec9d3ac980fb98106fbdb50\\DefaultLit.codec.json",
+      "bytes": 374,
+      "sha256": "8002f8cbdb9fcb85fd94dc894ad36d1f2c5f1e880ec9d3ac980fb98106fbdb50"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\DefaultLit.lighting.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\9ffeb59dbe92ac501f04ccac4489701171c77de525c75e1fe430b58c537efe09\\DefaultLit.lighting.json",
+      "bytes": 387,
+      "sha256": "9ffeb59dbe92ac501f04ccac4489701171c77de525c75e1fe430b58c537efe09"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Lighting\\Unlit.lighting.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4da08f26f5ac70efd9bc8a0f7e97bdf00b87f2efa520bab489f3f4f0260f7878\\Unlit.lighting.json",
+      "bytes": 248,
+      "sha256": "4da08f26f5ac70efd9bc8a0f7e97bdf00b87f2efa520bab489f3f4f0260f7878"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Subsurface.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\28d0a25f4ec4f0fff4504976dc02d02a22eefafe0e9738b1c713510fe3955023\\Subsurface.codec.json",
+      "bytes": 417,
+      "sha256": "28d0a25f4ec4f0fff4504976dc02d02a22eefafe0e9738b1c713510fe3955023"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Codecs\\Unlit.codec.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7c385374dff79429532f5fef713e8bb282e17c8721905de4832ccc6e54c0a87f\\Unlit.codec.json",
+      "bytes": 189,
+      "sha256": "7c385374dff79429532f5fef713e8bb282e17c8721905de4832ccc6e54c0a87f"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Schemas\\DefaultLit.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\405724628451ab9afd4b8353d498f3b8b3cef085cef7afa97bfd3dff6a4a7fdb\\DefaultLit.json",
+      "bytes": 2771,
+      "sha256": "405724628451ab9afd4b8353d498f3b8b3cef085cef7afa97bfd3dff6a4a7fdb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\Source\\RenderPasses\\UELegacy\\Schemas\\OpaqueModels.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\1cee08b515603b1e0839fc63fc21bbc975b8d797261879e22f864154a5d7254e\\OpaqueModels.json",
+      "bytes": 9952,
+      "sha256": "1cee08b515603b1e0839fc63fc21bbc975b8d797261879e22f864154a5d7254e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\record-lighting-contract-evidence.py",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4ce2e1ff915a67a47acb4e9169f9f5c981f55c4392d8bb510491eae69116b78f\\record-lighting-contract-evidence.py",
+      "bytes": 6392,
+      "sha256": "4ce2e1ff915a67a47acb4e9169f9f5c981f55c4392d8bb510491eae69116b78f"
+    }
+  ],
+  "evidence_files": [
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\5d4ff5d66654c054d0132c698b7661adbb8ddd6e68fdba1437e2c8db62aa070f\\result.json",
+      "bytes": 1428,
+      "sha256": "5d4ff5d66654c054d0132c698b7661adbb8ddd6e68fdba1437e2c8db62aa070f"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\0.npz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\b437584b3a5a16fbff898e494fcef38988f9576559a2469a69a2fd683b5d94c7\\0.npz",
+      "bytes": 2870,
+      "sha256": "b437584b3a5a16fbff898e494fcef38988f9576559a2469a69a2fd683b5d94c7"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\1.npz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e3597c67dd22291a1e9d1840d9b4bfd6be7ce9a30ef40bce51d5d1843a091734\\1.npz",
+      "bytes": 2870,
+      "sha256": "e3597c67dd22291a1e9d1840d9b4bfd6be7ce9a30ef40bce51d5d1843a091734"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\0.cs.slang",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\20745ee8b5689f87565081d4fdbeef1e47d8b88721f54a8c567076fd354aa0a0\\0.cs.slang",
+      "bytes": 25070,
+      "sha256": "20745ee8b5689f87565081d4fdbeef1e47d8b88721f54a8c567076fd354aa0a0"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\1.cs.slang",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\a8a4ab5edf43b0f28fba9b52029d8c6c8cf73d73b979589238c522bf0c139e8d\\1.cs.slang",
+      "bytes": 25076,
+      "sha256": "a8a4ab5edf43b0f28fba9b52029d8c6c8cf73d73b979589238c522bf0c139e8d"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\offline-tests.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4e5b425653a527e43eac87bf102b6bfe91bff999700fb54535a0b574dd67f01d\\offline-tests.log",
+      "bytes": 264,
+      "sha256": "4e5b425653a527e43eac87bf102b6bfe91bff999700fb54535a0b574dd67f01d"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\native-resource-test.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\9570ef14818f764cd20e0ba7bf749073b149ce08c838d9a584f09f79af152e57\\native-resource-test.log",
+      "bytes": 433,
+      "sha256": "9570ef14818f764cd20e0ba7bf749073b149ce08c838d9a584f09f79af152e57"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\schema-regression.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\3a5d7e0337eb2865f48cab89e7ed81366eaa3265df6c8e2ad8f166fd368b0255\\schema-regression.log",
+      "bytes": 266448,
+      "sha256": "3a5d7e0337eb2865f48cab89e7ed81366eaa3265df6c8e2ad8f166fd368b0255"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\adapter-resource-regression.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\935db54c40ca7035aee05e3936351b6b7f0b4f64b807672840e43b9c61dd5c9a\\adapter-resource-regression.log",
+      "bytes": 61762,
+      "sha256": "935db54c40ca7035aee05e3936351b6b7f0b4f64b807672840e43b9c61dd5c9a"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\lighting-contract-gpu.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\540b721191b5ea8baa7f89f8dc542a98124a76ff32c27f4c12e31ffce41f822a\\lighting-contract-gpu.log",
+      "bytes": 1952,
+      "sha256": "540b721191b5ea8baa7f89f8dc542a98124a76ff32c27f4c12e31ffce41f822a"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\20c7e1e492e8c6d2fd4c6d20b3b5032554814f33b04b7701e9783698f7397804\\GBuffer.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\147911d0a1151139644616c66d4126187ca808359e80f78d6d41d4bd2fd2afbb\\GBuffer.json",
+      "bytes": 15702,
+      "sha256": "147911d0a1151139644616c66d4126187ca808359e80f78d6d41d4bd2fd2afbb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\20c7e1e492e8c6d2fd4c6d20b3b5032554814f33b04b7701e9783698f7397804\\GBuffer.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\33cca321a07b3e960186b8d1016e99adbaed21dc954445e89de4c544fae4a471\\GBuffer.slangh",
+      "bytes": 23333,
+      "sha256": "33cca321a07b3e960186b8d1016e99adbaed21dc954445e89de4c544fae4a471"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\87a88bd11022aae0abe266de878edafcaf996c66e5f3d138878f438f54507ae1\\GBuffer.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e9ebe97e04b51426d8a1a61e8ff87635b51942d8f944e1fbfebf90b7c6871b1b\\GBuffer.json",
+      "bytes": 15704,
+      "sha256": "e9ebe97e04b51426d8a1a61e8ff87635b51942d8f944e1fbfebf90b7c6871b1b"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\generations\\87a88bd11022aae0abe266de878edafcaf996c66e5f3d138878f438f54507ae1\\GBuffer.slangh",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4a9a6d00a2e891d6603c1d337ca6a91e31ceb6cbed28a8cff9cc849f69246c55\\GBuffer.slangh",
+      "bytes": 23339,
+      "sha256": "4a9a6d00a2e891d6603c1d337ca6a91e31ceb6cbed28a8cff9cc849f69246c55"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\dds\\PreintegratedSkinBRDF.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e\\PreintegratedSkinBRDF.dds",
+      "bytes": 262292,
+      "sha256": "7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\dds\\SceneColorBefore.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445\\SceneColorBefore.dds",
+      "bytes": 11847828,
+      "sha256": "e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\dds\\ScreenSpaceAO.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52\\ScreenSpaceAO.dds",
+      "bytes": 152,
+      "sha256": "0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\dds\\ShadowMaskTexture.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c\\ShadowMaskTexture.dds",
+      "bytes": 5923988,
+      "sha256": "1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\dds-inputs.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e4729fee336e1b697758fa127e0a1cb31a8868b65373e09b70ebcdfb4a908f7e\\dds-inputs.json",
+      "bytes": 2914,
+      "sha256": "e4729fee336e1b697758fa127e0a1cb31a8868b65373e09b70ebcdfb4a908f7e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\debug-pixel-summary.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\1b92b1e701519934bc6126b9ecf48ad90f456b94e5686d8abcf94a3d8a33afc3\\debug-pixel-summary.json",
+      "bytes": 2713,
+      "sha256": "1b92b1e701519934bc6126b9ecf48ad90f456b94e5686d8abcf94a3d8a33afc3"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\direct-light-delta.npy",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\408640929ba3329b7df2b287d01033fd779aabb338c6402b18f2b830a6b5f858\\direct-light-delta.npy",
+      "bytes": 23695488,
+      "sha256": "408640929ba3329b7df2b287d01033fd779aabb338c6402b18f2b830a6b5f858"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\light-uniforms.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\bb66d46aba6ef3698bbbb3fa82bdfa684f4c6c1381cb40be6cd48d38560d3eb3\\light-uniforms.json",
+      "bytes": 2910,
+      "sha256": "bb66d46aba6ef3698bbbb3fa82bdfa684f4c6c1381cb40be6cd48d38560d3eb3"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\lighting-summary.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\2554c1ac830c974bea934451d43446359c2c21ae0ea8eaf51ee0911c156652b6\\lighting-summary.json",
+      "bytes": 10886,
+      "sha256": "2554c1ac830c974bea934451d43446359c2c21ae0ea8eaf51ee0911c156652b6"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2520-SceneColor.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\b465515c0a0458ee3ee2fa63366ce2ab2f14555fc959b3fb87c95692056602ca\\2520-SceneColor.bin.gz",
+      "bytes": 5815365,
+      "sha256": "b465515c0a0458ee3ee2fa63366ce2ab2f14555fc959b3fb87c95692056602ca"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2624-SceneColor.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\406fe0e9448a67a51e11b2b7ef4839029bd2a834f0128b5e03968221929a5aeb\\2624-SceneColor.bin.gz",
+      "bytes": 5815365,
+      "sha256": "406fe0e9448a67a51e11b2b7ef4839029bd2a834f0128b5e03968221929a5aeb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-cb0.bin",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6\\2655-Pixel-cb0.bin",
+      "bytes": 6748,
+      "sha256": "4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-cb1.bin",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\51afaea5fe7bdc5eaf6b855156a390938d221ca79aea815add4b2158bc6ae2b7\\2655-Pixel-cb1.bin",
+      "bytes": 184,
+      "sha256": "51afaea5fe7bdc5eaf6b855156a390938d221ca79aea815add4b2158bc6ae2b7"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t0-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\3013cb8b173c85488bb1215ca64876a11a70364ed8b68b13810ade9a1645948e\\2655-Pixel-t0-mip0-slice0.bin.gz",
+      "bytes": 25725,
+      "sha256": "3013cb8b173c85488bb1215ca64876a11a70364ed8b68b13810ade9a1645948e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t1-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e49b56b5c2931235ed1c0a9b078e57ae2c4ac74a920c8185ae2ffbe5b54941dc\\2655-Pixel-t1-mip0-slice0.bin.gz",
+      "bytes": 632,
+      "sha256": "e49b56b5c2931235ed1c0a9b078e57ae2c4ac74a920c8185ae2ffbe5b54941dc"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t2-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\6ef1199e1aa3a05721d36b773afd718627cc34f7be8aef092ce542e98492b050\\2655-Pixel-t2-mip0-slice0.bin.gz",
+      "bytes": 1046509,
+      "sha256": "6ef1199e1aa3a05721d36b773afd718627cc34f7be8aef092ce542e98492b050"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t3-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\8d3a4225760e964e6730c0d1d3366df951886bd6ca498cbbb8b2c8f04cfd0775\\2655-Pixel-t3-mip0-slice0.bin.gz",
+      "bytes": 191916,
+      "sha256": "8d3a4225760e964e6730c0d1d3366df951886bd6ca498cbbb8b2c8f04cfd0775"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t4-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\ad21a8ac36f562622e93f7d91b92cab135f4dd215b5a7eee0db84c9dad8c29ca\\2655-Pixel-t4-mip0-slice0.bin.gz",
+      "bytes": 288333,
+      "sha256": "ad21a8ac36f562622e93f7d91b92cab135f4dd215b5a7eee0db84c9dad8c29ca"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t5-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\06edd98826186717132daff7ad9f1ec8f67b7e4261ff4d1b42389c5e4a7964e9\\2655-Pixel-t5-mip0-slice0.bin.gz",
+      "bytes": 97827,
+      "sha256": "06edd98826186717132daff7ad9f1ec8f67b7e4261ff4d1b42389c5e4a7964e9"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t6-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\8f331cb0317d1d56e8527768d622d5ec114bdc95a943050d8c26b9cda74175da\\2655-Pixel-t6-mip0-slice0.bin.gz",
+      "bytes": 5818,
+      "sha256": "8f331cb0317d1d56e8527768d622d5ec114bdc95a943050d8c26b9cda74175da"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t7-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\2d91475fe0493672d47c8dedc67fe6d01c32a1d44ece9cd64d3d883f4dea4db2\\2655-Pixel-t7-mip0-slice0.bin.gz",
+      "bytes": 54,
+      "sha256": "2d91475fe0493672d47c8dedc67fe6d01c32a1d44ece9cd64d3d883f4dea4db2"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Pixel-t8-mip0-slice0.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\a14bd167d41e6f291a062d1dc4e7a2aec4dfb884b1aa774bf4919ba1cdcfe7d0\\2655-Pixel-t8-mip0-slice0.bin.gz",
+      "bytes": 46432,
+      "sha256": "a14bd167d41e6f291a062d1dc4e7a2aec4dfb884b1aa774bf4919ba1cdcfe7d0"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-SceneColor.bin.gz",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\34465ca2a9fa0976a34476c9e5e2f583cf8cafdc99a7c3cfaf297d3090de8025\\2655-SceneColor.bin.gz",
+      "bytes": 3686855,
+      "sha256": "34465ca2a9fa0976a34476c9e5e2f583cf8cafdc99a7c3cfaf297d3090de8025"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Vertex-cb0.bin",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\3b36d9342f663be48c8effa4660b2c105cb5f62fce8ffc3e2743c6fee4ba20b1\\2655-Vertex-cb0.bin",
+      "bytes": 64,
+      "sha256": "3b36d9342f663be48c8effa4660b2c105cb5f62fce8ffc3e2743c6fee4ba20b1"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\2655-Vertex-cb1.bin",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6\\2655-Vertex-cb1.bin",
+      "bytes": 6748,
+      "sha256": "4045154c242f2bee105d25b8f17b4d52e3a00865e6bcb013d3d77eeca5ee05c6"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\api.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\0715012b3dd273694c3d13d2b0257d75492d1450b61acac36a343484eb7f3acd\\api.json",
+      "bytes": 4820,
+      "sha256": "0715012b3dd273694c3d13d2b0257d75492d1450b61acac36a343484eb7f3acd"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\debug-280-475-states.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\4d540165285ff79b0006f5c1601b328d1cea97060377a008153c83f5e36ed875\\debug-280-475-states.json",
+      "bytes": 21042573,
+      "sha256": "4d540165285ff79b0006f5c1601b328d1cea97060377a008153c83f5e36ed875"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\debug-280-475-trace.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\ec4a54cd90705601449e67a49b58a93db5169c12fa434f331f38876abdb54385\\debug-280-475-trace.json",
+      "bytes": 2927694,
+      "sha256": "ec4a54cd90705601449e67a49b58a93db5169c12fa434f331f38876abdb54385"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\debug-650-950-states.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\58742fbb6f7e45a837f4aeba13ecc7df2889cd27870495fed624388bd13e1e58\\debug-650-950-states.json",
+      "bytes": 21041166,
+      "sha256": "58742fbb6f7e45a837f4aeba13ecc7df2889cd27870495fed624388bd13e1e58"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\debug-650-950-trace.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e200dfa4d8fea34c9056d7ab8184bd1c3c806714b00cfb103fa93e1083986d41\\debug-650-950-trace.json",
+      "bytes": 2927669,
+      "sha256": "e200dfa4d8fea34c9056d7ab8184bd1c3c806714b00cfb103fa93e1083986d41"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\replay-done.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\aacec04c5d8eee1e9a99cf877eec5dacd98ad91a94ab866698eab65c5ba67114\\replay-done.json",
+      "bytes": 663,
+      "sha256": "aacec04c5d8eee1e9a99cf877eec5dacd98ad91a94ab866698eab65c5ba67114"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\replay-lighting.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\b35e47cc3bec5832a011a5e6650286dcb951bebdf39c0899a36f6623475da564\\replay-lighting.json",
+      "bytes": 597434,
+      "sha256": "b35e47cc3bec5832a011a5e6650286dcb951bebdf39c0899a36f6623475da564"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\shader-2655-Pixel.txt",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\c4a958663f70f6271e05c254d25e372c88d3ef7e2d46a9b6d4e66e81662bdae8\\shader-2655-Pixel.txt",
+      "bytes": 143105,
+      "sha256": "c4a958663f70f6271e05c254d25e372c88d3ef7e2d46a9b6d4e66e81662bdae8"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\raw\\shader-2655-Vertex.txt",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\50b2745a3314aa82af49d4bf1f53d88a02afad54ed11ad347b66a62685e14c65\\shader-2655-Vertex.txt",
+      "bytes": 7461,
+      "sha256": "50b2745a3314aa82af49d4bf1f53d88a02afad54ed11ad347b66a62685e14c65"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\reference-resource-snapshot.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\66d8d8a5d5aa5bef7f580c0f62f54436db324d2209fdf788fc20737b0b433bdd\\reference-resource-snapshot.json",
+      "bytes": 2282,
+      "sha256": "66d8d8a5d5aa5bef7f580c0f62f54436db324d2209fdf788fc20737b0b433bdd"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\replay-process.log",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\\replay-process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\rdc-lighting\\view-uniforms.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\fc307ba7fde343f186ce47061526b6bb27ca40a483dda0bd8b23630285eb6889\\view-uniforms.json",
+      "bytes": 23628,
+      "sha256": "fc307ba7fde343f186ce47061526b6bb27ca40a483dda0bd8b23630285eb6889"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\schema-evidence\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\805b3cdbe4cec218d35eb46a72dc473d43eb75e25aeb0413eb6533262da2f0be\\result.json",
+      "bytes": 730,
+      "sha256": "805b3cdbe4cec218d35eb46a72dc473d43eb75e25aeb0413eb6533262da2f0be"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\adapter-resource-identity-evidence\\result.json",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\845f0e42369dd49533308713916e62453ae4ff09fc5ab9d2606ac77ef13215fb\\result.json",
+      "bytes": 10504,
+      "sha256": "845f0e42369dd49533308713916e62453ae4ff09fc5ab9d2606ac77ef13215fb"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445.dds\\asset.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445\\asset.dds",
+      "bytes": 11847828,
+      "sha256": "e5f58dc815d1512f41d11abe4a9710ea320421385d69a116af78a4831eb0b445"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c.dds\\asset.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c\\asset.dds",
+      "bytes": 5923988,
+      "sha256": "1dc4a1b755c00aff0125ca7b3f0994e9757325b5f1af66055f88fa7284418a7c"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e.dds\\asset.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e\\asset.dds",
+      "bytes": 262292,
+      "sha256": "7fb19981811b44afbb8de5aef17e215484306585cc33f5f39f2f4f7c570fcd4e"
+    },
+    {
+      "source": "E:\\Project\\falcor\\Falcor-m0\\build\\resource-generations\\0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52.dds\\asset.dds",
+      "path": "E:\\Project\\falcor\\Falcor-m0\\build\\lighting-contract-evidence\\archive\\0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52\\asset.dds",
+      "bytes": 152,
+      "sha256": "0ebb13ab2d75c61541c7ad7f9b9401b9d1f62bbcfb62bf3dfbf6537907bb7e52"
+    }
+  ],
+  "runtime_hashes": {
+    "Falcor.dll": "f0f0fd228faf58b832ff4013e50432d44eacf05c440e78376fda22e68879e0e1",
+    "plugins/UELegacy.dll": "752956f07484173c81d5b9030b018892a29ddc8093bdc426361aecb94d21b998",
+    "FalcorTest.exe": "1569cba6fcea8943977551bac8165de64e010ad94de29686f5e0168d3b15737a"
+  },
+  "limitations": [
+    "GPU arithmetic checks cover normal-incidence point-source limit only",
+    "Capsule, non-normal angles, shadow terms and local attenuation still require numeric tests",
+    "No native LightingPass, HDR accumulation or E2655 output equivalence yet",
+    "Other model Lighting, Clustered, SSR, TSR, Web and final scene remain incomplete"
+  ]
+}

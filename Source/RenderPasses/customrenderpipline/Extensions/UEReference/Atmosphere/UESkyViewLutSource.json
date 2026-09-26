@@ -1,0 +1,136 @@
+{
+  "capture_inputs": false,
+  "engine": "53c568c6b4e0318ef75fd81cdcf6edd5dd51a9b0",
+  "excerpts": [
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\FastMathThirdParty.ush",
+      "signature": "float acosFast4(",
+      "byte_offset": 6043,
+      "bytes": 352,
+      "source_sha256": "4f0a38c0d37d1c5ba0d2b9a7cac89e6596a9403ba637088bc450910f1b0f03bc",
+      "excerpt_sha256": "ba3f0acc97fd1b6bbb493a769b2cec8f4a8bb4dcc639c481bac5e0cbb6c88a45",
+      "line": 231
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float2 FromSubUvsToUnit(",
+      "byte_offset": 1773,
+      "bytes": 152,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "83915120d0fa6de26e92df0f4c381b9b78a0eece208bee2e4ea7cfe044342715",
+      "line": 39
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphereCommon.ush",
+      "signature": "float3x3 GetSkyViewLutReferential(",
+      "byte_offset": 9101,
+      "bytes": 179,
+      "source_sha256": "ebc9389258684431980247fefc83cb14920f1d6300c96f84b2f1d3a75ff857d6",
+      "excerpt_sha256": "500221e7b5552ceefb2fb54c254a8dac915d0cb9071c3673ffc09eb750628c69",
+      "line": 227
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3x3 GetSkyViewLutReferentialParameter(",
+      "byte_offset": 9386,
+      "bytes": 110,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "a21ccd9a456cde08607a53e45ec4eb769c892d86c9ae7b12983e2719f5201dac",
+      "line": 298
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetSkyPlanetTranslatedWorldCenterAndViewHeightParameter(",
+      "byte_offset": 9498,
+      "bytes": 130,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "4b3906d4459441b895a4e10f5653bb5741fd5b2936ea0e6c6e39ba442f8b86e0",
+      "line": 303
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetSkyCameraTranslatedWorldOriginParameter(",
+      "byte_offset": 9630,
+      "bytes": 100,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "265bb9fcae5593a5fa6f7a8c836ee3a8ad56dcb0c48069d9e7a50f6eba032c5c",
+      "line": 308
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetCameraTranslatedWorldPos(",
+      "byte_offset": 9979,
+      "bytes": 94,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "2aabb1172bec2520f3c2f1600b25f463647ac0ee8be15c5e986b9abf8ac3ba50",
+      "line": 317
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetTranslatedCameraPlanetPos(",
+      "byte_offset": 10265,
+      "bytes": 159,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "dea563af70522db653f9d094b3157ec7e920e603b47adc97263e099b523e8fb7",
+      "line": 324
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "bool MoveToTopAtmosphere(",
+      "byte_offset": 4618,
+      "bytes": 587,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "28dbc465b74ce3868b2c476fe086e836b69e2bd55d3f64f00876773617a3f6e5",
+      "line": 169
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void UvToSkyViewLutParams(",
+      "byte_offset": 6336,
+      "bytes": 1594,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "54d4f6bcb5bd5635150dbf92cd4eea6d3990bd2209bb60ec6128da08f9545d97",
+      "line": 214
+    },
+    {
+      "output": "UESkyViewHelpers.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "float3 GetMultipleScattering(",
+      "byte_offset": 12621,
+      "bytes": 482,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "9cf08804c2fe6d2ce397b4965659558744a528d5ef1273fff44a8bd775bab7b1",
+      "line": 381
+    },
+    {
+      "output": "UESkyViewLut.ush",
+      "source": "E:\\ue\\engine\\UnrealEngine\\Engine\\Shaders\\Private\\SkyAtmosphere.usf",
+      "signature": "void RenderSkyViewLutCS(",
+      "byte_offset": 55587,
+      "bytes": 2449,
+      "source_sha256": "f151179098c9da894b9c20740c0a9f18f2e91a475565880404492bc0bf9da5d2",
+      "excerpt_sha256": "6fa193635cf7ec88b32b7401d407da5ebab2701a0c3eaa3075b7828ee75aa950",
+      "line": 1351
+    }
+  ],
+  "outputs": [
+    {
+      "path": "UESkyViewHelpers.ush",
+      "sha256": "20f036c31ef1ecc13c3f3fa67e4846dc5e4c86a1ea08a2f1688fb57683ae0726"
+    },
+    {
+      "path": "UESkyViewLut.ush",
+      "sha256": "fa4be9c11bd607b79d1cc82383ce3f656ca22062df83853692ac43869a7da6de"
+    }
+  ]
+}
