@@ -110,7 +110,7 @@ Assert failures for: null graph Scene, route list not an array, missing selector
 
 - [x] **Step 4: Run the relevant build target and record exact command/output in `progress.md`.**
 
-- [ ] **Step 5: Commit the implementation and documentation** with `git add` and `git commit -m "feat: add script mesh pass routing"`.
+- [x] **Step 5: Commit the implementation and documentation** with `git add` and `git commit -m "feat: add script mesh pass routing"`.
 
 ---
 
