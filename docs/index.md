@@ -5,5 +5,6 @@
 - [Falcor In Python](./falcor-in-python.md)
 - [Tutorials](./tutorials/index.md)
 - [Usage](./usage/index.md)
+- [CustomRenderPipline](./customrenderpipline/README.md)
 - [Development](./development/index.md)
 - [Known Issues](./known-issues.md)

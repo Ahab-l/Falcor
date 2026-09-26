@@ -67,3 +67,7 @@ transform changes continue to update the existing raster draw lists.
 
 This is a raster MeshPass facility. It is separate from hardware Mesh Shader
 pipelines and does not imply support for a mesh-shader pipeline.
+
+For the full scripting guide, API field reference, validation workflow, and
+the restored UE targetmap consumer example, see
+[`docs/customrenderpipline/README.md`](../../../docs/customrenderpipline/README.md).

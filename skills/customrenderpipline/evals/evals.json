@@ -1,0 +1,23 @@
+{
+  "skill_name": "customrenderpipline",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "为 Falcor CustomRenderPipline 写一个脚本方案：按材质把 opaque 和 hair 分到两个 MeshPass，各自使用不同 shader 和 GBuffer 附件，并说明图边和输出如何连接。请指出哪些选择器是安全的、哪些错误应拒绝。",
+      "expected_output": "给出可复制的 customRenderPiplineAddMeshPasses Python 示例，准确说明 materials/instanceIDs 二选一、属性放在 properties、图边由调用者连接，以及重复/未知/非法实例的拒绝行为。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我们要把之前还原的 UE targetmap 管线接到 Falcor CustomRenderPipline。请设计迁移步骤，保证自定义 GBuffer 在 shading 前可验证，并说明 UE 兼容算法应该放在哪里、核心插件不应该依赖什么。",
+      "expected_output": "区分核心框架和 UE consumer；给出 GBuffer/codec/lighting 的 Pass 图装配与验证顺序；明确旧 UE ABI/Config/RDC 不是核心运行时依赖。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "CustomRenderPipline 的 GBuffer 输出与目标图有差异。请给出脚本侧的观察、原始读回和误差比较排查流程，涵盖普通纹理、结构化/原始缓冲、Depth/Stencil 和跨帧 History，并指出同步读回的性能风险。",
+      "expected_output": "给出 output catalog/atlas、异步 Depth/Stencil、History 状态、误差比较的可执行排查流程，并区分 GPU 结果和 CPU 同步等待。",
+      "files": []
+    }
+  ]
+}
