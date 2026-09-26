@@ -132,9 +132,15 @@ public:
     uint32_t getSampleCount() const { return mSampleCount; }
 
     /**
-     * Get the array size
+     * Get the array size. For cube textures, this is the number of cubes.
      */
     uint32_t getArraySize() const { return mArraySize; }
+
+    /**
+     * Get the number of physical array layers. Each cube contributes six face layers.
+     * Subresource indices and resource view array slices use these physical layers.
+     */
+    uint32_t getArrayLayerCount() const { return mType == Type::TextureCube ? mArraySize * 6 : mArraySize; }
 
     /**
      * Get the array index of a subresource
@@ -154,7 +160,7 @@ public:
     /**
      * Get the number of subresources
      */
-    uint32_t getSubresourceCount() const { return mMipLevels * mArraySize; }
+    uint32_t getSubresourceCount() const { return mMipLevels * getArrayLayerCount(); }
 
     /**
      * Get the resource format
@@ -214,9 +220,9 @@ public:
      * @param[in] mostDetailedMip The most detailed mip level of the view
      * @param[in] mipCount The number of mip-levels to bind. If this is equal to Texture#kMaxPossible, will create a view ranging from
      * mostDetailedMip to the texture's mip levels count
-     * @param[in] firstArraySlice The first array slice of the view
-     * @param[in] arraySize The array size. If this is equal to Texture#kMaxPossible, will create a view ranging from firstArraySlice to the
-     * texture's array size
+     * @param[in] firstArraySlice The first physical layer (cube face) of the view. Cube SRVs require a multiple of six.
+     * @param[in] arraySize The number of physical layers, or kMaxPossible for all remaining layers.
+     * Cube SRVs require complete groups of six faces.
      */
     ref<ShaderResourceView> getSRV(
         uint32_t mostDetailedMip,
@@ -228,27 +234,24 @@ public:
     /**
      * Get a render-target view.
      * @param[in] mipLevel The requested mip-level
-     * @param[in] firstArraySlice The first array slice of the view
-     * @param[in] arraySize The array size. If this is equal to Texture#kMaxPossible, will create a view ranging from firstArraySlice to the
-     * texture's array size
+     * @param[in] firstArraySlice The first physical layer (cube face) of the view.
+     * @param[in] arraySize The number of physical layers, or kMaxPossible for all remaining layers.
      */
     ref<RenderTargetView> getRTV(uint32_t mipLevel = 0, uint32_t firstArraySlice = 0, uint32_t arraySize = kMaxPossible);
 
     /**
      * Get a depth stencil view.
      * @param[in] mipLevel The requested mip-level
-     * @param[in] firstArraySlice The first array slice of the view
-     * @param[in] arraySize The array size. If this is equal to Texture#kMaxPossible, will create a view ranging from firstArraySlice to the
-     * texture's array size
+     * @param[in] firstArraySlice The first physical layer (cube face) of the view.
+     * @param[in] arraySize The number of physical layers, or kMaxPossible for all remaining layers.
      */
     ref<DepthStencilView> getDSV(uint32_t mipLevel = 0, uint32_t firstArraySlice = 0, uint32_t arraySize = kMaxPossible);
 
     /**
      * Get an unordered access view.
      * @param[in] mipLevel The requested mip-level
-     * @param[in] firstArraySlice The first array slice of the view
-     * @param[in] arraySize The array size. If this is equal to Texture#kMaxPossible, will create a view ranging from firstArraySlice to the
-     * texture's array size
+     * @param[in] firstArraySlice The first physical layer (cube face) of the view.
+     * @param[in] arraySize The number of physical layers, or kMaxPossible for all remaining layers.
      */
     ref<UnorderedAccessView> getUAV(uint32_t mipLevel, uint32_t firstArraySlice = 0, uint32_t arraySize = kMaxPossible);
 
@@ -294,6 +297,7 @@ public:
 
     /**
      * Generates mipmaps for a specified texture object.
+     * Cube textures are unsupported, including single-mip cubes; use explicit cube filtering passes instead.
      * @param[in] pContext Used render context.
      * @param[in] minMaxMips Generate a min/max mipmap pyramid. Each RGBA texel of levels >0 in the resulting MIP pyramid will cointain
      * {Avg, Min, Max, Avg} of the 4 coresponding texels from the immediatly larger MIP level.

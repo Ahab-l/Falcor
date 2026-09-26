@@ -28,6 +28,7 @@
 #include "Falcor.h"
 #include "RenderGraph/RenderPassStandardFlags.h"
 #include "GBufferRaster.h"
+#include <nlohmann/json.hpp>
 
 namespace
 {
@@ -66,6 +67,14 @@ GBufferRaster::GBufferRaster(ref<Device> pDevice, const Properties& props) : GBu
         FALCOR_THROW("GBufferRaster requires rasterizer ordered views (ROVs) support.");
 
     parseProperties(props);
+    if (props.has("instanceIDs"))
+    {
+        const auto ids = props.toJson().at("instanceIDs");
+        FALCOR_CHECK(ids.is_array(), "instanceIDs must be an array of uint32 IDs");
+        for (const auto& id : ids)
+            FALCOR_CHECK(id.is_number_integer() && id >= 0 && id <= UINT32_MAX, "instanceIDs must contain uint32 IDs");
+        mInstanceIDs = ids.get<std::vector<uint32_t>>();
+    }
 
     // Initialize graphics state
     mDepthPass.pState = GraphicsState::create(mpDevice);
@@ -78,6 +87,13 @@ GBufferRaster::GBufferRaster(ref<Device> pDevice, const Properties& props) : GBu
     mGBufferPass.pState->setDepthStencilState(pDsState);
 
     mpFbo = Fbo::create(mpDevice);
+}
+
+Properties GBufferRaster::getProperties() const
+{
+    auto props = GBuffer::getProperties().toJson();
+    if (mInstanceIDs) props["instanceIDs"] = *mInstanceIDs;
+    return Properties(props);
 }
 
 RenderPassReflection GBufferRaster::reflect(const CompileData& compileData)
@@ -108,6 +124,7 @@ void GBufferRaster::compile(RenderContext* pRenderContext, const CompileData& co
 void GBufferRaster::setScene(RenderContext* pRenderContext, const ref<Scene>& pScene)
 {
     GBuffer::setScene(pRenderContext, pScene);
+    mpRasterDrawList = pScene && mInstanceIDs ? pScene->createRasterDrawList(*mInstanceIDs) : nullptr;
 
     recreatePrograms();
 
@@ -191,7 +208,7 @@ void GBufferRaster::execute(RenderContext* pRenderContext, const RenderData& ren
         mpFbo->attachDepthStencilTarget(pDepth);
         mDepthPass.pState->setFbo(mpFbo);
 
-        mpScene->rasterize(pRenderContext, mDepthPass.pState.get(), mDepthPass.pVars.get(), cullMode);
+        mpScene->rasterize(pRenderContext, mDepthPass.pState.get(), mDepthPass.pVars.get(), mpRasterDrawList, cullMode);
     }
 
     // GBuffer pass.
@@ -234,7 +251,7 @@ void GBufferRaster::execute(RenderContext* pRenderContext, const RenderData& ren
         mGBufferPass.pState->setFbo(mpFbo); // Sets the viewport
 
         // Rasterize the scene.
-        mpScene->rasterize(pRenderContext, mGBufferPass.pState.get(), mGBufferPass.pVars.get(), cullMode);
+        mpScene->rasterize(pRenderContext, mGBufferPass.pState.get(), mGBufferPass.pVars.get(), mpRasterDrawList, cullMode);
     }
 
     mFrameCount++;

@@ -121,6 +121,10 @@ Texture::Texture(
     FALCOR_ASSERT(mArraySize > 0 && mMipLevels > 0 && mSampleCount > 0);
 
     bool autoGenerateMips = pInitData && (mMipLevels == Texture::kMaxPossible);
+    FALCOR_CHECK(
+        !autoGenerateMips || mType != Type::TextureCube,
+        "Automatic cube mip generation is unsupported. Supply explicit mip data or use a cube filtering pass."
+    );
 
     if (autoGenerateMips)
         mBindFlags |= ResourceBindFlags::RenderTarget;
@@ -131,7 +135,7 @@ Texture::Texture(
         mMipLevels = bitScanReverse(dims) + 1;
     }
 
-    mState.perSubresource.resize(mMipLevels * mArraySize, mState.global);
+    mState.perSubresource.resize(getSubresourceCount(), mState.global);
 
     ResourceBindFlags supported = mpDevice->getFormatBindFlags(mFormat);
     supported |= ResourceBindFlags::Shared;
@@ -163,7 +167,8 @@ Texture::Texture(
     desc.size.height = align_to(getFormatHeightCompressionRatio(mFormat), mHeight);
     desc.size.depth = mDepth;
 
-    desc.arraySize = mType == Texture::Type::TextureCube ? mArraySize * 6 : mArraySize;
+    // GFX counts cubes here and expands each cube into six native array layers.
+    desc.arraySize = mArraySize;
     desc.numMipLevels = mMipLevels;
 
     desc.format = getGFXFormat(mFormat); // lookup can result in Unknown / unsupported format
@@ -454,7 +459,7 @@ ref<ViewClass> findViewCommon(
     uint32_t resMipCount = 1;
     uint32_t resArraySize = 1;
 
-    resArraySize = pTexture->getArraySize();
+    resArraySize = pTexture->getArrayLayerCount();
     resMipCount = pTexture->getMipCount();
 
     if (firstArraySlice >= resArraySize)
@@ -535,6 +540,17 @@ ref<RenderTargetView> Texture::getRTV(uint32_t mipLevel, uint32_t firstArraySlic
 
 ref<ShaderResourceView> Texture::getSRV(uint32_t mostDetailedMip, uint32_t mipCount, uint32_t firstArraySlice, uint32_t arraySize)
 {
+    if (mType == Type::TextureCube)
+    {
+        // Validate before findViewCommon() can clamp an invalid cube range to a different cube.
+        const uint32_t layers = getArrayLayerCount();
+        FALCOR_CHECK(firstArraySlice < layers && firstArraySlice % 6 == 0, "Cube SRVs must start at an existing cube's first face.");
+        const uint32_t viewLayers = arraySize == kMaxPossible ? layers - firstArraySlice : arraySize;
+        FALCOR_CHECK(
+            viewLayers > 0 && viewLayers % 6 == 0 && viewLayers <= layers - firstArraySlice,
+            "Cube SRVs must cover complete groups of six faces within the texture."
+        );
+    }
     auto createFunc = [](Texture* pTexture, uint32_t mostDetailedMip, uint32_t mipCount, uint32_t firstArraySlice, uint32_t arraySize)
     { return ShaderResourceView::create(pTexture->getDevice().get(), pTexture, mostDetailedMip, mipCount, firstArraySlice, arraySize); };
 
@@ -647,8 +663,7 @@ void Texture::uploadInitData(RenderContext* pRenderContext, const void* pData, b
         // Upload just the first mip-level
         size_t arraySliceSize = mWidth * mHeight * getFormatBytesPerBlock(mFormat);
         const uint8_t* pSrc = (uint8_t*)pData;
-        uint32_t numFaces = (mType == Texture::Type::TextureCube) ? 6 : 1;
-        for (uint32_t i = 0; i < mArraySize * numFaces; i++)
+        for (uint32_t i = 0; i < getArrayLayerCount(); i++)
         {
             uint32_t subresource = getSubresourceIndex(i, 0);
             pRenderContext->updateSubresourceData(this, subresource, pSrc);
@@ -669,6 +684,8 @@ void Texture::uploadInitData(RenderContext* pRenderContext, const void* pData, b
 
 void Texture::generateMips(RenderContext* pContext, bool minMaxMips)
 {
+    // The blit shader samples Texture2D; a cube SRV cannot expose one face as Texture2D.
+    FALCOR_CHECK(mType != Type::TextureCube, "generateMips() does not support cube textures. Use an explicit cube filtering pass.");
     if (mType != Type::Texture2D)
     {
         logWarning("Texture::generateMips() was only tested with Texture2Ds");
@@ -725,7 +742,7 @@ uint64_t Texture::getTexelCount() const
         FALCOR_ASSERT(texelsInMip > 0);
         count += texelsInMip;
     }
-    count *= getArraySize();
+    count *= getArrayLayerCount();
     FALCOR_ASSERT(count > 0);
     return count;
 }
@@ -759,10 +776,10 @@ inline pybind11::ndarray<pybind11::numpy> texture_to_numpy(const Texture& self, 
         mip_level < self.getMipCount(), "'mip_level' ({}) is out of bounds. Only {} level(s) available.", mip_level, self.getMipCount()
     );
     FALCOR_CHECK(
-        array_slice < self.getArraySize(),
+        array_slice < self.getArrayLayerCount(),
         "'array_slice' ({}) is out of bounds. Only {} slice(s) available.",
         array_slice,
-        self.getArraySize()
+        self.getArrayLayerCount()
     );
 
     // Get image dimensions.
@@ -809,10 +826,10 @@ inline void texture_from_numpy(Texture& self, pybind11::ndarray<pybind11::numpy>
         mip_level < self.getMipCount(), "'mip_level' ({}) is out of bounds. Only {} level(s) available.", mip_level, self.getMipCount()
     );
     FALCOR_CHECK(
-        array_slice < self.getArraySize(),
+        array_slice < self.getArrayLayerCount(),
         "'array_slice' ({}) is out of bounds. Only {} slice(s) available.",
         array_slice,
-        self.getArraySize()
+        self.getArrayLayerCount()
     );
     FALCOR_CHECK(isNdarrayContiguous(data), "numpy array is not contiguous");
 
@@ -842,6 +859,20 @@ FALCOR_SCRIPT_BINDING(Texture)
     texture.def_property_readonly("sample_count", &Texture::getSampleCount);
 
     texture.def("to_numpy", texture_to_numpy, "mip_level"_a = 0, "array_slice"_a = 0);
+    using ReadTask = CopyContext::ReadTextureTask;
+    pybind11::class_<ReadTask, ReadTask::SharedPtr>(m, "TextureReadbackTask")
+        .def_property_readonly("ready", &ReadTask::isReady)
+        .def_property_readonly("byte_size", &ReadTask::getDataSize)
+        .def_property_readonly("staging_bytes", &ReadTask::getStagingSize)
+        .def("result", [](const ReadTask& task) {
+            const auto bytes = task.getDataNonBlocking();
+            return pybind11::bytes(reinterpret_cast<const char*>(bytes.data()), bytes.size());
+        }, "Return tightly packed owned bytes only when ready; never waits for the GPU.");
+    texture.def("read_async", [](const Texture& self, uint32_t mip, uint32_t slice, uint64_t maxBytes) {
+        FALCOR_CHECK(mip < self.getMipCount() && slice < self.getArrayLayerCount(), "Readback subresource is out of range");
+        FALCOR_CHECK(!isStencilFormat(self.getFormat()), "Depth/stencil textures require explicit plane readback");
+        return self.getDevice()->getRenderContext()->asyncReadTextureSubresource(&self, self.getSubresourceIndex(slice, mip), maxBytes);
+    }, "mip_level"_a = 0, "array_slice"_a = 0, "max_bytes"_a = uint64_t(64 * 1024 * 1024));
     texture.def("from_numpy", texture_from_numpy, "data"_a, "mip_level"_a = 0, "array_slice"_a = 0);
 }
 } // namespace Falcor

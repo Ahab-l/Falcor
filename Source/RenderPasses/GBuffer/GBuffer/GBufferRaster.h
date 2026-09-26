@@ -45,6 +45,8 @@ public:
 
     GBufferRaster(ref<Device> pDevice, const Properties& props);
 
+    Properties getProperties() const override;
+
     RenderPassReflection reflect(const CompileData& compileData) override;
     void execute(RenderContext* pRenderContext, const RenderData& renderData) override;
     void setScene(RenderContext* pRenderContext, const ref<Scene>& pScene) override;
@@ -56,6 +58,8 @@ private:
 
     // Internal state
     ref<Fbo> mpFbo;
+    std::optional<std::vector<uint32_t>> mInstanceIDs;
+    ref<Scene::RasterDrawList> mpRasterDrawList;
 
     struct
     {

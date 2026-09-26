@@ -676,7 +676,8 @@ SlangCompileRequest* ProgramManager::createSlangCompileRequest(const Program& pr
 
     targetDesc.forceGLSLScalarBufferLayout = true;
 
-    if (getEnvironmentVariable("FALCOR_USE_SLANG_SPIRV_BACKEND") == "1" || program.mDesc.useSPIRVBackend)
+    const bool useDirectSPIRV = getEnvironmentVariable("FALCOR_USE_SLANG_SPIRV_BACKEND") == "1" || program.mDesc.useSPIRVBackend;
+    if (useDirectSPIRV)
     {
         targetDesc.flags |= SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY;
     }
@@ -737,6 +738,14 @@ SlangCompileRequest* ProgramManager::createSlangCompileRequest(const Program& pr
     auto addStringOption = [&compilerOptionEntries](slang::CompilerOptionName name, const char* value) {
         compilerOptionEntries.push_back({name, {slang::CompilerOptionValueKind::String, 0, 0, value, nullptr}});
     };
+
+    // Slang now defaults to direct SPIR-V emission. Clearing the legacy target
+    // flag alone no longer selects Falcor's default GLSL path. Choose it
+    // explicitly; preserve the existing per-program/environment direct opt-in.
+    // In bundled Slang, direct emission with scalar layout can put invalid
+    // ArrayStride decorations on Workgroup arrays (VUID 10684).
+    if (mpDevice->getType() == Device::Type::Vulkan)
+        addIntOption(useDirectSPIRV ? slang::CompilerOptionName::EmitSpirvDirectly : slang::CompilerOptionName::EmitSpirvViaGLSL, 1);
 
     // We always use row-major matrix layout in Falcor so by default that's what we pass to Slang
     // to allow it to compute correct reflection information. Slang then invokes the downstream compiler.

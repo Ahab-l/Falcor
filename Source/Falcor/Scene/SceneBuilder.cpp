@@ -1654,6 +1654,9 @@ namespace Falcor
 
     void SceneBuilder::pretransformStaticMeshes()
     {
+        // Object-position and local-normal material expressions need the
+        // original instance transform, including on singleton static meshes.
+        if (is_set(mFlags, Flags::DontPretransformStaticMeshes)) return;
         // This function transforms all static, non-instanced meshes to world space.
         // A new identity transform node is inserted in the scene graph, linking all transformed meshes.
         // This step is a prerequisite for the ray tracing optimizations we do later.
@@ -2962,6 +2965,7 @@ namespace Falcor
         flags.value("DontUseDisplacement", SceneBuilder::Flags::DontUseDisplacement);
         flags.value("UseCompressedHitInfo", SceneBuilder::Flags::UseCompressedHitInfo);
         flags.value("TessellateCurvesIntoPolyTubes", SceneBuilder::Flags::TessellateCurvesIntoPolyTubes);
+        flags.value("DontPretransformStaticMeshes", SceneBuilder::Flags::DontPretransformStaticMeshes);
         flags.value("UseCache", SceneBuilder::Flags::UseCache);
         flags.value("RebuildCache", SceneBuilder::Flags::RebuildCache);
         ScriptBindings::addEnumBinaryOperators(flags);

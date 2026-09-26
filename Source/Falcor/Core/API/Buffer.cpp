@@ -479,6 +479,18 @@ FALCOR_SCRIPT_BINDING(Buffer)
     buffer.def_property_readonly("struct_size", &Buffer::getStructSize);
 
     buffer.def("to_numpy", buffer_to_numpy);
+    using ReadTask = CopyContext::ReadBufferTask;
+    pybind11::class_<ReadTask, ReadTask::SharedPtr>(m, "BufferReadbackTask")
+        .def_property_readonly("ready", &ReadTask::isReady)
+        .def_property_readonly("byte_size", &ReadTask::getDataSize)
+        .def_property_readonly("staging_bytes", &ReadTask::getStagingSize)
+        .def("result", [](const ReadTask& task) {
+            const auto bytes = task.getDataNonBlocking();
+            return pybind11::bytes(reinterpret_cast<const char*>(bytes.data()), bytes.size());
+        }, "Return owned bytes only when ready; never blocks waiting for the GPU.");
+    buffer.def("read_async", [](const Buffer& self, size_t offset, size_t size, uint64_t maxBytes) {
+        return self.getDevice()->getRenderContext()->asyncReadBuffer(&self, offset, size, maxBytes);
+    }, "offset"_a = 0, "size"_a = 0, "max_bytes"_a = uint64_t(64 * 1024 * 1024));
     buffer.def("from_numpy", buffer_from_numpy, "data"_a);
 #if FALCOR_HAS_CUDA
     buffer.def("to_torch", buffer_to_torch, "shape"_a, "dtype"_a = DataType::float32);

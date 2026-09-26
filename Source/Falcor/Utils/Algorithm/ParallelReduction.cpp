@@ -54,21 +54,23 @@ ParallelReduction::ParallelReduction(ref<Device> pDevice) : mpDevice(pDevice)
     mpState = ComputeState::create(mpDevice);
 }
 
-void ParallelReduction::allocate(uint32_t elementCount, uint32_t elementSize)
+void ParallelReduction::allocate(uint32_t elementCount, uint32_t elementSize, ResourceFormat format)
 {
-    if (mpBuffers[0] == nullptr || mpBuffers[0]->getElementCount() < elementCount * elementSize)
+    // Typed buffer views must match the shader's DataType. A reducer can switch
+    // types without increasing capacity, so validate both ping-pong formats.
+    if (mpBuffers[0] == nullptr || mpBuffers[0]->getFormat() != format || mpBuffers[0]->getElementCount() < elementCount * elementSize)
     {
         // Buffer 0 has one element per tile.
-        mpBuffers[0] = mpDevice->createTypedBuffer<uint4>(elementCount * elementSize);
+        mpBuffers[0] = mpDevice->createTypedBuffer(format, elementCount * elementSize);
         mpBuffers[0]->setName("ParallelReduction::mpBuffers[0]");
+    }
 
-        // Buffer 1 has one element per N elements in buffer 0.
-        const uint32_t numElem1 = div_round_up(elementCount, mpFinalProgram->getReflector()->getThreadGroupSize().x);
-        if (mpBuffers[1] == nullptr || mpBuffers[1]->getElementCount() < numElem1 * elementSize)
-        {
-            mpBuffers[1] = mpDevice->createTypedBuffer<uint4>(numElem1 * elementSize);
-            mpBuffers[1]->setName("ParallelReduction::mpBuffers[1]");
-        }
+    // Buffer 1 has one element per N elements in buffer 0.
+    const uint32_t numElem1 = div_round_up(elementCount, mpFinalProgram->getReflector()->getThreadGroupSize().x);
+    if (mpBuffers[1] == nullptr || mpBuffers[1]->getFormat() != format || mpBuffers[1]->getElementCount() < numElem1 * elementSize)
+    {
+        mpBuffers[1] = mpDevice->createTypedBuffer(format, numElem1 * elementSize);
+        mpBuffers[1]->setName("ParallelReduction::mpBuffers[1]");
     }
 }
 
@@ -142,7 +144,7 @@ void ParallelReduction::execute(
     FALCOR_ASSERT(elementSize > 0);
 
     const uint2 numTiles = div_round_up(resolution, mpInitialProgram->getReflector()->getThreadGroupSize().xy());
-    allocate(numTiles.x * numTiles.y, elementSize);
+    allocate(numTiles.x * numTiles.y, elementSize, detail::FormatForElementType<T>::kFormat);
     FALCOR_ASSERT(mpBuffers[0]);
     FALCOR_ASSERT(mpBuffers[1]);
 

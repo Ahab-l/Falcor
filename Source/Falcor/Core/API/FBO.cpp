@@ -93,7 +93,7 @@ void checkAttachArguments(const Texture* pTexture, uint32_t mipLevel, uint32_t f
         else
         {
             FALCOR_CHECK(
-                arraySize + firstArraySlice <= pTexture->getArraySize(),
+                firstArraySlice < pTexture->getArrayLayerCount() && arraySize <= pTexture->getArrayLayerCount() - firstArraySlice,
                 "'frstArraySlice' ({}) and 'arraySize' ({}) request array index that is out of bounds.",
                 firstArraySlice,
                 arraySize

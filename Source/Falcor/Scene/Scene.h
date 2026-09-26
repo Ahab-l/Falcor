@@ -113,6 +113,7 @@ namespace Falcor
     */
     class FALCOR_API Scene : public IScene
     {
+        struct DrawArgs;
         FALCOR_OBJECT(Scene)
     public:
         using GeometryType = ::Falcor::GeometryType;
@@ -935,6 +936,48 @@ namespace Falcor
         */
         void rasterize(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars, const ref<RasterizerState>& pRasterizerStateCW, const ref<RasterizerState>& pRasterizerStateCCW);
 
+        /** A reusable, Scene-owned selection of triangle instances for indirect rasterization.
+            IDs retain their original Scene meaning. The selection does not change global visibility.
+        */
+        class FALCOR_API RasterDrawList : public Object
+        {
+            FALCOR_OBJECT(RasterDrawList)
+        public:
+            ~RasterDrawList();
+            const std::vector<uint32_t>& getInstanceIDs() const { return mInstanceIDs; }
+            uint32_t getDrawCount() const { return (uint32_t)mInstanceIDs.size(); }
+            uint32_t getBatchCount() const;
+            uint64_t getBuildCount() const { return mBuildCount; }
+        private:
+            friend class Scene;
+            explicit RasterDrawList(ref<Scene> scene) : mpScene(std::move(scene)) {}
+            ref<Scene> mpScene;
+            std::vector<uint32_t> mInstanceIDs;
+            std::vector<DrawArgs> mDrawArgs;
+            uint64_t mRevision = 0;
+            uint64_t mBuildCount = 0;
+        };
+
+        /** Create an immutable selection. Empty means no draws; duplicates are removed.
+            Invalid IDs or non-triangle geometry are rejected. The list retains its Scene.
+        */
+        ref<RasterDrawList> createRasterDrawList(const std::vector<uint32_t>& instanceIDs);
+
+        /** Query triangle instance IDs, optionally restricting to named native materials.
+            An absent material list selects all triangles; an empty list selects none.
+            This is a snapshot of the current material mapping, not a persistent predicate.
+        */
+        std::vector<uint32_t> getRasterInstanceIDs(const std::optional<std::vector<std::string>>& materialNames = {}) const;
+
+        /** Rasterize a selected list through the native indirect draw path. Null means the full scene.
+            Call Scene::update() after changing transforms, as for ordinary scene rendering.
+        */
+        void rasterize(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars,
+            const ref<RasterDrawList>& drawList, RasterizerState::CullMode cullMode = RasterizerState::CullMode::Back);
+        void rasterize(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars,
+            const ref<RasterDrawList>& drawList, const ref<RasterizerState>& pRasterizerStateCW,
+            const ref<RasterizerState>& pRasterizerStateCCW);
+
         /** Get the required raytracing maximum attribute size for this scene.
             Note: This depends on what types of geometry are used in the scene.
             \return Max attribute size in bytes.
@@ -1148,6 +1191,10 @@ namespace Falcor
         /** Create the draw list for rasterization.
         */
         void createDrawList();
+        std::vector<DrawArgs> createDrawArgs(const std::vector<uint32_t>& instanceIDs);
+        void rasterizeDrawArgs(RenderContext* pRenderContext, GraphicsState* pState, ProgramVars* pVars,
+            const std::vector<DrawArgs>& drawArgs, const ref<RasterizerState>& pRasterizerStateCW,
+            const ref<RasterizerState>& pRasterizerStateCCW);
 
         /** Initialize geometry descs for each BLAS.
         */
@@ -1247,6 +1294,8 @@ namespace Falcor
         ref<Vao> mpMeshVao16Bit;                          ///< VAO for drawing meshes with 16-bit vertex indices.
         ref<Vao> mpCurveVao;                                        ///< Vertex array object for the global curve vertex/index buffers.
         std::vector<DrawArgs> mDrawArgs;                            ///< List of draw arguments for rasterizing the meshes in the scene.
+        uint64_t mRasterDrawRevision = 1;                          ///< Changes when draw-record grouping must be refreshed.
+        uint64_t mDefaultDrawRevision = 0;
 
         // Triangle meshes
         std::vector<MeshDesc> mMeshDesc;                            ///< Copy of mesh data GPU buffer (mpMeshesBuffer).

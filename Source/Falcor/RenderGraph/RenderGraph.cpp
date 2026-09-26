@@ -35,6 +35,7 @@
 #include "Utils/Algorithm/DirectedGraphTraversal.h"
 #include "Utils/Scripting/Scripting.h"
 #include "Utils/Scripting/ScriptBindings.h"
+#include <algorithm>
 
 namespace Falcor
 {
@@ -42,6 +43,9 @@ const FileDialogFilterVec RenderGraph::kFileExtensionFilters = {{"py", "Render G
 
 RenderGraph::RenderGraph(ref<Device> pDevice, const std::string& name) : mpDevice(pDevice), mName(name)
 {
+    // Edges request reflection before Mogwai attaches/resizes the graph. The
+    // viewport is unknown then; GLM's default vector constructor leaves garbage.
+    mCompilerDeps.defaultResourceProps.dims = uint2(0);
     mpGraph = std::make_unique<DirectedGraph>();
 }
 
@@ -202,6 +206,46 @@ const ref<RenderPass>& RenderGraph::getPass(const std::string& name) const
     FALCOR_CHECK(index != kInvalidIndex, "Can't find render pass '{}'.", name);
 
     return mNodeData.at(index).pPass;
+}
+
+RenderGraph::Topology RenderGraph::getTopology() const
+{
+    Topology result;
+    result.nodes.reserve(mNodeData.size());
+    for (const auto& entry : mNodeData)
+        result.nodes.emplace_back(entry.second.name, entry.second.pPass->getType());
+
+    // Use the logical DAG, not mpExe or a compiler's optimized graph. Removed edge IDs may leave gaps.
+    for (uint32_t edgeId = 0; edgeId < mpGraph->getCurrentEdgeId(); ++edgeId)
+    {
+        if (!mpGraph->doesEdgeExist(edgeId))
+            continue;
+        const auto* edge = mpGraph->getEdge(edgeId);
+        const auto& fields = mEdgeData.at(edgeId);
+        std::string source = mNodeData.at(edge->getSourceNode()).name;
+        std::string destination = mNodeData.at(edge->getDestNode()).name;
+        if (!fields.srcField.empty())
+            source += "." + fields.srcField;
+        if (!fields.dstField.empty())
+            destination += "." + fields.dstField;
+        result.edges.emplace_back(std::move(source), std::move(destination));
+    }
+
+    result.outputs.reserve(mOutputs.size());
+    result.outputMasks.reserve(mOutputs.size());
+    for (const auto& output : mOutputs)
+    {
+        std::string name = mNodeData.at(output.nodeId).name + "." + output.field;
+        std::vector<TextureChannelFlags> masks(output.masks.begin(), output.masks.end());
+        std::sort(masks.begin(), masks.end());
+        result.outputs.push_back(name);
+        result.outputMasks.emplace_back(std::move(name), std::move(masks));
+    }
+    std::sort(result.nodes.begin(), result.nodes.end());
+    std::sort(result.edges.begin(), result.edges.end());
+    std::sort(result.outputs.begin(), result.outputs.end());
+    std::sort(result.outputMasks.begin(), result.outputMasks.end());
+    return result;
 }
 
 using str_pair = std::pair<std::string, std::string>;
@@ -671,7 +715,7 @@ bool canFieldsConnect(const RenderPassReflection::Field& src, const RenderPassRe
            (dst.getFormat() == ResourceFormat::Unknown || src.getFormat() == dst.getFormat()) &&
            src.getSampleCount() == dst.getSampleCount() && // TODO: allow dst sample count to be 1 when auto MSAA resolve is implemented in
                                                            // graph compilation
-           src.getType() == dst.getType() && src.getSampleCount() == dst.getSampleCount();
+           src.getType() == dst.getType() && src.getStructSize() == dst.getStructSize();
 }
 
 void RenderGraph::renderUI(RenderContext* pRenderContext, Gui::Widgets& widget)
@@ -734,6 +778,9 @@ FALCOR_SCRIPT_BINDING(RenderGraph)
     // RenderGraph
     pybind11::class_<RenderGraph, ref<RenderGraph>> renderGraph(m, "RenderGraph");
     renderGraph.def_property("name", &RenderGraph::getName, &RenderGraph::setName);
+    renderGraph.def_property_readonly("device", &RenderGraph::getDevice);
+    // Scripted hosts use the graph's own context, preserving device ownership.
+    renderGraph.def("execute", [](RenderGraph& graph) { graph.execute(graph.getDevice()->getRenderContext()); });
 
     renderGraph.def(
         "create_pass",
@@ -759,6 +806,35 @@ FALCOR_SCRIPT_BINDING(RenderGraph)
     renderGraph.def("get_pass", &RenderGraph::getPass, "name"_a);
     renderGraph.def("__getitem__", [](RenderGraph& self, const std::string& name) { return self.getPass(name); });
     renderGraph.def("get_output", pybind11::overload_cast<const std::string&>(&RenderGraph::getOutput), "name"_a);
+
+    const auto getTopology = [](const RenderGraph& graph)
+    {
+        const auto topology = graph.getTopology();
+        pybind11::list nodes;
+        for (const auto& [name, type] : topology.nodes)
+            nodes.append(pybind11::dict("name"_a = name, "type"_a = type));
+        pybind11::list edges;
+        for (const auto& [source, destination] : topology.edges)
+        {
+            pybind11::list endpoints;
+            endpoints.append(source);
+            endpoints.append(destination);
+            edges.append(endpoints);
+        }
+        pybind11::dict outputMasks;
+        for (const auto& [name, masks] : topology.outputMasks)
+        {
+            pybind11::list values;
+            for (const auto mask : masks)
+                values.append(static_cast<uint32_t>(mask));
+            outputMasks[pybind11::str(name)] = values;
+        }
+        return pybind11::dict(
+            "nodes"_a = nodes, "edges"_a = edges, "outputs"_a = topology.outputs, "output_masks"_a = outputMasks
+        );
+    };
+    renderGraph.def("get_topology", getTopology);
+    renderGraph.def("getTopology", getTopology);
 
     // PYTHONDEPRECATED BEGIN
     renderGraph.def(

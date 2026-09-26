@@ -26,9 +26,13 @@
  # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **************************************************************************/
 #include "PythonUI.h"
+#include "Core/API/Texture.h"
+#include "Core/Platform/OS.h"
 #include "Utils/Scripting/ScriptBindings.h"
 #include "Utils/Math/Vector.h"
 #include <pybind11/stl_bind.h>
+#include <cmath>
+#include <limits>
 
 PYBIND11_MAKE_OPAQUE(std::vector<Falcor::ref<Falcor::python_ui::Widget>>);
 
@@ -36,6 +40,11 @@ namespace Falcor
 {
 namespace python_ui
 {
+
+std::string pathToUtf8(const std::filesystem::path& path)
+{
+    return path.u8string();
+}
 
 /// Scoped push/pop of ImGui ID.
 class ScopedID
@@ -89,6 +98,14 @@ public:
         m_set_size = true;
     }
 
+    float get_background_alpha() const { return m_background_alpha; }
+    void set_background_alpha(float alpha)
+    {
+        if (!std::isfinite(alpha) || (alpha != -1.f && (alpha < 0.f || alpha > 1.f)))
+            throw std::invalid_argument("PythonUI.Window background_alpha must be -1 (native style) or in [0, 1].");
+        m_background_alpha = alpha;
+    }
+
     void show() { set_visible(true); }
     void close() { set_visible(false); }
 
@@ -109,6 +126,8 @@ public:
         }
 
         ScopedID id(this);
+        if (m_background_alpha >= 0.f)
+            ImGui::SetNextWindowBgAlpha(m_background_alpha);
         if (ImGui::Begin(m_title.c_str(), &m_visible))
         {
             auto pos = ImGui::GetWindowPos();
@@ -127,6 +146,7 @@ private:
     std::string m_title;
     float2 m_position;
     float2 m_size;
+    float m_background_alpha{-1.f};
     bool m_set_position{true};
     bool m_set_size{true};
 };
@@ -259,6 +279,172 @@ public:
 protected:
     std::string m_label;
     ChangeCallback m_change_callback;
+};
+
+class TextInput : public Property
+{
+    FALCOR_OBJECT(TextInput)
+public:
+    TextInput(Widget* parent, std::string_view label = "", ChangeCallback change_callback = {}, std::string value = "")
+        : Property(parent, label, change_callback), m_value(std::move(value))
+    {}
+
+    const std::string& get_value() const { return m_value; }
+    void set_value(std::string value) { m_value = std::move(value); }
+
+    void render() override
+    {
+        if (!m_visible)
+            return;
+        ScopedID id(this);
+        ScopedDisable disable(!m_enabled);
+        // Resizable storage avoids fixed-size path truncation. The callback only
+        // replaces ImGui's CPU buffer; user callbacks run after InputText returns.
+        std::vector<char> buffer(m_value.begin(), m_value.end());
+        buffer.resize(std::max<size_t>(buffer.size() + 1, 256), '\0');
+        auto resize = [](ImGuiInputTextCallbackData* data)
+        {
+            auto& buffer = *static_cast<std::vector<char>*>(data->UserData);
+            buffer.resize(data->BufSize);
+            data->Buf = buffer.data();
+            return 0;
+        };
+        if (ImGui::InputText(m_label.c_str(), buffer.data(), buffer.size(), ImGuiInputTextFlags_CallbackResize, resize, &buffer))
+        {
+            m_value = buffer.data();
+            if (m_change_callback)
+                m_change_callback();
+        }
+    }
+
+private:
+    std::string m_value;
+};
+
+class Image : public Widget
+{
+    FALCOR_OBJECT(Image)
+public:
+    using ClickCallback = std::function<void(uint2)>;
+
+    Image(Widget* parent, ref<Texture> texture = nullptr, float2 size = float2(0.f), ClickCallback click_callback = {})
+        // Validate before Widget registers this instance with its parent. A
+        // throwing derived constructor must not leave a partially-built child.
+        : Widget(validate_parent(parent, texture, size)), m_texture(std::move(texture)), m_size(size), m_click_callback(click_callback)
+    {}
+
+    const ref<Texture>& get_texture() const { return m_texture; }
+    void set_texture(ref<Texture> texture)
+    {
+        validate_texture(texture);
+        m_texture = std::move(texture);
+        // Between frames the previous draw list has already been submitted;
+        // retaining a closed/detached Image must not keep its GPU preview alive.
+        // During traversal, another widget's callback may replace this image's
+        // texture after its draw command was emitted, so preserve that reference.
+        if (!is_tree_rendering())
+            m_rendered_texture.reset();
+        m_rect = float4(0.f);
+    }
+
+    float2 get_size() const { return m_size; }
+    void set_size(float2 size)
+    {
+        validate_size(size);
+        m_size = size;
+    }
+
+    ClickCallback get_click_callback() const { return m_click_callback; }
+    void set_click_callback(ClickCallback callback) { m_click_callback = std::move(callback); }
+
+    uint2 get_selection() const { return m_selection; }
+    void set_selection(uint2 selection) { m_selection = selection; }
+
+    float4 get_rect() const { return m_rect; }
+
+    void render() override
+    {
+        m_rect = float4(0.f);
+        // Retain the texture whose pointer is embedded in this frame's ImGui
+        // command list, even if a click callback replaces .texture below.
+        m_rendered_texture = m_texture;
+        if (!m_visible || !m_rendered_texture)
+            return;
+        ScopedID id(this);
+        ScopedDisable disable(!m_enabled);
+
+        const uint2 extent(m_rendered_texture->getWidth(), m_rendered_texture->getHeight());
+        float width = ImGui::GetContentRegionAvail().x;
+        if (m_size.x > 0.f)
+            width = std::min(width, m_size.x);
+        float scale = width / float(extent.x);
+        if (m_size.y > 0.f)
+            scale = std::min(scale, m_size.y / float(extent.y));
+        if (!std::isfinite(scale) || scale <= 0.f)
+            return;
+        ImGui::Image((ImTextureID)m_rendered_texture.get(), ImVec2(float(extent.x) * scale, float(extent.y) * scale));
+        const ImVec2 min = ImGui::GetItemRectMin();
+        const ImVec2 max = ImGui::GetItemRectMax();
+        m_rect = float4(min.x, min.y, max.x - min.x, max.y - min.y);
+        if (m_enabled && ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+        {
+            const ImVec2 mouse = ImGui::GetMousePos();
+            const float x = std::clamp((mouse.x - min.x) / m_rect.z, 0.f, 1.f);
+            const float y = std::clamp((mouse.y - min.y) / m_rect.w, 0.f, 1.f);
+            m_selection = uint2(std::min(uint32_t(x * extent.x), extent.x - 1), std::min(uint32_t(y * extent.y), extent.y - 1));
+            if (m_click_callback)
+                m_click_callback(m_selection);
+        }
+        if (m_selection.x < extent.x && m_selection.y < extent.y)
+        {
+            const ImVec2 center(min.x + (float(m_selection.x) + 0.5f) * scale, min.y + (float(m_selection.y) + 0.5f) * scale);
+            ImDrawList* draw = ImGui::GetWindowDrawList();
+            draw->PushClipRect(min, max, true);
+            for (const auto& style :
+                 {std::pair<ImU32, float>(IM_COL32(0, 0, 0, 255), 3.f), std::pair<ImU32, float>(IM_COL32(255, 255, 255, 255), 1.f)})
+            {
+                draw->AddLine(ImVec2(center.x - 7.f, center.y), ImVec2(center.x + 7.f, center.y), style.first, style.second);
+                draw->AddLine(ImVec2(center.x, center.y - 7.f), ImVec2(center.x, center.y + 7.f), style.first, style.second);
+            }
+            draw->PopClipRect();
+        }
+    }
+
+private:
+    static void validate_texture(const ref<Texture>& texture)
+    {
+        if (!texture)
+            return;
+        const FormatType type = getFormatType(texture->getFormat());
+        const bool float_compatible =
+            type == FormatType::Float || type == FormatType::Unorm || type == FormatType::UnormSrgb || type == FormatType::Snorm;
+        if (texture->getType() != Resource::Type::Texture2D || texture->getArraySize() != 1 || texture->getSampleCount() != 1 ||
+            texture->getWidth() == 0 || texture->getHeight() == 0 || !float_compatible || isDepthStencilFormat(texture->getFormat()) ||
+            !is_set(texture->getBindFlags(), ResourceBindFlags::ShaderResource))
+            throw std::invalid_argument(
+                "PythonUI.Image requires a float-compatible, shader-readable, nonarray, single-sample 2D color texture."
+            );
+    }
+
+    static void validate_size(float2 size)
+    {
+        if (!std::isfinite(size.x) || !std::isfinite(size.y) || size.x < 0.f || size.y < 0.f)
+            throw std::invalid_argument("PythonUI.Image size must be finite and nonnegative (zero means automatic sizing).");
+    }
+
+    static Widget* validate_parent(Widget* parent, const ref<Texture>& texture, float2 size)
+    {
+        validate_texture(texture);
+        validate_size(size);
+        return parent;
+    }
+
+    ref<Texture> m_texture;
+    ref<Texture> m_rendered_texture;
+    float2 m_size;
+    ClickCallback m_click_callback;
+    uint2 m_selection{std::numeric_limits<uint32_t>::max()};
+    float4 m_rect{0.f};
 };
 
 class Checkbox : public Property
@@ -635,6 +821,19 @@ FALCOR_SCRIPT_BINDING(python_ui)
     widget.def_property_readonly("children", &Widget::get_children);
     widget.def_property("visible", &Widget::get_visible, &Widget::set_visible);
     widget.def_property("enabled", &Widget::get_enabled, &Widget::set_enabled);
+    widget.def(
+        "detach", &Widget::detach, "Remove from the parent between frames. Draw callbacks must enqueue this operation for a frame listener."
+    );
+
+    ui.def(
+        "open_file_dialog",
+        []()
+        {
+            std::filesystem::path path;
+            return openFileDialog({}, path) ? pathToUtf8(path) : std::string{};
+        },
+        "Open the native file picker. Returns an empty string when cancelled."
+    );
 
     pybind11::class_<Screen, Widget, ref<Screen>> screen(ui, "Screen");
 
@@ -651,6 +850,12 @@ FALCOR_SCRIPT_BINDING(python_ui)
     window.def_property("title", &Window::get_title, &Window::set_title);
     window.def_property("position", &Window::get_position, &Window::set_position);
     window.def_property("size", &Window::get_size, &Window::set_size);
+    window.def_property(
+        "background_alpha",
+        &Window::get_background_alpha,
+        &Window::set_background_alpha,
+        "Per-window background opacity: -1 preserves native style, otherwise a value in [0, 1]."
+    );
 
     pybind11::class_<Group, Widget, ref<Group>> group(ui, "Group");
     group.def(pybind11::init<Widget*, std::string_view>(), "parent"_a, "label"_a = "");
@@ -674,6 +879,30 @@ FALCOR_SCRIPT_BINDING(python_ui)
     pybind11::class_<Property, Widget, ref<Property>> property(ui, "Property");
     property.def_property("label", &Property::get_label, &Property::set_label);
     property.def_property("change_callback", &Property::get_change_callback, &Property::set_change_callback);
+
+    pybind11::class_<TextInput, Property, ref<TextInput>> text_input(ui, "TextInput");
+    text_input.def(
+        pybind11::init<Widget*, std::string_view, TextInput::ChangeCallback, std::string>(),
+        "parent"_a,
+        "label"_a = "",
+        "change_callback"_a = TextInput::ChangeCallback{},
+        "value"_a = ""
+    );
+    text_input.def_property("value", &TextInput::get_value, &TextInput::set_value);
+
+    pybind11::class_<Image, Widget, ref<Image>> image(ui, "Image");
+    image.def(
+        pybind11::init<Widget*, ref<Texture>, float2, Image::ClickCallback>(),
+        "parent"_a,
+        "texture"_a = nullptr,
+        "size"_a = float2(0.f),
+        "click_callback"_a = Image::ClickCallback{}
+    );
+    image.def_property("texture", &Image::get_texture, &Image::set_texture);
+    image.def_property("size", &Image::get_size, &Image::set_size);
+    image.def_property("click_callback", &Image::get_click_callback, &Image::set_click_callback);
+    image.def_property("selection", &Image::get_selection, &Image::set_selection);
+    image.def_property_readonly("rect", &Image::get_rect, "Last native draw rectangle in framebuffer coordinates: x, y, width, height.");
 
     pybind11::class_<Checkbox, Property, ref<Checkbox>> checkbox(ui, "Checkbox");
     checkbox.def(

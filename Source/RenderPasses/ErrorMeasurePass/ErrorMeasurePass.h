@@ -29,6 +29,8 @@
 #include "Falcor.h"
 #include "RenderGraph/RenderPass.h"
 #include "Utils/Algorithm/ParallelReduction.h"
+#include <chrono>
+#include <deque>
 #include <fstream>
 
 using namespace Falcor;
@@ -64,6 +66,11 @@ public:
     virtual void execute(RenderContext* pRenderContext, const RenderData& renderData) override;
     virtual void renderUI(Gui::Widgets& widget) override;
     virtual bool onKeyEvent(const KeyboardEvent& keyEvent) override;
+    virtual void setScene(RenderContext* pRenderContext, const ref<Scene>& pScene) override;
+    virtual void onHotReload(HotReloadFlags reloaded) override;
+
+    /// Read-only diagnostics. Frame is this pass's execute ordinal (not the host clock).
+    Properties getStatistics() const;
 
 private:
     bool loadReference();
@@ -73,15 +80,59 @@ private:
 
     void runDifferencePass(RenderContext* pRenderContext, const RenderData& renderData);
     void runReductionPasses(RenderContext* pRenderContext, const RenderData& renderData);
+    void collectMeasurements();
+    void invalidateMeasurements();
 
     ref<ComputePass> mpErrorMeasurerPass;
     std::unique_ptr<ParallelReduction> mpParallelReduction;
+    ref<Buffer> mpReductionResult;
+
+    struct MeasurementSample
+    {
+        uint64_t submittedFrame = 0;
+        double submittedTime = 0.; ///< Monotonic seconds since pass construction, not simulation time.
+        uint64_t generation = 0;
+        uint32_t width = 0;
+        uint32_t height = 0;
+        bool squaredDifference = false;
+        bool computeAverage = false;
+        bool ignoreBackground = false; ///< Effective setting, including whether WorldPosition was bound.
+        bool useLoadedReference = false;
+        bool reportRunningError = false;
+        float runningErrorSigma = 0.f;
+        OutputId selectedOutput = OutputId::Source;
+    };
+
+    struct PendingMeasurement
+    {
+        MeasurementSample sample;
+        CopyContext::ReadBufferTask::SharedPtr task;
+    };
+
+    // Invalid generations stay charged until their native fence is ready. Repeated
+    // resize/config changes therefore cannot bypass admission or grow staging.
+    static constexpr size_t kMaxPendingMeasurements = 4;
+    std::deque<PendingMeasurement> mPendingMeasurements;
+    uint64_t mMeasurementGeneration = 0;
+    uint64_t mExecutionFrame = 0;
+    uint64_t mSubmittedMeasurements = 0;
+    uint64_t mCompletedMeasurements = 0;
+    uint64_t mDiscardedMeasurements = 0;
+    uint64_t mSkippedMeasurements = 0;
+    uint64_t mLastCollectionFrame = 0;
+    bool mBackpressured = false;
+    bool mHasReference = false;
+    const std::chrono::steady_clock::time_point mStartTime = std::chrono::steady_clock::now();
+    ref<Texture> mpObservedSource;
+    ref<Texture> mpObservedReference;
+    ref<Texture> mpObservedWorldPosition;
 
     struct
     {
-        float3 error;   ///< Error (either L1 or MSE) in RGB.
-        float avgError; ///< Error averaged over color components.
+        float3 error = float3(0.f); ///< Error (either L1 or MSE) in RGB.
+        float avgError = 0.f;      ///< Error averaged over color components.
         bool valid = false;
+        MeasurementSample sample;
     } mMeasurements;
 
     // Internal state

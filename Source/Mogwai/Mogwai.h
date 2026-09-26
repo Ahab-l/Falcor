@@ -30,6 +30,7 @@
 #include "Core/SampleApp.h"
 #include "Scene/SceneBuilder.h"
 #include "RenderGraph/RenderGraph.h"
+#include "Utils/UI/PythonUI.h"
 #include "AppData.h"
 
 namespace Falcor
@@ -91,6 +92,9 @@ namespace Mogwai
 
         using KeyCallback = std::function<bool(bool pressed, uint32_t key)>;
         using SceneUpdateCallback = std::function<void(const ref<Scene>& pScene, double currentTime)>;
+        // Return true when the callback executed the graph. False uses Mogwai's
+        // ordinary execution. Invoked after scene/camera updates, before blit.
+        using GraphExecutionCallback = std::function<bool(const ref<RenderGraph>& pGraph, double currentTime)>;
 
         Renderer(const SampleAppConfig& config, const Options& options);
         ~Renderer();
@@ -123,6 +127,8 @@ namespace Mogwai
         AppData& getAppData() { return mAppData; }
 
         RenderGraph* getActiveGraph() const;
+        const ref<python_ui::Screen>& getScreen() const { return mpScreen; }
+        ref<Texture> getFramebuffer() const { return getTargetFbo()->getColorTexture(0); }
 
         uint32_t getActiveGraphIndex() const { return mActiveGraph; }
 
@@ -131,6 +137,17 @@ namespace Mogwai
 
         SceneUpdateCallback getSceneUpdateCallback() const { return mSceneUpdateCallback; }
         void setSceneUpdateCallback(SceneUpdateCallback sceneUpdateCallback) { mSceneUpdateCallback = sceneUpdateCallback; }
+
+        GraphExecutionCallback getGraphExecutionCallback() const { return mGraphExecutionCallback; }
+        void setGraphExecutionCallback(GraphExecutionCallback callback)
+        {
+            mGraphExecutionCallback = std::move(callback);
+            ++mGraphExecutionCallbackRevision;
+        }
+        uint64_t getGraphExecutionCallbackRevision() const { return mGraphExecutionCallbackRevision; }
+        GraphExecutionCallback mGraphExecutionCallback;
+        uint64_t mGraphExecutionCallbackRevision = 0;
+        bool mExecutingGraphCallback = false;
 
 //    private: // MOGWAI
         friend class Extension;
@@ -191,6 +208,7 @@ namespace Mogwai
         std::vector<GraphData> mGraphs;
         uint32_t mActiveGraph = 0;
         ref<Sampler> mpSampler = nullptr;
+        ref<python_ui::Screen> mpScreen;
         std::filesystem::path mScriptPath;
 
         // Editor stuff

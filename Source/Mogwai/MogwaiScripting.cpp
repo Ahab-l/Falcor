@@ -142,6 +142,8 @@ namespace Mogwai
         renderer.def(kRemoveGraph.c_str(), pybind11::overload_cast<const ref<RenderGraph>&>(&Renderer::removeGraph), "graph"_a);
         renderer.def(kGetGraph.c_str(), &Renderer::getGraph, "name"_a);
         renderer.def_property(kSceneUpdateCallback.c_str(), &Renderer::getSceneUpdateCallback, &Renderer::setSceneUpdateCallback);
+        renderer.def_property("graphExecutionCallback", &Renderer::getGraphExecutionCallback, &Renderer::setGraphExecutionCallback);
+        renderer.def_property_readonly("graphExecutionCallbackRevision", &Renderer::getGraphExecutionCallbackRevision);
 
         auto resizeFrameBuffer = [](Renderer* pRenderer, uint32_t width, uint32_t height) { pRenderer->resizeFrameBuffer(width, height); };
         renderer.def(kResizeFrameBuffer.c_str(), resizeFrameBuffer);
@@ -152,6 +154,8 @@ namespace Mogwai
 
         renderer.def_property_readonly(kScene.c_str(), &Renderer::getScene);
         renderer.def_property_readonly(kActiveGraph.c_str(), &Renderer::getActiveGraph);
+        renderer.def_property_readonly("screen", &Renderer::getScreen);
+        renderer.def_property_readonly("framebuffer", &Renderer::getFramebuffer);
         renderer.def_property_readonly(kClock.c_str(), [] (Renderer* pRenderer) { return &pRenderer->getGlobalClock(); });
         renderer.def_property_readonly(kProfiler.c_str(), [] (Renderer* pRenderer) { return pRenderer->getDevice()->getProfiler(); });
 

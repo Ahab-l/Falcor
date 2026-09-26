@@ -76,6 +76,7 @@ public:
             Texture3D,
             TextureCube,
             RawBuffer,
+            StructuredBuffer,
         };
 
         Field(const std::string& name, const std::string& desc, Visibility v);
@@ -90,6 +91,8 @@ public:
         static constexpr uint32_t kMaxMipLevels = Texture::kMaxPossible;
 
         Field& rawBuffer(uint32_t size);
+        /** Structured buffer with an explicit element stride/count and uint32 byte size. */
+        Field& structuredBuffer(uint32_t structSize, uint32_t elementCount);
         Field& texture1D(uint32_t width = 0, uint32_t mipCount = 1, uint32_t arraySize = 1);
         Field& texture2D(uint32_t width = 0, uint32_t height = 0, uint32_t sampleCount = 1, uint32_t mipCount = 1, uint32_t arraySize = 1);
         Field& texture3D(uint32_t width = 0, uint32_t height = 0, uint32_t depth = 0, uint32_t arraySize = 1);
@@ -101,7 +104,8 @@ public:
             uint32_t depth,
             uint32_t sampleCount,
             uint32_t mipCount,
-            uint32_t arraySize
+            uint32_t arraySize,
+            uint32_t structSize = 0
         );
 
         Field& format(ResourceFormat f);
@@ -119,6 +123,8 @@ public:
         uint32_t getSampleCount() const { return mSampleCount; }
         uint32_t getArraySize() const { return mArraySize; }
         uint32_t getMipCount() const { return mMipCount; }
+        uint32_t getStructSize() const { return mStructSize; }
+        bool isBuffer() const { return mType == Type::RawBuffer || mType == Type::StructuredBuffer; }
         ResourceFormat getFormat() const { return mFormat; }
         ResourceBindFlags getBindFlags() const { return mBindFlags; }
         Flags getFlags() const { return mFlags; }
@@ -150,6 +156,7 @@ public:
         uint32_t mSampleCount = 1; ///< The required sample count. Only valid for textures.
         uint32_t mMipCount = 1;    ///< The required mip-level count. Only valid for textures.
         uint32_t mArraySize = 1;   ///< The required array-size. Only valid for textures.
+        uint32_t mStructSize = 0;  ///< Structured buffer element stride in bytes; count is mWidth / mStructSize.
 
         ResourceFormat mFormat = ResourceFormat::Unknown; ///< Unknown means use the back-buffer format for output resources, don't care for
                                                           ///< input resources.
@@ -189,6 +196,7 @@ inline std::string to_string(RenderPassReflection::Field::Type t)
     switch (t)
     {
         t2s(RawBuffer);
+        t2s(StructuredBuffer);
         t2s(Texture1D);
         t2s(Texture2D);
         t2s(Texture3D);

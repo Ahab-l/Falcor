@@ -33,6 +33,7 @@
 #include "LowLevelContextData.h"
 #include "Core/Macros.h"
 #include <memory>
+#include <limits>
 #include <string>
 #include <vector>
 
@@ -53,12 +54,22 @@ public:
     {
     public:
         using SharedPtr = std::shared_ptr<ReadTextureTask>;
-        static SharedPtr create(CopyContext* pCtx, const Texture* pTexture, uint32_t subresourceIndex);
+        static SharedPtr create(CopyContext* pCtx, const Texture* pTexture, uint32_t subresourceIndex,
+            uint64_t maxStagingBytes = std::numeric_limits<uint64_t>::max());
+        /// Retires native fence ownership without waiting. Final Device teardown may still drain its queue.
+        ~ReadTextureTask();
         void getData(void* pData, size_t size) const;
         std::vector<uint8_t> getData() const;
+        /// Polls the device fence; never waits or maps pending GPU work.
+        bool isReady() const;
+        /// Throws if pending. Unlike getData(), this method never waits.
+        std::vector<uint8_t> getDataNonBlocking() const;
+        size_t getDataSize() const { return size_t(mRowCount) * mActualRowSize * mDepth; }
+        size_t getStagingSize() const { return mpBuffer->getSize(); }
 
     private:
         ReadTextureTask() = default;
+        void copyData(void* pData, size_t size) const;
         ref<Fence> mpFence;
         ref<Buffer> mpBuffer;
         CopyContext* mpContext;
@@ -66,6 +77,23 @@ public:
         uint32_t mRowSize;
         uint32_t mActualRowSize;
         uint32_t mDepth;
+    };
+
+    class FALCOR_API ReadBufferTask
+    {
+    public:
+        using SharedPtr = std::shared_ptr<ReadBufferTask>;
+        static SharedPtr create(CopyContext* context, const Buffer* buffer, size_t offset = 0, size_t size = 0,
+            uint64_t maxStagingBytes = std::numeric_limits<uint64_t>::max());
+        /// Retires native fence ownership without waiting. Final Device teardown may still drain its queue.
+        ~ReadBufferTask();
+        bool isReady() const;
+        std::vector<uint8_t> getDataNonBlocking() const;
+        size_t getDataSize() const { return mpBuffer->getSize(); }
+        size_t getStagingSize() const { return mpBuffer->getSize(); }
+    private:
+        ref<Fence> mpFence;
+        ref<Buffer> mpBuffer;
     };
 
     /**
@@ -222,7 +250,10 @@ public:
     /**
      * Read texture data Asynchronously
      */
-    ReadTextureTask::SharedPtr asyncReadTextureSubresource(const Texture* pTexture, uint32_t subresourceIndex);
+    ReadTextureTask::SharedPtr asyncReadTextureSubresource(const Texture* pTexture, uint32_t subresourceIndex,
+        uint64_t maxStagingBytes = std::numeric_limits<uint64_t>::max());
+    ReadBufferTask::SharedPtr asyncReadBuffer(const Buffer* pBuffer, size_t offset = 0, size_t size = 0,
+        uint64_t maxStagingBytes = std::numeric_limits<uint64_t>::max());
 
     /**
      * Get the low-level context data

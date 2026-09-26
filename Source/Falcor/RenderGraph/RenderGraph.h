@@ -37,10 +37,12 @@
 #include "Utils/Algorithm/DirectedGraph.h"
 #include "Scene/Scene.h"
 #include <filesystem>
+#include <functional>
 #include <memory>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 #include <vector>
 
 namespace Falcor
@@ -53,6 +55,15 @@ class FALCOR_API RenderGraph : public Object
 {
     FALCOR_OBJECT(RenderGraph)
 public:
+    /** Snapshot of the complete logical graph, including nodes not needed by its outputs. */
+    struct Topology
+    {
+        std::vector<std::pair<std::string, std::string>> nodes; ///< Render pass name and registered type.
+        std::vector<std::pair<std::string, std::string>> edges; ///< Source and destination, using addEdge() naming conventions.
+        std::vector<std::string> outputs;                     ///< Marked output resource names.
+        std::vector<std::pair<std::string, std::vector<TextureChannelFlags>>> outputMasks; ///< Masks for each marked output.
+    };
+
     static const FileDialogFilterVec kFileExtensionFilters;
     static constexpr uint32_t kInvalidIndex = -1;
 
@@ -109,6 +120,13 @@ public:
     const ref<RenderPass>& getPass(const std::string& name) const;
 
     /**
+     * Return a copy of the current logical graph topology without compiling or executing it.
+     * Nodes, edges and output names are sorted lexicographically; each output's masks are sorted numerically.
+     * Includes every registered node and live data/execution edge, even if compilation would prune it.
+     */
+    Topology getTopology() const;
+
+    /**
      * Remove a render pass and all its edges. You need to make sure the graph is still valid after the pass was removed.
      */
     void removePass(const std::string& name);
@@ -146,7 +164,7 @@ public:
     void removeEdge(uint32_t edgeID);
 
     /**
-     * Execute the graph.
+     * Validate, compile if needed, and execute the graph.
      */
     void execute(RenderContext* pRenderContext);
 

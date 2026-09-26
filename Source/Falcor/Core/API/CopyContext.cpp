@@ -48,6 +48,82 @@
 
 namespace Falcor
 {
+#if FALCOR_HAS_D3D12
+namespace
+{
+Resource::State getD3D12BufferReadState(const Buffer* pBuffer, Resource::State state)
+{
+    const auto flags = pBuffer->getBindFlags();
+    if (!is_set(flags, ResourceBindFlags::ShaderResource) ||
+        (!is_set(flags, ResourceBindFlags::Vertex) && !is_set(flags, ResourceBindFlags::Index)))
+        return state;
+
+    // Scene geometry is read through IA and shader views in the same draw. Include only compatible read bits,
+    // even when the buffer also permits UAV writes; the next write must leave this read union explicitly.
+    switch (state)
+    {
+    case Resource::State::VertexBuffer:
+    case Resource::State::ConstantBuffer:
+    case Resource::State::IndexBuffer:
+    case Resource::State::ShaderResource:
+    case Resource::State::PixelShader:
+    case Resource::State::NonPixelShader:
+    case Resource::State::IndirectArg:
+    case Resource::State::CopySource:
+        return Resource::State::GenericRead;
+    default:
+        return state;
+    }
+}
+
+D3D12_RESOURCE_STATES getD3D12ResourceState(Resource::State state, bool buffer)
+{
+    // gfx maps Falcor GenericRead to General, which is native COMMON, not GENERIC_READ. Native transitions
+    // must therefore handle both entry into this state and outgoing transitions, preserving the tracked state.
+    if (buffer && state == Resource::State::GenericRead)
+        return D3D12_RESOURCE_STATE_GENERIC_READ;
+
+    // Match the existing gfx D3D12 mapping for the other states, including legacy General aliases.
+    switch (getGFXResourceState(state))
+    {
+    case gfx::ResourceState::VertexBuffer:
+    case gfx::ResourceState::ConstantBuffer:
+        return D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER;
+    case gfx::ResourceState::IndexBuffer:
+        return D3D12_RESOURCE_STATE_INDEX_BUFFER;
+    case gfx::ResourceState::StreamOutput:
+        return D3D12_RESOURCE_STATE_STREAM_OUT;
+    case gfx::ResourceState::ShaderResource:
+        return D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE;
+    case gfx::ResourceState::PixelShaderResource:
+        return D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
+    case gfx::ResourceState::NonPixelShaderResource:
+        return D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE;
+    case gfx::ResourceState::UnorderedAccess:
+        return D3D12_RESOURCE_STATE_UNORDERED_ACCESS;
+    case gfx::ResourceState::RenderTarget:
+        return D3D12_RESOURCE_STATE_RENDER_TARGET;
+    case gfx::ResourceState::DepthWrite:
+        return D3D12_RESOURCE_STATE_DEPTH_WRITE;
+    case gfx::ResourceState::IndirectArgument:
+        return D3D12_RESOURCE_STATE_INDIRECT_ARGUMENT;
+    case gfx::ResourceState::CopySource:
+        return D3D12_RESOURCE_STATE_COPY_SOURCE;
+    case gfx::ResourceState::CopyDestination:
+        return D3D12_RESOURCE_STATE_COPY_DEST;
+    case gfx::ResourceState::ResolveSource:
+        return D3D12_RESOURCE_STATE_RESOLVE_SOURCE;
+    case gfx::ResourceState::ResolveDestination:
+        return D3D12_RESOURCE_STATE_RESOLVE_DEST;
+    case gfx::ResourceState::AccelerationStructure:
+        return D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE;
+    default:
+        return D3D12_RESOURCE_STATE_COMMON;
+    }
+}
+} // namespace
+#endif
+
 CopyContext::CopyContext(Device* pDevice, gfx::ICommandQueue* pQueue) : mpDevice(pDevice)
 {
     FALCOR_ASSERT(mpDevice);
@@ -137,9 +213,16 @@ void CopyContext::waitForFalcor(cudaStream_t stream)
 }
 #endif
 
-CopyContext::ReadTextureTask::SharedPtr CopyContext::asyncReadTextureSubresource(const Texture* pTexture, uint32_t subresourceIndex)
+CopyContext::ReadTextureTask::SharedPtr CopyContext::asyncReadTextureSubresource(
+    const Texture* pTexture, uint32_t subresourceIndex, uint64_t maxStagingBytes)
 {
-    return CopyContext::ReadTextureTask::create(this, pTexture, subresourceIndex);
+    return CopyContext::ReadTextureTask::create(this, pTexture, subresourceIndex, maxStagingBytes);
+}
+
+CopyContext::ReadBufferTask::SharedPtr CopyContext::asyncReadBuffer(
+    const Buffer* pBuffer, size_t offset, size_t size, uint64_t maxStagingBytes)
+{
+    return ReadBufferTask::create(this, pBuffer, offset, size, maxStagingBytes);
 }
 
 std::vector<uint8_t> CopyContext::readTextureSubresource(const Texture* pTexture, uint32_t subresourceIndex)
@@ -159,7 +242,7 @@ bool CopyContext::resourceBarrier(const Resource* pResource, Resource::State new
             globalBarrier = globalBarrier && pViewInfo->firstArraySlice == 0;
             globalBarrier = globalBarrier && pViewInfo->mostDetailedMip == 0;
             globalBarrier = globalBarrier && pViewInfo->mipCount == pTexture->getMipCount();
-            globalBarrier = globalBarrier && pViewInfo->arraySize == pTexture->getArraySize();
+            globalBarrier = globalBarrier && pViewInfo->arraySize == pTexture->getArrayLayerCount();
         }
 
         if (globalBarrier)
@@ -184,7 +267,7 @@ bool CopyContext::subresourceBarriers(const Texture* pTexture, Resource::State n
     bool setGlobal = false;
     if (pViewInfo == nullptr)
     {
-        fullResource.arraySize = pTexture->getArraySize();
+        fullResource.arraySize = pTexture->getArrayLayerCount();
         fullResource.firstArraySlice = 0;
         fullResource.mipCount = pTexture->getMipCount();
         fullResource.mostDetailedMip = 0;
@@ -218,12 +301,7 @@ bool CopyContext::subresourceBarriers(const Texture* pTexture, Resource::State n
 void CopyContext::updateTextureData(const Texture* pTexture, const void* pData)
 {
     mCommandsPending = true;
-    uint32_t subresourceCount = pTexture->getArraySize() * pTexture->getMipCount();
-    if (pTexture->getType() == Texture::Type::TextureCube)
-    {
-        subresourceCount *= 6;
-    }
-    updateTextureSubresources(pTexture, 0, subresourceCount, pData);
+    updateTextureSubresources(pTexture, 0, pTexture->getSubresourceCount(), pData);
 }
 
 void CopyContext::updateSubresourceData(
@@ -320,15 +398,62 @@ void CopyContext::updateTextureSubresources(
 CopyContext::ReadTextureTask::SharedPtr CopyContext::ReadTextureTask::create(
     CopyContext* pCtx,
     const Texture* pTexture,
-    uint32_t subresourceIndex
+    uint32_t subresourceIndex,
+    uint64_t maxStagingBytes
 )
 {
+    FALCOR_CHECK(pCtx && pTexture && pCtx->getDevice() == pTexture->getDevice(),
+        "Asynchronous readback requires a same-device texture");
+    FALCOR_CHECK(pTexture->getSampleCount() == 1 && subresourceIndex < pTexture->getSubresourceCount(),
+        "Asynchronous readback requires a valid single-sample subresource");
     SharedPtr pThis = SharedPtr(new ReadTextureTask);
     pThis->mpContext = pCtx;
     // Get footprint
     gfx::ITextureResource* srcTexture = pTexture->getGfxTextureResource();
     gfx::FormatInfo formatInfo;
     gfx::gfxGetFormatInfo(srcTexture->getDesc()->format, &formatInfo);
+
+#if FALCOR_HAS_D3D12
+    // The gfx copy encoder does not preserve a complete block footprint for
+    // compressed mip tails smaller than a block. Use the native footprint and
+    // copy the full subresource, including its padded physical block extent.
+    if (pCtx->getDevice()->getType() == Device::Type::D3D12 && formatInfo.blockWidth > 1)
+    {
+        auto nativeDevice = pCtx->getDevice()->getNativeHandle().as<ID3D12Device*>();
+        auto nativeTexture = pTexture->getNativeHandle().as<ID3D12Resource*>();
+        const auto nativeDesc = nativeTexture->GetDesc();
+        D3D12_PLACED_SUBRESOURCE_FOOTPRINT footprint = {};
+        UINT rows = 0;
+        UINT64 rowBytes = 0, totalBytes = 0;
+        nativeDevice->GetCopyableFootprints(&nativeDesc, subresourceIndex, 1, 0, &footprint, &rows, &rowBytes, &totalBytes);
+        FALCOR_CHECK(totalBytes != UINT64_MAX && rowBytes && rowBytes <= UINT32_MAX && footprint.Offset == 0,
+            "Invalid native compressed texture readback footprint");
+        pThis->mActualRowSize = uint32_t(rowBytes);
+        pThis->mRowSize = footprint.Footprint.RowPitch;
+        pThis->mRowCount = rows;
+        pThis->mDepth = footprint.Footprint.Depth;
+        FALCOR_CHECK(totalBytes <= maxStagingBytes, "Readback exceeds staging byte budget");
+        pThis->mpBuffer = pCtx->getDevice()->createBuffer(totalBytes, ResourceBindFlags::None, MemoryType::ReadBack, nullptr);
+        pCtx->resourceBarrier(pTexture, Resource::State::CopySource);
+        pCtx->getLowLevelData()->getResourceCommandEncoder();
+        auto commandList = pCtx->getLowLevelData()->getCommandBufferNativeHandle().as<ID3D12GraphicsCommandList*>();
+        D3D12_TEXTURE_COPY_LOCATION source = {};
+        source.pResource = nativeTexture;
+        source.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
+        source.SubresourceIndex = subresourceIndex;
+        D3D12_TEXTURE_COPY_LOCATION destination = {};
+        destination.pResource = pThis->mpBuffer->getNativeHandle().as<ID3D12Resource*>();
+        destination.Type = D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
+        destination.PlacedFootprint = footprint;
+        commandList->CopyTextureRegion(&destination, 0, 0, 0, &source, nullptr);
+        pCtx->setPendingCommands(true);
+        pThis->mpFence = pCtx->getDevice()->createFence();
+        pThis->mpFence->breakStrongReferenceToDevice();
+        pCtx->submit(false);
+        pCtx->signal(pThis->mpFence.get());
+        return pThis;
+    }
+#endif
 
     auto mipLevel = pTexture->getSubresourceMipLevel(subresourceIndex);
     pThis->mActualRowSize =
@@ -338,6 +463,7 @@ CopyContext::ReadTextureTask::SharedPtr CopyContext::ReadTextureTask::create(
     pThis->mRowSize = align_to(static_cast<uint32_t>(rowAlignment), pThis->mActualRowSize);
     uint64_t rowCount = (pTexture->getHeight(mipLevel) + formatInfo.blockHeight - 1) / formatInfo.blockHeight;
     uint64_t size = pTexture->getDepth(mipLevel) * rowCount * pThis->mRowSize;
+    FALCOR_CHECK(size && size <= maxStagingBytes, "Readback exceeds staging byte budget");
 
     // Create buffer
     pThis->mpBuffer = pCtx->getDevice()->createBuffer(size, ResourceBindFlags::None, MemoryType::ReadBack, nullptr);
@@ -376,11 +502,39 @@ CopyContext::ReadTextureTask::SharedPtr CopyContext::ReadTextureTask::create(
     return pThis;
 }
 
+CopyContext::ReadTextureTask::~ReadTextureTask()
+{
+    // A caller may abandon the task while its queue signal is pending. Keep
+    // the native fence until normal deferred resource retirement. Do this
+    // while the staging buffer still owns Device; Fence has a weak Device
+    // reference and the buffer member is destroyed before the fence member.
+    // The null guards also cover partially constructed tasks.
+    if (mpBuffer && mpFence)
+        mpBuffer->getDevice()->releaseResource(mpFence->getGfxFence());
+}
+
 void CopyContext::ReadTextureTask::getData(void* pData, size_t size) const
 {
-    FALCOR_ASSERT(size == size_t(mRowCount) * mActualRowSize * mDepth);
-
     mpFence->wait();
+    copyData(pData, size);
+}
+
+bool CopyContext::ReadTextureTask::isReady() const
+{
+    return mpFence->getCurrentValue() >= mpFence->getSignaledValue();
+}
+
+std::vector<uint8_t> CopyContext::ReadTextureTask::getDataNonBlocking() const
+{
+    FALCOR_CHECK(isReady(), "Readback is not ready");
+    std::vector<uint8_t> result(getDataSize());
+    copyData(result.data(), result.size());
+    return result;
+}
+
+void CopyContext::ReadTextureTask::copyData(void* pData, size_t size) const
+{
+    FALCOR_CHECK(size == getDataSize() && pData, "Readback destination size mismatch");
 
     uint8_t* pDst = reinterpret_cast<uint8_t*>(pData);
     const uint8_t* pSrc = reinterpret_cast<const uint8_t*>(mpBuffer->map());
@@ -407,6 +561,47 @@ std::vector<uint8_t> CopyContext::ReadTextureTask::getData() const
     return result;
 }
 
+CopyContext::ReadBufferTask::SharedPtr CopyContext::ReadBufferTask::create(
+    CopyContext* context, const Buffer* buffer, size_t offset, size_t size, uint64_t maxStagingBytes)
+{
+    FALCOR_CHECK(context && buffer && context->getDevice() == buffer->getDevice(),
+        "Asynchronous readback requires a same-device buffer");
+    FALCOR_CHECK(offset < buffer->getSize(), "Readback buffer offset is out of range");
+    if (size == 0) size = buffer->getSize() - offset;
+    FALCOR_CHECK(size <= buffer->getSize() - offset, "Readback buffer size is out of range");
+    FALCOR_CHECK(size <= maxStagingBytes, "Readback exceeds staging byte budget");
+    auto task = SharedPtr(new ReadBufferTask);
+    task->mpBuffer = context->getDevice()->createBuffer(size, ResourceBindFlags::None, MemoryType::ReadBack);
+    context->copyBufferRegion(task->mpBuffer.get(), 0, buffer, offset, size);
+    task->mpFence = context->getDevice()->createFence();
+    task->mpFence->breakStrongReferenceToDevice();
+    context->submit(false);
+    context->signal(task->mpFence.get());
+    return task;
+}
+
+CopyContext::ReadBufferTask::~ReadBufferTask()
+{
+    // Match texture tasks, including the last staging-buffer owner of Device.
+    // No task wait/poll/map/submit, and no reference cycle back to the task.
+    if (mpBuffer && mpFence)
+        mpBuffer->getDevice()->releaseResource(mpFence->getGfxFence());
+}
+
+bool CopyContext::ReadBufferTask::isReady() const
+{
+    return mpFence->getCurrentValue() >= mpFence->getSignaledValue();
+}
+
+std::vector<uint8_t> CopyContext::ReadBufferTask::getDataNonBlocking() const
+{
+    FALCOR_CHECK(isReady(), "Readback is not ready");
+    std::vector<uint8_t> result(getDataSize());
+    std::memcpy(result.data(), mpBuffer->map(), result.size());
+    mpBuffer->unmap();
+    return result;
+}
+
 bool CopyContext::textureBarrier(const Texture* pTexture, Resource::State newState)
 {
     auto resourceEncoder = getLowLevelData()->getResourceCommandEncoder();
@@ -429,12 +624,45 @@ bool CopyContext::bufferBarrier(const Buffer* pBuffer, Resource::State newState)
     FALCOR_ASSERT(pBuffer);
     if (pBuffer->getMemoryType() != MemoryType::DeviceLocal)
         return false;
+#if FALCOR_HAS_D3D12
+    if (mpDevice->getType() == Device::Type::D3D12)
+        newState = getD3D12BufferReadState(pBuffer, newState);
+#endif
     bool recorded = false;
-    if (pBuffer->getGlobalState() != newState)
+    const auto oldState = pBuffer->getGlobalState();
+    if (oldState != newState)
     {
+        // End any active render encoder before recording a transition on its native command list.
         auto resourceEncoder = getLowLevelData()->getResourceCommandEncoder();
-        gfx::IBufferResource* bufferResource = pBuffer->getGfxBufferResource();
-        resourceEncoder->bufferBarrier(1, &bufferResource, getGFXResourceState(pBuffer->getGlobalState()), getGFXResourceState(newState));
+#if FALCOR_HAS_D3D12
+        if (mpDevice->getType() == Device::Type::D3D12 &&
+            (oldState == Resource::State::GenericRead || newState == Resource::State::GenericRead))
+        {
+            D3D12_RESOURCE_BARRIER barrier = {};
+            barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+            barrier.Transition.pResource = pBuffer->getNativeHandle().as<ID3D12Resource*>();
+            barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+            barrier.Transition.StateBefore = getD3D12ResourceState(oldState, true);
+            barrier.Transition.StateAfter = getD3D12ResourceState(newState, true);
+            getLowLevelData()->getCommandBufferNativeHandle().as<ID3D12GraphicsCommandList*>()->ResourceBarrier(1, &barrier);
+        }
+        else
+#endif
+        {
+            gfx::IBufferResource* bufferResource = pBuffer->getGfxBufferResource();
+            auto destinationScope = getGFXResourceState(newState);
+            if (mpDevice->getType() == Device::Type::Vulkan &&
+                oldState == Resource::State::CopyDest && newState == Resource::State::CopySource)
+            {
+                // Some Vulkan drivers lose transfer-read visibility when a
+                // buffer upload and its first readback straddle an image copy.
+                // Widen only this RAW destination stage/access scope via native GFX;
+                // no extra submit/wait, and no image layout/state change.
+                // Keep logical CopySource below for subsequent real accesses.
+                destinationScope = gfx::ResourceState::General;
+            }
+            resourceEncoder->bufferBarrier(1, &bufferResource, getGFXResourceState(oldState), destinationScope);
+        }
         pBuffer->setGlobalState(newState);
         mCommandsPending = true;
         recorded = true;
@@ -454,8 +682,34 @@ void CopyContext::apiSubresourceBarrier(
     auto subresourceState = pTexture->getSubresourceState(arraySlice, mipLevel);
     if (subresourceState != newState)
     {
+#if FALCOR_HAS_D3D12
+        if (mpDevice->getType() == Device::Type::D3D12 && pTexture->getType() == Resource::Type::TextureCube &&
+            isStencilFormat(pTexture->getFormat()))
+        {
+            // GFX's D3D12 Cube subresource barrier uses the cube count for the
+            // plane stride, not the physical face count. Transition the depth
+            // and stencil of this one face/mip using native subresource indices.
+            D3D12_RESOURCE_BARRIER barriers[2] = {};
+            const uint32_t base = pTexture->getSubresourceIndex(arraySlice, mipLevel);
+            const uint32_t planeStride = pTexture->getMipCount() * pTexture->getArrayLayerCount();
+            for (uint32_t plane = 0; plane < 2; ++plane)
+            {
+                auto& barrier = barriers[plane];
+                barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+                barrier.Transition.pResource = pTexture->getNativeHandle().as<ID3D12Resource*>();
+                barrier.Transition.Subresource = base + plane * planeStride;
+                barrier.Transition.StateBefore = getD3D12ResourceState(subresourceState, false);
+                barrier.Transition.StateAfter = getD3D12ResourceState(newState, false);
+            }
+            getLowLevelData()->getCommandBufferNativeHandle().as<ID3D12GraphicsCommandList*>()->ResourceBarrier(2, barriers);
+            mCommandsPending = true;
+            return;
+        }
+#endif
         gfx::ITextureResource* textureResource = pTexture->getGfxTextureResource();
         gfx::SubresourceRange subresourceRange = {};
+        if (isStencilFormat(pTexture->getFormat())) subresourceRange.aspectMask = gfx::TextureAspect::DepthStencil;
+        else if (isDepthStencilFormat(pTexture->getFormat())) subresourceRange.aspectMask = gfx::TextureAspect::Depth;
         subresourceRange.baseArrayLayer = arraySlice;
         subresourceRange.mipLevel = mipLevel;
         subresourceRange.layerCount = 1;
@@ -479,7 +733,30 @@ void CopyContext::uavBarrier(const Resource* pResource)
     else
     {
         gfx::ITextureResource* textureResource = static_cast<gfx::ITextureResource*>(pResource->getGfxResource());
-        resourceEncoder->textureBarrier(1, &textureResource, gfx::ResourceState::UnorderedAccess, gfx::ResourceState::UnorderedAccess);
+        const auto pTexture = static_cast<const Texture*>(pResource);
+        if (mpDevice->getType() == Device::Type::Vulkan && !pTexture->isStateGlobal())
+        {
+            // A whole-image GENERAL barrier would also change the layouts of read-only mips.
+            // D3D12 UAV barriers below are resource-wide memory barriers with no layout transition.
+            for (uint32_t layer = 0; layer < pTexture->getArrayLayerCount(); ++layer)
+            {
+                for (uint32_t mip = 0; mip < pTexture->getMipCount(); ++mip)
+                {
+                    if (pTexture->getSubresourceState(layer, mip) != Resource::State::UnorderedAccess)
+                        continue;
+                    gfx::SubresourceRange range = {};
+                    range.baseArrayLayer = layer;
+                    range.layerCount = 1;
+                    range.mipLevel = mip;
+                    range.mipLevelCount = 1;
+                    resourceEncoder->textureSubresourceBarrier(
+                        textureResource, range, gfx::ResourceState::UnorderedAccess, gfx::ResourceState::UnorderedAccess
+                    );
+                }
+            }
+        }
+        else
+            resourceEncoder->textureBarrier(1, &textureResource, gfx::ResourceState::UnorderedAccess, gfx::ResourceState::UnorderedAccess);
     }
     mCommandsPending = true;
 }

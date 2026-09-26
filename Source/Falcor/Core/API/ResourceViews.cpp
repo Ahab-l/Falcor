@@ -96,6 +96,16 @@ ref<ShaderResourceView> ShaderResourceView::create(
 )
 {
     FALCOR_CHECK(is_set(pTexture->getBindFlags(), ResourceBindFlags::ShaderResource), "Texture does not have SRV bind flag set.");
+    if (pTexture->getType() == Texture::Type::TextureCube)
+    {
+        // Direct factory callers must satisfy the same physical-face contract as Texture::getSRV().
+        const uint32_t layers = pTexture->getArrayLayerCount();
+        FALCOR_CHECK(
+            firstArraySlice < layers && firstArraySlice % 6 == 0 && arraySize > 0 && arraySize % 6 == 0 &&
+                arraySize <= layers - firstArraySlice,
+            "Cube SRVs must cover aligned, complete groups of six faces within the texture."
+        );
+    }
     Slang::ComPtr<gfx::IResourceView> handle;
     gfx::IResourceView::Desc desc = {};
     desc.format = getGFXFormat(depthToColorFormat(pTexture->getFormat()));
@@ -137,6 +147,10 @@ ref<DepthStencilView> DepthStencilView::create(
 )
 {
     FALCOR_CHECK(is_set(pTexture->getBindFlags(), ResourceBindFlags::DepthStencil), "Texture does not have DSV bind flag set.");
+    FALCOR_CHECK(
+        pTexture->getType() != Texture::Type::TextureCube || pDevice->getType() != Device::Type::Vulkan,
+        "Cube DSVs are unsupported by the current GFX Vulkan backend."
+    );
     Slang::ComPtr<gfx::IResourceView> handle;
     gfx::IResourceView::Desc desc = {};
     desc.format = getGFXFormat(pTexture->getFormat());
@@ -165,6 +179,10 @@ ref<UnorderedAccessView> UnorderedAccessView::create(
 )
 {
     FALCOR_CHECK(is_set(pTexture->getBindFlags(), ResourceBindFlags::UnorderedAccess), "Texture does not have UAV bind flag set.");
+    FALCOR_CHECK(
+        pTexture->getType() != Texture::Type::TextureCube || pDevice->getType() != Device::Type::Vulkan,
+        "Cube UAVs require a Texture2DArray view, which the current GFX Vulkan backend does not support."
+    );
     Slang::ComPtr<gfx::IResourceView> handle;
     gfx::IResourceView::Desc desc = {};
     desc.format = getGFXFormat(pTexture->getFormat());
@@ -208,6 +226,10 @@ ref<RenderTargetView> RenderTargetView::create(
 )
 {
     FALCOR_CHECK(is_set(pTexture->getBindFlags(), ResourceBindFlags::RenderTarget), "Texture does not have RTV bind flag set.");
+    FALCOR_CHECK(
+        pTexture->getType() != Texture::Type::TextureCube || pDevice->getType() != Device::Type::Vulkan,
+        "Cube RTVs are unsupported by the current GFX Vulkan backend."
+    );
     Slang::ComPtr<gfx::IResourceView> handle;
     gfx::IResourceView::Desc desc = {};
     desc.format = getGFXFormat(pTexture->getFormat());

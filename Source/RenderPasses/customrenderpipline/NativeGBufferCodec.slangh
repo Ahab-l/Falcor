@@ -1,0 +1,10 @@
+// Example authored encoding: roughness in bits 0..7, native material ID in
+// bits 8..23, emissive flag in bit 24. This is not an engine-wide material ABI.
+uint packNativeMaterial(float roughness, uint materialID, bool emissive)
+{
+    return (uint(round(saturate(roughness) * 255.f)) & 255u)
+        | ((materialID & 65535u) << 8) | (emissive ? (1u << 24) : 0u);
+}
+float unpackNativeRoughness(uint packed) { return float(packed & 255u) / 255.f; }
+uint unpackNativeMaterialID(uint packed) { return (packed >> 8) & 65535u; }
+bool unpackNativeEmissive(uint packed) { return (packed & (1u << 24)) != 0; }

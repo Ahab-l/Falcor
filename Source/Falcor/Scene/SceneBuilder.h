@@ -77,6 +77,7 @@ namespace Falcor
             DontUseDisplacement             = 0x4000,   ///< Don't use displacement mapping.
             UseCompressedHitInfo            = 0x8000,   ///< Use compressed hit info (on scenes with triangle meshes only).
             TessellateCurvesIntoPolyTubes   = 0x10000,  ///< Tessellate curves into poly-tubes (the default is linear swept spheres).
+            DontPretransformStaticMeshes   = 0x20000,  ///< Keep singleton static meshes in object space for material/instance semantics.
 
             UseCache                        = 0x10000000, ///< Enable scene caching. This caches the runtime scene representation on disk to reduce load time.
             RebuildCache                    = 0x20000000, ///< Rebuild scene cache.

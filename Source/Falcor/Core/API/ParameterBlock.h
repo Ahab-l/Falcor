@@ -387,7 +387,7 @@ protected:
     void createConstantBuffers(const ShaderVar& var);
     void checkForNestedTextureArrayResources();
 
-    static void prepareResource(CopyContext* pContext, Resource* pResource, bool isUav);
+    static void prepareResource(CopyContext* pContext, Resource* pResource, bool isUav, const ResourceViewInfo* pViewInfo);
 
     /// Note: We hold an unowned pointer to the device but a strong pointer to the program version.
     /// We tie the lifetime of the program version to the lifetime of the parameter block.
