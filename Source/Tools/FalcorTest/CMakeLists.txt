@@ -42,6 +42,7 @@ target_sources(FalcorTest PRIVATE
     Tests/Core/CustomRenderPiplineCapabilities.cpp
     Tests/Core/CustomRenderPiplineCapabilities.slang
     Tests/Core/CustomRenderPiplineSampler.cpp
+    Tests/Core/CustomRenderPiplineMeshRouting.cpp
     Tests/Core/NativeTextureReadback.cpp
     Tests/Core/NativeAsyncReadback.cpp
     Tests/Core/NativeGpuWorkload.h
@@ -210,3 +211,4 @@ target_source_group(FalcorTest "Tools")
 
 # Scene-specific and UE compatibility tests are intentionally kept out of this
 # core branch. The files listed above cover the reusable native framework APIs.
+
