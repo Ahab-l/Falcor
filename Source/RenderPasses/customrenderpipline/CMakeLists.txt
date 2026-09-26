@@ -21,6 +21,8 @@ target_sources(customrenderpipline PRIVATE
     CustomRenderPiplineTextureSubresources.h
     CustomRenderPiplineMeshDrawPass.h
     CustomRenderPiplineMeshDrawPass.cpp
+    CustomRenderPiplineMeshRouting.h
+    CustomRenderPiplineMeshRouting.cpp
     CustomRenderPiplineAssetPass.h
     CustomRenderPiplineAssetPass.cpp
     CustomRenderPiplineHistoryPass.h

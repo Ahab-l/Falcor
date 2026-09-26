@@ -1,6 +1,7 @@
 #include "CustomRenderPiplineNativeGBuffer.h"
 #include "CustomRenderPiplineShaderPass.h"
 #include "CustomRenderPiplineMeshDrawPass.h"
+#include "CustomRenderPiplineMeshRouting.h"
 #include "CustomRenderPiplineAssetPass.h"
 #include "CustomRenderPiplineHistoryPass.h"
 #include "CustomRenderPiplineObserver.h"
@@ -41,6 +42,21 @@ extern "C" FALCOR_API_EXPORT void registerPlugin(Falcor::PluginRegistry& registr
     Falcor::ScriptBindings::registerBinding([](pybind11::module& m)
     {
         m.def("customRenderPiplineHistoryInfo", [](Falcor::RenderGraph& graph) { return Falcor::historyGraphInfo(graph).dump(); });
+        m.def("customRenderPiplineAddMeshPasses",
+            [](Falcor::RenderGraph& graph, pybind11::object sceneObject, pybind11::list routes)
+            {
+                Falcor::ref<Falcor::Scene> scene;
+                if (!sceneObject.is_none()) scene = sceneObject.cast<Falcor::ref<Falcor::Scene>>();
+                nlohmann::ordered_json routeJson = nlohmann::ordered_json::array();
+                for (const auto& item : routes)
+                {
+                    FALCOR_CHECK(pybind11::isinstance<pybind11::dict>(item), "Mesh routes must contain dictionaries");
+                    routeJson.push_back(Falcor::Properties(item.cast<pybind11::dict>()).toJson());
+                }
+                const auto receipt = Falcor::CustomRenderPipline::addMeshPasses(graph, scene, routeJson);
+                return pybind11::module_::import("json").attr("loads")(receipt.dump());
+            },
+            pybind11::arg("graph"), pybind11::arg("scene"), pybind11::arg("routes"));
         m.def("customRenderPiplineBindHistory", &Falcor::bindHistoryGraph, pybind11::arg("graph"));
         m.def("customRenderPiplineResetHistory", &Falcor::resetHistoryGraph, pybind11::arg("graph"), pybind11::arg("key") = "");
         m.def("customRenderPiplineClockTime", [](const Falcor::Clock& clock) { return clock.getTime(); });

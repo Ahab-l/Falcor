@@ -21,7 +21,7 @@ Each route is an object with:
 
 Exactly one selector is required. `materials` and `instanceIDs` cannot both be supplied. The helper resolves material selectors using the current Scene snapshot, injects `instanceIDs` into the pass properties, and calls the normal RenderGraph `createPass()` path with type `CustomRenderPiplineMeshDrawPass`.
 
-The return value is a list of records containing the created pass name, resolved instance count, and resolved instance IDs. This gives scripts a deterministic validation receipt without adding a new pass ABI.
+The return value is a Python list of records containing the created pass name, resolved instance count, and resolved instance IDs. This gives scripts a deterministic validation receipt without adding a new pass ABI.
 
 ## Validation and ownership
 
